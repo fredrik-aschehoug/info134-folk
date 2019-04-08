@@ -1,11 +1,16 @@
+/**
+ * @constructor
+ * @param {String} url 
+ */
 function Population(url) {
-    // Properties
     this.url = url;
     this.onload = null;
     this.dataset = null;
     this.elements = null;
-
-    // Methods
+    /**
+     * @method
+     * @returns {Array} All municipal names
+     */
     this.getNames = function () {
         let names = [];
         for (let element in this.elements) {
@@ -13,6 +18,10 @@ function Population(url) {
         }
         return names;
     };
+    /**
+     * @method
+     * @returns {Array} All municipal IDs
+     */
     this.getIDs = function () {
         let ids = [];
         for (let element in this.elements) {
@@ -20,14 +29,27 @@ function Population(url) {
         }
         return ids;
     };
+    /**
+     * @method
+     * @param {String} municipalID
+     * @returns {Object} Information about the municipal
+     */
     this.getInfo = function (municipalID) {
-        let info;
+        // let info = {};
         for (let element in this.elements) {
             if (this.elements[element].kommunenummer === municipalID) {
-                return this.elements[element];
+                let info = this.elements[element];
+                info.navn = element;
+                return info;
             }
         }
     };
+    /**
+     * Uses AJAX to load JSON data from url and assign it to the object.
+     * Runs a callback when completed.
+     * @method
+     * @callback this.onload
+     */
     this.load = function () {
         let xhr = new XMLHttpRequest();
         xhr.open("GET", this.url);
@@ -37,7 +59,7 @@ function Population(url) {
                 this.dataset = response.datasett;
                 this.elements = response.elementer;
                 if (this.onload) { // If the onload property has been set
-                    this.onload(this.elements);
+                    this.onload();
                 }
             }
         }).bind(this); // Bind the callback's 'this' to the value of Population's 'this'
