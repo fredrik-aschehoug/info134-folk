@@ -1,11 +1,11 @@
 /**
  * @constructor
- * @param {String} url 
+ * @param {String} url wildboy dataset
  */
 function Population(url) {
     this.url = url;
     this.onload = null;
-    this.dataset = null;
+    this.dataset = null; // Kan strukes dersom det ikke blir brukt!
     this.elements = null;
     /**
      * @method
