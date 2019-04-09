@@ -1,10 +1,12 @@
 const URL_wildboy_104857 = "http://wildboy.uib.no/~tpe056/folk/104857.json";
 const URL_wildboy_100145 = "http://wildboy.uib.no/~tpe056/folk/100145.json";
+const URL_wildboy_85432 = "http://wildboy.uib.no/~tpe056/folk/85432.json";
 const oversikt = document.getElementsByClassName("oversikt")[0];
 const overviewHeaders = ["Navn", "Kommunenummer", "Total befolkning"];
 
 const befolkning = new Population(URL_wildboy_104857);
 const sysselsatte = new Employment(URL_wildboy_100145);
+const utdanning = new Education(URL_wildboy_85432);
 
 /**
  * Runs when befolkning is fully loaded
@@ -18,10 +20,17 @@ befolkning.onload = function () {
     sysselsatte.load();
 };
 sysselsatte.onload = function () {
-    console.log(sysselsatte.elements);
     let ids = befolkning.getIDs();
     let info = sysselsatte.getInfo(ids[1]);
+    utdanning.load();
+};
+utdanning.onload = function () {
+    console.log(sysselsatte.elements);
+    let ids = befolkning.getIDs();
+    let info = utdanning.getInfo(ids[1]);
     console.log(info);
+    // All data is loaded at this point
+
 };
 /**
  * @param {Array} idList Municipality numbers to include
