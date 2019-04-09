@@ -1,38 +1,17 @@
 /**
- * @constructor
+ * @(constructor
  * @param {String} url wildboy dataset
  */
-function Population(url) {
+function Employment(url) {
     this.url = url;
     this.onload = null;
     this.dataset = null; // Kan strykes dersom det ikke blir brukt!
     this.elements = null;
-    /**
-     * @method
-     * @returns {Array} All municipal names
-     */
-    this.getNames = function () {
-        let names = [];
-        for (let element in this.elements) {
-            names.push(element);
-        }
-        return names;
-    };
-    /**
-     * @method
-     * @returns {Array} All municipal IDs
-     */
-    this.getIDs = function () {
-        let ids = [];
-        for (let element in this.elements) {
-            ids.push(this.elements[element].kommunenummer);
-        }
-        return ids;
-    };
+
     /**
      * @method
      * @param {String} municipalID
-     * @returns {Object} Population information about the municipal
+     * @returns {Object} Employment information about the municipal
      */
     this.getInfo = function (municipalID) {
         for (let element in this.elements) {
