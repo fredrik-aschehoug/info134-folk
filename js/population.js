@@ -5,7 +5,7 @@
 function Population(url) {
     this.url = url;
     this.onload = null;
-    this.dataset = null; // Kan strukes dersom det ikke blir brukt!
+    this.dataset = null; // Kan strykes dersom det ikke blir brukt!
     this.elements = null;
     /**
      * @method
@@ -32,10 +32,9 @@ function Population(url) {
     /**
      * @method
      * @param {String} municipalID
-     * @returns {Object} Information about the municipal
+     * @returns {Object} Population information about the municipal
      */
     this.getInfo = function (municipalID) {
-        // let info = {};
         for (let element in this.elements) {
             if (this.elements[element].kommunenummer === municipalID) {
                 let info = this.elements[element];
