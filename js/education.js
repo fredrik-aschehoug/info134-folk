@@ -1,5 +1,5 @@
 /**
- * @(constructor
+ * @constructor
  * @param {String} url wildboy dataset
  */
 function Education(url) {
