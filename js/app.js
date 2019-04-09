@@ -18,11 +18,11 @@ befolkning.onload = function () {
     sysselsatte.load();
 };
 sysselsatte.onload = function () {
-    console.log(sysselsatte.elements)
+    console.log(sysselsatte.elements);
     let ids = befolkning.getIDs();
     let info = sysselsatte.getInfo(ids[1]);
-    console.log(info)
-}
+    console.log(info);
+};
 /**
  * @param {Array} idList Municipality numbers to include
  * @param {Array} overviewHeaders Table headers
