@@ -7,6 +7,7 @@ const overviewHeaders = ["Navn", "Kommunenummer", "Total befolkning"];
 const befolkning = new Population(URL_wildboy_104857);
 const sysselsatte = new Employment(URL_wildboy_100145);
 const utdanning = new Education(URL_wildboy_85432);
+const details = new Details();
 
 /**
  * Runs when befolkning is fully loaded
@@ -15,7 +16,7 @@ const utdanning = new Education(URL_wildboy_85432);
 befolkning.onload = function () {
     let names = befolkning.getNames();
     let ids = befolkning.getIDs();
-    let by = befolkning.getInfo(ids[1]);
+    let info = befolkning.getInfo(ids[1]);
     oversikt.appendChild(createOverview(ids, overviewHeaders));
     sysselsatte.load();
 };
@@ -33,10 +34,15 @@ sysselsatte.onload = function () {
  * @callback
  */
 utdanning.onload = function () {
-    console.log(sysselsatte.elements);
     let ids = befolkning.getIDs();
     let info = utdanning.getInfo(ids[1]);
     console.log(info);
+    details.addMunicipal(
+        ids[1],
+        befolkning.getInfo(ids[1]),
+        sysselsatte.getInfo(ids[1]),
+        utdanning.getInfo(ids[1])
+    );
     // All data is loaded at this point
 
 };
