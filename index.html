@@ -9,25 +9,34 @@
     <script src="js/employment.js"></script>
     <script src="js/education.js"></script>
     <script defer src="js/app.js"></script>
+
+    <script defer src="js/navigation.js"></script>
+    <!--<script defer src="js/switchmain.js"></script>-->
   </head>
   <body>
-    <div class="navigasjon">
+    <div id="navigasjon" class="navigasjon">
       <ul>
-        <li><a href="#introduksjon">Introduksjon</a></li>
-        <li><a href="#oversikt">Oversikt</a></li>
-        <li><a href="#detaljar">Detaljar</a></li>
-        <li><a href="#samanlikning">Samanlikning</a></li>
+        <li class="btn" id="btn1"><a href="#introduksjon">Introduksjon</a></li>
+        <li class="btn activmenu" id="btn2"><a href="#oversikt">Oversikt</a></li>
+        <li class="btn" id="btn3"><a href="#detaljar">Detaljar</a></li>
+        <li class="btn" id="btn4"><a href="#samanlikning">Samanlikning</a></li>
       </ul>
     </div>
 
-    <div class="hovudinnhald">
-      <div class="introduksjon"><a name="introduksjon"></a></div>
-      <div class="oversikt"><a name="oversikt" ></div>
-      <div class="detaljar"><a name="detaljar"></a></div>
-      <div class="samanlikning"><a name="samanlikning"></a></div>
+    <div id="hovudinnhald" class="hovudinnhald">
+      <div class="hovud"><a class="introduksjon">
+        <!--<p>Introduksjonsteksten skal bestå av tekst som beskriv produktet deira. Det skal òg innehalda
+        lenkjer til SSB-sine offisielle sider, og ein notis om at dataa kan innehalda feil.
+        </p>-->
+      </a></div>
+      <div class="hovud active"><a class="oversikt" ></div>
+      <div class="hovud"><a class="detaljar"></a></div>
+      <div class="hovud"><a class="samanlikning"></a></div>
     </div>
 
-    <div class="botntekst"></div>
+    <div class="botntekst">
+      <p>oppgavebesvarelse INFO134.</p>
+    </div>
 
   </body>
 </html>

@@ -15,61 +15,146 @@
     grid-template-columns: auto;
     grid-template-rows: auto;*/
   }
+/*--------------------NAVIGASJON--------------------*/
+.navigasjon{
+  background-color: #1F2421;
+  top: 0;
+  right: 0;
+  width: 100%;
+  position: fixed;
 
-  .navigasjon{
-    background-color: #5577AF;
-    top: 0;
-    right: 0;
-    width: 100%;
-    position: fixed;
+  text-transform: uppercase;
 
-    text-transform: uppercase;
+  display:inline-block;
+  z-index: 1;
+}
 
-    display:inline-block;
-    z-index: 1;
+.navigasjon li{
+  float:left;
+  display: block;
+  text-align: center;
+  padding: 14px 16px;
+
+}
+
+.navigasjon ul{
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.navigasjon a{
+  text-decoration: none;
+  color: #F4F4F4;
+}
+/*
+.navigasjon li:hover{
+  background-color: #90C2E7;
+}*/
+
+#btn1:hover:not(.active),
+#btn1.activmenu{
+  background-color: #542344;
+}
+
+#btn2:hover:not(.active),
+#btn2.activmenu{
+  background-color: #074F57;
+}
+#btn3:hover:not(.active),
+#btn3.activmenu{
+  background-color: #374C70;
+}
+#btn4:hover:not(.active),
+#btn4.activmenu{
+  background-color: #68553E;
+}
+
+.navigasjon li.active {
+  color: white;
+  background-color: #4CAF50;
+}
+
+
+/*@media screen and (max-width: 660px){}*/
+/*Vi stiller eitt krav til korleis historiske data blir vist til brukaren. Når brukaren bruker ein liten skjerm, skal
+historiske data (tal for ei rekke år) presenterast vertikalt. Når brukaren bruker ein stor skjerm, skal dei historiske
+dataa presenterast horisontalt*/
+
+/*--------------------hovudinnhald--------------------*/
+.hovudinnhald{
+  display: block;
+  top: 50px;
+  bottom:50px;
+  left: 50%;
+  transform: translate(-50%);
+
+  position: absolute;
+  margin: auto;
+  padding: 10px;
+  /*border: dashed thin black;*/
+
+  width: auto;
+  overflow: scroll;
+  /*background-color: #EDEDE9;*/
+
+}
+
+.hovud{
+  visibility: hidden;
+  display: none;
+
+}
+/*--------------------active--------------------*/
+.active{
+  visibility: visible;
+  di
+  margin: auto;
+
   }
+/*--------------------TABLE--------------------*/
+table {
+  display: block;
+  border-collapse: collapse;
 
-  .navigasjon li{
-    float:left;
-    display: block;
-    text-align: center;
-    padding: 14px 16px;
+}
 
-  }
+th, td {
+  text-align: left;
+  padding: 8px;
+}
 
-  .navigasjon ul{
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-  }
+/*--Oversikt--*/
+tr:nth-child(1) {
+  background-color: #074F57;
+  color: white;
+}
+tr:nth-child(even) {
+  background-color: #D1DFE0;
+}
 
-  .navigasjon a{
-    text-decoration: none;
-    color: #F4F4F4;
-  }
+/*Introduksjon
+tr:nth-child(1) {
+  background-color: #542344;
+  color: white;
+}
+tr:nth-child(even) {
+  background-color: #DFD7DD;
+}*/
 
-  li:hover{
-    opacity: 0.3;
-  }
+/*--------------------botntekst--------------------*/
+.botntekst{
+  background-color: #1F2421;
+  text-decoration: none;
+  color: #F4F4F4;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  position: fixed;
 
-  li.active {
-    color: white;
-    background-color: #4CAF50;
-  }
+  text-transform: uppercase;
+  text-align: center;
 
-  /*@media screen and (max-width: 660px){}*/
-
-  table {
-    border-collapse: collapse;
-    width: auto;
-    margin-top: 50px;
-  }
-
-  th, td {
-    text-align: left;
-    padding: 8px;
-  }
-
-  tr:nth-child(even) {
-    background-color: #d5d5d5;
-  }
+  display:inline-block;
+  z-index: 1;
+}
