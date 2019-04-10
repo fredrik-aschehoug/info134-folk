@@ -24,6 +24,7 @@
   position: fixed;
 
   text-transform: uppercase;
+  font-size: 1em;
 
   display:inline-block;
   z-index: 1;
@@ -42,6 +43,7 @@
 
 .navigasjon button{
   text-decoration: none;
+  font-size: 1em;
   color: #F4F4F4;
   border: none;
   background-color: #1F2421;
@@ -49,27 +51,22 @@
   padding: 15px 32px;
 }
 
-#btn1:hover:not(.active),
-#btn1.activemenu{
+#btn1:hover:not(.activemenu),
+.activemenu #btn1{
   background-color: #542344;
 }
 
-#btn2:hover:not(.active),
-#btn2.activemenu{
+#btn2:hover:not(.activemenu),
+.activemenu #btn2{
   background-color: #074F57;
 }
-#btn3:hover:not(.active),
-#btn3.activemenu{
+#btn3:hover:not(.activemenu),
+.activemenu #btn3{
   background-color: #374C70;
 }
-#btn4:hover:not(.active),
-#btn4.activemenu{
+#btn4:hover:not(.activemenu),
+.activemenu #btn4{
   background-color: #68553E;
-}
-
-.navigasjon li.active {
-  color: white;
-  background-color: #4CAF50;
 }
 
 
@@ -100,36 +97,31 @@ dataa presenterast horisontalt*/
 .hovud{
   visibility: hidden;
   display: none;
-
 }
 /*--------------------active--------------------*/
 .active{
   visibility: visible;
   display:block;
   margin: auto;
-
   }
-/*--------------------TABLE--------------------*/
-table {
-  display: block;
-  border-collapse: collapse;
-
+/*--------------------INTRODUKSJON--------------------*/
+.introduksjon {
+  padding: auto;
+  margin: auto;
+  background-color: #DFD7DD;
+  height: 100%;
 }
-
-th, td {
-  text-align: left;
-  padding: 8px;
-}
-
-/*--Oversikt--*/
-tr:nth-child(1) {
-  background-color: #074F57;
+.introduksjon h1{
+  background-color: #542344;
   color: white;
+  padding: 10px;
+  margin: 0;
 }
-tr:nth-child(even) {
-  background-color: #D1DFE0;
+.introduksjon p{
+  padding-bottom: 1em;
+  padding: 10px;
+  margin: 0;
 }
-
 /*Introduksjon
 tr:nth-child(1) {
   background-color: #542344;
@@ -139,10 +131,35 @@ tr:nth-child(even) {
   background-color: #DFD7DD;
 }*/
 
+/*--------------------OVERSIKT--------------------*/
+table {
+  display: block;
+  border-collapse: collapse;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(1) {
+  background-color: #074F57;
+  color: white;
+}
+tr:nth-child(even) {
+  background-color: #D1DFE0;
+}
+
+
+/*--------------------DETALJAR--------------------*/
+
+/*--------------------SAMANLIKNING--------------------*/
+
 /*--------------------botntekst--------------------*/
 .botntekst{
   background-color: #1F2421;
   text-decoration: none;
+  font-size: 1em;
   color: #F4F4F4;
   bottom: 0;
   right: 0;
