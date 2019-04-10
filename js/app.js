@@ -8,6 +8,10 @@ const befolkning = new Population(URL_wildboy_104857);
 const sysselsatte = new Employment(URL_wildboy_100145);
 const utdanning = new Education(URL_wildboy_85432);
 
+window.onload = function () {
+    setNavigationBehaviour();
+};
+
 /**
  * Runs when befolkning is fully loaded
  * @callback

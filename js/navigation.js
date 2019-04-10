@@ -1,12 +1,41 @@
+/**
+ * Sets navigation behaviour.
+ * Navigation buttons changes classes on navigation elements and
+ * main content elements.
+ */
+function setNavigationBehaviour() {
+  const header = document.getElementById("navigasjon");
+  const btns = header.getElementsByClassName("btn");
 
-  var header = document.getElementById("navigasjon");
-  var btns = header.getElementsByClassName("btn");
   for (var i = 0; i < btns.length; i++) {
-    btns[i].addEventListener("click", function() {
-    var current = document.getElementsByClassName("activmenu");
-    if (current.length > 0) {
-      current[0].className = current[0].className.replace(" activmenu", "");
-    }
-    this.className += " activmenu";
-    });
+    const currentBtn = btns[i];
+    currentBtn.onclick = () => buttonHandler(currentBtn);
   }
+  function buttonHandler(button) {
+    const activeMenu = document.getElementsByClassName("activmenu");
+    const activeContent = document.getElementsByClassName("active");
+    let newActiveContent;
+    if (activeMenu.length > 0) {
+      activeMenu[0].classList.toggle("activmenu");
+    }
+    button.classList.toggle("activmenu");
+    switch (button.lastChild.id) {
+      case "btn1":
+        newActiveContent = document.getElementsByClassName("introduksjon");
+        break;
+      case "btn2":
+        newActiveContent = document.getElementsByClassName("oversikt");
+        break;
+      case "btn3":
+        newActiveContent = document.getElementsByClassName("detaljar");
+        break;
+      case "btn4":
+        newActiveContent = document.getElementsByClassName("samanlikning");
+        break;
+      default:
+        break;
+      }
+      activeContent[0].classList.toggle("active");
+      newActiveContent[0].classList.toggle("active");
+  }
+}
