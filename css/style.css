@@ -76,7 +76,7 @@
 }
 
 
-/*@media screen and (max-width: 660px){}*/
+/*@media screen and (max-width: 700px){}*/
 /*Vi stiller eitt krav til korleis historiske data blir vist til brukaren. Når brukaren bruker ein liten skjerm, skal
 historiske data (tal for ei rekke år) presenterast vertikalt. Når brukaren bruker ein stor skjerm, skal dei historiske
 dataa presenterast horisontalt*/
@@ -108,7 +108,7 @@ dataa presenterast horisontalt*/
 /*--------------------active--------------------*/
 .active{
   visibility: visible;
-  di
+  display:block;
   margin: auto;
 
   }
