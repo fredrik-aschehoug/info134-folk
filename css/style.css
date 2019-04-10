@@ -32,9 +32,6 @@
 .navigasjon li{
   float:left;
   display: block;
-  text-align: center;
-  padding: 14px 16px;
-
 }
 
 .navigasjon ul{
@@ -43,30 +40,30 @@
   margin: 0;
 }
 
-.navigasjon a{
+.navigasjon button{
   text-decoration: none;
   color: #F4F4F4;
+  border: none;
+  background-color: #1F2421;
+  display: inline-block;
+  padding: 15px 32px;
 }
-/*
-.navigasjon li:hover{
-  background-color: #90C2E7;
-}*/
 
 #btn1:hover:not(.active),
-#btn1.activmenu{
+#btn1.activemenu{
   background-color: #542344;
 }
 
 #btn2:hover:not(.active),
-#btn2.activmenu{
+#btn2.activemenu{
   background-color: #074F57;
 }
 #btn3:hover:not(.active),
-#btn3.activmenu{
+#btn3.activemenu{
   background-color: #374C70;
 }
 #btn4:hover:not(.active),
-#btn4.activmenu{
+#btn4.activemenu{
   background-color: #68553E;
 }
 
