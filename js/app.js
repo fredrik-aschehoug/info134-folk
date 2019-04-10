@@ -8,10 +8,6 @@ const befolkning = new Population(URL_wildboy_104857);
 const sysselsatte = new Employment(URL_wildboy_100145);
 const utdanning = new Education(URL_wildboy_85432);
 
-window.onload = function () {
-    setNavigationBehaviour();
-};
-
 /**
  * Runs when befolkning is fully loaded
  * @callback
@@ -23,11 +19,19 @@ befolkning.onload = function () {
     oversikt.appendChild(createOverview(ids, overviewHeaders));
     sysselsatte.load();
 };
+/**
+ * Runs when sysselsatte is fully loaded
+ * @callback
+ */
 sysselsatte.onload = function () {
     let ids = befolkning.getIDs();
     let info = sysselsatte.getInfo(ids[1]);
     utdanning.load();
 };
+/**
+ * Runs when utdanning is fully loaded
+ * @callback
+ */
 utdanning.onload = function () {
     console.log(sysselsatte.elements);
     let ids = befolkning.getIDs();
@@ -64,4 +68,5 @@ function createOverview(idList, overviewHeaders) {
     return overview;
 }
 
+setNavigationBehaviour();
 befolkning.load();
