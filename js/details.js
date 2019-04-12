@@ -28,7 +28,7 @@ function Details() {
         // Add population to object
         element.population = this.addPopulation(population);
         // Add employment to object
-        element.employment = this.addEmployment(employment);
+        element.employment = this.addEmployment(employment, population);
         // Add employment to object
         element.education = this.addEducation(education, population);
         // Add municipal to elements, using municipal ID as key
@@ -72,14 +72,38 @@ function Details() {
     };
     /**
      * @method 
-     * @param {Object} 
-     * @returns {Object} All properties of employment object except "navn" and "kommunenummer" 
+     * @param {Object} employment
+     * @param {Object} population
+     * @returns {Object} Employment level stats. Amount in number and percentage.
      */
-    this.addEmployment = function (employment) {
+    this.addEmployment = function (employment, population) {
         let employmentElement = {};
-        employmentElement.kvinner = employment.Kvinner;
-        employmentElement.menn = employment.Menn;
-        employmentElement.total = employment["Begge kjønn"];
+        // Add employment percent
+        employmentElement.percent = {};
+        employmentElement.percent.kvinner = employment.Kvinner;
+        employmentElement.percent.menn = employment.Menn;
+        employmentElement.percent.total = employment["Begge kjønn"];
+        // Calculate new data (number)
+        employmentElement.number = {};
+        employmentElement.number.kvinner = {};
+        employmentElement.number.menn = {};
+        employmentElement.number.total = {};
+        /**
+         * Using population because there are more data in employment, 
+         * that way we only get the overlapping years
+         */ 
+        for (let year in population.Kvinner) {
+            let kvinner = employmentElement.percent.kvinner[year];
+            let menn = employmentElement.percent.menn[year];
+            // Prosentandel * total / 100
+            let kvinnerNumber = population.Kvinner[year] * kvinner  / 100;
+            let mennNumber = population.Menn[year] * menn  / 100;
+            // Round to max 1 decimal
+            employmentElement.number.kvinner[year] = Math.round(kvinnerNumber);
+            employmentElement.number.menn[year] = Math.round(mennNumber);
+            employmentElement.number.total[year] = Math.round(kvinnerNumber) + Math.round(mennNumber);
+
+        }
         return employmentElement;
     };
     /**
@@ -98,15 +122,15 @@ function Details() {
                 educationElement.percent[element] = education[element];
             }
         }
-        /**
-         * Calculate new data (number)
-         * Using population because there are more data in education, 
-         * that way we only get the overlapping years
-         */
+        // Calculate new data (number)
         for (let eduLevel in education) {
             educationElement.number[eduLevel] = {};
             educationElement.number[eduLevel].kvinner = {}; 
-            educationElement.number[eduLevel].menn = {}; 
+            educationElement.number[eduLevel].menn = {};
+            /**
+             * Using population because there are more data in education, 
+             * that way we only get the overlapping years
+             */ 
             for (let year in population.Kvinner) {
                 // Find population based on percentage
                 if (eduLevel !== "kommunenummer" && eduLevel !== "navn") {

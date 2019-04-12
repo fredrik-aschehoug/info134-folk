@@ -28,6 +28,7 @@ sysselsatte.onload = function () {
     let ids = befolkning.getIDs();
     let info = sysselsatte.getInfo(ids[1]);
     utdanning.load();
+    console.log(info);
 };
 /**
  * Runs when utdanning is fully loaded
@@ -36,7 +37,6 @@ sysselsatte.onload = function () {
 utdanning.onload = function () {
     let ids = befolkning.getIDs();
     let info = utdanning.getInfo(ids[1]);
-    console.log(info);
     details.addMunicipal(
         ids[1],
         befolkning.getInfo(ids[1]),
