@@ -38,19 +38,35 @@ function Details() {
     /**
      * @method 
      * @param {Object} population
-     * @returns {Object} All properties of population object except "navn" and "kommunenummer",
-     * and adds total population.
+     * @returns {Object} - Population stats. Amount in number and percentage.
+     * 
      */
     this.addPopulation = function (population) {
         let populationElement = {};
-        populationElement.kvinner = population.Kvinner;
-        populationElement.menn = population.Menn;
-        populationElement.total = {};
+        // Add population number
+        populationElement.number = {};
+        populationElement.number.kvinner = population.Kvinner;
+        populationElement.number.menn = population.Menn;
         // Calculate total population for each year
-        for (let year in populationElement.kvinner) {
-            let kvinner = populationElement.kvinner[year];
-            let menn = populationElement.menn[year];
-            populationElement.total[year] = kvinner + menn;
+        populationElement.number.total = {};
+        for (let year in populationElement.number.kvinner) {
+            let kvinner = populationElement.number.kvinner[year];
+            let menn = populationElement.number.menn[year];
+            populationElement.number.total[year] = kvinner + menn;
+        }
+        // Calculate new data (percentage)
+        populationElement.percent = {};
+        populationElement.percent.kvinner = {};
+        populationElement.percent.menn = {};
+        for (let year in populationElement.number.kvinner) {
+            let kvinner = populationElement.number.kvinner[year];
+            let menn = populationElement.number.menn[year];
+            // andel / total * 100
+            let kvinnerPercent = (kvinner / populationElement.number.total[year]) * 100;
+            let mennPercent = (menn / populationElement.number.total[year]) * 100;
+            // Round to max 1 decimal
+            populationElement.percent.kvinner[year] = Math.round(kvinnerPercent * 10) / 10;
+            populationElement.percent.menn[year] = Math.round(mennPercent * 10) / 10;
         }
         return populationElement;
     };
