@@ -34,19 +34,18 @@ function Details(currentYear) {
         current.year = this.currentYear;
         // Add population data
         let population = this.elements[id].population;
-        current.population.number.kvinner = population.number.kvinner[current.year];
-        current.population.number.menn = population.number.menn[current.year];
-        current.population.number.total = population.number.total[current.year];
-        current.population.percent.kvinner = population.percent.kvinner[current.year];
-        current.population.percent.menn = population.percent.menn[current.year];
+        for (let type in population) {
+            for (let gender in population[type]) {
+                current.population[type][gender] = population[type][gender][current.year];
+            }
+        }
         // Add employment data
         let employment = this.elements[id].employment;
-        current.employment.number.kvinner = employment.number.kvinner[current.year];
-        current.employment.number.menn = employment.number.menn[current.year];
-        current.employment.number.total = employment.number.total[current.year];
-        current.employment.percent.kvinner = employment.percent.kvinner[current.year];
-        current.employment.percent.menn = employment.percent.menn[current.year];
-        current.employment.percent.total = employment.percent.total[current.year];
+        for (let type in employment) {
+            for (let gender in employment[type]) {
+                current.employment[type][gender] = employment[type][gender][current.year];
+            }
+        }
         // Add education data
         let education = this.elements[id].education;
         for (let type in education) {
@@ -58,7 +57,6 @@ function Details(currentYear) {
                 }
             }
         }
-
         return current;
     };
     this.getHistorical = function (id) {
@@ -73,7 +71,7 @@ function Details(currentYear) {
      * @param {Object} education    - The returned value from Education.getInfo()
      */
     this.addMunicipal = function (id, population, employment, education) {
-        // Create object to store municipal
+        // Define the object to return
         let element = {};
         element.navn = population.navn;
         // Add population to object
@@ -84,7 +82,6 @@ function Details(currentYear) {
         element.education = this.addEducation(education, population);
         // Add municipal to elements, using municipal ID as key
         this.elements[id] = element;
-        console.log(element);
     };
     /**
      * @method 
@@ -93,22 +90,26 @@ function Details(currentYear) {
      * 
      */
     this.addPopulation = function (population) {
-        let populationElement = {};
+        // Define the object to return
+        let populationElement = {
+            number: {
+                total: {}
+            },
+            percent: {
+                kvinner: {},
+                menn: {}
+            }
+        };
         // Add population number
-        populationElement.number = {};
         populationElement.number.kvinner = population.Kvinner;
         populationElement.number.menn = population.Menn;
         // Calculate total population for each year
-        populationElement.number.total = {};
         for (let year in populationElement.number.kvinner) {
             let kvinner = populationElement.number.kvinner[year];
             let menn = populationElement.number.menn[year];
             populationElement.number.total[year] = kvinner + menn;
         }
         // Calculate new data (percentage)
-        populationElement.percent = {};
-        populationElement.percent.kvinner = {};
-        populationElement.percent.menn = {};
         for (let year in populationElement.number.kvinner) {
             let kvinner = populationElement.number.kvinner[year];
             let menn = populationElement.number.menn[year];
@@ -128,18 +129,21 @@ function Details(currentYear) {
      * @returns {Object} Employment level stats. Amount in number and percentage.
      */
     this.addEmployment = function (employment, population) {
-        let employmentElement = {};
+        // Define the object to return
+        let employmentElement = {
+            percent: {},
+            number: {
+                kvinner: {},
+                menn: {},
+                total: {}
+            }
+        };
         // Add employment percent
-        employmentElement.percent = {};
         employmentElement.percent.kvinner = employment.Kvinner;
         employmentElement.percent.menn = employment.Menn;
         employmentElement.percent.total = employment["Begge kjønn"];
-        // Calculate new data (number)
-        employmentElement.number = {};
-        employmentElement.number.kvinner = {};
-        employmentElement.number.menn = {};
-        employmentElement.number.total = {};
         /**
+         * Calculate new data (number)
          * Using population because there are more data in employment, 
          * that way we only get the overlapping years
          */
@@ -153,7 +157,6 @@ function Details(currentYear) {
             employmentElement.number.kvinner[year] = Math.round(kvinnerNumber);
             employmentElement.number.menn[year] = Math.round(mennNumber);
             employmentElement.number.total[year] = Math.round(kvinnerNumber) + Math.round(mennNumber);
-
         }
         return employmentElement;
     };
@@ -165,23 +168,22 @@ function Details(currentYear) {
      */
     this.addEducation = function (education, population) {
         // TODO: Add percentage and number for "both genders"
-        let educationElement = {};
-        educationElement.percent = {};
-        educationElement.number = {};
-        // Add existing data (percent)
-        for (let element in education) {
-            if (element !== "kommunenummer" && element !== "navn") {
-                educationElement.percent[element] = education[element];
-            }
-        }
-        // Calculate new data (number)
+        let educationElement = {
+            percent: {},
+            number: {}
+        };
         for (let eduLevel in education) {
             if (eduLevel !== "kommunenummer" && eduLevel !== "navn") {
-                educationElement.number[eduLevel] = {};
-                educationElement.number[eduLevel].kvinner = {};
-                educationElement.number[eduLevel].menn = {};
+                // Add existing data (percent)
+                educationElement.percent[eduLevel] = education[eduLevel];
+                // Append objects 
+                educationElement.number[eduLevel] = {
+                    kvinner: {},
+                    menn: {}
+                };
             }
             /**
+             * Calculate new data (number)
              * Using population because there are more data in education, 
              * that way we only get the overlapping years
              */
