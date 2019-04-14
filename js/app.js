@@ -7,7 +7,7 @@ const overviewHeaders = ["Navn", "Kommunenummer", "Total befolkning"];
 const befolkning = new Population(URL_wildboy_104857);
 const sysselsatte = new Employment(URL_wildboy_100145);
 const utdanning = new Education(URL_wildboy_85432);
-const details = new Details();
+const details = new Details(2017);
 
 /**
  * Runs when befolkning is fully loaded
@@ -44,6 +44,9 @@ utdanning.onload = function () {
         utdanning.getInfo(ids[1])
     );
     // All data is loaded at this point
+    let test = details.getCurrent(ids[1]);
+    console.log("getCurrent:");
+    console.log(test);
 
 };
 /**
