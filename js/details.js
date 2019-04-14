@@ -167,7 +167,6 @@ function Details(currentYear) {
      * @returns {Object} Education level stats. Amount in number and percentage.
      */
     this.addEducation = function (education, population) {
-        // TODO: Add percentage and number for "both genders"
         let educationElement = {
             percent: {},
             number: {}
@@ -176,10 +175,12 @@ function Details(currentYear) {
             if (eduLevel !== "kommunenummer" && eduLevel !== "navn") {
                 // Add existing data (percent)
                 educationElement.percent[eduLevel] = education[eduLevel];
+                educationElement.percent[eduLevel].total = {};
                 // Append objects 
                 educationElement.number[eduLevel] = {
                     kvinner: {},
-                    menn: {}
+                    menn: {},
+                    total: {}
                 };
             }
             /**
@@ -195,9 +196,15 @@ function Details(currentYear) {
                         // Calculate number from total population and percentage of population
                         let kvinnerNumber = (population.Kvinner[year] * education[eduLevel].Kvinner[year]) / 100;
                         let mennNumber = (population.Menn[year] * education[eduLevel].Menn[year]) / 100;
+                        let totalNumber = kvinnerNumber + mennNumber;
+                        let totalPopulation = population.Kvinner[year] + population.Menn[year];
+                        // andel / total * 100
+                        let totalPercent = (totalNumber / totalPopulation) * 100;
                         // Add result to object
                         educationElement.number[eduLevel].kvinner[year] = Math.round(kvinnerNumber);
                         educationElement.number[eduLevel].menn[year] = Math.round(mennNumber);
+                        educationElement.number[eduLevel].total[year] = Math.round(totalNumber);
+                        educationElement.percent[eduLevel].total[year] = Math.round(totalPercent);
                     }
                 }
             }
