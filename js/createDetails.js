@@ -1,15 +1,134 @@
+/**
+ * Create the entire content for the details view and append it to the "detaljar" DIV
+ * @function
+ * @param {String} id - Municipal ID to get details from
+ */
 function createDetails(id) {
+    /** Create paragraph element with brief info about the municipal
+     * @function
+     * @param {Object} currentDetails   - From getCurrent() method
+     * @param {String} id               - Municipal ID
+     * @returns {HTMLParagraphElement}
+     */
+    function createParagraph(currentDetails, id) {
+        // Append text elements:
+        const paragraph = document.createElement("p");
+        const kommunenavn = document.createTextNode(`Kommunenavn: ${currentDetails.navn}`);
+        const kommunenummer = document.createTextNode(`Kommunenummer: ${id}`);
+        paragraph.appendChild(kommunenavn);
+        paragraph.appendChild(document.createElement("br"));
+        paragraph.appendChild(kommunenummer);
+        paragraph.appendChild(document.createElement("br"));
+        return paragraph;
+    }
+    /**
+     * Create a row with headers.
+     * @function
+     * @param {Array} headers - The header text values to use in header row
+     * @returns {HTMLTableRowElement}
+     */
+    function createTableHeader(headers) {
+        const headerRow = document.createElement("tr");
+        for (let i in headers) {
+            let th = document.createElement("th");
+            th.innerHTML = headers[i];
+            headerRow.appendChild(th);
+        }
+        return headerRow;
+    }
+    /**
+     * Appends rowData to table. 3 cells per row.
+     * @function
+     * @param {HTMLTableElement} table - The table to append data to
+     * @param {Array} rowData          - The data to append
+     */
+    function createTableRow(table, rowData) {
+        const row = table.insertRow(-1);
+        const rowDesc = row.insertCell(-1);
+        rowDesc.innerHTML = rowData[0];
+        const rowAntall = row.insertCell(-1);
+        rowAntall.innerHTML = rowData[1];
+        const rowProsent = row.insertCell(-1);
+        rowProsent.innerHTML = rowData[2];
+    }
+    /**
+     * Compile data for a table row.
+     * Logic for different types of rows.
+     * @function
+     * @param {Object} currentDetails   - From getCurrent() method
+     * @param {String} title            - The text in the leftmost row
+     * @param {String} type             - population/employment/education
+     * @param {String} eduType          - The level of education
+     * @returns {Array}                 - To be used in createTableRow() function
+     */
+    function compileRowData(currentDetails, title, type, eduType) {
+        let rowdata;
+        if (type) {
+            switch (title) {
+                case "Kvinner":
+                    if (eduType) {
+                        rowdata = [
+                            "Kvinner",
+                            currentDetails[type].number[eduType].Kvinner,
+                            currentDetails[type].percent[eduType].Kvinner
+                        ];
+                    } else {
+                        rowdata = [
+                            "Kvinner",
+                            currentDetails[type].number.Kvinner,
+                            currentDetails[type].percent.Kvinner
+                        ];
+                    }
+                    break;
+                case "Menn":
+                    if (eduType) {
+                        rowdata = [
+                            "Menn",
+                            currentDetails[type].number[eduType].Menn,
+                            currentDetails[type].percent[eduType].Menn
+                        ];
+                    } else {
+                        rowdata = [
+                            "Menn",
+                            currentDetails[type].number.Menn,
+                            currentDetails[type].percent.Menn
+                        ];
+                    }
+                    break;
+                case "Begge kjønn":
+                    if (currentDetails[type].percent.total || currentDetails[type].percent[eduType]) {
+                        if (eduType) {
+                            rowdata = [
+                                "Begge kjønn",
+                                currentDetails[type].number[eduType].total,
+                                currentDetails[type].percent[eduType].total
+                            ];
+                        } else {
+                            rowdata = [
+                                "Begge kjønn",
+                                currentDetails[type].number.total,
+                                currentDetails[type].percent.total
+                            ];
+                        }
+                    } else {
+                        rowdata = [
+                            "Begge kjønn",
+                            currentDetails[type].number.total,
+                            ""
+                        ];
+                    }
+                    break;
+            }
+        } else {
+            rowdata = [title, "", ""];
+        }
+        return rowdata;
+    }
+    // Placeholder to put content in
     const placeholder = document.getElementsByClassName("detaljar");
     const detailsHeader = document.getElementById("detailsHeader");
+    // Data to use
     const currentDetails = details.getCurrent(id);
-    // Append text elements:
-    const paragraph = document.createElement("p");
-    const kommunenavn = document.createTextNode(`Kommunenavn: ${currentDetails.navn}`);
-    const kommunenummer = document.createTextNode(`Kommunenummer: ${id}`);
-    paragraph.appendChild(kommunenavn);
-    paragraph.appendChild(document.createElement("br"));
-    paragraph.appendChild(kommunenummer);
-    paragraph.appendChild(document.createElement("br"));
     // Append name to header
     detailsHeader.innerHTML += currentDetails.navn + ":";
     // Create table
@@ -17,6 +136,7 @@ function createDetails(id) {
     const table = document.createElement("table");
     // Create table headers
     table.appendChild(createTableHeader(detailsTableHeaders));
+    // Array with parameters for the compileRowData function
     const rowData = [
         ["Befolkning"],
         ["Kvinner", "population"],
@@ -50,9 +170,8 @@ function createDetails(id) {
         ["Kvinner", "education", "04a"],
         ["Menn", "education", "04a"],
         ["Begge kjønn", "education", "04a"],
-
     ];
-
+    // Append all rows to table object
     for (let data of rowData) {
         // Destructure array
         let [title, type, eduType] = data;
@@ -61,97 +180,8 @@ function createDetails(id) {
             compileRowData(currentDetails, title, type, eduType)
         );
     }
-
+    const paragraph = createParagraph(currentDetails, id);
     // Append items to placeholder
     placeholder[0].appendChild(paragraph);
     placeholder[0].appendChild(table);
-    console.log(currentDetails);
-}
-function compileRowData(currentDetails, title, type, eduType) {
-    let rowdata;
-    if (type) {
-        switch (title) {
-            case "Kvinner":
-                if (eduType) {
-                    rowdata = [
-                        "Kvinner",
-                        currentDetails[type].number[eduType].Kvinner,
-                        currentDetails[type].percent[eduType].Kvinner
-                    ];
-                } else {
-                    rowdata = [
-                        "Kvinner",
-                        currentDetails[type].number.Kvinner,
-                        currentDetails[type].percent.Kvinner
-                    ];
-                }
-                break;
-            case "Menn":
-                if (eduType) {
-                    rowdata = [
-                        "Menn",
-                        currentDetails[type].number[eduType].Menn,
-                        currentDetails[type].percent[eduType].Menn
-                    ];
-                } else {
-                    rowdata = [
-                        "Menn",
-                        currentDetails[type].number.Menn,
-                        currentDetails[type].percent.Menn
-                    ];
-                }
-                break;
-            case "Begge kjønn":
-                if (currentDetails[type].percent.total || currentDetails[type].percent[eduType]) {
-                    if (eduType) {
-                        rowdata = [
-                            "Begge kjønn",
-                            currentDetails[type].number[eduType].total,
-                            currentDetails[type].percent[eduType].total
-                        ];
-                    } else {
-                        rowdata = [
-                            "Begge kjønn",
-                            currentDetails[type].number.total,
-                            currentDetails[type].percent.total
-                        ];
-                    }
-                } else {
-                    rowdata = [
-                        "Begge kjønn",
-                        currentDetails[type].number.total,
-                        ""
-                    ];
-                }
-                break;
-        }
-    } else {
-        rowdata = [title, "", ""];
-    }
-    return rowdata;
-}
-function createTableRow(table, rowData) {
-    const befolkningkvinner = table.insertRow(-1);
-    const befolkningkvinnerDesc = befolkningkvinner.insertCell(-1);
-    befolkningkvinnerDesc.innerHTML = rowData[0];
-    const befolkningkvinnerAntall = befolkningkvinner.insertCell(-1);
-    befolkningkvinnerAntall.innerHTML = rowData[1];
-    const befolkningkvinnerProsent = befolkningkvinner.insertCell(-1);
-    befolkningkvinnerProsent.innerHTML = rowData[2];
-}
-
-function createTableHeader(headers) {
-    const headerRow = document.createElement("tr");
-    for (let i in headers) {
-        let th = document.createElement("th");
-        th.innerHTML = headers[i];
-        headerRow.appendChild(th);
-    }
-    return headerRow;
-}
-function createCell(text) {
-    const node = document.createElement("li");
-    const nodeText = document.createTextNode(text);
-    node.appendChild(nodeText);
-    return node;
 }
