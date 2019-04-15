@@ -96,29 +96,29 @@ function Details(currentYear) {
                 total: {}
             },
             percent: {
-                kvinner: {},
-                menn: {}
+                Kvinner: {},
+                Menn: {}
             }
         };
         // Add population number
-        populationElement.number.kvinner = population.Kvinner;
-        populationElement.number.menn = population.Menn;
+        populationElement.number.Kvinner = population.Kvinner;
+        populationElement.number.Menn = population.Menn;
         // Calculate total population for each year
-        for (let year in populationElement.number.kvinner) {
-            let kvinner = populationElement.number.kvinner[year];
-            let menn = populationElement.number.menn[year];
+        for (let year in populationElement.number.Kvinner) {
+            let kvinner = populationElement.number.Kvinner[year];
+            let menn = populationElement.number.Menn[year];
             populationElement.number.total[year] = kvinner + menn;
         }
         // Calculate new data (percentage)
-        for (let year in populationElement.number.kvinner) {
-            let kvinner = populationElement.number.kvinner[year];
-            let menn = populationElement.number.menn[year];
+        for (let year in populationElement.number.Kvinner) {
+            let kvinner = populationElement.number.Kvinner[year];
+            let menn = populationElement.number.Menn[year];
             // andel / total * 100
             let kvinnerPercent = (kvinner / populationElement.number.total[year]) * 100;
             let mennPercent = (menn / populationElement.number.total[year]) * 100;
             // Round to max 1 decimal
-            populationElement.percent.kvinner[year] = Math.round(kvinnerPercent * 10) / 10;
-            populationElement.percent.menn[year] = Math.round(mennPercent * 10) / 10;
+            populationElement.percent.Kvinner[year] = Math.round(kvinnerPercent * 10) / 10;
+            populationElement.percent.Menn[year] = Math.round(mennPercent * 10) / 10;
         }
         return populationElement;
     };
@@ -133,14 +133,14 @@ function Details(currentYear) {
         let employmentElement = {
             percent: {},
             number: {
-                kvinner: {},
-                menn: {},
+                Kvinner: {},
+                Menn: {},
                 total: {}
             }
         };
         // Add employment percent
-        employmentElement.percent.kvinner = employment.Kvinner;
-        employmentElement.percent.menn = employment.Menn;
+        employmentElement.percent.Kvinner = employment.Kvinner;
+        employmentElement.percent.Menn = employment.Menn;
         employmentElement.percent.total = employment["Begge kjønn"];
         /**
          * Calculate new data (number)
@@ -148,14 +148,14 @@ function Details(currentYear) {
          * that way we only get the overlapping years
          */
         for (let year in population.Kvinner) {
-            let kvinner = employmentElement.percent.kvinner[year];
-            let menn = employmentElement.percent.menn[year];
+            let kvinner = employmentElement.percent.Kvinner[year];
+            let menn = employmentElement.percent.Menn[year];
             // Prosentandel * total / 100
             let kvinnerNumber = population.Kvinner[year] * kvinner / 100;
             let mennNumber = population.Menn[year] * menn / 100;
             // Round to max 1 decimal
-            employmentElement.number.kvinner[year] = Math.round(kvinnerNumber);
-            employmentElement.number.menn[year] = Math.round(mennNumber);
+            employmentElement.number.Kvinner[year] = Math.round(kvinnerNumber);
+            employmentElement.number.Menn[year] = Math.round(mennNumber);
             employmentElement.number.total[year] = Math.round(kvinnerNumber) + Math.round(mennNumber);
         }
         return employmentElement;
@@ -178,8 +178,8 @@ function Details(currentYear) {
                 educationElement.percent[eduLevel].total = {};
                 // Append objects 
                 educationElement.number[eduLevel] = {
-                    kvinner: {},
-                    menn: {},
+                    Kvinner: {},
+                    Menn: {},
                     total: {}
                 };
             }
@@ -201,8 +201,8 @@ function Details(currentYear) {
                         // andel / total * 100
                         let totalPercent = (totalNumber / totalPopulation) * 100;
                         // Add result to object
-                        educationElement.number[eduLevel].kvinner[year] = Math.round(kvinnerNumber);
-                        educationElement.number[eduLevel].menn[year] = Math.round(mennNumber);
+                        educationElement.number[eduLevel].Kvinner[year] = Math.round(kvinnerNumber);
+                        educationElement.number[eduLevel].Menn[year] = Math.round(mennNumber);
                         educationElement.number[eduLevel].total[year] = Math.round(totalNumber);
                         educationElement.percent[eduLevel].total[year] = Math.round(totalPercent);
                     }

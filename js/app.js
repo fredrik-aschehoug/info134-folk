@@ -28,7 +28,6 @@ sysselsatte.onload = function () {
     let ids = befolkning.getIDs();
     let info = sysselsatte.getInfo(ids[1]);
     utdanning.load();
-    console.log(info);
 };
 /**
  * Runs when utdanning is fully loaded
@@ -42,11 +41,9 @@ utdanning.onload = function () {
         befolkning.getInfo(ids[1]),
         sysselsatte.getInfo(ids[1]),
         utdanning.getInfo(ids[1])
-    );
-    // All data is loaded at this point
-    let test = details.getCurrent(ids[1]);
-    console.log("getCurrent:");
-    console.log(test);
+        );
+        // All data is loaded at this point
+        createDetails(ids[1]);
 
 };
 /**
@@ -57,7 +54,7 @@ utdanning.onload = function () {
 function createOverview(idList, overviewHeaders) {
     const overview = document.createElement("table");
     const headerRow = overview.insertRow(-1);
-    // Create teble headers
+    // Create table headers
     for (let i in overviewHeaders) {
         let th = document.createElement("th");
         th.innerHTML = overviewHeaders[i];
@@ -79,3 +76,4 @@ function createOverview(idList, overviewHeaders) {
 
 setNavigationBehaviour();
 befolkning.load();
+
