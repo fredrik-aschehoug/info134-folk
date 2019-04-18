@@ -35,15 +35,22 @@ sysselsatte.onload = function () {
  */
 utdanning.onload = function () {
     let ids = befolkning.getIDs();
-    let info = utdanning.getInfo(ids[1]);
-    details.addMunicipal(
-        ids[1],
-        befolkning.getInfo(ids[1]),
-        sysselsatte.getInfo(ids[1]),
-        utdanning.getInfo(ids[1])
+    for (let id of ids) {
+        details.addMunicipal(
+            id,
+            befolkning.getInfo(id),
+            sysselsatte.getInfo(id),
+            utdanning.getInfo(id)
         );
-        // All data is loaded at this point
-        createDetails(ids[1]);
+    }
+    // All data is loaded at this point
+
+    const detailsForm = document.getElementById("detailsForm");
+    detailsForm.detailsButton.onclick = detailsFormSubmit;
+    function detailsFormSubmit() {
+        id = detailsForm.detailsInput.value;
+        createDetails(id);
+    }
 
 };
 /**
