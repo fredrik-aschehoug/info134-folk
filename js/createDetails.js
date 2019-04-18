@@ -42,14 +42,22 @@ function createDetails(id) {
      * @param {HTMLTableElement} table - The table to append data to
      * @param {Array} rowData          - The data to append
      */
-    function createTableRow(table, rowData) {
+    function createTableRow(table, rowData, headerCells) {
         const row = table.insertRow(-1);
-        const rowDesc = row.insertCell(-1);
-        rowDesc.innerHTML = rowData[0];
-        const rowAntall = row.insertCell(-1);
-        rowAntall.innerHTML = rowData[1];
-        const rowProsent = row.insertCell(-1);
-        rowProsent.innerHTML = rowData[2];
+        for (let data of rowData) {
+            let cell = row.insertCell(-1);
+            if (headerCells.includes(data)) {
+                cell.classList.add("headerCell");
+            } else if (typeof data === "string") {
+                cell.classList.add("dataCell");
+            } else if (data % 1 === 0) {
+                cell.classList.add("numberCell");
+                data = data.toLocaleString('no');
+            } else {
+                cell.classList.add("percentCell");
+            }
+            cell.innerHTML = data;
+        }
     }
     /**
      * Compile data for a table row.
@@ -189,13 +197,25 @@ function createDetails(id) {
         ["Menn", "education", "04a"],
         ["Begge kjønn", "education", "04a"],
     ];
+    // Cells to be given HTML class "headerCell"
+    const headerCells = [
+        "Befolkning",
+        "Sysselseting",
+        "Utdanning",
+        "Videregående skole-nivå",
+        "Fagskolenivå",
+        "Universitets- og høgskolenivå kort",
+        "Universitets- og høgskolenivå lang",
+        "Uoppgitt eller ingen fullført utdanning"
+    ];
     // Append all rows to table object
     for (let data of rowData) {
         // Destructure array
         let [title, type, eduType] = data;
         createTableRow(
             table,
-            compileRowData(currentDetails, title, type, eduType)
+            compileRowData(currentDetails, title, type, eduType),
+            headerCells
         );
     }
     const paragraph = createParagraph(currentDetails, id);

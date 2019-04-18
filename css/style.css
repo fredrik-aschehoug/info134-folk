@@ -152,6 +152,27 @@ tr:nth-child(even) {
 
 
 /*--------------------DETALJAR--------------------*/
+.detailsOutput header {
+  font-size: 2em;
+}
+.detailsOutput p, header {
+  font-weight: bold;
+}
+
+/*--Details Table--*/
+.headerCell {
+  font-weight: bold;
+}
+.dataCell {
+  padding-left: 1.5em;
+}
+.numberCell {
+
+}
+.percentCell::after {
+  content: "%";
+}
+
 
 /*--------------------SAMANLIKNING--------------------*/
 
