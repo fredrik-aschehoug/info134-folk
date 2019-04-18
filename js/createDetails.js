@@ -124,13 +124,31 @@ function createDetails(id) {
         }
         return rowdata;
     }
+    /**
+     * Removes all childnodes of the given DOM node.
+     * @function
+     * @param {HTMLElement} node 
+     */
+    function removeChildNodes(node) {
+        while (node.firstChild) {
+            node.removeChild(node.firstChild);
+        }
+    }
+    /**
+     * Creates a HTML <header> element with text.
+     * @param {String} headerText   - The text to use in the header element
+     * @returns {HTMLElement}       - Header element with specified text.
+     */
+    function createHeader(headerText) {
+        const headerNode = document.createElement("header");
+        const textNode = document.createTextNode(headerText);
+        headerNode.appendChild(textNode);
+        return headerNode;
+    }
     // Placeholder to put content in
-    const placeholder = document.getElementsByClassName("detaljar");
-    const detailsHeader = document.getElementById("detailsHeader");
+    const placeholder = document.getElementsByClassName("detailsOutput");
     // Data to use
     const currentDetails = details.getCurrent(id);
-    // Append name to header
-    detailsHeader.innerHTML += currentDetails.navn + ":";
     // Create table
     const detailsTableHeaders = ["", "Antall", "Prosent"];
     const table = document.createElement("table");
@@ -181,7 +199,12 @@ function createDetails(id) {
         );
     }
     const paragraph = createParagraph(currentDetails, id);
+    const headerText = `Siste oppdaterte statistikk for ${currentDetails.navn}:`;
+    const header = createHeader(headerText);
+    // Clear placeholder
+    removeChildNodes(placeholder[0]);
     // Append items to placeholder
+    placeholder[0].appendChild(header);
     placeholder[0].appendChild(paragraph);
     placeholder[0].appendChild(table);
 }
