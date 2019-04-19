@@ -46,9 +46,17 @@ utdanning.onload = function () {
     // All data is loaded at this point
 
     const detailsForm = document.getElementById("detailsForm");
+    // Callback when clicking button
     detailsForm.detailsButton.onclick = detailsFormSubmit;
+    // Callback when pressing enter while focused on form
+    detailsForm.onsubmit = detailsFormSubmit;
+    /**
+     * Get value from input and create details view.
+     * @callback
+     */
     function detailsFormSubmit() {
-        id = detailsForm.detailsInput.value;
+        const detailsForm1 = document.getElementById("detailsForm");
+        id = detailsForm1.detailsInput.value;
         createDetails(id);
     }
 
@@ -83,4 +91,3 @@ function createOverview(idList, overviewHeaders) {
 
 setNavigationBehaviour();
 befolkning.load();
-
