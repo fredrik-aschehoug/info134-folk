@@ -1,12 +1,11 @@
-const URL_wildboy_104857 = "http://wildboy.uib.no/~tpe056/folk/104857.json";
-const URL_wildboy_100145 = "http://wildboy.uib.no/~tpe056/folk/100145.json";
-const URL_wildboy_85432 = "http://wildboy.uib.no/~tpe056/folk/85432.json";
+// Global variables
 const oversikt = document.getElementsByClassName("oversikt")[0];
 const overviewHeaders = ["Navn", "Kommunenummer", "Total befolkning"];
-
-const befolkning = new Population(URL_wildboy_104857);
-const sysselsatte = new Employment(URL_wildboy_100145);
-const utdanning = new Education(URL_wildboy_85432);
+getURL = (id) => `http://wildboy.uib.no/~tpe056/folk/${id}.json`;
+// Instanciate objects
+const befolkning = new Population(getURL("104857"));
+const sysselsatte = new Employment(getURL("100145"));
+const utdanning = new Education(getURL("85432"));
 const details = new Details(2017);
 
 /**
@@ -14,9 +13,8 @@ const details = new Details(2017);
  * @callback
  */
 befolkning.onload = function () {
-    let names = befolkning.getNames();
+    // Add overview to DOM
     let ids = befolkning.getIDs();
-    let info = befolkning.getInfo(ids[1]);
     oversikt.appendChild(createOverview(ids, overviewHeaders));
     sysselsatte.load();
 };
@@ -25,8 +23,6 @@ befolkning.onload = function () {
  * @callback
  */
 sysselsatte.onload = function () {
-    let ids = befolkning.getIDs();
-    let info = sysselsatte.getInfo(ids[1]);
     utdanning.load();
 };
 /**
@@ -34,22 +30,6 @@ sysselsatte.onload = function () {
  * @callback
  */
 utdanning.onload = function () {
-    let ids = befolkning.getIDs();
-    for (let id of ids) {
-        details.addMunicipal(
-            id,
-            befolkning.getInfo(id),
-            sysselsatte.getInfo(id),
-            utdanning.getInfo(id)
-        );
-    }
-    // All data is loaded at this point
-
-    const detailsForm = document.getElementById("detailsForm");
-    // Callback when clicking button
-    detailsForm.detailsButton.onclick = detailsFormSubmit;
-    // Callback when pressing enter while focused on form
-    detailsForm.onsubmit = detailsFormSubmit;
     /**
      * Get value from input and create details view.
      * @callback
@@ -59,7 +39,21 @@ utdanning.onload = function () {
         id = detailsForm1.detailsInput.value;
         createDetails(id);
     }
-
+    let ids = befolkning.getIDs();
+    for (let id of ids) {
+        details.addMunicipal(
+            id,
+            befolkning.getInfo(id),
+            sysselsatte.getInfo(id),
+            utdanning.getInfo(id)
+        );
+    }
+    /* All data is loaded at this point */
+    const detailsForm = document.getElementById("detailsForm");
+    // Callback when clicking button
+    detailsForm.detailsButton.onclick = detailsFormSubmit;
+    // Callback when pressing enter while focused on form
+    detailsForm.onsubmit = detailsFormSubmit;
 };
 /**
  * @param {Array} idList Municipality numbers to include
