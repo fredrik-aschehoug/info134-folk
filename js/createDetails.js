@@ -38,25 +38,30 @@ function createDetails(id) {
     }
     /**
      * Appends rowData to table. 3 cells per row.
+     * Adds a DOM class to each cell type for CSS formatting.
      * @function
      * @param {HTMLTableElement} table - The table to append data to
      * @param {Array} rowData          - The data to append
      */
     function createTableRow(table, rowData, headerCells) {
         const row = table.insertRow(-1);
-        for (let data of rowData) {
+        let i = 0;
+        while (i < rowData.length) {
             let cell = row.insertCell(-1);
+            let data = rowData[i];
             if (headerCells.includes(data)) {
                 cell.classList.add("headerCell");
             } else if (typeof data === "string") {
                 cell.classList.add("dataCell");
-            } else if (data % 1 === 0) {
+            } else if (i === 1) {
                 cell.classList.add("numberCell");
+                // Format large numbers to Norwegian locale
                 data = data.toLocaleString('no');
             } else {
                 cell.classList.add("percentCell");
             }
             cell.innerHTML = data;
+            i++;
         }
     }
     /**
