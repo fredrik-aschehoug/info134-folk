@@ -1,6 +1,8 @@
 // Global variables
 const oversikt = document.getElementsByClassName("oversikt")[0];
 const overviewHeaders = ["Navn", "Kommunenummer", "Total befolkning"];
+let ids; // Will be assigned array of all municipal ID's
+// Returns wuldboy URL
 getURL = (id) => `http://wildboy.uib.no/~tpe056/folk/${id}.json`;
 // Instanciate objects
 const befolkning = new Population(getURL("104857"));
@@ -14,7 +16,7 @@ const details = new Details(2017);
  */
 befolkning.onload = function () {
     // Add overview to DOM
-    let ids = befolkning.getIDs();
+    ids = befolkning.getIDs();
     oversikt.appendChild(createOverview(ids, overviewHeaders));
     sysselsatte.load();
 };
@@ -37,7 +39,12 @@ utdanning.onload = function () {
     function detailsFormSubmit() {
         const detailsForm1 = document.getElementById("detailsForm");
         id = detailsForm1.detailsInput.value;
-        createDetails(id);
+        // Check if valid ID
+        if (ids.includes(id)){
+            createDetails(id);
+        } else {
+            alert(`${id} er ikkje eit gyldig kommunenummer`);
+        }
     }
     let ids = befolkning.getIDs();
     for (let id of ids) {
