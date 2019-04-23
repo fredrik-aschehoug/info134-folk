@@ -1,8 +1,7 @@
 /**
- * 
- * Kommunens navn, kommunenummer, siste målte befolkning, 
- * siste målte statistikk for sysselseting og
- * høyere utdanning (antall og prosent). 
+ * Gather all relevant information about all municipals for all years.
+ * Municipal name, municipal number, population, employment and
+ * education. Both in count and percentage.
  * @constructor
  * @param {Number} currentYear - The current year. Used in .getCurrent().
  */
@@ -11,8 +10,8 @@ function Details(currentYear) {
     this.currentYear = currentYear;
     /**
      * @method
-     * @param {String} id
-     * @returns {Object} Current stats for municipal
+     * @param {String} id   - Municipal ID
+     * @returns {Object}    - Current stats for municipal
      */
     this.getCurrent = function (id) {
         // Define the object to return
@@ -59,8 +58,13 @@ function Details(currentYear) {
         }
         return current;
     };
+    /**
+     * @method
+     * @param {String} id   - Municipal ID
+     * @returns {Object}    - Historical stats for municipal
+     */
     this.getHistorical = function (id) {
-        // TODO
+        return this.elements[id];
     };
     /**
      * Store all relevant information of a municipal in this.elements using "kommunenummer" as the key
@@ -103,16 +107,12 @@ function Details(currentYear) {
         // Add population number
         populationElement.number.Kvinner = population.Kvinner;
         populationElement.number.Menn = population.Menn;
-        // Calculate total population for each year
         for (let year in populationElement.number.Kvinner) {
+            // Calculate total population for each year
             let kvinner = populationElement.number.Kvinner[year];
             let menn = populationElement.number.Menn[year];
             populationElement.number.total[year] = kvinner + menn;
-        }
-        // Calculate new data (percentage)
-        for (let year in populationElement.number.Kvinner) {
-            let kvinner = populationElement.number.Kvinner[year];
-            let menn = populationElement.number.Menn[year];
+            // Calculate new data (percentage)
             // andel / total * 100
             let kvinnerPercent = (kvinner / populationElement.number.total[year]) * 100;
             let mennPercent = (menn / populationElement.number.total[year]) * 100;
@@ -171,23 +171,13 @@ function Details(currentYear) {
             percent: {},
             number: {}
         };
-        for (let eduLevel in education) {
-            if (eduLevel !== "kommunenummer" && eduLevel !== "navn") {
-                // Add existing data (percent)
-                educationElement.percent[eduLevel] = education[eduLevel];
-                educationElement.percent[eduLevel].total = {};
-                // Append objects 
-                educationElement.number[eduLevel] = {
-                    Kvinner: {},
-                    Menn: {},
-                    total: {}
-                };
-            }
-            /**
-             * Calculate new data (number)
-             * Using population because there are more data in education, 
-             * that way we only get the overlapping years
-             */
+        /**
+         * Calculate new data (number)
+         * Using population because there are more data in education, 
+         * that way we only get the overlapping years
+         * @function
+         */
+        function calculateEducation(population, eduLevel, education, educationElement) {
             for (let year in population.Kvinner) {
                 // Find population based on percentage
                 if (eduLevel !== "kommunenummer" && eduLevel !== "navn") {
@@ -209,6 +199,21 @@ function Details(currentYear) {
                 }
             }
         }
+        for (let eduLevel in education) {
+            if (eduLevel !== "kommunenummer" && eduLevel !== "navn") {
+                // Add existing data (percent)
+                educationElement.percent[eduLevel] = education[eduLevel];
+                educationElement.percent[eduLevel].total = {};
+                // Append objects 
+                educationElement.number[eduLevel] = {
+                    Kvinner: {},
+                    Menn: {},
+                    total: {}
+                };
+            }
+            calculateEducation(population, eduLevel, education, educationElement);
+        }
         return educationElement;
     };
+    
 }
