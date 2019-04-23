@@ -60,7 +60,7 @@ function Details(currentYear) {
         return current;
     };
     this.getHistorical = function (id) {
-        // TODO
+        return this.elements[id];
     };
     /**
      * Store all relevant information of a municipal in this.elements using "kommunenummer" as the key
