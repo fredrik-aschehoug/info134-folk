@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script defer src="js/canvasGraphDisplay.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    
+    <h1>Testpage</h1>
+    <input type="text" id="inputID" value="0">
+    <button id="submitNode" onclick="befolkning.http()">Click</button>
+    <button id="loopArray" onclick="presentData(outputElt, data2)">Loop</button>
+    <button onclick=drawGraph(years,minVal,maxVal,incrementVal)>Draw graph</button>
+
+
+    <div>
+        <canvas id="graph" width="600" height="375"></canvas>
+    
+    <br>
+    <span style="color:#FF0066"></span>  
+        <span style="color:#9933FF"></span>  
+            <span style="color:#000"></span>
+    </div>
+    
+    <div id="output"></div>
+    
+</body>
+</html>
