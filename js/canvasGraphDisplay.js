@@ -1,43 +1,4 @@
 
-/*const data2 = {
-    "datasett": {
-      "eierskap": "Dataene er hentet fra Statistisk sentralbryå (SSB), men er noe forkortet. De er publisert på http://wildboy.uib.no/~tpe056/oppgave/ i forbindelse med en semesteroppgave i kurset INFO134 av emneansvarlig, Truls Pedersen. Dataene ble lastet ned og behandlet april (2019) av emneansvarlig. Dette inkluderer i noen tilfeller forringelse i form av å fjerne noen detaljer. Dataene brukes i tråd med NLOD ( https://data.norge.no/nlod/no ).",
-      "opphav": "http://data.ssb.no/api/v0/dataset/104857?lang=no"
-    },
-    "elementer": {
-      "Halden": {
-        "kommunenummer": "0101",
-        "Menn": {
-          "2007": 13807,
-          "2008": 13940,
-          "2009": 14092,
-          "2010": 14285,
-          "2011": 14574,
-          "2012": 14760,
-          "2013": 14892,
-          "2014": 15034,
-          "2015": 15170,
-          "2016": 15306,
-          "2017": 15473,
-          "2018": 15620
-        },
-        "Kvinner": {
-          "2007": 14028,
-          "2008": 14152,
-          "2009": 14297,
-          "2010": 14491,
-          "2011": 14646,
-          "2012": 14783,
-          "2013": 14988,
-          "2014": 15098,
-          "2015": 15158,
-          "2016": 15238,
-          "2017": 15317,
-          "2018": 15417
-        }
-      }
-    }
-}*/
 
 // Global variables
 const oversikt = document.getElementsByClassName("oversikt")[0];
