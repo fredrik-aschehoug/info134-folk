@@ -1,5 +1,5 @@
 
-const data2 = {
+/*const data2 = {
     "datasett": {
       "eierskap": "Dataene er hentet fra Statistisk sentralbryå (SSB), men er noe forkortet. De er publisert på http://wildboy.uib.no/~tpe056/oppgave/ i forbindelse med en semesteroppgave i kurset INFO134 av emneansvarlig, Truls Pedersen. Dataene ble lastet ned og behandlet april (2019) av emneansvarlig. Dette inkluderer i noen tilfeller forringelse i form av å fjerne noen detaljer. Dataene brukes i tråd med NLOD ( https://data.norge.no/nlod/no ).",
       "opphav": "http://data.ssb.no/api/v0/dataset/104857?lang=no"
@@ -37,55 +37,88 @@ const data2 = {
         }
       }
     }
-}
+}*/
+
+// Global variables
+const oversikt = document.getElementsByClassName("oversikt")[0];
+const overviewHeaders = ["Navn", "Kommunenummer", "Total befolkning"];
+let ids; // Will be assigned array of all municipal ID's
+// Returns wuldboy URL
+getURL = (id) => `http://wildboy.uib.no/~tpe056/folk/${id}.json`;
+// Instanciate objects
+const befolkning = new Population(getURL("104857"));
+const sysselsatte = new Employment(getURL("100145"));
+const utdanning = new Education(getURL("85432"));
+const details = new Details(2017);
+
+/**
+ * Runs when befolkning is fully loaded
+ * @callback
+ */
+befolkning.onload = function () {
+    // Add overview to DOM
+    ids = befolkning.getIDs();
+    //oversikt.appendChild(createOverview(ids, overviewHeaders));
+    sysselsatte.load();
+};
+/**
+ * Runs when sysselsatte is fully loaded
+ * @callback
+ */
+sysselsatte.onload = function () {
+    utdanning.load();
+};
+/**
+ * Runs when utdanning is fully loaded
+ * @callback
+ */
+utdanning.onload = function () {
+    /**
+     * Get value from input and create details view.
+     * @callback
+     */
+
+    function totalPopFunc() {
+    const totalPop = befolkning.getInfo("1201");
+    const maleObj = totalPop.Menn;
+    const maleValues = Object.values(maleObj);
 
 
-
-function totalPop(data2) {
-    const malePopulation = data2.elementer.Halden.Menn;
-    const maleValues = Object.values(malePopulation);
-    const maleKeys = Object.keys(malePopulation);
-
-    const femalePopulation = data2.elementer.Halden.Kvinner;
-    const femValues = Object.values(femalePopulation);
+    const femaleObj = totalPop.Kvinner;
+    const femaleValues = Object.values(femaleObj);
     
-
     totalPopulation = []
-for (let i = 0; i < maleKeys.length; i ++){
-    totalPopulation.push(maleValues[i]+femValues[i]);
-    
-}
+        for (let i = 0; i < maleValues.length; i ++){
+            totalPopulation.push(maleValues[i]+femaleValues[i]);
+        }
     return totalPopulation
-}
+    };
+    totalPopFunc();
+    console.log(totalPopulation)
 
-
-function yearsArray(data2) {
-    const malePopulation = data2.elementer.Halden.Menn;
-    const maleKeys = Object.keys(malePopulation);
-
-    years = [""]
-    for (let i = 0; i < maleKeys.length; i ++){
-        years.push(maleKeys[i]);
+    function yearsArray() {
+        const totalPop = befolkning.getInfo("1201");
+        const maleObj = totalPop.Menn;
+        const maleKeys = Object.keys(maleObj);
     
-}
-    return years
-}
+        years = [""]
+        for (let i = 0; i < maleKeys.length; i ++){
+            years.push(maleKeys[i]);
+        }
+        return years
+    };
 
-totalPop(data2);
-yearsArray(data2);
-//presentData(outputElt, data2);
+    let graphCanvas; 
+    let ctx;
+    let maxValue = maxArray();
+    let minValue = minArray();
+    let increment = incrementFunc();
+    let rectangles;
+    let scaleForX;
+    let scaleForY;
+    let dataGraph = totalPopulation
 
-    //global variables 
 
-let graphCanvas; 
-let ctx;
-let maxValue = maxArray();
-let minValue = minArray();
-let increment = incrementFunc();
-let rectangles;
-let scaleForX;
-let scaleForY;
-let dataGraph = totalPopulation
 
 function maxArray() {
         let arrayMax = Math.max.apply(Math, totalPopulation)
@@ -99,14 +132,13 @@ function maxArray() {
         } else {
             maxVal = 100;
         }
-    return maxVal
-        
+    return maxVal       
 }
 
 
 
 function minArray() {
-    
+        //console.log(totalPopulation)
         let arrayMin = Math.min.apply(Math, totalPopulation);
 
         if (arrayMin > 1000) {
@@ -170,15 +202,11 @@ function drawGraph(years, minVal, maxVal, incrementVal) {
     //Gridscaling based on graph input length
     scaleForX = (graphCanvas.width - rowSize) / rectangles;
     scaleForY = (graphCanvas.height - columnSize - margin) / (maxValue - minValue);
-    console.log(scaleForY)
-    console.log(scaleForX)
 
     //graphStyling
     ctx.font = "12px Arial";
     ctx.fillStyle = "#9933FF";      //Font colour
     ctx.strokeStyle = "#1F2421";    //Grid line color
-
-    
     
     //Fills ArrayKeys on the X axis 
     ctx.beginPath();
@@ -188,9 +216,6 @@ function drawGraph(years, minVal, maxVal, incrementVal) {
             ctx.moveTo(x, columnSize);
             ctx.lineTo(x, graphCanvas.height - margin);
     }
-
-    console.log(totalPopulation)
-
     
     //Fills ArrayKeyValues from the numbers array on the Y axis
     //Horizontal grid lines
@@ -198,7 +223,7 @@ function drawGraph(years, minVal, maxVal, incrementVal) {
     for (graphScale = maxValue; graphScale >= minValue; graphScale = graphScale - increment) {
         let y = columnSize + (scaleForY * yCount * increment);
             ctx.lineWidth = 0.5
-            ctx.fillText(graphScale, 5, y + margin);
+            ctx.fillText(graphScale, margin-8, y + margin);
             ctx.moveTo(rowSize, y);
             ctx.lineTo(graphCanvas.width-20, y);
             yCount++;
@@ -213,5 +238,38 @@ function drawGraph(years, minVal, maxVal, incrementVal) {
     plotData(dataGraph);
     
 
-}
+};
+
+    let ids = befolkning.getIDs();
+        for (let id of ids) {
+            details.addMunicipal(
+                id,
+                befolkning.getInfo(id),
+                sysselsatte.getInfo(id),
+                utdanning.getInfo(id)
+            );
+        }   
+    /* All data is loaded at this point */
+    
+    
+    yearsArray();
+    drawGraph(years, minVal, maxVal, incrementVal);
+    
+};
+
+befolkning.load();
+
+
+ 
+
+
+
+
+
+
+//totalPop(data2);
+//yearsArray(data2);
+//presentData(outputElt, data2);
+
+    //global variables 
 
