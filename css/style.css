@@ -142,9 +142,14 @@ th, td {
   padding: 8px;
 }
 
-tr:nth-child(1) {
+thead {
   background-color: #074F57;
   color: white;
+}
+tbody {
+ /* Ingeleiv pls fix*/
+  overflow-y: auto;    /* Trigger vertical scroll    */
+  overflow-x: hidden;  /* Hide the horizontal scroll */
 }
 tr:nth-child(even) {
   background-color: #D1DFE0;
