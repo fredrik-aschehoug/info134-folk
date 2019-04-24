@@ -43,10 +43,11 @@ utdanning.onload = function () {
     function detailsFormSubmit() {
         const detailsForm1 = document.getElementById("detailsForm");
         id = detailsForm1.detailsInput.value;
-        let years = yearsArray(id);
+        
         console.log(id)
         // Check if valid ID
         if (ids.includes(id)){
+            let years = yearsArray(id);
             createDetails(id);
             totalPopFunc(id);
             drawGraph(totalPopulation, years);
@@ -76,14 +77,14 @@ utdanning.onload = function () {
                 let totalPop = details.getHistorical(id);
                 let yearObj = totalPop.population.number.total;
                 years = Object.keys(yearObj)//["2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018"] //Object.keys(yearObj)
-                console.log(years.length)
+                console.log(years)
                 /*if (years.length >) {
                     years.reverse();
                     years.length = 12;
                     years.reverse();
                     years = Object.keys(yearObj)
                 }*/
-                return years
+                return years.unshift("")
                 };
 
             
@@ -182,7 +183,7 @@ function drawGraph() {
     rectangles = years.length-1;
     
     let columnSize = 66;
-    let rowSize = 50;
+    let rowSize = 46;
     let margin = 8;
     let xAxis = years
 
