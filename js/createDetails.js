@@ -227,7 +227,44 @@ function createDetails(id) {
         return htmlObject;
     }
     function createHistoricalDetails(historicalDetails) {
-        function compileRowData(historicalDetails) {
+        function createTableElement() {
+            const table = document.createElement("table");
+            const thead = document.createElement("thead");
+            const tbody = document.createElement("tbody");
+            table.appendChild(thead);
+            table.appendChild(tbody);
+            return table;
+        }
+        function createTableBody(desciptions, tableHeaders, historicalDetails, tbody, format) {
+            for (let desc of desciptions) {
+                let tr = tbody.insertRow(-1);
+                for (let year of tableHeaders) {
+                    let td = tr.insertCell(-1);
+                    let data;
+                    if (year === "") {
+                        data = desc;
+                    } else {
+                        switch (desc) {
+                            case "Kvinner":
+                                data = historicalDetails.population[format].Kvinner[year];
+                                break;
+                            case "Menn":
+                                data = historicalDetails.population[format].Menn[year];
+                                break;
+                            case "Begge kjønn":
+                                if (format === "percent") {
+                                    data = "";
+                                } else {
+                                    data = historicalDetails.population[format].total[year];
+                                }
+                                break;
+                        }
+                    }
+                    // Format large numbers to Norwegian locale
+                    data = data.toLocaleString('no');
+                    td.innerHTML = data;
+                }
+            }
 
         }
         const htmlObject = document.createElement("div");
@@ -243,43 +280,19 @@ function createDetails(id) {
         for (let year in historicalDetails.population.number.Kvinner) {
             tableHeaders.push(year);
         }
-        const table = document.createElement("table");
-        const thead = document.createElement("thead");
-        const tbody = document.createElement("tbody");
-        table.appendChild(thead);
-        table.appendChild(tbody);
+
+        populationNumberTable = createTableElement(tableHeaders);
+        populationPercentTable = createTableElement(tableHeaders);
         // Create table headers
-        thead.appendChild(createTableHeader(tableHeaders));
+        populationNumberTable.tHead.appendChild(createTableHeader(tableHeaders));
+        populationPercentTable.tHead.appendChild(createTableHeader(tableHeaders));
         // Create rows
         const desciptions = ["Kvinner", "Menn", "Begge kjønn"];
-        for (let desc of desciptions) {
-            let tr = tbody.insertRow(-1);
-            for (let year of tableHeaders) {
-                let td = tr.insertCell(-1);
-                let data;
-                if (year === "") {
-                    data = desc;
-                } else {
-                    switch (desc) {
-                        case "Kvinner":
-                            data = historicalDetails.population.number.Kvinner[year];
-                            break;
-                        case "Menn":
-                            data = historicalDetails.population.number.Menn[year];
-                            break;
-                        case "Begge kjønn":
-                            data = historicalDetails.population.number.total[year];
-                            break;
-                    }
-                }
-                // Format large numbers to Norwegian locale
-                data = data.toLocaleString('no');
-                td.innerHTML = data;
-            }
-        }
+        createTableBody(desciptions, tableHeaders, historicalDetails, populationNumberTable.tBodies[0], "number");
+        createTableBody(desciptions, tableHeaders, historicalDetails, populationPercentTable.tBodies[0], "percent");
 
         // Append items to return object
-        appendElements(htmlObject, header, populationHeader, table);
+        appendElements(htmlObject, header, populationHeader, populationNumberTable,populationPercentTable);
         return htmlObject;
 
     }
