@@ -291,8 +291,47 @@ function createDetails(id) {
         createTableBody(desciptions, tableHeaders, historicalDetails, populationNumberTable.tBodies[0], "number");
         createTableBody(desciptions, tableHeaders, historicalDetails, populationPercentTable.tBodies[0], "percent");
 
+        // Assign classes
+        populationNumberTable.classList.add("populationTable");
+        populationNumberTable.classList.add("activeTable");
+        populationPercentTable.classList.add("populationTable");
+
+        function createTableToggle(){
+            const tableToggle = document.createElement("div");
+            const input1 = document.createElement("input");
+            const label1 = document.createElement("label");
+            const input2 = document.createElement("input");
+            const label2 =  document.createElement("label");
+
+            input1.id = "toggle-on";
+            input1.classList.add("toggle", "toggle-left");
+            input1.name = "toggle";
+            input1.value = "false";
+            input1.type = "radio";
+            input1.checked = true;
+            label1.htmlFor = "toggle-on";
+            label1.classList.add("tableToggle");
+            label1.innerText = "Antall";
+            input2.id = "toggle-off";
+            input2.classList.add("toggle", "toggle-right");
+            input2.name = "toggle";
+            input2.value = "true";
+            input2.type = "radio";
+            label2.htmlFor = "toggle-off";
+            label2.classList.add("tableToggle");
+            label2.innerText = "Prosent";
+
+            tableToggle.appendChild(input1);
+            tableToggle.appendChild(label1);
+            tableToggle.appendChild(input2);
+            tableToggle.appendChild(label2);
+            return tableToggle;
+
+
+        }
+        const tableToggle = createTableToggle();
         // Append items to return object
-        appendElements(htmlObject, header, populationHeader, populationNumberTable,populationPercentTable);
+        appendElements(htmlObject, header, populationHeader, tableToggle, populationNumberTable,populationPercentTable);
         return htmlObject;
 
     }
