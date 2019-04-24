@@ -259,10 +259,12 @@ div.detailsOutput:nth-child(2) > table:nth-child(3){
 
 .populationTable{
   visibility: hidden;
+  display: none;
 }
 /*--------------------active--------------------*/
 .activeTable{
   visibility: visible;
+  display:block;
   }
 
 

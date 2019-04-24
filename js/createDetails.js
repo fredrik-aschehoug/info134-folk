@@ -292,17 +292,18 @@ function createDetails(id) {
         createTableBody(desciptions, tableHeaders, historicalDetails, populationPercentTable.tBodies[0], "percent");
 
         // Assign classes
-        populationNumberTable.classList.add("populationTable");
-        populationNumberTable.classList.add("activeTable");
+        populationNumberTable.classList.add("populationTable", "activeTable");
         populationPercentTable.classList.add("populationTable");
 
-        function createTableToggle(){
-            const tableToggle = document.createElement("div");
+        function createTableToggle(callback, cbParam){
+            // Create DOM elements
+            const tableToggle = document.createElement("form");
             const input1 = document.createElement("input");
             const label1 = document.createElement("label");
             const input2 = document.createElement("input");
             const label2 =  document.createElement("label");
 
+            // Set attributes
             input1.id = "toggle-on";
             input1.classList.add("toggle", "toggle-left");
             input1.name = "toggle";
@@ -312,15 +313,18 @@ function createDetails(id) {
             label1.htmlFor = "toggle-on";
             label1.classList.add("tableToggle");
             label1.innerText = "Antall";
+            input1.onclick = () => callback(cbParam);
             input2.id = "toggle-off";
             input2.classList.add("toggle", "toggle-right");
             input2.name = "toggle";
             input2.value = "true";
             input2.type = "radio";
+            input2.onclick = () => callback(cbParam);
             label2.htmlFor = "toggle-off";
             label2.classList.add("tableToggle");
             label2.innerText = "Prosent";
 
+            // Append DOM elements to return object
             tableToggle.appendChild(input1);
             tableToggle.appendChild(label1);
             tableToggle.appendChild(input2);
@@ -329,7 +333,13 @@ function createDetails(id) {
 
 
         }
-        const tableToggle = createTableToggle();
+        function toggleCallback(className) {
+            const elements = document.getElementsByClassName(className);
+            for (let element of elements) {
+                element.classList.toggle("activeTable");
+            }
+        }
+        const tableToggle = createTableToggle(toggleCallback, "populationTable");
         // Append items to return object
         appendElements(htmlObject, header, populationHeader, tableToggle, populationNumberTable,populationPercentTable);
         return htmlObject;
