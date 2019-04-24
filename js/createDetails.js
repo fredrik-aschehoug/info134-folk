@@ -36,7 +36,22 @@ function createDetails(id) {
             node.appendChild(child);
         }
     }
-    
+    /**
+     * Create a row with headers.
+     * @function
+     * @param {Array} headers - The header text values to use in header row
+     * @returns {HTMLTableRowElement}
+     */
+    function createTableHeader(headers) {
+        const headerRow = document.createElement("tr");
+        for (let header of headers) {
+            let th = document.createElement("th");
+            th.innerHTML = header;
+            headerRow.appendChild(th);
+        }
+        return headerRow;
+    }
+
     function createCurrentDetails(currentDetails) {
         // Array with parameters for the compileRowData function
         const rowData = [
@@ -89,21 +104,6 @@ function createDetails(id) {
             paragraph.appendChild(kommunenummer);
             paragraph.appendChild(document.createElement("br"));
             return paragraph;
-        }
-        /**
-         * Create a row with headers.
-         * @function
-         * @param {Array} headers - The header text values to use in header row
-         * @returns {HTMLTableRowElement}
-         */
-        function createTableHeader(headers) {
-            const headerRow = document.createElement("tr");
-            for (let header of headers) {
-                let th = document.createElement("th");
-                th.innerHTML = header;
-                headerRow.appendChild(th);
-            }
-            return headerRow;
         }
         /**
          * Appends rowData to table. 3 cells per row.
@@ -203,31 +203,96 @@ function createDetails(id) {
             return rowdata;
         }
         // Create table
-        const detailsTableHeaders = ["", "Antall", "Prosent"];
+        const detailsTableHeaders = ["Beskriving ", "Antall", "Prosent"];
         const table = document.createElement("table");
+        const thead = document.createElement("thead");
+        const tbody = document.createElement("tbody");
+        table.appendChild(thead);
+        table.appendChild(tbody);
         // Create table headers
-        table.appendChild(createTableHeader(detailsTableHeaders));
+        thead.appendChild(createTableHeader(detailsTableHeaders));
         // Append all rows to table object
         for (let data of rowData) {
             // Destructure array
             let [title, type, eduType] = data;
-            createTableRow(table, compileRowData(currentDetails, title, type, eduType), headerCells);
+            createTableRow(tbody, compileRowData(currentDetails, title, type, eduType), headerCells);
         }
         const htmlObject = document.createElement("div");
         const paragraph = createParagraph(currentDetails, id);
         const headerText = `Siste oppdaterte statistikk for ${currentDetails.navn}:`;
         const header = createHeader(headerText);
-        
+
         appendElements(htmlObject, header, paragraph, table);
 
         return htmlObject;
     }
-    function createHistoricalDetails(historicDetails) {
+    function createHistoricalDetails(historicalDetails) {
+        function createTableElement() {
+            const table = document.createElement("table");
+            const thead = document.createElement("thead");
+            const tbody = document.createElement("tbody");
+            table.appendChild(thead);
+            table.appendChild(tbody);
+            return table;
+        }
+        function createTableBody(desciptions, tableHeaders, historicalDetails, tbody, format) {
+            for (let desc of desciptions) {
+                let tr = tbody.insertRow(-1);
+                for (let year of tableHeaders) {
+                    let td = tr.insertCell(-1);
+                    let data;
+                    if (year === "") {
+                        data = desc;
+                    } else {
+                        switch (desc) {
+                            case "Kvinner":
+                                data = historicalDetails.population[format].Kvinner[year];
+                                break;
+                            case "Menn":
+                                data = historicalDetails.population[format].Menn[year];
+                                break;
+                            case "Begge kjønn":
+                                if (format === "percent") {
+                                    data = "";
+                                } else {
+                                    data = historicalDetails.population[format].total[year];
+                                }
+                                break;
+                        }
+                    }
+                    // Format large numbers to Norwegian locale
+                    data = data.toLocaleString('no');
+                    td.innerHTML = data;
+                }
+            }
+
+        }
         const htmlObject = document.createElement("div");
         const headerText = `Historisk statistikk for ${currentDetails.navn}:`;
         const header = createHeader(headerText);
-       
-        appendElements(htmlObject, header);
+        const populationHeaderText = "Befolkning:";
+        const populationHeader = createHeader(populationHeaderText);
+
+
+        // Create table
+        // Get years from object, to be used as headers
+        const tableHeaders = [""]; // First cell must be empty  
+        for (let year in historicalDetails.population.number.Kvinner) {
+            tableHeaders.push(year);
+        }
+
+        populationNumberTable = createTableElement(tableHeaders);
+        populationPercentTable = createTableElement(tableHeaders);
+        // Create table headers
+        populationNumberTable.tHead.appendChild(createTableHeader(tableHeaders));
+        populationPercentTable.tHead.appendChild(createTableHeader(tableHeaders));
+        // Create rows
+        const desciptions = ["Kvinner", "Menn", "Begge kjønn"];
+        createTableBody(desciptions, tableHeaders, historicalDetails, populationNumberTable.tBodies[0], "number");
+        createTableBody(desciptions, tableHeaders, historicalDetails, populationPercentTable.tBodies[0], "percent");
+
+        // Append items to return object
+        appendElements(htmlObject, header, populationHeader, populationNumberTable,populationPercentTable);
         return htmlObject;
 
     }
@@ -240,11 +305,12 @@ function createDetails(id) {
     const currentDetails = details.getCurrent(id);
     const historicalDetails = details.getHistorical(id);
     console.log(historicalDetails)
-    
+
     currentDetailsObject = createCurrentDetails(currentDetails);
     historicalDetailsObject = createHistoricalDetails(historicalDetails);
     // Clear placeholder
     removeChildNodes(placeholder[0]);
     // Append item to placeholder
     placeholder[0].appendChild(currentDetailsObject);
+    placeholder[0].appendChild(historicalDetailsObject);
 }

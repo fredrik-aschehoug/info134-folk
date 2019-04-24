@@ -97,6 +97,7 @@ dataa presenterast horisontalt*/
 .hovud{
   visibility: hidden;
   display: none;
+  width: 700px;
 }
 /*--------------------active--------------------*/
 .active{
@@ -133,9 +134,10 @@ tr:nth-child(even) {
 
 /*--------------------OVERSIKT--------------------*/
 .oversikt table {
-  display: block;
   border-collapse: collapse;
+  width:100%;
 }
+
 
 .oversikt th,
 .oversikt td {
@@ -146,6 +148,8 @@ tr:nth-child(even) {
 .oversikt thead {
   background-color: #074F57;
   color: white;
+  position: sticky;
+  top: 0;
 }
 .oversikt tbody {
  /* Ingeleiv pls fix*/
@@ -169,6 +173,7 @@ tr:nth-child(even) {
   background-color: #DADEE5;
   width: 248px;
   height: auto;
+  margin: auto;
 }
 
 #detailsInput{
@@ -187,9 +192,7 @@ tr:nth-child(even) {
   width:40px;
   height:40px;
 }
-.active #detailsForm{
-  align-items: center;
-}
+
 
 /*--------------------DETALJAR--------------------*/
 .detailsOutput header {
@@ -216,10 +219,9 @@ tr:nth-child(even) {
 
 .detailsOutput table {
   border-collapse: collapse;
+  width:100%;
 }
-.detailsOutput table tr{
-width:100%;
-}
+
 
 .detailsOutput th,
 .detailsOutput td {
@@ -229,11 +231,18 @@ width:100%;
 div.detailsOutput:nth-child(2) > table:nth-child(3){
   width:100%;
 }
-
-.detailsOutput:nth-child(2) > table:nth-child(3) > tr:nth-child(1) {
+.detailsOutput table{
+  z-index: 0;
+}
+.detailsOutput tr:nth-child(1){
   background-color: #374C70;
   color: white;
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+  z-index: 2;
 }
+
 .detailsOutput tbody {
  /* Ingeleiv pls fix*/
   overflow-y: auto;    /* Trigger vertical scroll    */
@@ -247,7 +256,6 @@ div.detailsOutput:nth-child(2) > table:nth-child(3){
 .detailsOutput{
   margin-top:1em;
 }
-
 
 /*--------------------SAMANLIKNING--------------------*/
 /*--------------------SEARCH--------------------*/
