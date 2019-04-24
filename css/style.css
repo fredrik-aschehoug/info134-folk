@@ -155,6 +155,33 @@ tr:nth-child(even) {
   background-color: #D1DFE0;
 }
 
+/*--------------------SEARCH--------------------*/
+
+
+#detailsInput input[type=text] {
+  width: 200px;
+}
+#detailsForm{
+  border: 1px solid grey;
+  background-color: #DADEE5;
+}
+#detailsInput{
+  width: 200px;
+  height:33px;
+  font-size: 1em;
+  padding:0.1em;
+  border: none;
+  background-color: #DADEE5;
+}
+
+#detailsButton{
+  background:url(../images/search2.png) no-repeat;
+  background-size: contain;
+  border:none;
+  width:40px;
+  height:40px;
+}
+
 
 /*--------------------DETALJAR--------------------*/
 .detailsOutput header {
