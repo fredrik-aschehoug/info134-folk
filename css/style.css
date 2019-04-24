@@ -132,27 +132,61 @@ tr:nth-child(even) {
 }*/
 
 /*--------------------OVERSIKT--------------------*/
-table {
+.oversikt table {
   display: block;
   border-collapse: collapse;
 }
 
-th, td {
+.oversikt th,
+.oversikt td {
   text-align: left;
   padding: 8px;
 }
 
-thead {
+.oversikt thead {
   background-color: #074F57;
   color: white;
 }
-tbody {
+.oversikt tbody {
  /* Ingeleiv pls fix*/
   overflow-y: auto;    /* Trigger vertical scroll    */
   overflow-x: hidden;  /* Hide the horizontal scroll */
 }
-tr:nth-child(even) {
+.oversikt tr:nth-child(even) {
   background-color: #D1DFE0;
+}
+
+
+/*--------------------SEARCH--------------------*/
+
+
+#detailsInput input[type=text] {
+  width: 200px;
+}
+#detailsForm{
+  display: block;
+  border: 1px solid grey;
+  background-color: #DADEE5;
+  width: 248px;
+  height: auto;
+  margin: auto;
+}
+
+#detailsInput{
+  width: 200px;
+  height: 33px;
+  font-size: 1em;
+  padding:0.1em;
+  border: none;
+  background-color: #DADEE5;
+}
+
+#detailsButton{
+  background:url(../images/search2.png) no-repeat;
+  background-size: contain;
+  border:none;
+  width:40px;
+  height:40px;
 }
 
 
@@ -174,12 +208,74 @@ tr:nth-child(even) {
 .numberCell {
 
 }
+
 .percentCell::after {
   content: "%";
 }
 
+.detailsOutput table {
+  border-collapse: collapse;
+  width:100%;
+}
+
+
+.detailsOutput th,
+.detailsOutput td {
+  text-align: left;
+  padding: 8px;
+}
+div.detailsOutput:nth-child(2) > table:nth-child(3){
+  width:100%;
+}
+
+div.detailsOutput:nth-child(2) > div:nth-child(1) > table:nth-child(3) > tr:nth-child(1){
+  background-color: #374C70;
+  color: white;
+  position: sticky;
+}
+
+.detailsOutput tbody {
+ /* Ingeleiv pls fix*/
+  overflow-y: auto;    /* Trigger vertical scroll    */
+  overflow-x: hidden;  /* Hide the horizontal scroll */
+}
+
+.detailsOutput tr:nth-child(even) {
+  background-color: #DADEE5;
+}
+
+.detailsOutput{
+  margin-top:1em;
+}
 
 /*--------------------SAMANLIKNING--------------------*/
+/*--------------------SEARCH--------------------*/
+
+
+#comparisonForm{
+  border: 1px solid grey;
+  background-color: #DADEE5;
+  width: 100%;
+  height: auto;
+}
+
+#comparisonInput1,
+#comparisonInput2{
+  width: 250px;
+  height: 33px;
+  font-size: 1em;
+  padding:0.1em;
+  border: none;
+  background-color: #E3E0DB;
+}
+
+#comparisonButton{
+  background:url(../images/search3.png) no-repeat;
+  background-size: contain;
+  border:none;
+  width:40px;
+  height:40px;
+}
 
 /*--------------------botntekst--------------------*/
 .botntekst{
