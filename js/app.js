@@ -89,7 +89,11 @@ function createOverview(idList, overviewHeaders) {
         let id = row.insertCell(-1);
         id.innerHTML = info.kommunenummer;
         let population = row.insertCell(-1);
-        population.innerHTML = info.Kvinner["2018"] + info.Menn["2018"];
+        // Calcualte population
+        let populationCount = info.Kvinner["2018"] + info.Menn["2018"];
+        // Format large numbers to Norwegian locale
+        populationCount = populationCount.toLocaleString('no');
+        population.innerHTML = populationCount;
     }
     return overview;
 }
