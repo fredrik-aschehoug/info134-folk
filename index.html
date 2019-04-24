@@ -1,52 +1,62 @@
 <!DOCTYPE html>
 <html lang="nn" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="css/style.css">
-    <script src="js/population.js"></script>
-    <script src="js/employment.js"></script>
-    <script src="js/education.js"></script>
-    <script src="js/navigation.js"></script>
-    <script src="js/details.js"></script>
-    <script src="js/createDetails.js"></script>
-    <script defer src="js/app.js"></script>
-  </head>
-  <body>
-    <nav id="navigasjon" class="navigasjon">
-      <ul>
-        <li class="btn activemenu"><button id="btn1">Introduksjon</button></li>
-        <li class="btn"><button id="btn2">Oversikt</button></li>
-        <li class="btn"><button id="btn3">Detaljar</button></li>
-        <li class="btn"><button id="btn4">Samanlikning</button></li>
-      </ul>
-    </nav>
 
-    <main id="hovudinnhald" class="hovudinnhald">
-      <div class="hovud introduksjon active">
-        <h1>Folk</h1>
-        <p>
-          På denne siden kan du blablabla. Bruk navigasjonsbaren til å navigere i de ulike sidene.
-          Vi tar forbehold om eventuelle feil i data. All data er henta fra Statistisk Sentralbyrå.
-          <i>Kilde: <a href="https://www.ssb.no/">www.ssb.no</a></i>
-          <i></i>
-        </p>
-      </div>
-      <div class="hovud oversikt"></div>
-      <div class="hovud detaljar">
-        <form id="detailsForm" action="#">
-          <input id="detailsInput" required>
-          <input id="detailsButton" type="button" value="Finn detaljar">
-        </form>
-        <div class="detailsOutput"></div>
-      </div>
-      <div class="hovud samanlikning"></div>
-    </main>
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" media="screen" href="css/style.css">
+  <script src="js/population.js"></script>
+  <script src="js/employment.js"></script>
+  <script src="js/education.js"></script>
+  <script src="js/navigation.js"></script>
+  <script src="js/details.js"></script>
+  <script src="js/createDetails.js"></script>
+  <script defer src="js/app.js"></script>
+</head>
 
-    <footer class="botntekst">
-      <p>oppgavebesvarelse INFO134.</p>
-    </footer>
+<body>
+  <nav id="navigasjon" class="navigasjon">
+    <ul>
+      <li class="btn activemenu"><button id="btn1">Introduksjon</button></li>
+      <li class="btn"><button id="btn2">Oversikt</button></li>
+      <li class="btn"><button id="btn3">Detaljar</button></li>
+      <li class="btn"><button id="btn4">Samanlikning</button></li>
+    </ul>
+  </nav>
 
-  </body>
+  <main id="hovudinnhald" class="hovudinnhald">
+    <div class="hovud introduksjon active">
+      <h1>Folk</h1>
+      <p>
+        På denne siden kan du blablabla. Bruk navigasjonsbaren til å navigere i de ulike sidene.
+        Vi tar forbehold om eventuelle feil i data. All data er henta fra Statistisk Sentralbyrå.
+        <i>Kilde: <a href="https://www.ssb.no/">www.ssb.no</a></i>
+        <i></i>
+      </p>
+    </div>
+    <div class="hovud oversikt"></div>
+    <div class="hovud detaljar">
+      <form id="detailsForm" action="#">
+        <input id="detailsInput" required>
+        <input id="detailsButton" type="button" value="Finn detaljar">
+      </form>
+      <div class="detailsOutput"></div>
+    </div>
+    <div class="hovud samanlikning">
+      <form id="comparisonForm" action="#">
+        <input id="comparisonInput1" required>
+        <input id="comparisonButton" type="button" value="Samanlikn">
+        <input id="comparisonInput2" required>
+      </form>
+    </div>
+    <div class="detailsOutput"></div>
+  </main>
+
+  <footer class="botntekst">
+    <p>oppgavebesvarelse INFO134.</p>
+  </footer>
+
+</body>
+
 </html>
