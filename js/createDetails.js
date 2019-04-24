@@ -4,8 +4,40 @@
  * @param {String} id - Municipal ID to get details from
  */
 function createDetails(id) {
+    /**
+     * Creates a HTML <header> element with text.
+     * @param {String} headerText   - The text to use in the header element
+     * @returns {HTMLElement}       - Header element with specified text.
+     */
+    function createHeader(headerText) {
+        const headerNode = document.createElement("header");
+        const textNode = document.createTextNode(headerText);
+        headerNode.appendChild(textNode);
+        return headerNode;
+    }
+    /**
+     * Removes all childnodes of the given DOM node.
+     * @function
+     * @param {HTMLElement} node - The node to remove childenodes from
+     */
+    function removeChildNodes(node) {
+        while (node.firstChild) {
+            node.removeChild(node.firstChild);
+        }
+    }
+    /**
+     * Append html nodes to a parent node
+     * @function
+     * @param {HTMLElement} node        - Parent node
+     * @param  {...HTMLElement} childs  - Child nodes to append
+     */
+    function appendElements(node, ...childs) {
+        for (let child of childs) {
+            node.appendChild(child);
+        }
+    }
     
-    function CreateCurrentDetails(currentDetails) {
+    function createCurrentDetails(currentDetails) {
         // Array with parameters for the compileRowData function
         const rowData = [
             ["Befolkning"],
@@ -170,17 +202,6 @@ function createDetails(id) {
             }
             return rowdata;
         }
-        /**
-         * Creates a HTML <header> element with text.
-         * @param {String} headerText   - The text to use in the header element
-         * @returns {HTMLElement}       - Header element with specified text.
-         */
-        function createHeader(headerText) {
-            const headerNode = document.createElement("header");
-            const textNode = document.createTextNode(headerText);
-            headerNode.appendChild(textNode);
-            return headerNode;
-        }
         // Create table
         const detailsTableHeaders = ["", "Antall", "Prosent"];
         const table = document.createElement("table");
@@ -196,34 +217,32 @@ function createDetails(id) {
         const paragraph = createParagraph(currentDetails, id);
         const headerText = `Siste oppdaterte statistikk for ${currentDetails.navn}:`;
         const header = createHeader(headerText);
-        const historyHeaderText = `Historisk statistikk for ${currentDetails.navn}:`;
-        const historyHeader = createHeader(historyHeaderText);
         
-        htmlObject.appendChild(header);
-        htmlObject.appendChild(paragraph);
-        htmlObject.appendChild(table);
-        htmlObject.appendChild(historyHeader);
+        appendElements(htmlObject, header, paragraph, table);
+
         return htmlObject;
     }
-    /**
-     * Removes all childnodes of the given DOM node.
-     * @function
-     * @param {HTMLElement} node - The node to remove childenodes from
-     */
-    function removeChildNodes(node) {
-        while (node.firstChild) {
-            node.removeChild(node.firstChild);
-        }
+    function createHistoricalDetails(historicDetails) {
+        const htmlObject = document.createElement("div");
+        const headerText = `Historisk statistikk for ${currentDetails.navn}:`;
+        const header = createHeader(headerText);
+       
+        appendElements(htmlObject, header);
+        return htmlObject;
+
     }
 
 
 
     // Placeholder to put content in
-    const placeholder = document.getElementsByClassName("detaljar");
+    const placeholder = document.getElementsByClassName("detailsOutput");
     // Data to use
     const currentDetails = details.getCurrent(id);
-    currentDetailsObject = CreateCurrentDetails(currentDetails);
+    const historicalDetails = details.getHistorical(id);
+    console.log(historicalDetails)
     
+    currentDetailsObject = createCurrentDetails(currentDetails);
+    historicalDetailsObject = createHistoricalDetails(historicalDetails);
     // Clear placeholder
     removeChildNodes(placeholder[0]);
     // Append item to placeholder
