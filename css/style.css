@@ -97,6 +97,7 @@ dataa presenterast horisontalt*/
 .hovud{
   visibility: hidden;
   display: none;
+  width: 700px;
 }
 /*--------------------active--------------------*/
 .active{
@@ -133,9 +134,10 @@ tr:nth-child(even) {
 
 /*--------------------OVERSIKT--------------------*/
 .oversikt table {
-  display: block;
   border-collapse: collapse;
+  width:100%;
 }
+
 
 .oversikt th,
 .oversikt td {
@@ -146,6 +148,8 @@ tr:nth-child(even) {
 .oversikt thead {
   background-color: #074F57;
   color: white;
+  position: sticky;
+  top: 0;
 }
 .oversikt tbody {
  /* Ingeleiv pls fix*/
@@ -227,11 +231,16 @@ tr:nth-child(even) {
 div.detailsOutput:nth-child(2) > table:nth-child(3){
   width:100%;
 }
-
-div.detailsOutput:nth-child(2) > div:nth-child(1) > table:nth-child(3) > tr:nth-child(1){
+.detailsOutput table{
+  z-index: 0;
+}
+.detailsOutput tr:nth-child(1){
   background-color: #374C70;
   color: white;
   position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+  z-index: 2;
 }
 
 .detailsOutput tbody {
