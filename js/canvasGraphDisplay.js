@@ -49,6 +49,7 @@ utdanning.onload = function () {
         if (ids.includes(id)){
             createDetails(id);
             totalPopFunc(id);
+            console.log(totalPopulation)
             drawGraph(totalPopulation, years);
         } else {
             alert(`${id} er ikkje eit gyldig kommunenummer`);
@@ -83,7 +84,7 @@ utdanning.onload = function () {
                     years.reverse();
                     years = Object.keys(yearObj)
                 }*/
-                return years
+                return years.unshift("")
                 };
 
             
@@ -124,8 +125,8 @@ function drawGraph() {
         let arrayMax = Math.max.apply(Math, ArrayArg)
 
         if (arrayMax > 1000) {
-            arrayMaxInt = Math.round(arrayMax/1000) * 1000;
-            maxVal = arrayMaxInt + 2000;
+            arrayMaxInt = Math.round(arrayMax/1200) * 1200;
+            maxVal = arrayMaxInt + 1200;
         } else if (arrayMax < 1000 && arrayMax > 99) {
             arrayMaxInt = Math.round(arrayMax/100) * 100;
             maxVal = arrayMaxInt + 100;
@@ -140,8 +141,9 @@ function drawGraph() {
         let arrayMin = Math.min.apply(Math, ArrayArg);
 
         if (arrayMin > 1000) {
-        arrayMinInt = Math.round(arrayMin/1000)*1000;
-        minVal = arrayMinInt - 2000;
+        arrayMinInt = Math.round(arrayMin/1200)*1200;
+        minVal = arrayMinInt - 1200;
+        console.log(minVal)
 
         } else if (arrayMin < 1000 && arrayMin > 100) {
             arrayMinInt = Math.round(arrayMin/100)*100;
@@ -156,7 +158,8 @@ function drawGraph() {
 
     function incrementFunc() {
 
-        total = (maxValue - minValue) /10
+        total = (maxValue - minValue) /12
+        console.log(total)
         if (total > 100 ) {
             value = Math.round(total/10)*10;
             incrementVal = value;
@@ -179,10 +182,11 @@ function drawGraph() {
 
     //Dynamic values based on Array content for dataset
     increment = incrementVal
+    console.log(increment)
     rectangles = years.length-1;
     
     let columnSize = 66;
-    let rowSize = 50;
+    let rowSize = 46;
     let margin = 8;
     let xAxis = years
 
