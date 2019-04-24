@@ -97,7 +97,7 @@ dataa presenterast horisontalt*/
 .hovud{
   visibility: hidden;
   display: none;
-  width: 700px;
+
 }
 /*--------------------active--------------------*/
 .active{
@@ -138,7 +138,6 @@ tr:nth-child(even) {
   width:100%;
 }
 
-
 .oversikt th,
 .oversikt td {
   text-align: left;
@@ -155,7 +154,9 @@ tr:nth-child(even) {
  /* Ingeleiv pls fix*/
   overflow-y: auto;    /* Trigger vertical scroll    */
   overflow-x: hidden;  /* Hide the horizontal scroll */
+  width:100%;
 }
+
 .oversikt tr:nth-child(even) {
   background-color: #D1DFE0;
 }
@@ -222,7 +223,6 @@ tr:nth-child(even) {
   width:100%;
 }
 
-
 .detailsOutput th,
 .detailsOutput td {
   text-align: left;
@@ -234,7 +234,7 @@ div.detailsOutput:nth-child(2) > table:nth-child(3){
 .detailsOutput table{
   z-index: 0;
 }
-.detailsOutput tr:nth-child(1){
+.detailsOutput thead{
   background-color: #374C70;
   color: white;
   position: sticky;
@@ -257,13 +257,76 @@ div.detailsOutput:nth-child(2) > table:nth-child(3){
   margin-top:1em;
 }
 
+.populationTable{
+  visibility: hidden;
+  display: none;
+}
+/*--------------------active--------------------*/
+.activeTable{
+  visibility: visible;
+  display:block;
+  }
+
+
+/*--------TableToggle----------*/
+.tableToggle {
+  border: 3px solid #1a1a1a;
+  display: inline-block;
+  padding: 10px;
+  position: relative;
+  text-align: center;
+  transition: background 600ms ease, color 600ms ease;
+}
+
+input[type="radio"].toggle {
+  display: none;
+}
+input[type="radio"].toggle + label {
+  cursor: pointer;
+  min-width: 60px;
+}
+input[type="radio"].toggle + label:hover {
+  background: none;
+  color: #374C70;
+}
+input[type="radio"].toggle + label:after {
+  background: #374C70;
+  content: "";
+  height: 100%;
+  position: absolute;
+  top: 0;
+  transition: left 200ms cubic-bezier(0.77, 0, 0.175, 1);
+  width: 100%;
+  z-index: -1;
+}
+input[type="radio"].toggle.toggle-left + label {
+  border-right: 0;
+}
+input[type="radio"].toggle.toggle-left + label:after {
+  left: 100%;
+}
+input[type="radio"].toggle.toggle-right + label {
+  margin-left: -5px;
+}
+input[type="radio"].toggle.toggle-right + label:after {
+  left: -100%;
+}
+input[type="radio"].toggle:checked + label {
+  cursor: default;
+  color: #fff;
+  transition: color 200ms;
+}
+input[type="radio"].toggle:checked + label:after {
+  left: 0;
+}
+
 /*--------------------SAMANLIKNING--------------------*/
 /*--------------------SEARCH--------------------*/
 
 
 #comparisonForm{
   border: 1px solid grey;
-  background-color: #DADEE5;
+  background-color: #E3E0DB;
   width: 100%;
   height: auto;
 }

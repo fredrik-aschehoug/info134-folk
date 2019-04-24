@@ -227,6 +227,9 @@ function createDetails(id) {
         return htmlObject;
     }
     function createHistoricalDetails(historicalDetails) {
+        /**
+         * 
+         */
         function createTableElement() {
             const table = document.createElement("table");
             const thead = document.createElement("thead");
@@ -235,6 +238,14 @@ function createDetails(id) {
             table.appendChild(tbody);
             return table;
         }
+        /**
+         * 
+         * @param {*} desciptions 
+         * @param {*} tableHeaders 
+         * @param {*} historicalDetails 
+         * @param {*} tbody 
+         * @param {*} format 
+         */
         function createTableBody(desciptions, tableHeaders, historicalDetails, tbody, format) {
             for (let desc of desciptions) {
                 let tr = tbody.insertRow(-1);
@@ -267,6 +278,56 @@ function createDetails(id) {
             }
 
         }
+        /**
+         * Creates a custom toggle button inside a form element.
+         * The toggle calls the callback function when clicked.
+         * @param {Function} callback   - Function to call when toggle is clicked
+         * @param {String} cbParam      - Classname, param to the callback function
+         * @returns {HTMLFormElement}   - Form element containing the toggle button
+         */
+        function createTableToggle(callback, cbParam){
+            // Create DOM elements
+            const tableToggle = document.createElement("form");
+            const input1 = document.createElement("input");
+            const label1 = document.createElement("label");
+            const input2 = document.createElement("input");
+            const label2 =  document.createElement("label");
+            // Set attributes
+            input1.id = "toggle-on";
+            input1.classList.add("toggle", "toggle-left");
+            input1.name = "toggle";
+            input1.value = "false";
+            input1.type = input2.type = "radio";
+            input1.checked = true;
+            label1.htmlFor = "toggle-on";
+            label1.classList.add("tableToggle");
+            label1.innerText = "Antall";
+            input1.onclick = input2.onclick = () => callback(cbParam);
+            input2.id = "toggle-off";
+            input2.classList.add("toggle", "toggle-right");
+            input2.name = "toggle";
+            input2.value = "true";
+            label2.htmlFor = "toggle-off";
+            label2.classList.add("tableToggle");
+            label2.innerText = "Prosent";
+            // Append DOM elements to return object
+            tableToggle.appendChild(input1);
+            tableToggle.appendChild(label1);
+            tableToggle.appendChild(input2);
+            tableToggle.appendChild(label2);
+            return tableToggle;
+        }
+        /**
+         * Toggles classname "activeTable" on all elements with the class of the param.
+         * @callback
+         * @param {String} className - The classname to toggele classes on
+         */
+        function toggleCallback(className) {
+            const elements = document.getElementsByClassName(className);
+            for (let element of elements) {
+                element.classList.toggle("activeTable");
+            }
+        }
         const htmlObject = document.createElement("div");
         const headerText = `Historisk statistikk for ${currentDetails.navn}:`;
         const header = createHeader(headerText);
@@ -291,8 +352,12 @@ function createDetails(id) {
         createTableBody(desciptions, tableHeaders, historicalDetails, populationNumberTable.tBodies[0], "number");
         createTableBody(desciptions, tableHeaders, historicalDetails, populationPercentTable.tBodies[0], "percent");
 
+        // Assign classes
+        populationNumberTable.classList.add("populationTable", "activeTable");
+        populationPercentTable.classList.add("populationTable");
+        const tableToggle = createTableToggle(toggleCallback, "populationTable");
         // Append items to return object
-        appendElements(htmlObject, header, populationHeader, populationNumberTable,populationPercentTable);
+        appendElements(htmlObject, header, populationHeader, tableToggle, populationNumberTable,populationPercentTable);
         return htmlObject;
 
     }
@@ -304,10 +369,9 @@ function createDetails(id) {
     // Data to use
     const currentDetails = details.getCurrent(id);
     const historicalDetails = details.getHistorical(id);
-    console.log(historicalDetails)
 
-    currentDetailsObject = createCurrentDetails(currentDetails);
-    historicalDetailsObject = createHistoricalDetails(historicalDetails);
+    const currentDetailsObject = createCurrentDetails(currentDetails);
+    const historicalDetailsObject = createHistoricalDetails(historicalDetails);
     // Clear placeholder
     removeChildNodes(placeholder[0]);
     // Append item to placeholder
