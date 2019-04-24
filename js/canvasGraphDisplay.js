@@ -39,50 +39,61 @@ utdanning.onload = function () {
      * @callback
      */
 
-    function totalPopFunc() {
-    const totalPop = befolkning.getInfo("1201");
-    const maleObj = totalPop.Menn;
-    const maleValues = Object.values(maleObj);
+    let ids = befolkning.getIDs();
+        for (let id of ids) {
+            details.addMunicipal(
+                id,
+                befolkning.getInfo(id),
+                sysselsatte.getInfo(id),
+                utdanning.getInfo(id)
+            );
+        }   
+        function totalPopFunc() {
+            let totalPop = details.getHistorical("1201");
+            let populationObj = totalPop.population.number.total;
+                return totalPopulation = Object.values(populationObj)
+            };
 
 
-    const femaleObj = totalPop.Kvinner;
-    const femaleValues = Object.values(femaleObj);
+            function yearsArray() {
+                let totalPop = details.getHistorical("1201");
+                let yearObj = totalPop.population.number.total;
+                    return years = Object.keys(yearObj);
+                };
+
+            totalPopFunc();
+            yearsArray();
+
+
+
+        let data = details.getHistorical("0101");
+        console.log(data);
+        drawGraph(totalPopulation, years);
+        
     
-    totalPopulation = []
-        for (let i = 0; i < maleValues.length; i ++){
-            totalPopulation.push(maleValues[i]+femaleValues[i]);
-        }
-    return totalPopulation
     };
-    totalPopFunc();
-    console.log(totalPopulation)
+    /* All data is loaded at this point */
 
-    function yearsArray() {
-        const totalPop = befolkning.getInfo("1201");
-        const maleObj = totalPop.Menn;
-        const maleKeys = Object.keys(maleObj);
-    
-        years = [""]
-        for (let i = 0; i < maleKeys.length; i ++){
-            years.push(maleKeys[i]);
-        }
-        return years
-    };
+    //draws the line from one element to another from the array
+
+
+
+function drawGraph() {
 
     let graphCanvas; 
     let ctx;
-    let maxValue = maxArray();
-    let minValue = minArray();
+    let maxValue = maxArray(totalPopulation);
+    let minValue = minArray(totalPopulation);
     let increment = incrementFunc();
     let rectangles;
     let scaleForX;
     let scaleForY;
-    let dataGraph = totalPopulation
+    let dataGraph = totalPopulation;
 
 
-
-function maxArray() {
-        let arrayMax = Math.max.apply(Math, totalPopulation)
+    
+    function maxArray(ArrayArg) {
+        let arrayMax = Math.max.apply(Math, ArrayArg)
 
         if (arrayMax > 1000) {
             arrayMaxInt = Math.round(arrayMax/1000) * 1000;
@@ -94,13 +105,11 @@ function maxArray() {
             maxVal = 100;
         }
     return maxVal       
-}
+    };
 
 
-
-function minArray() {
-        //console.log(totalPopulation)
-        let arrayMin = Math.min.apply(Math, totalPopulation);
+    function minArray(ArrayArg) {
+        let arrayMin = Math.min.apply(Math, ArrayArg);
 
         if (arrayMin > 1000) {
         arrayMinInt = Math.round(arrayMin/1000)*1000;
@@ -117,41 +126,33 @@ function minArray() {
 };
 
 
-function incrementFunc() {
+    function incrementFunc() {
 
-    total = (maxValue - minValue) /10
-    if (total > 100 ) {
-        value = Math.round(total/10)*10;
-        incrementVal = value;
-    } else {
-        incrementVal = 10;
+        total = (maxValue - minValue) /10
+        if (total > 100 ) {
+            value = Math.round(total/10)*10;
+            incrementVal = value;
+        } else {
+            incrementVal = 10;
+        }
+        return incrementVal
+    };
+
+//plots each of the points(elements) in the Array to a line
+    function plotData(graphData) {
+        ctx.lineWidth = 5;
+        ctx.beginPath();
+        ctx.moveTo(0, graphData[0]);
+        for (i = 1; i < rectangles; i++) {
+            ctx.lineTo(i * scaleForX, graphData[i])
+        }
+        ctx.stroke();
     }
-    return incrementVal
-};
-
-
-
-    //draws the line from one element to another from the array
-function plotData(graphData) {
-    ctx.lineWidth = 5;
-    ctx.beginPath();
-    ctx.moveTo(0, graphData[0]);
-    for (i = 1; i < rectangles; i++) {
-        ctx.lineTo(i * scaleForX, graphData[i])
-    }
-    ctx.stroke();
-}
-
-
-
-function drawGraph(years, minVal, maxVal, incrementVal) {
 
     //Dynamic values based on Array content for dataset
-    minValue = minVal;
-    maxValue = maxVal;
     increment = incrementVal
     rectangles = years.length - 1;
-
+    
     let columnSize = 66;
     let rowSize = 46;
     let margin = 8;
@@ -197,40 +198,6 @@ function drawGraph(years, minVal, maxVal, incrementVal) {
 
     ctx.strokeStyle = "#9933FF";
     plotData(dataGraph);
-    
-
 };
-
-    let ids = befolkning.getIDs();
-        for (let id of ids) {
-            details.addMunicipal(
-                id,
-                befolkning.getInfo(id),
-                sysselsatte.getInfo(id),
-                utdanning.getInfo(id)
-            );
-        }   
-    /* All data is loaded at this point */
-    
-    
-    yearsArray();
-    drawGraph(years, minVal, maxVal, incrementVal);
-    
-};
-
+  
 befolkning.load();
-
-
- 
-
-
-
-
-
-
-//totalPop(data2);
-//yearsArray(data2);
-//presentData(outputElt, data2);
-
-    //global variables 
-
