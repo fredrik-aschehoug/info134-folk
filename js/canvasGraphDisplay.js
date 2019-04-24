@@ -39,6 +39,22 @@ utdanning.onload = function () {
      * @callback
      */
 
+    function detailsFormSubmit() {
+        const detailsForm1 = document.getElementById("detailsForm");
+        id = detailsForm1.detailsInput.value;
+        console.log(id)
+        // Check if valid ID
+        if (ids.includes(id)){
+            createDetails(id);
+            totalPopFunc(id);
+            yearsArray(id);
+            drawGraph(totalPopulation, years);
+        } else {
+            alert(`${id} er ikkje eit gyldig kommunenummer`);
+        }
+    }
+
+
     let ids = befolkning.getIDs();
         for (let id of ids) {
             details.addMunicipal(
@@ -48,27 +64,31 @@ utdanning.onload = function () {
                 utdanning.getInfo(id)
             );
         }   
-        function totalPopFunc() {
-            let totalPop = details.getHistorical("1201");
+        function totalPopFunc(id) {
+            let totalPop = details.getHistorical(id);
             let populationObj = totalPop.population.number.total;
                 return totalPopulation = Object.values(populationObj)
             };
 
 
             function yearsArray() {
-                let totalPop = details.getHistorical("1201");
+                let totalPop = details.getHistorical(id);
                 let yearObj = totalPop.population.number.total;
                     return years = Object.keys(yearObj);
                 };
 
-            totalPopFunc();
-            yearsArray();
+            
 
 
 
         let data = details.getHistorical("0101");
         console.log(data);
-        drawGraph(totalPopulation, years);
+        const detailsForm = document.getElementById("detailsForm");
+    // Callback when clicking button
+        detailsForm.detailsButton.onclick = detailsFormSubmit;
+    // Callback when pressing enter while focused on form
+        detailsForm.onsubmit = detailsFormSubmit;
+        
         
     
     };
@@ -97,7 +117,7 @@ function drawGraph() {
 
         if (arrayMax > 1000) {
             arrayMaxInt = Math.round(arrayMax/1000) * 1000;
-            maxVal = arrayMaxInt + 1000;
+            maxVal = arrayMaxInt + 2000;
         } else if (arrayMax < 1000 && arrayMax > 99) {
             arrayMaxInt = Math.round(arrayMax/100) * 100;
             maxVal = arrayMaxInt + 100;
@@ -113,7 +133,7 @@ function drawGraph() {
 
         if (arrayMin > 1000) {
         arrayMinInt = Math.round(arrayMin/1000)*1000;
-        minVal = arrayMinInt - 1000;
+        minVal = arrayMinInt - 2000;
 
         } else if (arrayMin < 1000 && arrayMin > 100) {
             arrayMinInt = Math.round(arrayMin/100)*100;
@@ -154,7 +174,7 @@ function drawGraph() {
     rectangles = years.length - 1;
     
     let columnSize = 66;
-    let rowSize = 46;
+    let rowSize = 50;
     let margin = 8;
     let xAxis = years
 
@@ -168,7 +188,7 @@ function drawGraph() {
     //graphStyling
     ctx.font = "12px Arial";
     ctx.fillStyle = "#9933FF";      //Font colour
-    ctx.strokeStyle = "#1F2421";    //Grid line color
+    ctx.strokeStyle = "grey";    //Grid line color
     
     //Fills ArrayKeys on the X axis 
     ctx.beginPath();
@@ -185,7 +205,7 @@ function drawGraph() {
     for (graphScale = maxValue; graphScale >= minValue; graphScale = graphScale - increment) {
         let y = columnSize + (scaleForY * yCount * increment);
             ctx.lineWidth = 0.5
-            ctx.fillText(graphScale, margin-8, y + margin);
+            ctx.fillText(graphScale, margin-6, y + margin);
             ctx.moveTo(rowSize, y);
             ctx.lineTo(graphCanvas.width-20, y);
             yCount++;
