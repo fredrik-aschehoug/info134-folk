@@ -38,16 +38,17 @@ utdanning.onload = function () {
      * Get value from input and create details view.
      * @callback
      */
+    
 
     function detailsFormSubmit() {
         const detailsForm1 = document.getElementById("detailsForm");
         id = detailsForm1.detailsInput.value;
+        let years = yearsArray(id);
         console.log(id)
         // Check if valid ID
         if (ids.includes(id)){
             createDetails(id);
             totalPopFunc(id);
-            yearsArray(id);
             drawGraph(totalPopulation, years);
         } else {
             alert(`${id} er ikkje eit gyldig kommunenummer`);
@@ -71,10 +72,18 @@ utdanning.onload = function () {
             };
 
 
-            function yearsArray() {
+            function yearsArray(id) {
                 let totalPop = details.getHistorical(id);
                 let yearObj = totalPop.population.number.total;
-                    return years = Object.keys(yearObj);
+                years = Object.keys(yearObj)//["2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018"] //Object.keys(yearObj)
+                console.log(years.length)
+                /*if (years.length >) {
+                    years.reverse();
+                    years.length = 12;
+                    years.reverse();
+                    years = Object.keys(yearObj)
+                }*/
+                return years
                 };
 
             
@@ -82,7 +91,6 @@ utdanning.onload = function () {
 
 
         let data = details.getHistorical("0101");
-        console.log(data);
         const detailsForm = document.getElementById("detailsForm");
     // Callback when clicking button
         detailsForm.detailsButton.onclick = detailsFormSubmit;
@@ -171,7 +179,7 @@ function drawGraph() {
 
     //Dynamic values based on Array content for dataset
     increment = incrementVal
-    rectangles = years.length - 1;
+    rectangles = years.length-1;
     
     let columnSize = 66;
     let rowSize = 50;
