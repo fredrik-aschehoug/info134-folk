@@ -10,7 +10,8 @@
     <script src="js/education.js"></script>
     <script src="js/details.js"></script>
     <script src="js/createDetails.js"></script>
-    <script defer src="js/canvasGraphDisplay.js"></script>
+    <script src="js/canvasGraphDisplayGenders.js"></script>
+    <script defer src="js/canvasGraphDisplayTotal.js"></script>
     <title>Document</title>
 </head>
 <body>
@@ -30,12 +31,15 @@
 
 
     <div>
-        <canvas id="graph" width="600" height="375"></canvas>
+        <canvas id="graphTotal" width="550" height="325" style="background-color: Bisque;"></canvas>
     
     <br>
     <span style="color:#FF0066"></span>  
         <span style="color:#9933FF"></span>  
             <span style="color:#000"></span>
+    </div>
+    <div>
+        <canvas id="graphGenders" width="550" height="325" style="background-color: Beige;"></canvas>
     </div>
     
     <div id="output"></div>

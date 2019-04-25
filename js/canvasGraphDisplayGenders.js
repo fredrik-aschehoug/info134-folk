@@ -36,19 +36,30 @@ utdanning.onload = function () {
      * Get value from input and create details view.
      * @callback
      */
-    
-
     function detailsFormSubmit() {
         const detailsForm1 = document.getElementById("detailsForm");
-        id = detailsForm1.detailsInput.value;
-        let years = yearsArray(id);
-        console.log(id)
+        id = detailsForm1.detailsInput.value
+        let municipalData = details.getHistorical(id);
+        
+        let totalPop = Object.values(municipalData.population.number.total);
+        let totalPopKeys = Object.keys(municipalData.population.number.total);
+    
+        let malePop = Object.values(municipalData.population.number.Menn);
+        let malePopKeys = Object.keys(municipalData.population.number.Menn);
+    
+        let femalePop = Object.values(municipalData.population.number.Kvinner);
+        let femalePopKeys = Object.keys(municipalData.population.number.Kvinner);
+    
+        let totalEmp = Object.values(municipalData.employment.number.total);
+        let maleEmp = Object.values(municipalData.employment.number.Menn);
+        let femaleEmp = Object.values(municipalData.employment.number.Kvinner);
+        
         // Check if valid ID
         if (ids.includes(id)){
             createDetails(id);
-            totalPopFunc(id);
-            console.log(totalPopulation)
-            drawGraph(totalPopulation, years);
+            mapDataGraphTotal(totalPopKeys, totalPop);
+            mapDataGraphGenders(totalPopKeys, malePop, femalePop)
+            //drawGraph(totalPopulation, years);
         } else {
             alert(`${id} er ikkje eit gyldig kommunenummer`);
         }
@@ -63,31 +74,8 @@ utdanning.onload = function () {
                 sysselsatte.getInfo(id),
                 utdanning.getInfo(id)
             );
-        }   
-        function totalPopFunc(id) {
-            let totalPop = details.getHistorical(id);
-            let populationObj = totalPop.population.number.total;
-                return totalPopulation = Object.values(populationObj)
-            };
-
-
-            function yearsArray(id) {
-                let totalPop = details.getHistorical(id);
-                let yearObj = totalPop.population.number.total;
-                years = Object.keys(yearObj)//["2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018"] //Object.keys(yearObj)
-                console.log(years.length)
-                /*if (years.length >) {
-                    years.reverse();
-                    years.length = 12;
-                    years.reverse();
-                    years = Object.keys(yearObj)
-                }*/
-                return years.unshift("")
-                };
-
-            
-
-
+        }  
+        
 
         let data = details.getHistorical("0101");
         const detailsForm = document.getElementById("detailsForm");
@@ -103,61 +91,89 @@ utdanning.onload = function () {
 
     //draws the line from one element to another from the array
 
+ 
 
 
-function drawGraph() {
-
-    let graphCanvas; 
-    let ctx;
-    let maxValue = maxArray(totalPopulation);
-    let minValue = minArray(totalPopulation);
-    let increment = incrementFunc();
-    let rectangles;
-    let scaleForX;
-    let scaleForY;
-    let dataGraph = totalPopulation;
 
 
+    function mapDataGraphGenders(xAxisKeys, maleArr, femaleArr) {
     
-    function maxArray(ArrayArg) {
-        let arrayMax = Math.max.apply(Math, ArrayArg)
+    xAxisKeys = xAxisKeys
+    maleArray = maleArr;
+    femaleArray = femaleArr
+    
+    /*let empMaxValue = maxArray(totalEmp);
+    let empMinValue = minArray(femaleEmp);
+    let increment = incrementFunc();*/
+    const detailsForm1 = document.getElementById("detailsForm");
+    id = detailsForm1.detailsInput.value
+    let xAxisValues;
+    
 
+    //let higherEdu = Object.values(municipalData.education.number['03a'].Kvinner)
+        
+
+    function xAxisArray(xAxisKeys, maleArray, femaleArray) {
+        xAxisValues = xAxisKeys
+        if (xAxisValues.length > 12) { 
+            xAxisValues.reverse();
+            xAxisValues.length = 12;
+            xAxisValues.reverse();
+            maxArray(maleArray, femaleArray)
+        } else {
+            maxArray(maleArray, femaleArray)
+        }
+        return xAxisValues.unshift("")
+        };
+
+        xAxisArray(xAxisKeys, maleArray, femaleArray);
+
+
+    function maxArray(maleArray, femaleArray) {
+        let femaleArrayMax = femaleArray;
+        let maleArrayMax = maleArray;
+        let arrayMax = femaleArrayMax.concat(maleArrayMax)
+            arrayMax = Math.max.apply(Math, arrayMax)
+        
         if (arrayMax > 1000) {
             arrayMaxInt = Math.round(arrayMax/1200) * 1200;
             maxVal = arrayMaxInt + 1200;
+            minArray(maleArray, femaleArray);
         } else if (arrayMax < 1000 && arrayMax > 99) {
             arrayMaxInt = Math.round(arrayMax/100) * 100;
             maxVal = arrayMaxInt + 100;
         } else {
             maxVal = 100;
         }
-    return maxVal       
+        return maxVal       
     };
-
-
-    function minArray(ArrayArg) {
-        let arrayMin = Math.min.apply(Math, ArrayArg);
-
+    //let popMaxValue = maxArray(totalPop);
+    //let empMaxValue = maxArray(totalEmp);
+  
+    function minArray(maleArray, femaleArray) {
+        let femaleArrayMin = femaleArray
+        let maleArrayMin = maleArray
+        let arrayMin = femaleArrayMin.concat(maleArrayMin)
+        console.log(arrayMin)
+        arrayMin = Math.min.apply(Math, arrayMin);
+        console.log(arrayMin)
+    
         if (arrayMin > 1000) {
         arrayMinInt = Math.round(arrayMin/1200)*1200;
-        minVal = arrayMinInt - 1200;
-        console.log(minVal)
-
+        minVal = arrayMinInt -2400;
+    
         } else if (arrayMin < 1000 && arrayMin > 100) {
             arrayMinInt = Math.round(arrayMin/100)*100;
             minVal = arrayMinInt - 100;
-
         } else {
             minVal = 0;
         }
-    return minVal
-};
-
-
+        return minVal
+    };
+    
+    
     function incrementFunc() {
-
-        total = (maxValue - minValue) /12
-        console.log(total)
+        total = (maxVal - minVal) /12
         if (total > 100 ) {
             value = Math.round(total/10)*10;
             incrementVal = value;
@@ -166,34 +182,54 @@ function drawGraph() {
         }
         return incrementVal
     };
+    incrementFunc();
+    drawGraphGenders(xAxisValues, minVal, maxVal,incrementVal, maleArray, femaleArray);
+
+};
+
+
+
+function drawGraphGenders(xAxisVal, minVal, maxVal, incrementVal, maleArr, femaleArr) {
+
+    let graphGenders; 
+    let ctx;
+    let rectangles;
+    let scaleForX;
+    let scaleForY;
+    let plotMale = maleArr
+    console.log(plotMale)
+    let plotFemale = femaleArr
+    console.log(plotFemale)
+
+    years = xAxisVal
+    minValue = minVal;
+    maxValue = maxVal;
+    increment = incrementVal;
+    rectangles = years.length-1;
 
 //plots each of the points(elements) in the Array to a line
-    function plotData(graphData) {
+    function plotData(toPlot) {
         ctx.lineWidth = 5;
         ctx.beginPath();
-        ctx.moveTo(0, graphData[0]);
+        ctx.moveTo(0, toPlot[0]);
         for (i = 1; i < rectangles; i++) {
-            ctx.lineTo(i * scaleForX, graphData[i])
+            ctx.lineTo(i * scaleForX, toPlot[i])
         }
         ctx.stroke();
     }
 
     //Dynamic values based on Array content for dataset
-    increment = incrementVal
-    console.log(increment)
-    rectangles = years.length-1;
-    
     let columnSize = 40;
     let rowSize = 44;
     let margin = 8;
-    let xAxis = years
+    let xAxis = xAxisVal
 
-    graphCanvas = document.getElementById("graph");
-    ctx = graphCanvas.getContext("2d");
+    graphGenders = document.getElementById("graphGenders");
+    ctx = graphGenders.getContext("2d");
 
     //Gridscaling based on graph input length
-    scaleForX = (graphCanvas.width - rowSize) / rectangles;
-    scaleForY = (graphCanvas.height - columnSize - margin) / (maxValue - minValue);
+    scaleForX = (graphGenders.width - rowSize) / rectangles;
+    scaleForY = (graphGenders.height - columnSize - margin) / (maxValue - minValue);
 
     //graphStyling
     ctx.font = "11px Arial";
@@ -206,7 +242,7 @@ function drawGraph() {
         let x = i * scaleForX;
             ctx.fillText(xAxis[i], x, columnSize - margin);
             ctx.moveTo(x, columnSize);
-            ctx.lineTo(x, graphCanvas.height - margin);
+            ctx.lineTo(x, graphGenders.height - margin);
     }
     
     //Fills ArrayKeyValues from the numbers array on the Y axis
@@ -217,17 +253,19 @@ function drawGraph() {
             ctx.lineWidth = 0.5
             ctx.fillText(graphScale, margin-6, y + margin);
             ctx.moveTo(rowSize, y);
-            ctx.lineTo(graphCanvas.width-20, y);
+            ctx.lineTo(graphGenders.width-20, y);
             yCount++;
     }
 
     ctx.stroke();
-    ctx.translate(rowSize, graphCanvas.height + minValue * scaleForY);
+    ctx.translate(rowSize, graphGenders.height + minValue * scaleForY);
     ctx.scale(1, -1 * scaleForY);
 
 
-    ctx.strokeStyle = "#9933FF";
-    plotData(dataGraph);
+    ctx.strokeStyle = "#FF0066";
+    plotData(plotMale);
+    ctx.strokeStyle = "#000";
+    plotData(plotFemale);
 };
   
 befolkning.load();
