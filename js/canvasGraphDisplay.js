@@ -1,6 +1,5 @@
 
-
-// Global variables
+//Global variables
 const oversikt = document.getElementsByClassName("oversikt")[0];
 const overviewHeaders = ["Navn", "Kommunenummer", "Total befolkning"];
 let ids; // Will be assigned array of all municipal ID's
@@ -185,8 +184,8 @@ function drawGraph() {
     console.log(increment)
     rectangles = years.length-1;
     
-    let columnSize = 66;
-    let rowSize = 46;
+    let columnSize = 40;
+    let rowSize = 44;
     let margin = 8;
     let xAxis = years
 
@@ -198,8 +197,8 @@ function drawGraph() {
     scaleForY = (graphCanvas.height - columnSize - margin) / (maxValue - minValue);
 
     //graphStyling
-    ctx.font = "12px Arial";
-    ctx.fillStyle = "#9933FF";      //Font colour
+    ctx.font = "11px Arial";
+    ctx.fillStyle = "#374C70";      //Font colour
     ctx.strokeStyle = "grey";    //Grid line color
     
     //Fills ArrayKeys on the X axis 
