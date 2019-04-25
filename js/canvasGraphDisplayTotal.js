@@ -115,8 +115,8 @@ function drawGraphTotal(xAxisVal, minVal, maxVal,incrementVal, totalArray) {
     }
 
     //Dynamic values based on Array content for dataset
-    let columnSize = 40;
-    let rowSize = 44;
+    let columnSize = 24;
+    let rowSize = 38;
     let margin = 8;
     let xAxis = xAxisVal
 
@@ -147,7 +147,7 @@ function drawGraphTotal(xAxisVal, minVal, maxVal,incrementVal, totalArray) {
     for (graphScale = maxValue; graphScale >= minValue; graphScale = graphScale - increment) {
         let y = columnSize + (scaleForY * yCount * increment);
             ctx.lineWidth = 0.5
-            ctx.fillText(graphScale, margin-6, y + margin);
+            ctx.fillText(graphScale, margin-10, y + margin);
             ctx.moveTo(rowSize, y);
             ctx.lineTo(graphTotal.width-20, y);
             yCount++;
