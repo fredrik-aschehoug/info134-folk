@@ -1,6 +1,5 @@
 
-
-// Global variables
+//Global variables
 const oversikt = document.getElementsByClassName("oversikt")[0];
 const overviewHeaders = ["Navn", "Kommunenummer", "Total befolkning"];
 let ids; // Will be assigned array of all municipal ID's
@@ -50,6 +49,7 @@ utdanning.onload = function () {
             let years = yearsArray(id);
             createDetails(id);
             totalPopFunc(id);
+            console.log(totalPopulation)
             drawGraph(totalPopulation, years);
         } else {
             alert(`${id} er ikkje eit gyldig kommunenummer`);
@@ -125,8 +125,8 @@ function drawGraph() {
         let arrayMax = Math.max.apply(Math, ArrayArg)
 
         if (arrayMax > 1000) {
-            arrayMaxInt = Math.round(arrayMax/1000) * 1000;
-            maxVal = arrayMaxInt + 2000;
+            arrayMaxInt = Math.round(arrayMax/1200) * 1200;
+            maxVal = arrayMaxInt + 1200;
         } else if (arrayMax < 1000 && arrayMax > 99) {
             arrayMaxInt = Math.round(arrayMax/100) * 100;
             maxVal = arrayMaxInt + 100;
@@ -141,8 +141,9 @@ function drawGraph() {
         let arrayMin = Math.min.apply(Math, ArrayArg);
 
         if (arrayMin > 1000) {
-        arrayMinInt = Math.round(arrayMin/1000)*1000;
-        minVal = arrayMinInt - 2000;
+        arrayMinInt = Math.round(arrayMin/1200)*1200;
+        minVal = arrayMinInt - 1200;
+        console.log(minVal)
 
         } else if (arrayMin < 1000 && arrayMin > 100) {
             arrayMinInt = Math.round(arrayMin/100)*100;
@@ -157,7 +158,8 @@ function drawGraph() {
 
     function incrementFunc() {
 
-        total = (maxValue - minValue) /10
+        total = (maxValue - minValue) /12
+        console.log(total)
         if (total > 100 ) {
             value = Math.round(total/10)*10;
             incrementVal = value;
@@ -180,10 +182,16 @@ function drawGraph() {
 
     //Dynamic values based on Array content for dataset
     increment = incrementVal
+    console.log(increment)
     rectangles = years.length-1;
     
+<<<<<<< HEAD
     let columnSize = 66;
     let rowSize = 46;
+=======
+    let columnSize = 40;
+    let rowSize = 44;
+>>>>>>> 315f5a74f8c9725c9ca32262bfd47acc0934e5a5
     let margin = 8;
     let xAxis = years
 
@@ -195,8 +203,8 @@ function drawGraph() {
     scaleForY = (graphCanvas.height - columnSize - margin) / (maxValue - minValue);
 
     //graphStyling
-    ctx.font = "12px Arial";
-    ctx.fillStyle = "#9933FF";      //Font colour
+    ctx.font = "11px Arial";
+    ctx.fillStyle = "#374C70";      //Font colour
     ctx.strokeStyle = "grey";    //Grid line color
     
     //Fills ArrayKeys on the X axis 
