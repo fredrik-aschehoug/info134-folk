@@ -209,7 +209,7 @@ function drawGraphGenders(xAxisVal, minVal, maxVal, incrementVal, maleArr, femal
 
 //plots each of the points(elements) in the Array to a line
     function plotData(toPlot) {
-        ctx.lineWidth = 5;
+        ctx.lineWidth = 3;
         ctx.beginPath();
         ctx.moveTo(0, toPlot[0]);
         for (i = 1; i < rectangles; i++) {
@@ -219,9 +219,9 @@ function drawGraphGenders(xAxisVal, minVal, maxVal, incrementVal, maleArr, femal
     }
 
     //Dynamic values based on Array content for dataset
-    let columnSize = 24;
-    let rowSize = 38;
-    let margin = 8;
+    let columnSize = 26;
+    let rowSize = 40;
+    let margin = 10;
     let xAxis = xAxisVal
 
     graphGenders = document.getElementById("graphGenders");
@@ -261,10 +261,10 @@ function drawGraphGenders(xAxisVal, minVal, maxVal, incrementVal, maleArr, femal
     ctx.translate(rowSize, graphGenders.height + minValue * scaleForY);
     ctx.scale(1, -1 * scaleForY);
 
-
-    ctx.strokeStyle = "#FF0066";
+    
+    ctx.strokeStyle = "#374C70";
     plotData(plotMale);
-    ctx.strokeStyle = "#000";
+    ctx.strokeStyle = "#542344";
     plotData(plotFemale);
 };
   

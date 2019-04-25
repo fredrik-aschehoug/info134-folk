@@ -57,9 +57,9 @@ function minArray(totalArray) {
     let arrayMin = totalArray
     arrayMin = Math.min.apply(Math, arrayMin);
     
-    if (arrayMin > 1000) {
+    if (arrayMin > 100000) {
     arrayMinInt = Math.round(arrayMin/1200)*1200;
-    minVal = arrayMinInt - 1200;
+    minVal = arrayMinInt - 10000;
 
     } else if (arrayMin < 1000 && arrayMin > 100) {
         arrayMinInt = Math.round(arrayMin/100)*100;
@@ -105,7 +105,7 @@ function drawGraphTotal(xAxisVal, minVal, maxVal,incrementVal, totalArray) {
 
 //plots each of the points(elements) in the Array to a line
     function plotData(toPlot) {
-        ctx.lineWidth = 5;
+        ctx.lineWidth = 3;
         ctx.beginPath();
         ctx.moveTo(0, toPlot[0]);
         for (i = 1; i < rectangles; i++) {
@@ -115,9 +115,9 @@ function drawGraphTotal(xAxisVal, minVal, maxVal,incrementVal, totalArray) {
     }
 
     //Dynamic values based on Array content for dataset
-    let columnSize = 24;
-    let rowSize = 38;
-    let margin = 8;
+    let columnSize = 26;
+    let rowSize = 40;
+    let margin = 10;
     let xAxis = xAxisVal
 
     graphTotal = document.getElementById("graphTotal");
@@ -158,7 +158,7 @@ function drawGraphTotal(xAxisVal, minVal, maxVal,incrementVal, totalArray) {
     ctx.scale(1, -1 * scaleForY);
 
 
-    ctx.strokeStyle = "#9933FF";
+    ctx.strokeStyle = "#074F57";
     plotData(plotTotal);
 
 };
