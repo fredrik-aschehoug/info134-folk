@@ -1,4 +1,3 @@
-
 //Global variables
 const oversikt = document.getElementsByClassName("oversikt")[0];
 const overviewHeaders = ["Navn", "Kommunenummer", "Total befolkning"];
@@ -42,11 +41,10 @@ utdanning.onload = function () {
     function detailsFormSubmit() {
         const detailsForm1 = document.getElementById("detailsForm");
         id = detailsForm1.detailsInput.value;
-        
+        let years = yearsArray(id);
         console.log(id)
         // Check if valid ID
         if (ids.includes(id)){
-            let years = yearsArray(id);
             createDetails(id);
             totalPopFunc(id);
             console.log(totalPopulation)
@@ -77,7 +75,7 @@ utdanning.onload = function () {
                 let totalPop = details.getHistorical(id);
                 let yearObj = totalPop.population.number.total;
                 years = Object.keys(yearObj)//["2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018"] //Object.keys(yearObj)
-                console.log(years)
+                console.log(years.length)
                 /*if (years.length >) {
                     years.reverse();
                     years.length = 12;
@@ -185,13 +183,8 @@ function drawGraph() {
     console.log(increment)
     rectangles = years.length-1;
     
-<<<<<<< HEAD
-    let columnSize = 66;
-    let rowSize = 46;
-=======
     let columnSize = 40;
     let rowSize = 44;
->>>>>>> 315f5a74f8c9725c9ca32262bfd47acc0934e5a5
     let margin = 8;
     let xAxis = years
 
