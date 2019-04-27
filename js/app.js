@@ -2,7 +2,7 @@
 const oversikt = document.getElementsByClassName("oversikt")[0];
 const overviewHeaders = ["Navn", "Kommunenummer", "Total befolkning"];
 let ids; // Will be assigned array of all municipal ID's
-// Returns wuldboy URL
+// Returns wildboy URL
 getURL = (id) => `http://wildboy.uib.no/~tpe056/folk/${id}.json`;
 // Instanciate objects
 const befolkning = new Population(getURL("104857"));
@@ -34,7 +34,8 @@ sysselsatte.onload = function () {
 utdanning.onload = function () {
     /**
      * Get value from input and create details view.
-     * @callback
+     * @callback detailsFormSubmit
+     * @type {detailsFormSubmit}
      */
     function detailsFormSubmit() {
         const detailsForm1 = document.getElementById("detailsForm");
@@ -63,8 +64,8 @@ utdanning.onload = function () {
     detailsForm.onsubmit = detailsFormSubmit;
 };
 /**
- * @param {Array} idList Municipality numbers to include
- * @param {Array} overviewHeaders Table headers
+ * @param {string[]} idList Municipality numbers to include
+ * @param {string[]} overviewHeaders Table headers
  * @returns {HTMLTableElement} Overview table
  */
 function createOverview(idList, overviewHeaders) {
@@ -98,5 +99,5 @@ function createOverview(idList, overviewHeaders) {
     return overview;
 }
 
-setNavigationBehaviour();
+setNavigationBehaviour(buttonHandler);
 befolkning.load();
