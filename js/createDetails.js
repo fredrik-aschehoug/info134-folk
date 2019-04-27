@@ -244,7 +244,7 @@ function createDetails(id) {
          * @param {*} tableHeaders 
          * @param {*} historicalDetails 
          * @param {*} tbody 
-         * @param {*} format 
+         * @param {string} format "number"/"percent"
          */
         function createTableBody(desciptions, tableHeaders, historicalDetails, tbody, format) {
             for (let desc of desciptions) {
@@ -263,16 +263,17 @@ function createDetails(id) {
                                 data = historicalDetails.population[format].Menn[year];
                                 break;
                             case "Begge kjønn":
-                                if (format === "percent") {
-                                    data = "";
-                                } else {
-                                    data = historicalDetails.population[format].total[year];
-                                }
+                                data = historicalDetails.population[format].total[year];
                                 break;
                         }
                     }
-                    // Format large numbers to Norwegian locale
-                    data = data.toLocaleString('no');
+                    if (format === "number") {
+                        // Format large numbers to Norwegian locale
+                        data = data.toLocaleString('no');
+                    } else if (format === "percent" && typeof data === "number") {
+                        // CSS adds a "%" sign
+                        td.classList.add("percentCell");
+                    }
                     td.innerHTML = data;
                 }
             }
@@ -368,9 +369,10 @@ function createDetails(id) {
         populationNumberTable.tHead.appendChild(createTableHeader(tableHeaders));
         populationPercentTable.tHead.appendChild(createTableHeader(tableHeaders));
         // Create rows
-        const desciptions = ["Kvinner", "Menn", "Begge kjønn"];
-        createTableBody(desciptions, tableHeaders, historicalDetails, populationNumberTable.tBodies[0], "number");
-        createTableBody(desciptions, tableHeaders, historicalDetails, populationPercentTable.tBodies[0], "percent");
+        const numberDesciptions = ["Kvinner", "Menn", "Begge kjønn"];
+        const percentDesciptions = ["Kvinner", "Menn"];
+        createTableBody(numberDesciptions, tableHeaders, historicalDetails, populationNumberTable.tBodies[0], "number");
+        createTableBody(percentDesciptions, tableHeaders, historicalDetails, populationPercentTable.tBodies[0], "percent");
 
         // Assign classes
         populationNumberTable.classList.add("populationTable", "activeTable");
