@@ -293,21 +293,22 @@ function createDetails(id) {
             const input2 = document.createElement("input");
             const label2 =  document.createElement("label");
             // Set attributes
-            input1.id = "toggle-on";
-            input1.classList.add("toggle", "toggle-left");
+            input1.id = "toggle-antall";
+            input1.classList.add("toggle", "toggle-left", "toggle-active");
             input1.name = "toggle";
             input1.value = "false";
             input1.type = input2.type = "radio";
             input1.checked = true;
-            label1.htmlFor = "toggle-on";
+            input1.onclick = () => callback(cbParam, "antall");
+            label1.htmlFor = "toggle-antall";
             label1.classList.add("tableToggle");
             label1.innerText = "Antall";
-            input1.onclick = input2.onclick = () => callback(cbParam);
-            input2.id = "toggle-off";
+            input2.id = "toggle-prosent";
             input2.classList.add("toggle", "toggle-right");
             input2.name = "toggle";
             input2.value = "true";
-            label2.htmlFor = "toggle-off";
+            input2.onclick = () => callback(cbParam, "prosent");
+            label2.htmlFor = "toggle-prosent";
             label2.classList.add("tableToggle");
             label2.innerText = "Prosent";
             // Append DOM elements to return object
@@ -320,12 +321,31 @@ function createDetails(id) {
         /**
          * Toggles classname "activeTable" on all elements with the class of the param.
          * @callback
-         * @param {String} className - The classname to toggele classes on
+         * @param {String} className The classname to toggele classes on
+         * @param {string} inputType "antall"/"prosent". The type of radio that is clicked
          */
-        function toggleCallback(className) {
-            const elements = document.getElementsByClassName(className);
-            for (let element of elements) {
-                element.classList.toggle("activeTable");
+        function toggleCallback(className, inputType) {
+            let radios = document.getElementsByClassName("toggle");
+            let correctClick = false;
+            if (inputType === "antall") {
+                // If prosent radio is active
+                if (radios.namedItem("toggle-prosent").classList.contains("toggle-active")){
+                    correctClick = true;
+                }
+            } else if (inputType === "prosent") {
+                // If antall radio is active
+                if (radios.namedItem("toggle-antall").classList.contains("toggle-active")){
+                    correctClick = true;
+                }
+            }
+            if (correctClick) {
+                const elements = document.getElementsByClassName(className);
+                for (let element of elements) {
+                    element.classList.toggle("activeTable");
+                }
+                for (let radio of radios) {
+                    radio.classList.toggle("toggle-active");
+                }
             }
         }
         const htmlObject = document.createElement("div");
