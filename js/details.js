@@ -147,7 +147,7 @@ function Details(currentYear) {
             // Prosentandel * total / 100
             let kvinnerNumber = population.Kvinner[year] * kvinner / 100;
             let mennNumber = population.Menn[year] * menn / 100;
-            // Round to max 1 decimal
+            // Round number
             employmentElement.number.Kvinner[year] = Math.round(kvinnerNumber);
             employmentElement.number.Menn[year] = Math.round(mennNumber);
             employmentElement.number.total[year] = Math.round(kvinnerNumber) + Math.round(mennNumber);
@@ -190,7 +190,8 @@ function Details(currentYear) {
                         educationElement.number[eduLevel].Kvinner[year] = Math.round(kvinnerNumber);
                         educationElement.number[eduLevel].Menn[year] = Math.round(mennNumber);
                         educationElement.number[eduLevel].total[year] = Math.round(totalNumber);
-                        educationElement.percent[eduLevel].total[year] = Math.round(totalPercent);
+                        // Round to max 1 decimal
+                        educationElement.percent[eduLevel].total[year] = Math.round(totalPercent * 10) / 10;
                     }
                 }
             }
@@ -213,7 +214,8 @@ function Details(currentYear) {
                 calculatedValue += educationElement[type]["11"][sex][year];
                 calculatedValue += educationElement[type]["03a"][sex][year];
                 calculatedValue += educationElement[type]["04a"][sex][year];
-                return calculatedValue;
+                // Round to max 1 decimal
+                return Math.round(calculatedValue * 10) / 10;
             }
             let highEdu = {
                 number: {
@@ -257,6 +259,7 @@ function Details(currentYear) {
         }
         let higherEdu = consolidateHigherEdu(educationElement);
         educationElement.number["12"] = higherEdu.number;
+        educationElement.percent["12"] = higherEdu.percent;
         return educationElement;
     };
 }
