@@ -257,7 +257,7 @@ div.detailsOutput:nth-child(2) > table:nth-child(3){
   margin-top:1em;
 }
 
-.populationTable{
+.populationTable, .employmentTable, .educationTable{
   visibility: hidden;
   display: none;
 }
