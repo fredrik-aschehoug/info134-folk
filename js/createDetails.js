@@ -249,6 +249,7 @@ function createDetails(id) {
         function createTableBody(desciptions, tableHeaders, historicalDetails, tbody, format) {
             for (let desc of desciptions) {
                 let tr = tbody.insertRow(-1);
+                tr.classList.add("mouseOver")
                 for (let year of tableHeaders) {
                     let td = tr.insertCell(-1);
                     let data;
@@ -258,19 +259,23 @@ function createDetails(id) {
                         switch (desc) {
                             case "Kvinner":
                                 data = historicalDetails.population[format].Kvinner[year];
+                                tr.id = "popKvinner";
                                 break;
                             case "Menn":
                                 data = historicalDetails.population[format].Menn[year];
+                                tr.id = "popMenn";
                                 break;
                             case "Begge kjønn":
                                 if (format === "percent") {
                                     data = "";
                                 } else {
                                     data = historicalDetails.population[format].total[year];
+                                    tr.id = "popTotal";
                                 }
                                 break;
                         }
                     }
+
                     // Format large numbers to Norwegian locale
                     data = data.toLocaleString('no');
                     td.innerHTML = data;

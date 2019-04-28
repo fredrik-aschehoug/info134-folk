@@ -366,3 +366,9 @@ input[type="radio"].toggle:checked + label:after {
   display:inline-block;
   z-index: 1;
 }
+
+#graphTotal {
+  background-color: #DCDCDC; 
+  padding-bottom: 1em; 
+  padding-left: 0.5em; 
+}
