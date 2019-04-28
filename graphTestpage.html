@@ -17,30 +17,31 @@
 <body>
     
     <h1>Testpage</h1>
-    <input type="text" id="inputID" value="0">
-    <button id="submitNode" onclick="befolkning.http()">Click</button>
-    <button id="loopArray" onclick="presentData(outputElt, data2)">Loop</button>
     
     <div class="hovud detaljar">
         <form id="detailsForm" action="#">
           <input id="detailsInput" type="text" placeholder="Søk kommunenummer" required>
           <input id="detailsButton" type="button" value="">
         </form>
+       
+        
         <div class="detailsOutput"></div>
+        <div id="graph">
+            
+        
+        <!--<br>
+        <span style="color:#FF0066"></span>  
+            <span style="color:#9933FF"></span>  
+            <div>
+            <canvas id="graphGenders" width="500" height="250" style="background-color: #DCDCDC; padding-bottom: 1em; padding-left: 0.5em; display: none;"></canvas>
+            <canvas id="graphTotal" width="500" height="250" style="background-color: #DCDCDC; padding-bottom: 1em; padding-left: 0.5em; visibility: hidden;"></canvas>
+        </div>
+                <span style="color:#000"></span>-->
+        </div>
       </div>
 
 
-    <div>
-        <canvas id="graphTotal" width="525" height="300" style="background-color: #DADEE5; padding-bottom: 1em; padding-left: 0.5em;"></canvas>
-    
-    <!--<br>
-    <span style="color:#FF0066"></span>  
-        <span style="color:#9933FF"></span>  
-            <span style="color:#000"></span>-->
-    </div>
-    <div>
-        <canvas id="graphGenders" width="525" height="300" style="background-color: #DADEE5; padding-bottom: 1em; padding-left: 0.5em;"></canvas>
-    </div>
+   
     
     <div id="output"></div>
     

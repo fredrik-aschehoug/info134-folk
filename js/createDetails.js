@@ -251,6 +251,7 @@ function createDetails(id) {
         function createTableBody(desciptions, tableHeaders, historicalDetails, tbody, format, type) {
             for (let desc of desciptions) {
                 let tr = tbody.insertRow(-1);
+                tr.classList.add("mouseOver");
                 for (let year of tableHeaders) {
                     let td = tr.insertCell(-1);
                     let data;
@@ -260,12 +261,16 @@ function createDetails(id) {
                         switch (desc) {
                             case "Kvinner":
                                 data = historicalDetails[type][format].Kvinner[year];
+                                tr.id = "popKvinner";
                                 break;
                             case "Menn":
                                 data = historicalDetails[type][format].Menn[year];
+                                tr.id = "popMenn";
                                 break;
                             case "Begge kjønn":
                                 data = historicalDetails[type][format].total[year];
+                                data = historicalDetails.population[format].Kvinner[year];
+                                tr.id = "popTotal";
                                 break;
                         }
                     }
