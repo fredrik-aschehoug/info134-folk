@@ -147,7 +147,7 @@ function Details(currentYear) {
             // Prosentandel * total / 100
             let kvinnerNumber = population.Kvinner[year] * kvinner / 100;
             let mennNumber = population.Menn[year] * menn / 100;
-            // Round to max 1 decimal
+            // Round number
             employmentElement.number.Kvinner[year] = Math.round(kvinnerNumber);
             employmentElement.number.Menn[year] = Math.round(mennNumber);
             employmentElement.number.total[year] = Math.round(kvinnerNumber) + Math.round(mennNumber);
@@ -171,7 +171,7 @@ function Details(currentYear) {
         * @param {object} population 
         * @param {string} eduLevel Education level code
         * @param {object} education 
-        * @param {object} educationElement defined in parent function
+        * @param {object} educationElement Defined in parent function
         */
         function calculateEducation(population, eduLevel, education, educationElement) {
             for (let year in population.Kvinner) {
@@ -190,10 +190,58 @@ function Details(currentYear) {
                         educationElement.number[eduLevel].Kvinner[year] = Math.round(kvinnerNumber);
                         educationElement.number[eduLevel].Menn[year] = Math.round(mennNumber);
                         educationElement.number[eduLevel].total[year] = Math.round(totalNumber);
-                        educationElement.percent[eduLevel].total[year] = Math.round(totalPercent);
+                        // Round to max 1 decimal
+                        educationElement.percent[eduLevel].total[year] = Math.round(totalPercent * 10) / 10;
                     }
                 }
             }
+        }
+        /**
+         * Create a new edulevel: 12. Consolidates 11, 03a and 04a.
+         * @param {object} educationElement Defined in parent function
+         * @returns {object} Consolidated education stats for a municipal.
+         */
+        function consolidateHigherEdu(educationElement) {
+            /**
+             * @param {object} educationElement Defined in parent function
+             * @param {string} type
+             * @param {string} sex
+             * @param {string} year
+             * @returns {number} The sum of 11, 03a and 04a edu types for the specified type, sex and year.
+             */
+            function calculateHigherEdu(educationElement, type, sex, year) {
+                let calculatedValue = 0;
+                calculatedValue += educationElement[type]["11"][sex][year];
+                calculatedValue += educationElement[type]["03a"][sex][year];
+                calculatedValue += educationElement[type]["04a"][sex][year];
+                // Round to max 1 decimal
+                return Math.round(calculatedValue * 10) / 10;
+            }
+            let highEdu = {
+                number: {
+                    Kvinner: {},
+                    Menn: {},
+                    total: {}
+                },
+                percent: {
+                    Kvinner: {},
+                    Menn: {},
+                    total: {}
+                }
+            };
+            // If municipal exists in education dataset
+            if (educationElement.number["11"]) {
+                let years = educationElement.number["11"].Kvinner;
+                for (let year in years) {
+                    highEdu.number.Kvinner[year] = calculateHigherEdu(educationElement, "number", "Kvinner", year);
+                    highEdu.number.Menn[year] = calculateHigherEdu(educationElement, "number", "Menn", year);
+                    highEdu.number.total[year] = calculateHigherEdu(educationElement, "number", "total", year);
+                    highEdu.percent.Kvinner[year] = calculateHigherEdu(educationElement, "percent", "Kvinner", year);
+                    highEdu.percent.Menn[year] = calculateHigherEdu(educationElement, "percent", "Menn", year);
+                    highEdu.percent.total[year] = calculateHigherEdu(educationElement, "percent", "total", year);
+                }
+            }
+            return highEdu;
         }
         for (let eduLevel in education) {
             if (eduLevel !== "kommunenummer" && eduLevel !== "navn") {
@@ -209,6 +257,9 @@ function Details(currentYear) {
             }
             calculateEducation(population, eduLevel, education, educationElement);
         }
+        let higherEdu = consolidateHigherEdu(educationElement);
+        educationElement.number["12"] = higherEdu.number;
+        educationElement.percent["12"] = higherEdu.percent;
         return educationElement;
-    };  
+    };
 }

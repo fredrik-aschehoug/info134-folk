@@ -196,11 +196,17 @@ tr:nth-child(even) {
 
 
 /*--------------------DETALJAR--------------------*/
-.detailsOutput header {
+.detailsOutput p, .mainHeader, .subHeader, .subHeader2 {
+  font-weight: bold;
+}
+.detailsOutput .mainHeader {
   font-size: 2em;
 }
-.detailsOutput p, header {
-  font-weight: bold;
+.detailsOutput .subHeader {
+  font-size: 1.5em;
+}
+.detailsOutput .subHeader2 {
+  font-size: 1em;
 }
 
 /*--Details Table--*/
@@ -257,7 +263,7 @@ div.detailsOutput:nth-child(2) > table:nth-child(3){
   margin-top:1em;
 }
 
-.populationTable{
+.populationTable, .employmentTable, .educationTable{
   visibility: hidden;
   display: none;
 }

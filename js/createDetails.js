@@ -6,12 +6,14 @@ function createDetails(id) {
     /**
      * Creates a HTML <header> element with text.
      * @param {string} headerText The text to use in the header element
-     * @returns {HTMLElement} Header element with specified text.
+     * @param {string} className Class to assign to the element
+     * @returns {HTMLElement} Header element with specified text and class.
      */
-    function createHeader(headerText) {
+    function createHeader(headerText, className) {
         const headerNode = document.createElement("header");
         const textNode = document.createTextNode(headerText);
         headerNode.appendChild(textNode);
+        headerNode.classList.add(className);
         return headerNode;
     }
     /**
@@ -76,17 +78,20 @@ function createDetails(id) {
             ["Kvinner", "education", "04a"],
             ["Menn", "education", "04a"],
             ["Begge kjønn", "education", "04a"],
+            ["All høyere utdanning"],
+            ["Kvinner", "education", "12"],
+            ["Menn", "education", "12"],
+            ["Begge kjønn", "education", "12"],
         ];
         // Cells to be given HTML class "headerCell"
         const headerCells = [
             "Befolkning",
             "Sysselsetting",
             "Høyere utdanning",
-            "Videregående skole-nivå",
             "Fagskolenivå",
             "Universitets- og høgskolenivå kort",
             "Universitets- og høgskolenivå lang",
-            "Uoppgitt eller ingen fullført utdanning"
+            "All høyere utdanning"
         ];
         /** Create paragraph element with brief info about the municipal
          * @param {object} currentDetails From getCurrent() method
@@ -217,7 +222,7 @@ function createDetails(id) {
         const htmlObject = document.createElement("div");
         const paragraph = createParagraph(currentDetails, id);
         const headerText = `Siste oppdaterte statistikk for ${currentDetails.navn}:`;
-        const header = createHeader(headerText);
+        const header = createHeader(headerText, "mainHeader");
         appendElements(htmlObject, header, paragraph, table);
         return htmlObject;
     }
@@ -246,11 +251,12 @@ function createDetails(id) {
          * @param {object} historicalDetails From details.getHistorical(id)
          * @param {HTMLTableElement} tbody tbody element to append to
          * @param {string} format "number"/"percent"
+         * @param {string} type "population"/"emplyment"/"education"
          */
-        function createTableBody(desciptions, tableHeaders, historicalDetails, tbody, format) {
+        function createTableBody(desciptions, tableHeaders, historicalDetails, tbody, format, type, eduType) {
             for (let desc of desciptions) {
                 let tr = tbody.insertRow(-1);
-                tr.classList.add("mouseOver")
+                tr.classList.add("mouseOver");
                 for (let year of tableHeaders) {
                     let td = tr.insertCell(-1);
                     let data;
@@ -259,16 +265,28 @@ function createDetails(id) {
                     } else {
                         switch (desc) {
                             case "Kvinner":
-                                data = historicalDetails.population[format].Kvinner[year];
+                                if (eduType) {
+                                    data = historicalDetails[type][format][eduType].Kvinner[year];
+                                } else {
+                                    data = historicalDetails[type][format].Kvinner[year];
+                                }
                                 tr.id = "popKvinner";
                                 break;
                             case "Menn":
-                                data = historicalDetails.population[format].Menn[year];
+                                if (eduType) {
+                                    data = historicalDetails[type][format][eduType].Menn[year];
+                                } else {
+                                    data = historicalDetails[type][format].Menn[year];
+                                }
                                 tr.id = "popMenn";
                                 break;
                             case "Begge kjønn":
-                                data = historicalDetails.population[format].total[year];
-                                tr.id = "popTotal"
+                                if (eduType) {
+                                    data = historicalDetails[type][format][eduType].total[year];
+                                } else {
+                                    data = historicalDetails[type][format].total[year];
+                                }
+                                tr.id = "popTotal";
                                 break;
                         }
                     }
@@ -288,32 +306,34 @@ function createDetails(id) {
          * The toggle calls the callback function when clicked.
          * @param {toggleCallback} callback Function to call when toggle is clicked
          * @param {string} cbParam Classname, param to the callback function
+         * @param {string} type "population"/"emplyment"/"education"
          * @returns {HTMLFormElement} <form> element containing the toggle button
          */
-        function createTableToggle(callback, cbParam){
+        function createTableToggle(callback, cbParam, type) {
             // Create DOM elements
             const tableToggle = document.createElement("form");
             const input1 = document.createElement("input");
             const label1 = document.createElement("label");
             const input2 = document.createElement("input");
-            const label2 =  document.createElement("label");
+            const label2 = document.createElement("label");
+            let radioclass = `${type}Toggle`;
             // Set attributes
-            input1.id = "toggle-antall";
-            input1.classList.add("toggle", "toggle-left", "toggle-active");
+            input1.id = `${type}Toggle-antall`;
+            input1.classList.add(radioclass, "toggle", "toggle-left", "toggle-active");
             input1.name = "toggle";
             input1.value = "false";
             input1.type = input2.type = "radio";
             input1.checked = true;
-            input1.onclick = () => callback(cbParam, "antall");
-            label1.htmlFor = "toggle-antall";
+            input1.onclick = () => callback(cbParam, "antall", radioclass);
+            label1.htmlFor = `${type}Toggle-antall`;
             label1.classList.add("tableToggle");
             label1.innerText = "Antall";
-            input2.id = "toggle-prosent";
-            input2.classList.add("toggle", "toggle-right");
+            input2.id = `${type}Toggle-prosent`;
+            input2.classList.add(radioclass, "toggle", "toggle-right");
             input2.name = "toggle";
             input2.value = "true";
-            input2.onclick = () => callback(cbParam, "prosent");
-            label2.htmlFor = "toggle-prosent";
+            input2.onclick = () => callback(cbParam, "prosent", radioclass);
+            label2.htmlFor = `${type}Toggle-prosent`;
             label2.classList.add("tableToggle");
             label2.innerText = "Prosent";
             // Append DOM elements to return object
@@ -329,18 +349,19 @@ function createDetails(id) {
          * @type {toggleCallback}
          * @param {string} className The classname to toggele classes on
          * @param {string} inputType "antall"/"prosent". The type of radio that is clicked
+         * @param {string} radioClass The common class of the radios to check
          */
-        function toggleCallback(className, inputType) {
-            let radios = document.getElementsByClassName("toggle");
+        function toggleCallback(className, inputType, radioClass) {
+            let radios = document.getElementsByClassName(radioClass);
             let correctClick = false;
             if (inputType === "antall") {
                 // If prosent radio is active
-                if (radios.namedItem("toggle-prosent").classList.contains("toggle-active")){
+                if (radios.namedItem(`${radioClass}-prosent`).classList.contains("toggle-active")) {
                     correctClick = true;
                 }
             } else if (inputType === "prosent") {
                 // If antall radio is active
-                if (radios.namedItem("toggle-antall").classList.contains("toggle-active")){
+                if (radios.namedItem(`${radioClass}-antall`).classList.contains("toggle-active")) {
                     correctClick = true;
                 }
             }
@@ -354,45 +375,89 @@ function createDetails(id) {
                 }
             }
         }
+        /**
+         * Get years from object and store in array
+         * @param {string} type "population"/"emplyment"/"education" 
+         * @returns {string[]} All years in dataset, to be used as table header
+         */
+        function createTableHeaders(type) {
+            const tableHeaders = [""]; // First cell must be empty 
+            let years;
+            if (type === "education") {
+                years = historicalDetails[type].number["01"].Kvinner;
+            } else {
+                years = historicalDetails[type].number.Kvinner;
+            }
+            for (let year in years) {
+                tableHeaders.push(year);
+            }
+            return tableHeaders;
+        }
         const htmlObject = document.createElement("div");
         const headerText = `Historisk statistikk for ${currentDetails.navn}:`;
-        const header = createHeader(headerText);
-        const populationHeaderText = "Befolkning:";
-        const populationHeader = createHeader(populationHeaderText);
-
-        // Create table
-        // Get years from object, to be used as headers
-        const tableHeaders = [""]; // First cell must be empty  
-        for (let year in historicalDetails.population.number.Kvinner) {
-            tableHeaders.push(year);
+        const header = createHeader(headerText, "mainHeader");
+        const populationHeader = createHeader("Befolkning:", "subHeader");
+        const employmentHeader = createHeader("Sysselsetting:", "subHeader");
+        const mainEducationHeader = createHeader("Høyere Utdanning:", "subHeader");
+        const consolidatedEducationHeader = createHeader("All høyere Utdanning:", "subHeader2");
+        ////////////////// todo
+        function createHistoricalTable(type, eduType) {
+            const numberDesciptions = ["Kvinner", "Menn", "Begge kjønn"];
+            let percentDesciptions;
+            if (type === "population") {
+                percentDesciptions = ["Kvinner", "Menn"];
+            } else {
+                percentDesciptions = ["Kvinner", "Menn", "Begge kjønn"];
+            }
+            const tableHeaders = createTableHeaders(type);
+            numberTable = createTableElement();
+            percentTable = createTableElement();
+            // Create table headers
+            numberTable.tHead.appendChild(createTableHeader(tableHeaders));
+            percentTable.tHead.appendChild(createTableHeader(tableHeaders));
+            // Create rows
+            createTableBody(numberDesciptions, tableHeaders, historicalDetails, numberTable.tBodies[0], "number", type, eduType);
+            createTableBody(percentDesciptions, tableHeaders, historicalDetails, percentTable.tBodies[0], "percent", type, eduType);
+            // Assign classes
+            numberTable.classList.add(`${type}Table`, "activeTable");
+            percentTable.classList.add(`${type}Table`);
+            const tableToggle = createTableToggle(toggleCallback, `${type}Table`, type);
+            const tables = {
+                number: numberTable, 
+                percent: percentTable, 
+                tableToggle: tableToggle
+            };
+            return tables;
         }
-
-        populationNumberTable = createTableElement(tableHeaders);
-        populationPercentTable = createTableElement(tableHeaders);
-        // Create table headers
-        populationNumberTable.tHead.appendChild(createTableHeader(tableHeaders));
-        populationPercentTable.tHead.appendChild(createTableHeader(tableHeaders));
-        // Create rows
-        const numberDesciptions = ["Kvinner", "Menn", "Begge kjønn"];
-        const percentDesciptions = ["Kvinner", "Menn"];
-        createTableBody(numberDesciptions, tableHeaders, historicalDetails, populationNumberTable.tBodies[0], "number");
-        createTableBody(percentDesciptions, tableHeaders, historicalDetails, populationPercentTable.tBodies[0], "percent");
-
-        // Assign classes
-        populationNumberTable.classList.add("populationTable", "activeTable");
-        populationPercentTable.classList.add("populationTable");
-        const tableToggle = createTableToggle(toggleCallback, "populationTable");
+        const populationTables = createHistoricalTable("population");
+        const employmentTables = createHistoricalTable("employment");
+        const educationTables = createHistoricalTable("education", "12");
         // Append items to return object
-        appendElements(htmlObject, header, populationHeader, tableToggle, populationNumberTable,populationPercentTable);
+        appendElements(
+            htmlObject,
+            header,
+            populationHeader,
+            populationTables.tableToggle,
+            populationTables.number,
+            populationTables.percent,
+            employmentHeader,
+            employmentTables.tableToggle,
+            employmentTables.number,
+            employmentTables.percent,
+            mainEducationHeader,
+            consolidatedEducationHeader,
+            educationTables.tableToggle,
+            educationTables.number,
+            educationTables.percent
+        );
         return htmlObject;
     }
-
     // Placeholder to put content in
     const placeholder = document.getElementsByClassName("detailsOutput");
     // Data to use
     const currentDetails = details.getCurrent(id);
     const historicalDetails = details.getHistorical(id);
-
+    // Create items to append
     const currentDetailsObject = createCurrentDetails(currentDetails);
     const historicalDetailsObject = createHistoricalDetails(historicalDetails);
     // Clear placeholder
