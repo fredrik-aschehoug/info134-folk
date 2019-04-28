@@ -8,8 +8,8 @@
         canvas.height = 250;
         document.getElementById("graph").appendChild(canvas)
 
-    let trTags = document.getElementsByTagName("tr");
-        for (let i = 0; i < trTags.length; i++) {
+        let trTags = document.getElementsByTagName("tr");
+            for (let i = 0; i < trTags.length; i++) {
 
             if (trTags[i].id === "popTotal") {
                 trTags["popTotal"].onmouseover = function () {graphObjects(id, 0), showDarkBackground("popTotal")}
@@ -26,7 +26,7 @@
                 trTags["popKvinner"].onmouseout = function () {mouseOut("popKvinner")}
             }
         }
-    }
+    };
 
     
         function showDarkBackground(rowID) {
@@ -61,43 +61,43 @@
        
     
 
-    function graphObjects(id, arrayIndex) {
-        let municipalData = details.getHistorical(id);
-        arrayIndex = arrayIndex
+        function graphObjects(id, arrayIndex) {
+            let municipalData = details.getHistorical(id);
+            arrayIndex = arrayIndex
        
-        let totalEduCat11 = municipalData.education.number["11"].total
-        let totalEduCat03a = municipalData.education.number["03a"].total
-        let totalEduCat04a = municipalData.education.number["04a"].total
+            let totalEduCat11 = municipalData.education.number["11"].total
+            let totalEduCat03a = municipalData.education.number["03a"].total
+            let totalEduCat04a = municipalData.education.number["04a"].total
         
-        let maleEduCat11 = municipalData.education.number["11"].total
-        let maleEduCat03a = municipalData.education.number["03a"].total
-        let maleEduCat04a = municipalData.education.number["04a"].total
+            let maleEduCat11 = municipalData.education.number["11"].total
+            let maleEduCat03a = municipalData.education.number["03a"].total
+            let maleEduCat04a = municipalData.education.number["04a"].total
 
-        let femaleEduCat11 = municipalData.education.number["11"].total
-        let femaleEduCat03a = municipalData.education.number["03a"].total
-        let femaleEduCat04a = municipalData.education.number["04a"].total
+            let femaleEduCat11 = municipalData.education.number["11"].total
+            let femaleEduCat03a = municipalData.education.number["03a"].total
+            let femaleEduCat04a = municipalData.education.number["04a"].total
     
         
 
-    function highEduSum(...obj) {
-        return obj.reduce((x, y) => {
-            for (let i in y) {
-                if (y.hasOwnProperty(i))
-                x[i] = (x[i] || 0 ) + y[i];
-            }
-            return x
-        }, {});
-    }
+        function highEduSum(...obj) {
+            return obj.reduce((x, y) => {
+                for (let i in y) {
+                    if (y.hasOwnProperty(i))
+                    x[i] = (x[i] || 0 ) + y[i];
+                }
+                return x
+            }, {});
+        }
 
-        let array = [municipalData.population.number.total, municipalData.population.number.Menn, municipalData.population.number.Kvinner, 
-        municipalData.employment.number.total, municipalData.employment.number.Menn, municipalData.employment.number.Kvinner]
+            let array = [municipalData.population.number.total, municipalData.population.number.Menn, municipalData.population.number.Kvinner, 
+            municipalData.employment.number.total, municipalData.employment.number.Menn, municipalData.employment.number.Kvinner]
     
-        let educationObjTot = highEduSum(totalEduCat11, totalEduCat03a, totalEduCat04a)
-        let educationObjMale = highEduSum(maleEduCat11, maleEduCat03a, maleEduCat04a)
-        let educationObjFemale = highEduSum(femaleEduCat11, femaleEduCat03a, femaleEduCat04a)
-        array.push(educationObjTot, educationObjMale, educationObjFemale)
+            let educationObjTot = highEduSum(totalEduCat11, totalEduCat03a, totalEduCat04a)
+            let educationObjMale = highEduSum(maleEduCat11, maleEduCat03a, maleEduCat04a)
+            let educationObjFemale = highEduSum(femaleEduCat11, femaleEduCat03a, femaleEduCat04a)
+            array.push(educationObjTot, educationObjMale, educationObjFemale)
         
-        mapDataGraphTotal(Object.keys(array[arrayIndex]), Object.values(array[arrayIndex]));
+            mapDataGraphTotal(Object.keys(array[arrayIndex]), Object.values(array[arrayIndex]));
 
 
         function mapDataGraphTotal(xAxisKeys, totalArray) {
@@ -214,6 +214,7 @@
             let scaleForX;
             let scaleForY;
             let plotTotal = totalArray
+            
         
             years = xAxisVal
             minValue = minVal;
@@ -223,18 +224,24 @@
         
         //plots each of the points(elements) in the Array to a line
             function plotData(toPlot) {
-                ctx.lineWidth = 5;
+                ctx.lineWidth = 6;
                 ctx.beginPath();
                 ctx.moveTo(0, toPlot[0]);
                 for (i = 1; i < rectangles; i++) {
                     ctx.lineTo(i * scaleForX, toPlot[i])
+                    
                 }
                 ctx.stroke();
             }
-        
+            
+            items = []
+            for (let i = 0; i <dotYears.length; i++){
+                items.push ([dotYears[i], plotTotal[i]])
+            }
+
             //Dynamic values based on Array content for dataset
             let columnSize = 28;
-            let rowSize = 38;
+            let rowSize = 42;
             let margin = 8;
             let xAxis = xAxisVal
         
