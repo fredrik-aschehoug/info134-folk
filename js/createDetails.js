@@ -76,17 +76,20 @@ function createDetails(id) {
             ["Kvinner", "education", "04a"],
             ["Menn", "education", "04a"],
             ["Begge kjønn", "education", "04a"],
+            ["All høyere utdanning"],
+            ["Kvinner", "education", "12"],
+            ["Menn", "education", "12"],
+            ["Begge kjønn", "education", "12"],
         ];
         // Cells to be given HTML class "headerCell"
         const headerCells = [
             "Befolkning",
             "Sysselsetting",
             "Høyere utdanning",
-            "Videregående skole-nivå",
             "Fagskolenivå",
             "Universitets- og høgskolenivå kort",
             "Universitets- og høgskolenivå lang",
-            "Uoppgitt eller ingen fullført utdanning"
+            "All høyere utdanning"
         ];
         /** Create paragraph element with brief info about the municipal
          * @param {object} currentDetails From getCurrent() method
@@ -248,7 +251,7 @@ function createDetails(id) {
          * @param {string} format "number"/"percent"
          * @param {string} type "population"/"emplyment"/"education"
          */
-        function createTableBody(desciptions, tableHeaders, historicalDetails, tbody, format, type) {
+        function createTableBody(desciptions, tableHeaders, historicalDetails, tbody, format, type, eduType) {
             for (let desc of desciptions) {
                 let tr = tbody.insertRow(-1);
                 tr.classList.add("mouseOver");
@@ -260,16 +263,27 @@ function createDetails(id) {
                     } else {
                         switch (desc) {
                             case "Kvinner":
-                                data = historicalDetails[type][format].Kvinner[year];
+                                if (eduType) {
+                                    data = historicalDetails[type][format][eduType].Kvinner[year];
+                                } else {
+                                    data = historicalDetails[type][format].Kvinner[year];
+                                }
                                 tr.id = "popKvinner";
                                 break;
                             case "Menn":
-                                data = historicalDetails[type][format].Menn[year];
+                                if (eduType) {
+                                    data = historicalDetails[type][format][eduType].Menn[year];
+                                } else {
+                                    data = historicalDetails[type][format].Menn[year];
+                                }
                                 tr.id = "popMenn";
                                 break;
                             case "Begge kjønn":
-                                data = historicalDetails[type][format].total[year];
-                                data = historicalDetails.population[format].Kvinner[year];
+                                if (eduType) {
+                                    data = historicalDetails[type][format][eduType].total[year];
+                                } else {
+                                    data = historicalDetails[type][format].total[year];
+                                }
                                 tr.id = "popTotal";
                                 break;
                         }
@@ -382,12 +396,17 @@ function createDetails(id) {
         const header = createHeader(headerText);
         const populationHeader = createHeader("Befolkning:");
         const employmentHeader = createHeader("Sysselsetting:");
-        //const educationHeader = createHeader("Utdanning:");
-
-
-        function createHistoricalTable(type) {
+        const mainEducationHeader = createHeader("Høyere Utdanning:");
+        const consolidatedEducationHeader = createHeader("All høyere Utdanning:");
+        ////////////////// todo
+        function createHistoricalTable(type, eduType) {
             const numberDesciptions = ["Kvinner", "Menn", "Begge kjønn"];
-            const percentDesciptions = ["Kvinner", "Menn"];
+            let percentDesciptions;
+            if (type === "population") {
+                percentDesciptions = ["Kvinner", "Menn"];
+            } else {
+                percentDesciptions = ["Kvinner", "Menn", "Begge kjønn"];
+            }
             const tableHeaders = createTableHeaders(type);
             numberTable = createTableElement();
             percentTable = createTableElement();
@@ -395,8 +414,8 @@ function createDetails(id) {
             numberTable.tHead.appendChild(createTableHeader(tableHeaders));
             percentTable.tHead.appendChild(createTableHeader(tableHeaders));
             // Create rows
-            createTableBody(numberDesciptions, tableHeaders, historicalDetails, numberTable.tBodies[0], "number", type);
-            createTableBody(percentDesciptions, tableHeaders, historicalDetails, percentTable.tBodies[0], "percent", type);
+            createTableBody(numberDesciptions, tableHeaders, historicalDetails, numberTable.tBodies[0], "number", type, eduType);
+            createTableBody(percentDesciptions, tableHeaders, historicalDetails, percentTable.tBodies[0], "percent", type, eduType);
             // Assign classes
             numberTable.classList.add(`${type}Table`, "activeTable");
             percentTable.classList.add(`${type}Table`);
@@ -410,8 +429,7 @@ function createDetails(id) {
         }
         const populationTables = createHistoricalTable("population");
         const employmentTables = createHistoricalTable("employment");
-        //const educationTables = createHistoricalTable("education");
-
+        const educationTables = createHistoricalTable("education", "12");
         // Append items to return object
         appendElements(
             htmlObject,
@@ -423,22 +441,21 @@ function createDetails(id) {
             employmentHeader,
             employmentTables.tableToggle,
             employmentTables.number,
-            employmentTables.percent
-            //educationHeader,
-            //educationTables.tableToggle,
-            //educationTables.number,
-            //educationTables.percent
+            employmentTables.percent,
+            mainEducationHeader,
+            consolidatedEducationHeader,
+            educationTables.tableToggle,
+            educationTables.number,
+            educationTables.percent
         );
         return htmlObject;
-
     }
-
     // Placeholder to put content in
     const placeholder = document.getElementsByClassName("detailsOutput");
     // Data to use
     const currentDetails = details.getCurrent(id);
     const historicalDetails = details.getHistorical(id);
-
+    // Create items to append
     const currentDetailsObject = createCurrentDetails(currentDetails);
     const historicalDetailsObject = createHistoricalDetails(historicalDetails);
     // Clear placeholder
