@@ -4,7 +4,7 @@
     function mouseOverFunc(id) {
         let canvas = document.createElement("canvas");
         canvas.id = "graphTotal"
-        canvas.width = 500;
+        canvas.width = 490;
         canvas.height = 250;
         document.getElementById("graph").appendChild(canvas)
 
@@ -38,11 +38,9 @@
             let compStyle = window.getComputedStyle(canvas), 
                 marginLeft = compStyle.getPropertyValue('margin-left');
                 canvas.style.marginLeft = marginLeft;
-                
-
         }
     
-        function showDarkBackground(rowID, className) {
+        function showDarkBackground(rowID) {
             let x = document.getElementById("graphTotal")
             x.style.visibility = "visible";
             document.getElementById(rowID).style.backgroundColor = "#374C70"
@@ -253,7 +251,7 @@
 
             //Dynamic values based on Array content for dataset
             let columnSize = 28;
-            let rowSize = 42;
+            let rowSize = 38;
             let margin = 8;
             let xAxis = xAxisVal
         
