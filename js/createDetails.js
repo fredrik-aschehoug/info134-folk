@@ -6,12 +6,14 @@ function createDetails(id) {
     /**
      * Creates a HTML <header> element with text.
      * @param {string} headerText The text to use in the header element
-     * @returns {HTMLElement} Header element with specified text.
+     * @param {string} className Class to assign to the element
+     * @returns {HTMLElement} Header element with specified text and class.
      */
-    function createHeader(headerText) {
+    function createHeader(headerText, className) {
         const headerNode = document.createElement("header");
         const textNode = document.createTextNode(headerText);
         headerNode.appendChild(textNode);
+        headerNode.classList.add(className);
         return headerNode;
     }
     /**
@@ -220,7 +222,7 @@ function createDetails(id) {
         const htmlObject = document.createElement("div");
         const paragraph = createParagraph(currentDetails, id);
         const headerText = `Siste oppdaterte statistikk for ${currentDetails.navn}:`;
-        const header = createHeader(headerText);
+        const header = createHeader(headerText, "mainHeader");
         appendElements(htmlObject, header, paragraph, table);
         return htmlObject;
     }
@@ -393,11 +395,11 @@ function createDetails(id) {
         }
         const htmlObject = document.createElement("div");
         const headerText = `Historisk statistikk for ${currentDetails.navn}:`;
-        const header = createHeader(headerText);
-        const populationHeader = createHeader("Befolkning:");
-        const employmentHeader = createHeader("Sysselsetting:");
-        const mainEducationHeader = createHeader("Høyere Utdanning:");
-        const consolidatedEducationHeader = createHeader("All høyere Utdanning:");
+        const header = createHeader(headerText, "mainHeader");
+        const populationHeader = createHeader("Befolkning:", "subHeader");
+        const employmentHeader = createHeader("Sysselsetting:", "subHeader");
+        const mainEducationHeader = createHeader("Høyere Utdanning:", "subHeader");
+        const consolidatedEducationHeader = createHeader("All høyere Utdanning:", "subHeader2");
         ////////////////// todo
         function createHistoricalTable(type, eduType) {
             const numberDesciptions = ["Kvinner", "Menn", "Begge kjønn"];
