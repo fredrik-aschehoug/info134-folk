@@ -367,7 +367,8 @@ input[type="radio"].toggle:checked + label:after {
 }
 
 #graphTotal {
-  background-color: #DCDCDC; 
+  visibility: hidden;
+  background-color: #DADEE5; 
   padding-bottom: 1em; 
   padding-left: 0.5em; 
 }

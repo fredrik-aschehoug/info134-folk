@@ -63,6 +63,7 @@ function detailsFormSubmit(ids) {
     // Check if valid ID
     if (ids.includes(id)) {
         createDetails(id);
+        mouseOverFunc(id);
     } else {
         alert(`${id} er ikkje eit gyldig kommunenummer`);
     }

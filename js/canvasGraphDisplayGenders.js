@@ -1,136 +1,66 @@
-//Global variables
-const oversikt = document.getElementsByClassName("oversikt")[0];
-const overviewHeaders = ["Navn", "Kommunenummer", "Total befolkning"];
-let ids; // Will be assigned array of all municipal ID's
-// Returns wuldboy URL
-getURL = (id) => `http://wildboy.uib.no/~tpe056/folk/${id}.json`;
-// Instanciate objects
-const befolkning = new Population(getURL("104857"));
-const sysselsatte = new Employment(getURL("100145"));
-const utdanning = new Education(getURL("85432"));
-const details = new Details(2017);
-
-/**
- * Runs when befolkning is fully loaded
- * @callback
- */
-befolkning.onload = function () {
-    // Add overview to DOM
-    ids = befolkning.getIDs();
-    //oversikt.appendChild(createOverview(ids, overviewHeaders));
-    sysselsatte.load();
-};
-/**
- * Runs when sysselsatte is fully loaded
- * @callback
- */
-sysselsatte.onload = function () {
-    utdanning.load();
-};
-/**
- * Runs when utdanning is fully loaded
- * @callback
- */
-utdanning.onload = function () {
-    /**
-     * Get value from input and create details view.
-     * @callback
-     */
-    
-    function detailsFormSubmit() {
-        const detailsForm1 = document.getElementById("detailsForm");
-        id = detailsForm1.detailsInput.value
-        
 
 
-        // Check if valid ID
-        if (ids.includes(id)){
-            createDetails(id);
+
+    function mouseOverFunc(id) {
+        let canvas = document.createElement("canvas");
+        canvas.id = "graphTotal"
+        canvas.width = 500;
+        canvas.height = 250;
+        document.getElementById("graph").appendChild(canvas)
+
+    let trTags = document.getElementsByTagName("tr");
+        for (let i = 0; i < trTags.length; i++) {
+
+            if (trTags[i].id === "popTotal") {
+                trTags["popTotal"].onmouseover = function () {graphObjects(id, 0), showDarkBackground("popTotal")}
+                trTags["popTotal"].onmouseout = function () {mouseOut("popTotal")}
+               
+
+            } else if (trTags[i].id === "popMenn") {
+                trTags["popMenn"].onmouseover = function () {graphObjects(id, 1), showDarkBackground("popMenn")}
+                trTags["popMenn"].onmouseout = function () {mouseOut("popMenn")}
+                
             
-            function mouseOverFunc(id) {
-                let canvas = document.createElement("canvas");
-                canvas.id = "graphTotal"
-                canvas.width = 500;
-                canvas.height = 250;
-                document.getElementById("graph").appendChild(canvas)
-
-            let trTags = document.getElementsByTagName("tr");
-                for (let i = 0; i < trTags.length; i++) {
-    
-                    if (trTags[i].id === "popTotal") {
-                        trTags["popTotal"].onmouseover = function () {graphObjects(id, 0), showRedText("popTotal")}
-                        trTags["popTotal"].onmouseout = function () {mouseOut("popTotal")}
-                       
-
-                    } else if (trTags[i].id === "popMenn") {
-                        trTags["popMenn"].onmouseover = function () {graphObjects(id, 1), showRedText("popMenn")}
-                        trTags["popMenn"].onmouseout = function () {mouseOut("popMenn")}
-                        
-                    
-                    } else if (trTags[i].id === "popKvinner") {
-                        trTags["popKvinner"].onmouseover = function () {graphObjects(id, 2), showRedText("popKvinner")}
-                        trTags["popKvinner"].onmouseout = function () {mouseOut("popKvinner")}
-                    }
-                }
+            } else if (trTags[i].id === "popKvinner") {
+                trTags["popKvinner"].onmouseover = function () {graphObjects(id, 2), showDarkBackground("popKvinner")}
+                trTags["popKvinner"].onmouseout = function () {mouseOut("popKvinner")}
             }
-
-               mouseOverFunc(id);
-            
-                function showRedText(rowID) {
-                    document.getElementById(rowID).style.color = "red"
-                };
-
-                function mouseOut(rowID) {
-                    document.getElementById(rowID).style.color = "#24201D";
-                    let node = document.getElementById("graphTotal");
-                    if (node.parentNode){
-                        node.parentNode.removeChild(node)
-                        mouseOverFunc(id);
-                    }
-                };
-           
-                
-                
-                // Append item to placeholder
-                //placeholder[0].appendChild(currentDetailsObject);
-                //placeholder[0].appendChild(historicalDetailsObject);
-
-            //mapDataGraphTotal(totalPopKeys, totalPop);
-            //mapDataGraphGenders(totalPopKeys, malePop, femalePop)
-            //mapDataGraphTotal(totalEmpKeys, totalEmp)
-
-            //drawGraph(totalPopulation, years);
-        } else {
-            alert(`${id} er ikkje eit gyldig kommunenummer`);
         }
     }
 
-
-    let ids = befolkning.getIDs();
-        for (let id of ids) {
-            details.addMunicipal(
-                id,
-                befolkning.getInfo(id),
-                sysselsatte.getInfo(id),
-                utdanning.getInfo(id)
-            );
-        }  
-        
-
-        const detailsForm = document.getElementById("detailsForm");
-    // Callback when clicking button
-        detailsForm.detailsButton.onclick = detailsFormSubmit;
-    // Callback when pressing enter while focused on form
-        detailsForm.onsubmit = detailsFormSubmit;
-        
-        
-
-    };
-    /* All data is loaded at this point */
-
-    //draws the line from one element to another from the array
     
-    //Population, Education and Employment objects to be drawn
+        function showDarkBackground(rowID) {
+            let x = document.getElementById("graphTotal")
+            x.style.visibility = "visible";
+            document.getElementById(rowID).style.backgroundColor = "#374C70"
+            document.getElementById(rowID).style.color = "#F4F4F4"
+        };
+
+        function mouseOut(rowID) {
+            rowID = rowID
+            document.getElementById(rowID).style.color = "#24201D";
+            let node = document.getElementById("graphTotal");
+            let table = document.getElementById(rowID)
+            let targetID = table.querySelectorAll('tr > td:first-child');
+
+            for (let i = 0; i <targetID.length; i++){
+                let td = targetID[i]
+                if (td.innerHTML.trim() === "Menn"){
+                    document.getElementById(rowID).style.backgroundColor = "#DADEE5";
+                   
+                } else {
+                    document.getElementById(rowID).style.backgroundColor = "#F4F4F4";
+                }
+            }
+            if (node.parentNode){
+                node.parentNode.removeChild(node)
+                mouseOverFunc(id);
+            }
+        };
+
+       
+    
+
     function graphObjects(id, arrayIndex) {
         let municipalData = details.getHistorical(id);
         arrayIndex = arrayIndex
@@ -174,16 +104,9 @@ utdanning.onload = function () {
     
             xAxisKeys = xAxisKeys
             totalArray = totalArray;
-                
-            /*let empMaxValue = maxArray(totalEmp);
-            let empMinValue = minArray(femaleEmp);
-            let increment = incrementFunc();*/
             const detailsForm1 = document.getElementById("detailsForm");
             id = detailsForm1.detailsInput.value
             let xAxisValues;
-                
-            
-            //let higherEdu = Object.values(municipalData.education.number['03a'].Kvinner
         
         
         function xAxisArray(xAxisKeys, totalArray) {
@@ -205,13 +128,29 @@ utdanning.onload = function () {
         function maxArray(totalArray) {
             let arrayMax = Math.max.apply(Math, totalArray)
             
-            if (arrayMax > 1000) {
-                arrayMaxInt = Math.round(arrayMax/1200) * 1200;
-                maxVal = arrayMaxInt + 1200;
+            if (arrayMax > 100000) {
+                arrayMaxInt = Math.round(arrayMax/1000) * 1000;
+                maxVal = arrayMaxInt + 10000;
                 minArray(totalArray);
+
+            } else if (arrayMax < 100000 && arrayMax > 50000) {
+                arrayMaxInt = Math.round(arrayMax/1000) * 1000;
+                maxVal = arrayMaxInt + 5000;
+                minArray(totalArray);
+
+            } else if (arrayMax < 50000 && arrayMax > 10000) {
+                arrayMaxInt = Math.round(arrayMax/1000) * 1000;
+                maxVal = arrayMaxInt + 2000;
+                minArray(totalArray);
+
+            } else if (arrayMax < 10000 && arrayMax > 999) {
+                arrayMaxInt = Math.round(arrayMax/1000) * 1000;
+                maxVal = arrayMaxInt + 1000;
+
             } else if (arrayMax < 1000 && arrayMax > 99) {
                 arrayMaxInt = Math.round(arrayMax/100) * 100;
                 maxVal = arrayMaxInt + 100;
+
             } else {
                 maxVal = 100;
             }
@@ -224,12 +163,25 @@ utdanning.onload = function () {
             arrayMin = Math.min.apply(Math, arrayMin);
             
             if (arrayMin > 100000) {
-            arrayMinInt = Math.round(arrayMin/1200)*1200;
+            arrayMinInt = Math.round(arrayMin/1000)*1000;
             minVal = arrayMinInt - 10000;
-        
+
+            } else if (arrayMin > 50000 && arrayMin <100000) {
+                arrayMinInt = Math.round(arrayMin/1000)*1000;
+                minVal = arrayMinInt - 5000;
+
+            } else if (arrayMin < 50000 && arrayMin > 10000) {
+                arrayMinInt = Math.round(arrayMin/1000)*1000;
+                minVal = arrayMinInt - 2000;
+
+            } else if (arrayMin < 10000 && arrayMin > 999) {
+                arrayMinInt = Math.round(arrayMin/1000)*1000;
+                minVal = arrayMinInt - 1000;
+
             } else if (arrayMin < 1000 && arrayMin > 100) {
                 arrayMinInt = Math.round(arrayMin/100)*100;
                 minVal = arrayMinInt - 100;
+
             } else {
                 minVal = 0;
             }
@@ -271,7 +223,7 @@ utdanning.onload = function () {
         
         //plots each of the points(elements) in the Array to a line
             function plotData(toPlot) {
-                ctx.lineWidth = 3;
+                ctx.lineWidth = 5;
                 ctx.beginPath();
                 ctx.moveTo(0, toPlot[0]);
                 for (i = 1; i < rectangles; i++) {
@@ -324,14 +276,8 @@ utdanning.onload = function () {
             ctx.scale(1, -1 * scaleForY);
         
         
-            ctx.strokeStyle = "#006400";
+            ctx.strokeStyle = "red";
             plotData(plotTotal);
         
         };
-
-    
-
-    
    };
-  
-befolkning.load();
