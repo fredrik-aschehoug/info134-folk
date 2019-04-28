@@ -366,9 +366,18 @@ input[type="radio"].toggle:checked + label:after {
   z-index: 1;
 }
 
-#graphTotal {
+.canvasGraph {
   visibility: hidden;
   background-color: #DADEE5; 
-  padding-bottom: 1em; 
+  padding-bottom: 1em;
+  display: inline-block; 
   padding-left: 0.5em; 
+  margin-left: -5% !important;
+  
+}
+
+.canvasGraph.transition{
+  transition: 1s;
+  margin-left: 0% !important;
+  
 }

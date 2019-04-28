@@ -8,36 +8,52 @@
         canvas.height = 250;
         document.getElementById("graph").appendChild(canvas)
 
+        let can = document.getElementById('graphTotal')
+        can.classList.add('canvasGraph')
+
         let trTags = document.getElementsByTagName("tr");
             for (let i = 0; i < trTags.length; i++) {
 
             if (trTags[i].id === "popTotal") {
-                trTags["popTotal"].onmouseover = function () {graphObjects(id, 0), showDarkBackground("popTotal")}
-                trTags["popTotal"].onmouseout = function () {mouseOut("popTotal")}
+                trTags["popTotal"].onmouseover = function () {graphObjects(id, 0), showDarkBackground("popTotal"), graphAnimation(can);}
+                trTags["popTotal"].onmouseout = function () {mouseOut("popTotal", can)}
                
 
             } else if (trTags[i].id === "popMenn") {
-                trTags["popMenn"].onmouseover = function () {graphObjects(id, 1), showDarkBackground("popMenn")}
-                trTags["popMenn"].onmouseout = function () {mouseOut("popMenn")}
+                trTags["popMenn"].onmouseover = function () {graphObjects(id, 1), showDarkBackground("popMenn"), graphAnimation(can)}
+                trTags["popMenn"].onmouseout = function () {mouseOut("popMenn", can)}
                 
             
             } else if (trTags[i].id === "popKvinner") {
-                trTags["popKvinner"].onmouseover = function () {graphObjects(id, 2), showDarkBackground("popKvinner")}
-                trTags["popKvinner"].onmouseout = function () {mouseOut("popKvinner")}
+                trTags["popKvinner"].onmouseover = function () {graphObjects(id, 2), showDarkBackground("popKvinner"), graphAnimation(can)}
+                trTags["popKvinner"].onmouseout = function () {mouseOut("popKvinner", can)}
             }
         }
     };
 
+
+        function graphAnimation(className) {
+            canvas = className
+            canvas.classList.add('transition')
+            let compStyle = window.getComputedStyle(canvas), 
+                marginLeft = compStyle.getPropertyValue('margin-left');
+                canvas.style.marginLeft = marginLeft;
+                
+
+        }
     
-        function showDarkBackground(rowID) {
+        function showDarkBackground(rowID, className) {
             let x = document.getElementById("graphTotal")
             x.style.visibility = "visible";
             document.getElementById(rowID).style.backgroundColor = "#374C70"
             document.getElementById(rowID).style.color = "#F4F4F4"
         };
 
-        function mouseOut(rowID) {
+        function mouseOut(rowID, className) {
             rowID = rowID
+            canvas = className
+
+            canvas.classList.remove('transition')
             document.getElementById(rowID).style.color = "#24201D";
             let node = document.getElementById("graphTotal");
             let table = document.getElementById(rowID)
@@ -234,10 +250,6 @@
                 ctx.stroke();
             }
             
-            items = []
-            for (let i = 0; i <dotYears.length; i++){
-                items.push ([dotYears[i], plotTotal[i]])
-            }
 
             //Dynamic values based on Array content for dataset
             let columnSize = 28;
