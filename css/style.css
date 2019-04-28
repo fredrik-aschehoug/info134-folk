@@ -272,10 +272,11 @@ div.detailsOutput:nth-child(2) > table:nth-child(3){
 .tableToggle {
   border: 3px solid #1a1a1a;
   display: inline-block;
-  padding: 10px;
+  padding: 0.3em;
   position: relative;
   text-align: center;
   transition: background 600ms ease, color 600ms ease;
+  font-size: 0.8em;
 }
 
 input[type="radio"].toggle {
@@ -295,13 +296,11 @@ input[type="radio"].toggle + label:after {
   height: 100%;
   position: absolute;
   top: 0;
-  transition: left 200ms cubic-bezier(0.77, 0, 0.175, 1);
+  transition: left 200ms cubic-bezier(1, .11, .93, 1);
   width: 100%;
   z-index: -1;
 }
-input[type="radio"].toggle.toggle-left + label {
-  border-right: 0;
-}
+
 input[type="radio"].toggle.toggle-left + label:after {
   left: 100%;
 }

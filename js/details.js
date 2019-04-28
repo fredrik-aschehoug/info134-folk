@@ -3,15 +3,14 @@
  * Municipal name, municipal number, population, employment and
  * education. Both in count and percentage.
  * @constructor
- * @param {Number} currentYear - The current year. Used in .getCurrent().
+ * @param {number} currentYear The current year. Used in .getCurrent().
  */
 function Details(currentYear) {
     this.elements = {};
     this.currentYear = currentYear;
     /**
-     * @method
-     * @param {String} id   - Municipal ID
-     * @returns {Object}    - Current stats for municipal
+     * @param {string} id Municipal ID
+     * @returns {object} Current stats for municipal
      */
     this.getCurrent = function (id) {
         // Define the object to return
@@ -59,20 +58,18 @@ function Details(currentYear) {
         return current;
     };
     /**
-     * @method
-     * @param {String} id   - Municipal ID
-     * @returns {Object}    - Historical stats for municipal
+     * @param {string} id Municipal ID
+     * @returns {object} Historical stats for municipal
      */
     this.getHistorical = function (id) {
         return this.elements[id];
     };
     /**
      * Store all relevant information of a municipal in this.elements using "kommunenummer" as the key
-     * @method
-     * @param {String} id           - The "kommunenummer" to add
-     * @param {Object} population   - The returned value from Population.getInfo()
-     * @param {Object} employment   - The returned value from Employment.getInfo()
-     * @param {Object} education    - The returned value from Education.getInfo()
+     * @param {string} id The "kommunenummer" to add
+     * @param {object} population The returned value from Population.getInfo()
+     * @param {object} employment The returned value from Employment.getInfo()
+     * @param {object} education The returned value from Education.getInfo()
      */
     this.addMunicipal = function (id, population, employment, education) {
         // Define the object to return
@@ -88,10 +85,8 @@ function Details(currentYear) {
         this.elements[id] = element;
     };
     /**
-     * @method 
-     * @param {Object} population
-     * @returns {Object} - Population stats. Amount in number and percentage.
-     * 
+     * @param {object} population
+     * @returns {object} Population stats. Amount in number and percentage.
      */
     this.addPopulation = function (population) {
         // Define the object to return
@@ -123,10 +118,9 @@ function Details(currentYear) {
         return populationElement;
     };
     /**
-     * @method 
-     * @param {Object} employment
-     * @param {Object} population
-     * @returns {Object} Employment level stats. Amount in number and percentage.
+     * @param {object} employment
+     * @param {object} population
+     * @returns {object} Employment level stats. Amount in number and percentage.
      */
     this.addEmployment = function (employment, population) {
         // Define the object to return
@@ -161,10 +155,9 @@ function Details(currentYear) {
         return employmentElement;
     };
     /**
-     * @method 
-     * @param {Object} education
-     * @param {Object} population
-     * @returns {Object} Education level stats. Amount in number and percentage.
+     * @param {object} education
+     * @param {object} population
+     * @returns {object} Education level stats. Amount in number and percentage.
      */
     this.addEducation = function (education, population) {
         let educationElement = {
@@ -172,11 +165,14 @@ function Details(currentYear) {
             number: {}
         };
         /**
-         * Calculate new data (number)
-         * Using population because there are more data in education, 
-         * that way we only get the overlapping years
-         * @function
-         */
+        * Calculate new data (number)
+        * Using population because there are more data in education, 
+        * that way we only get the overlapping years
+        * @param {object} population 
+        * @param {string} eduLevel Education level code
+        * @param {object} education 
+        * @param {object} educationElement defined in parent function
+        */
         function calculateEducation(population, eduLevel, education, educationElement) {
             for (let year in population.Kvinner) {
                 // Find population based on percentage
@@ -214,6 +210,5 @@ function Details(currentYear) {
             calculateEducation(population, eduLevel, education, educationElement);
         }
         return educationElement;
-    };
-    
+    };  
 }
