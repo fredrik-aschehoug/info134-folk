@@ -3,8 +3,7 @@
  */
 function createComparison(id1, id2) {
     //TODO
-    createDetails(id1);
-    createDetails(id2);
+    alert(`It works! ${id1} and ${id2}`)
 
     /* 
     Først må bruker fylle inn begge søkefeltene med gyldige kommunenr. 
