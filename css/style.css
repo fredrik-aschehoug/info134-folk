@@ -86,7 +86,7 @@ dataa presenterast horisontalt*/
 }
 
 .center{
-  top: 50px;
+  top: 40px;
   bottom:50px;
   left: 50%;
   transform: translate(-50%);
@@ -97,6 +97,7 @@ dataa presenterast horisontalt*/
   margin: auto;
   padding: 10px;
 }
+
 .hovud{
   visibility: hidden;
   display: none;
@@ -114,6 +115,7 @@ dataa presenterast horisontalt*/
   padding-left: 0;
   padding-right: 0;
   margin: auto;
+  width: 900px;
 
 }
 .introduksjon h1{
@@ -144,7 +146,7 @@ tr:nth-child(even) {
 /*--------------------OVERSIKT--------------------*/
 .oversikt table {
   border-collapse: collapse;
-  width:100%;
+  width:900px;
 }
 
 .oversikt th,
@@ -184,6 +186,7 @@ tr:nth-child(even) {
   width: 248px;
   height: auto;
   margin: auto;
+  margin-top: 10px;
 }
 
 #detailsInput{
@@ -218,14 +221,11 @@ tr:nth-child(even) {
   width: 300px;
   background-color: #DADEE5;
 }
-.sidenav ul{
 
-}
 .sidenav > li:nth-child(1){}
 .sidenav li a{
   text-decoration: none;
   color: black;
-
 }
 .sidenav li{
   padding: 0.5em;
@@ -278,6 +278,7 @@ tr:nth-child(even) {
   padding-right: auto;
   height: 40px;
 }
+
 .detailsOutput th{
   width:80px;
 }
@@ -305,10 +306,6 @@ tr:nth-child(even) {
   background-color: #DADEE5;
 }
 
-.detailsOutput{
-  margin-top:1em;
-}
-
 .populationTable, .employmentTable, .educationTable, .education11Table, .education12Table, .education03aTable, .education04aTable{
   visibility: hidden;
   display: none;
@@ -332,7 +329,7 @@ tr:nth-child(even) {
 .activeTable{
   visibility: visible;
   display:block;
-  }
+}
 
 
 /*--------TableToggle----------*/
@@ -393,6 +390,7 @@ input[type="radio"].toggle:checked + label:after {
   background-color: #E3E0DB;
   width: 100%;
   height: auto;
+  margin-top: 10px;
 }
 
 #comparisonInput1,
