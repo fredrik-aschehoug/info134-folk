@@ -52,7 +52,11 @@ function utdanningCallback() {
     comparisonForm.comparisonButton.onclick = () => comparisonFormSubmit(ids);
     // Callback when pressing enter while focused on form
     detailsForm.onsubmit = () => detailsFormSubmit(ids);
-    comparisonForm.onsubmit = () => comparisonFormSubmit(ids);
+    comparisonForm.addEventListener("keydown", key => {
+        if (key.keyCode === 13) {
+            comparisonFormSubmit(ids);
+        }
+    });
 }
 /**
  * Get value from input and create details view.
@@ -99,7 +103,7 @@ function comparisonFormSubmit(ids) {
         createComparison(id1, "1567");
     } else if (!ids.includes(id1) && !ids.includes(id2)) {
         alert(`Verken ${id1} eller ${id2} er eit gyldig kommunenummer`);
-    }else if (!ids.includes(id1)) {
+    } else if (!ids.includes(id1)) {
         alert(`${id1} er ikkje eit gyldig kommunenummer`);
     } else if (!ids.includes(id2)) {
         alert(`${id2} er ikkje eit gyldig kommunenummer`);
