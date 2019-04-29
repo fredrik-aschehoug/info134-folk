@@ -379,7 +379,6 @@ function createTableBody(desciptions, tableHeaders, historicalDetails, tbody, fo
                         } else {
                             data = historicalDetails[type][format].Kvinner[year];
                         }
-                        tr.id = "popKvinner";
                         break;
                     case "Menn":
                         if (eduType) {
@@ -387,7 +386,6 @@ function createTableBody(desciptions, tableHeaders, historicalDetails, tbody, fo
                         } else {
                             data = historicalDetails[type][format].Menn[year];
                         }
-                        tr.id = "popMenn";
                         break;
                     case "Begge kjønn":
                         if (eduType) {
@@ -395,7 +393,6 @@ function createTableBody(desciptions, tableHeaders, historicalDetails, tbody, fo
                         } else {
                             data = historicalDetails[type][format].total[year];
                         }
-                        tr.id = "popTotal";
                         break;
                 }
             }

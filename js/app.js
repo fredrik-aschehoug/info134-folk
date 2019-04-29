@@ -70,6 +70,7 @@ function detailsFormSubmit(ids) {
     // Check if valid ID
     if (ids.includes(id)) {
         createDetails(id);
+        getAll('.mouseOver', '.activeTable')
         mouseOverFunc(id);
     } else if (id === "5061") {
         alert(`Rindal (${id}) har ikkje noko statistikk, du vil bli omdirigert til Rindal (-2018) (1567)`);
