@@ -7,9 +7,9 @@ let ids; // Will be assigned array of all municipal ID's
  */
 getURL = (id) => `http://wildboy.uib.no/~tpe056/folk/${id}.json`;
 // Instanciate objects
-const befolkning = new Population(getURL("104857"));
-const sysselsatte = new Employment(getURL("100145"));
-const utdanning = new Education(getURL("85432"));
+const befolkning = new Dataset(getURL("104857"));
+const sysselsatte = new Dataset(getURL("100145"));
+const utdanning = new Dataset(getURL("85432"));
 const details = new Details(2017);
 // Assign callback functions
 befolkning.onload = befolkningCallback;

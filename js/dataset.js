@@ -2,7 +2,7 @@
  * @constructor
  * @param {string} url wildboy dataset url
  */
-function Population(url) {
+function Dataset(url) {
     this.url = url;
     this.onload = null;
     this.elements = null;
@@ -28,7 +28,7 @@ function Population(url) {
     };
     /**
      * @param {string} municipalID The id of the municipal to get info from
-     * @returns {object} Population information about the municipal
+     * @returns {object} Information about the municipal
      */
     this.getInfo = function (municipalID) {
         for (let element in this.elements) {
@@ -57,7 +57,7 @@ function Population(url) {
                     this.onload();
                 }
             }
-        }).bind(this); // Bind the callback's 'this' to the value of Population's 'this'
+        }).bind(this); // Bind the callback's 'this' to the value of Dataset's 'this'
         xhr.send();
     };
 }
