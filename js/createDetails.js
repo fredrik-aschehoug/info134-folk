@@ -399,9 +399,13 @@ function createDetails(id) {
         const populationHeader = createHeader("Befolkning:", "subHeader");
         const employmentHeader = createHeader("Sysselsetting:", "subHeader");
         const mainEducationHeader = createHeader("Høyere Utdanning:", "subHeader");
-        const consolidatedEducationHeader = createHeader("All høyere Utdanning:", "subHeader2");
+        const educationHeader12 = createHeader("All høyere Utdanning:", "subHeader2");
+        const educationHeader11 = createHeader("Fagskolenivå:", "subHeader2");
+        const educationHeader03a = createHeader("Universitets- og høgskolenivå kort", "subHeader2");
+        const educationHeader04a = createHeader("Universitets- og høgskolenivå lang", "subHeader2");
         ////////////////// todo
         function createHistoricalTable(type, eduType) {
+            const tables = document.createElement("div");
             const numberDesciptions = ["Kvinner", "Menn", "Begge kjønn"];
             let percentDesciptions;
             if (type === "population") {
@@ -422,33 +426,32 @@ function createDetails(id) {
             numberTable.classList.add(`${type}Table`, "activeTable");
             percentTable.classList.add(`${type}Table`);
             const tableToggle = createTableToggle(toggleCallback, `${type}Table`, type);
-            const tables = {
-                number: numberTable, 
-                percent: percentTable, 
-                tableToggle: tableToggle
-            };
+            appendElements(tables, tableToggle, numberTable, percentTable);
             return tables;
         }
         const populationTables = createHistoricalTable("population");
         const employmentTables = createHistoricalTable("employment");
-        const educationTables = createHistoricalTable("education", "12");
+        const educationTables12 = createHistoricalTable("education", "12");
+        const educationTables11 = createHistoricalTable("education", "11");
+        const educationTables03a = createHistoricalTable("education", "03a");
+        const educationTables04a = createHistoricalTable("education", "04a");
         // Append items to return object
         appendElements(
             htmlObject,
             header,
             populationHeader,
-            populationTables.tableToggle,
-            populationTables.number,
-            populationTables.percent,
+            populationTables,
             employmentHeader,
-            employmentTables.tableToggle,
-            employmentTables.number,
-            employmentTables.percent,
+            employmentTables,
             mainEducationHeader,
-            consolidatedEducationHeader,
-            educationTables.tableToggle,
-            educationTables.number,
-            educationTables.percent
+            educationHeader12,
+            educationTables12,
+            educationHeader11,
+            educationTables11,
+            educationHeader03a,
+            educationTables03a,
+            educationHeader04a,
+            educationTables04a
         );
         return htmlObject;
     }

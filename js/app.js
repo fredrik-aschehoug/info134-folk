@@ -64,6 +64,11 @@ function detailsFormSubmit(ids) {
     if (ids.includes(id)) {
         createDetails(id);
         mouseOverFunc(id);
+    } else if (id === "5061") {
+        alert(`Rindal (${id}) har ikkje noko statistikk, du vil bli omdirigert til Rindal (-2018) (1567)`);
+        createDetails("1567");
+        mouseOverFunc("1567");
+
     } else {
         alert(`${id} er ikkje eit gyldig kommunenummer`);
     }

@@ -226,19 +226,27 @@ tr:nth-child(even) {
 
 .detailsOutput table {
   border-collapse: collapse;
-  width:100%;
+  width:900px;
+  padding:auto;
+  margin: auto;
 }
 
 .detailsOutput th,
 .detailsOutput td {
   text-align: left;
-  padding: 8px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-left: auto;
+  padding-right: auto;
+  height: 40px;
 }
-div.detailsOutput:nth-child(2) > table:nth-child(3){
-  width:100%;
+.detailsOutput th{
+  width:80px;
 }
+
 .detailsOutput table{
   z-index: 0;
+  padding-top: 10px;
 }
 .detailsOutput thead{
   background-color: #374C70;
@@ -267,6 +275,11 @@ div.detailsOutput:nth-child(2) > table:nth-child(3){
   visibility: hidden;
   display: none;
 }
+
+.detailsOutput{
+
+}
+
 /*--------------------active--------------------*/
 .activeTable{
   visibility: visible;
@@ -276,7 +289,7 @@ div.detailsOutput:nth-child(2) > table:nth-child(3){
 
 /*--------TableToggle----------*/
 .tableToggle {
-  border: 3px solid #1a1a1a;
+  border: 1px solid #1a1a1a;
   display: inline-block;
   padding: 0.3em;
   position: relative;
@@ -296,6 +309,7 @@ input[type="radio"].toggle + label:hover {
   background: none;
   color: #374C70;
 }
+
 input[type="radio"].toggle + label:after {
   background: #374C70;
   content: "";
@@ -310,9 +324,6 @@ input[type="radio"].toggle + label:after {
 input[type="radio"].toggle.toggle-left + label:after {
   left: 100%;
 }
-input[type="radio"].toggle.toggle-right + label {
-  margin-left: -5px;
-}
 input[type="radio"].toggle.toggle-right + label:after {
   left: -100%;
 }
@@ -324,6 +335,7 @@ input[type="radio"].toggle:checked + label {
 input[type="radio"].toggle:checked + label:after {
   left: 0;
 }
+
 
 /*--------------------SAMANLIKNING--------------------*/
 /*--------------------SEARCH--------------------*/
@@ -374,16 +386,16 @@ input[type="radio"].toggle:checked + label:after {
 
 .canvasGraph {
   visibility: hidden;
-  background-color: #DADEE5; 
+  background-color: #DADEE5;
   padding-bottom: 1em;
-  display: inline-block; 
-  padding-left: 0.5em; 
+  display: inline-block;
+  padding-left: 0.5em;
   margin-left: -5% !important;
-  
+
 }
 
 .canvasGraph.transition{
   transition: 1s;
   margin-left: 0% !important;
-  
+
 }
