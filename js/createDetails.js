@@ -7,13 +7,23 @@ function createDetails(id) {
      * Creates a HTML <header> element with text.
      * @param {string} headerText The text to use in the header element
      * @param {string} className Class to assign to the element
+     * @param {string} headerName The name to assign to the element
      * @returns {HTMLElement} Header element with specified text and class.
      */
-    function createHeader(headerText, className) {
+    function createHeader(headerText, className, headerName) {
         const headerNode = document.createElement("header");
-        const textNode = document.createTextNode(headerText);
-        headerNode.appendChild(textNode);
+        const hNode = document.createElement("h3");
         headerNode.classList.add(className);
+        const textNode = document.createTextNode(headerText);
+        if (headerName) {
+            const a = document.createElement("a");
+            a.name = headerName;
+            a.appendChild(textNode);
+            hNode.appendChild(a);
+        } else {
+            hNode.appendChild(textNode);
+        }
+        headerNode.append(hNode);
         return headerNode;
     }
     /**
@@ -398,13 +408,13 @@ function createDetails(id) {
         const htmlObject = document.createElement("div");
         const headerText = `Historisk statistikk for ${currentDetails.navn}:`;
         const header = createHeader(headerText, "mainHeader");
-        const populationHeader = createHeader("Befolkning:", "subHeader");
-        const employmentHeader = createHeader("Sysselsetting:", "subHeader");
-        const mainEducationHeader = createHeader("Høyere Utdanning:", "subHeader");
-        const educationHeader12 = createHeader("All høyere Utdanning:", "subHeader2");
-        const educationHeader11 = createHeader("Fagskolenivå:", "subHeader2");
-        const educationHeader03a = createHeader("Universitets- og høgskolenivå kort", "subHeader2");
-        const educationHeader04a = createHeader("Universitets- og høgskolenivå lang", "subHeader2");
+        const populationHeader = createHeader("Befolkning:", "subHeader", "befolkning");
+        const employmentHeader = createHeader("Sysselsetting:", "subHeader", "sysselsetting");
+        const mainEducationHeader = createHeader("Høyere Utdanning:", "subHeader", "utdanning");
+        const educationHeader12 = createHeader("All høyere Utdanning:", "subHeader2", "utdanning12");
+        const educationHeader11 = createHeader("Fagskolenivå:", "subHeader2", "utdanning11");
+        const educationHeader03a = createHeader("Universitets- og høgskolenivå kort", "subHeader2", "utdanning03a");
+        const educationHeader04a = createHeader("Universitets- og høgskolenivå lang", "subHeader2", "utdanning04a");
         ////////////////// todo
         function createHistoricalTable(type, eduType) {
             eduType = eduType || "";
