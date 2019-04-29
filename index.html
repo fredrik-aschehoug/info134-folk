@@ -3,7 +3,9 @@
 
 <head>
   <meta charset="utf-8">
-  <title></title>
+  <title>Folk</title>
+
+  <link rel="shortcut icon" type="image/icon" href="images/favicon.png"/>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" media="screen" href="css/style.css">
   <script src="js/dataset.js"></script>
@@ -26,32 +28,49 @@
   </nav>
 
   <main id="hovudinnhald" class="hovudinnhald">
-    <div class="hovud introduksjon active">
+    <div class="hovud introduksjon center active">
       <h1>Folk</h1>
-      <p>
-        På denne siden kan du se data om Norges befolkning. Bruk navigasjonsbaren til å navigere i de ulike sidene.
-        Vi tar forbehold om eventuelle feil i data. All data er henta fra Statistisk Sentralbyrå.
-        <i>Kilde: <a href="https://www.ssb.no/">www.ssb.no</a></i>
-        <i></i>
-        <h5>Oversikt:</h5>
-        <p>Viser en oversikt over kommunene i Norge med kommunenummer og befolkning.</p>
-        <h5>Detaljar:</h5>
-        <p>Viser detaljerte data om en kommune. Her benyttes kommunenr. til søking.</p>
-        <h5>Samanlikning:</h5>
-        <p>Sammenligner data mellom to kommuner.</p>
-      </p>
+      <article>
+        <p>
+          På denne siden kan du se data om Norges befolkning. Bruk navigasjonsbaren til å navigere i de ulike sidene.
+          Vi tar forbehold om eventuelle feil i data. All data er henta fra Statistisk Sentralbyrå.
+          <i>Kilde: <a href="https://www.ssb.no/">www.ssb.no</a></i>
+          <i></i>
+          <h5>Oversikt:</h5>
+          <p>Viser en oversikt over kommunene i Norge med kommunenummer og befolkning.</p>
+          <h5>Detaljar:</h5>
+          <p>Viser detaljerte data om en kommune. Her benyttes kommunenr. til søking.</p>
+          <h5>Samanlikning:</h5>
+          <p>Sammenligner data mellom to kommuner.</p>
+        </p>
+      </article>
     </div>
-    <div class="hovud oversikt"></div>
+    <div class="hovud oversikt center"></div>
     <div class="hovud detaljar">
-      <form id="detailsForm" action="#">
-        <input id="detailsInput" type="text" placeholder="Søk kommunenummer" required>
-        <input id="detailsButton" type="button" value="">
-      </form>
-      <div class="detailsOutput"></div>
+      <!--Sidenavigasjon-->
+      <div>
+        <ul class="sidenav">
+          <li><a href="#toppen">Til toppen<a></li>
+          <li><a href="#befolkning">Befolkning<a></li>
+          <li><a href="#sysselsetting">Sysselsetting<a></li>
+          <li><a href="#utdanning">Høyere Utdanning<a></li>
+          <li><a href="#utdanning12">All høyere Utdanning<a></li>
+          <li><a href="#utdanning11">Fagskolenivå<a></li>
+          <li><a href="#utdanning03a">Universitets- og høgskolenivå kort<a></li>
+          <li><a href="#utdanning04a">Universitets- og høgskolenivå lang<a></li>
+        </ul>
+      </div>
+      <div class="center">
+        <form id="detailsForm" action="#">
+          <input id="detailsInput" type="text" placeholder="Søk kommunenummer" required>
+          <input id="detailsButton" type="button" value="">
+        </form>
+        <div class="detailsOutput"></div>
+      </div>
       <div id="graph"></div>
     </div>
-    
-    <div class="hovud samanlikning">
+
+    <div class="hovud samanlikning center">
       <form id="comparisonForm" action="#">
         <input id="comparisonInput1" type="text" placeholder="Samanlikn kommunenummer" required>
         <input id="comparisonButton" type="button" value="">
