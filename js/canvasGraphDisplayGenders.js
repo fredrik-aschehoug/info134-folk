@@ -4,8 +4,8 @@
     function mouseOverFunc(id) {
         let canvas = document.createElement("canvas");
         canvas.id = "graphTotal"
-        canvas.width = 600;
-        canvas.height = 400;
+        canvas.width = 500;
+        canvas.height = 300;
         document.getElementById("graph").appendChild(canvas)
 
         let can = document.getElementById('graphTotal')
@@ -14,9 +14,20 @@
         let trTags = document.getElementsByTagName("tr");
 
         let elementIDmap = {
-            "popTotal":0,
+            "popKvinner":0,
             "popMenn":1,
-            "popKvinner":2,
+            "popTotal": 2,
+            "popKvinnerPercent": 3,
+            "popMennPercent" : 4,
+            "empKvinner" : 5,
+            "empMenn" : 6,
+            "empTotal" : 7,
+            "empKvinnerPercent" : 8,
+            "empMennPercent" : 9,
+            "empTotalPercent" : 10,
+            "highEduTotal" : 11,
+            "highEduMenn" : 12,
+            "highEduKvinner" : 13,
         }
 
         for (let i = 0; i < trTags.length;i++) {
@@ -28,6 +39,21 @@
         }
     };
 
+
+        function getAll(){
+            let test = document.querySelectorAll('.mouseOver')
+            console.log(test)
+            elementIdArray = ["popKvinner", "popMenn", "popTotal", "popKvinnerPercent", 
+                            "popMennPercent", "empKvinner", "empMenn", "empTotal", 
+                            "empKvinnerPercent", "empMennPercent", "empTotalPercent", 
+                            "highEduKvinner", "highEduMenn", "highEduTotal", 
+                            "highEduKvinnerPercent", "highEduMennPercent", "HighEduTotalPercent"]
+            for (let i = 0; i <test.length; i++) {
+                    test[i].id = elementIdArray[i]
+                }
+            };
+           
+        
 
         function graphAnimation(className) {
             canvas = className
@@ -70,7 +96,6 @@
         };
 
        
-    
         function graphObjects(id, arrayIndex) {
             let municipalData = details.getHistorical(id);
             arrayIndex = arrayIndex
@@ -99,8 +124,17 @@
             }, {});
         }
 
-            let array = [municipalData.population.number.total, municipalData.population.number.Menn, municipalData.population.number.Kvinner, 
-            municipalData.employment.number.total, municipalData.employment.number.Menn, municipalData.employment.number.Kvinner]
+            let array = [municipalData.population.number.Kvinner, 
+                        municipalData.population.number.Menn, 
+                        municipalData.population.number.total,
+                        municipalData.population.percent.Kvinner,
+                        municipalData.population.percent.Menn, 
+                        municipalData.employment.number.Kvinner, 
+                        municipalData.employment.number.Menn, 
+                        municipalData.employment.number.total,
+                        municipalData.employment.percent.Kvinner, 
+                        municipalData.employment.percent.Menn, 
+                        municipalData.employment.percent.total]
     
             let educationObjTot = highEduSum(totalEduCat11, totalEduCat03a, totalEduCat04a)
             let educationObjMale = highEduSum(maleEduCat11, maleEduCat03a, maleEduCat04a)
@@ -125,7 +159,8 @@
                     xAxisValues.reverse();
                     xAxisValues.length = 12;
                     xAxisValues.reverse();
-                } else {
+                } else if (xAxisValues.length === 11) {
+                    xAxisValues.push("2018")
                 }
                 return xAxisValues.unshift("")
                 };
@@ -135,26 +170,27 @@
         
 
             function minMaxArray(totalArray) {
-                let arrayMax = Math.max.apply(Math, totalArray)
-                arrayMaxInt = Math.round(arrayMax/1000) * 1000;
-                maxVal=arrayMaxInt+(Math.round((arrayMaxInt*0.025)/1000) * 1000);
-                let arrayMin = totalArray
-        
-                arrayMin = Math.min.apply(Math, arrayMin);
-                arrayMinInt = Math.round(arrayMin/1000)*1000;
-                arrayMaxInt = Math.round(arrayMax/1000) * 1000;
-                arrayPad = (Math.round(((arrayMaxInt)*0.025)/1000) * 1000);
-                minVal=arrayMinInt-arrayPad;
-
-                total = (maxVal - minVal) /10
-                if (total > 100 ) {
-                    value = Math.round(total/10)*10;
-                    incrementVal = value;
-                } else {
-                    incrementVal = 10;
+                let i = 0;
+                while (i < totalArray.length) {
+                    totalArray[i] = totalArray[i] /1000;
+                    i++
                 }
 
+                let arrayMax = Math.max.apply(Math, totalArray)
+                let arrayMin = Math.min.apply(Math, totalArray);
+                arrayMaxInt = Math.ceil(arrayMax/10) * 10;
+                maxVal=arrayMaxInt+(Math.ceil((arrayMaxInt*0.05)/10) * 10);
+
+                arrayMinInt = Math.round(arrayMin/10)*10;
+                minVal=arrayMinInt-(Math.round((arrayMaxInt)*0.05/10)*10);
+                minVal = Math.round(minVal/10)*10;
+                if (maxVal === minVal) {
+                    minVal = maxVal - 20;
+                }
+                
+                let incrementVal = (maxVal - minVal) /10;
                 let minMaxObj = {
+                    "yAxisArray": totalArray,
                     "minValue": minVal,
                     "maxValue": maxVal,
                     "increment": incrementVal
@@ -163,29 +199,27 @@
             }       
       
             let arrObjekt = minMaxArray(totalArray)
-            drawGraphTotal(xAxisValues, arrObjekt, totalArray);
-        
+            drawGraphTotal(xAxisValues, arrObjekt);
         };
         
         
-
-        
-        function drawGraphTotal(xAxisVal, arrayObj, totalArray) {
+        function drawGraphTotal(xAxisVal, arrayObj) {
             let graphTotal = document.getElementById("graphTotal");
             let ctx = graphTotal.getContext("2d");
-            let plotTotal = totalArray
+            let plotTotal = arrayObj['yAxisArray']
 
             //Dynamic values based on Array content for dataset
-            let columnSize = 50;
-            let rowSize = 46;
-            let margin = 10;
+            let columnSize = 28;
+            let rowSize = 38;
+            let margin = 8;
             let xAxis = xAxisVal
         
-            xValues = xAxisVal
+
+            
             minValue = arrayObj["minValue"];
             maxValue = arrayObj["maxValue"];
             increment = arrayObj["increment"];
-            let rectangles = xValues.length-1;
+            let rectangles = xAxisVal.length -1;
 
             //Gridscaling based on graph input length
             let = scaleForX = (graphTotal.width - rowSize + margin) / rectangles;
@@ -195,7 +229,6 @@
         //plots each of the points(elements) in the Array to a line
             function plotData(toPlot) {
                 ctx.beginPath();
-                ctx.lineWidth = 4;
                 ctx.moveTo(0, toPlot[0]);
                 for (i = 1; i < rectangles; i++) {
                     ctx.lineTo(i * scaleForX, toPlot[i])
@@ -222,9 +255,9 @@
             let yCount = 0;
             for (graphScale = maxValue; graphScale >= minValue; graphScale = graphScale - increment) {
                 let y = columnSize + (scaleForY * yCount * increment);
-                    ctx.fillText(graphScale, margin-6, y + margin);
+                    ctx.fillText(graphScale, margin-8, y + margin);
                     ctx.moveTo(rowSize, y);
-                    ctx.lineTo(graphTotal.width, y);
+                    ctx.lineTo(graphTotal.width -20, y);
                     yCount++;
             }
         
@@ -236,6 +269,5 @@
             ctx.strokeStyle = "red";
             plotData(plotTotal);
         
-        };
-        
+        };       
    };
