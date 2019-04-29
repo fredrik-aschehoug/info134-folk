@@ -271,7 +271,7 @@ tr:nth-child(even) {
   margin-top:1em;
 }
 
-.populationTable, .employmentTable, .educationTable{
+.populationTable, .employmentTable, .educationTable, .education11Table, .education12Table, .education03aTable, .education04aTable{
   visibility: hidden;
   display: none;
 }

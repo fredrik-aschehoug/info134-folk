@@ -307,33 +307,35 @@ function createDetails(id) {
          * @param {toggleCallback} callback Function to call when toggle is clicked
          * @param {string} cbParam Classname, param to the callback function
          * @param {string} type "population"/"emplyment"/"education"
+         * @param {string} eduType The level of education
          * @returns {HTMLFormElement} <form> element containing the toggle button
          */
-        function createTableToggle(callback, cbParam, type) {
+        function createTableToggle(callback, cbParam, type, eduType) {
+            eduType = eduType || "";
             // Create DOM elements
             const tableToggle = document.createElement("form");
             const input1 = document.createElement("input");
             const label1 = document.createElement("label");
             const input2 = document.createElement("input");
             const label2 = document.createElement("label");
-            let radioclass = `${type}Toggle`;
+            let radioclass = `${type}${eduType}Toggle`;
             // Set attributes
-            input1.id = `${type}Toggle-antall`;
+            input1.id = `${type}${eduType}Toggle-antall`;
             input1.classList.add(radioclass, "toggle", "toggle-left", "toggle-active");
             input1.name = "toggle";
             input1.value = "false";
             input1.type = input2.type = "radio";
             input1.checked = true;
             input1.onclick = () => callback(cbParam, "antall", radioclass);
-            label1.htmlFor = `${type}Toggle-antall`;
+            label1.htmlFor = `${type}${eduType}Toggle-antall`;
             label1.classList.add("tableToggle");
             label1.innerText = "Antall";
-            input2.id = `${type}Toggle-prosent`;
+            input2.id = `${type}${eduType}Toggle-prosent`;
             input2.classList.add(radioclass, "toggle", "toggle-right");
             input2.name = "toggle";
             input2.value = "true";
             input2.onclick = () => callback(cbParam, "prosent", radioclass);
-            label2.htmlFor = `${type}Toggle-prosent`;
+            label2.htmlFor = `${type}${eduType}Toggle-prosent`;
             label2.classList.add("tableToggle");
             label2.innerText = "Prosent";
             // Append DOM elements to return object
@@ -405,6 +407,8 @@ function createDetails(id) {
         const educationHeader04a = createHeader("Universitets- og høgskolenivå lang", "subHeader2");
         ////////////////// todo
         function createHistoricalTable(type, eduType) {
+            eduType = eduType || "";
+            const className = `${type}${eduType}Table`;
             const tables = document.createElement("div");
             const numberDesciptions = ["Kvinner", "Menn", "Begge kjønn"];
             let percentDesciptions;
@@ -423,9 +427,10 @@ function createDetails(id) {
             createTableBody(numberDesciptions, tableHeaders, historicalDetails, numberTable.tBodies[0], "number", type, eduType);
             createTableBody(percentDesciptions, tableHeaders, historicalDetails, percentTable.tBodies[0], "percent", type, eduType);
             // Assign classes
-            numberTable.classList.add(`${type}Table`, "activeTable");
-            percentTable.classList.add(`${type}Table`);
-            const tableToggle = createTableToggle(toggleCallback, `${type}Table`, type);
+            
+            numberTable.classList.add(className, "activeTable");
+            percentTable.classList.add(className);
+            const tableToggle = createTableToggle(toggleCallback, className, type, eduType);
             appendElements(tables, tableToggle, numberTable, percentTable);
             return tables;
         }
