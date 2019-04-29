@@ -1,6 +1,6 @@
 /**
  * @constructor
- * @param {String} url wildboy dataset
+ * @param {string} url wildboy dataset url
  */
 function Population(url) {
     this.url = url;
@@ -8,8 +8,7 @@ function Population(url) {
     this.dataset = null; // Kan strykes dersom det ikke blir brukt!
     this.elements = null;
     /**
-     * @method
-     * @returns {Array} All municipal names
+     * @returns {string[]} All municipal names
      */
     this.getNames = function () {
         let names = [];
@@ -19,8 +18,7 @@ function Population(url) {
         return names;
     };
     /**
-     * @method
-     * @returns {Array} All municipal IDs
+     * @returns {string[]} All municipal IDs
      */
     this.getIDs = function () {
         let ids = [];
@@ -30,9 +28,8 @@ function Population(url) {
         return ids;
     };
     /**
-     * @method
-     * @param {String} municipalID
-     * @returns {Object} Population information about the municipal
+     * @param {string} municipalID The id of the municipal to get info from
+     * @returns {object} Population information about the municipal
      */
     this.getInfo = function (municipalID) {
         for (let element in this.elements) {
@@ -46,8 +43,6 @@ function Population(url) {
     /**
      * Uses AJAX to load JSON data from url and assign it to the object.
      * Runs a callback when completed.
-     * @method
-     * @callback this.onload
      */
     this.load = function () {
         let xhr = new XMLHttpRequest();

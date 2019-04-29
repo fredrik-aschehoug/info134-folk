@@ -97,6 +97,7 @@ dataa presenterast horisontalt*/
 .hovud{
   visibility: hidden;
   display: none;
+
 }
 /*--------------------active--------------------*/
 .active{
@@ -133,8 +134,8 @@ tr:nth-child(even) {
 
 /*--------------------OVERSIKT--------------------*/
 .oversikt table {
-  display: block;
   border-collapse: collapse;
+  width:100%;
 }
 
 .oversikt th,
@@ -146,12 +147,16 @@ tr:nth-child(even) {
 .oversikt thead {
   background-color: #074F57;
   color: white;
+  position: sticky;
+  top: 0;
 }
 .oversikt tbody {
  /* Ingeleiv pls fix*/
   overflow-y: auto;    /* Trigger vertical scroll    */
   overflow-x: hidden;  /* Hide the horizontal scroll */
+  width:100%;
 }
+
 .oversikt tr:nth-child(even) {
   background-color: #D1DFE0;
 }
@@ -169,6 +174,7 @@ tr:nth-child(even) {
   background-color: #DADEE5;
   width: 248px;
   height: auto;
+  margin: auto;
 }
 
 #detailsInput{
@@ -187,16 +193,20 @@ tr:nth-child(even) {
   width:40px;
   height:40px;
 }
-.active #detailsForm{
-  align-items: center;
-}
+
 
 /*--------------------DETALJAR--------------------*/
-.detailsOutput header {
+.detailsOutput p, .mainHeader, .subHeader, .subHeader2 {
+  font-weight: bold;
+}
+.detailsOutput .mainHeader {
   font-size: 2em;
 }
-.detailsOutput p, header {
-  font-weight: bold;
+.detailsOutput .subHeader {
+  font-size: 1.5em;
+}
+.detailsOutput .subHeader2 {
+  font-size: 1em;
 }
 
 /*--Details Table--*/
@@ -216,24 +226,37 @@ tr:nth-child(even) {
 
 .detailsOutput table {
   border-collapse: collapse;
-}
-.detailsOutput table tr{
-width:100%;
+  width:900px;
+  padding:auto;
+  margin: auto;
 }
 
 .detailsOutput th,
 .detailsOutput td {
   text-align: left;
-  padding: 8px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-left: auto;
+  padding-right: auto;
+  height: 40px;
 }
-div.detailsOutput:nth-child(2) > table:nth-child(3){
-  width:100%;
+.detailsOutput th{
+  width:80px;
 }
 
-.detailsOutput:nth-child(2) > table:nth-child(3) > tr:nth-child(1) {
+.detailsOutput table{
+  z-index: 0;
+  padding-top: 10px;
+}
+.detailsOutput thead{
   background-color: #374C70;
   color: white;
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+  z-index: 2;
 }
+
 .detailsOutput tbody {
  /* Ingeleiv pls fix*/
   overflow-y: auto;    /* Trigger vertical scroll    */
@@ -248,6 +271,71 @@ div.detailsOutput:nth-child(2) > table:nth-child(3){
   margin-top:1em;
 }
 
+.populationTable, .employmentTable, .educationTable{
+  visibility: hidden;
+  display: none;
+}
+
+.detailsOutput{
+
+}
+
+/*--------------------active--------------------*/
+.activeTable{
+  visibility: visible;
+  display:block;
+  }
+
+
+/*--------TableToggle----------*/
+.tableToggle {
+  border: 1px solid #1a1a1a;
+  display: inline-block;
+  padding: 0.3em;
+  position: relative;
+  text-align: center;
+  transition: background 600ms ease, color 600ms ease;
+  font-size: 0.8em;
+}
+
+input[type="radio"].toggle {
+  display: none;
+}
+input[type="radio"].toggle + label {
+  cursor: pointer;
+  min-width: 60px;
+}
+input[type="radio"].toggle + label:hover {
+  background: none;
+  color: #374C70;
+}
+
+input[type="radio"].toggle + label:after {
+  background: #374C70;
+  content: "";
+  height: 100%;
+  position: absolute;
+  top: 0;
+  transition: left 200ms cubic-bezier(1, .11, .93, 1);
+  width: 100%;
+  z-index: -1;
+}
+
+input[type="radio"].toggle.toggle-left + label:after {
+  left: 100%;
+}
+input[type="radio"].toggle.toggle-right + label:after {
+  left: -100%;
+}
+input[type="radio"].toggle:checked + label {
+  cursor: default;
+  color: #fff;
+  transition: color 200ms;
+}
+input[type="radio"].toggle:checked + label:after {
+  left: 0;
+}
+
 
 /*--------------------SAMANLIKNING--------------------*/
 /*--------------------SEARCH--------------------*/
@@ -255,7 +343,7 @@ div.detailsOutput:nth-child(2) > table:nth-child(3){
 
 #comparisonForm{
   border: 1px solid grey;
-  background-color: #DADEE5;
+  background-color: #E3E0DB;
   width: 100%;
   height: auto;
 }
@@ -294,4 +382,20 @@ div.detailsOutput:nth-child(2) > table:nth-child(3){
 
   display:inline-block;
   z-index: 1;
+}
+
+.canvasGraph {
+  visibility: hidden;
+  background-color: #DADEE5;
+  padding-bottom: 1em;
+  display: inline-block;
+  padding-left: 0.5em;
+  margin-left: -5% !important;
+
+}
+
+.canvasGraph.transition{
+  transition: 1s;
+  margin-left: 0% !important;
+
 }

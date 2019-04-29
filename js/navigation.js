@@ -2,19 +2,20 @@
  * Sets navigation behaviour.
  * Navigation buttons toggles classes on navigation elements and
  * main content elements.
- * @function
+ * @param {buttonHandler} callback
  */
-function setNavigationBehaviour() {
+function setNavigationBehaviour(callback) {
   const header = document.getElementById("navigasjon");
   const btns = header.getElementsByClassName("btn");
   for (var i = 0; i < btns.length; i++) {
     const currentBtn = btns[i];
-    currentBtn.onclick = () => buttonHandler(currentBtn);
+    currentBtn.onclick = () => callback(currentBtn);
   }
 }
 /**
  * Sets onclick behaviour on button.
- * @callback
+ * @callback buttonHandler
+ * @type {buttonHandler}
  * @param {HTMLButtonElement} button Button to configure
  */
 function buttonHandler(button) {

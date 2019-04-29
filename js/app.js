@@ -2,51 +2,40 @@
 const oversikt = document.getElementsByClassName("oversikt")[0];
 const overviewHeaders = ["Navn", "Kommunenummer", "Total befolkning"];
 let ids; // Will be assigned array of all municipal ID's
-// Returns wuldboy URL
+/**
+ * @param {string} id The dataset ID
+ */
 getURL = (id) => `http://wildboy.uib.no/~tpe056/folk/${id}.json`;
 // Instanciate objects
 const befolkning = new Population(getURL("104857"));
 const sysselsatte = new Employment(getURL("100145"));
 const utdanning = new Education(getURL("85432"));
 const details = new Details(2017);
-
+// Assign callback functions
+befolkning.onload = befolkningCallback;
+sysselsatte.onload = sysselsatteCallback;
+utdanning.onload = utdanningCallback;
 /**
- * Runs when befolkning is fully loaded
- * @callback
+ * Runs when befolkning is fully loaded.
+ * Loads sysselsatte.
  */
-befolkning.onload = function () {
-    // Add overview to DOM
-    ids = befolkning.getIDs();
-    oversikt.appendChild(createOverview(ids, overviewHeaders));
+function befolkningCallback() {
     sysselsatte.load();
-};
+}
 /**
- * Runs when sysselsatte is fully loaded
- * @callback
+ * Runs when sysselsatte is fully loaded.
+ * Loads utdanning.
  */
-sysselsatte.onload = function () {
+function sysselsatteCallback() {
     utdanning.load();
-};
+}
 /**
  * Runs when utdanning is fully loaded
- * @callback
  */
-utdanning.onload = function () {
-    /**
-     * Get value from input and create details view.
-     * @callback
-     */
-    function detailsFormSubmit() {
-        const detailsForm1 = document.getElementById("detailsForm");
-        id = detailsForm1.detailsInput.value;
-        // Check if valid ID
-        if (ids.includes(id)){
-            createDetails(id);
-        } else {
-            alert(`${id} er ikkje eit gyldig kommunenummer`);
-        }
-    }
+function utdanningCallback() {
     let ids = befolkning.getIDs();
+    // Add overview to DOM
+    oversikt.appendChild(createOverview(ids, overviewHeaders));
     for (let id of ids) {
         details.addMunicipal(
             id,
@@ -58,13 +47,30 @@ utdanning.onload = function () {
     /* All data is loaded at this point */
     const detailsForm = document.getElementById("detailsForm");
     // Callback when clicking button
-    detailsForm.detailsButton.onclick = detailsFormSubmit;
+    detailsForm.detailsButton.onclick = () => detailsFormSubmit(ids);
     // Callback when pressing enter while focused on form
-    detailsForm.onsubmit = detailsFormSubmit;
-};
+    detailsForm.onsubmit = () => detailsFormSubmit(ids);
+}
 /**
- * @param {Array} idList Municipality numbers to include
- * @param {Array} overviewHeaders Table headers
+ * Get value from input and create details view.
+ * @callback detailsFormSubmit
+ * @type {detailsFormSubmit}
+ * @param {string[]} ids Array of all municipal ids.
+ */
+function detailsFormSubmit(ids) {
+    const detailsForm1 = document.getElementById("detailsForm");
+    id = detailsForm1.detailsInput.value;
+    // Check if valid ID
+    if (ids.includes(id)) {
+        createDetails(id);
+        mouseOverFunc(id);
+    } else {
+        alert(`${id} er ikkje eit gyldig kommunenummer`);
+    }
+}
+/**
+ * @param {string[]} idList Municipality numbers to include
+ * @param {string[]} overviewHeaders Table headers
  * @returns {HTMLTableElement} Overview table
  */
 function createOverview(idList, overviewHeaders) {
@@ -98,5 +104,5 @@ function createOverview(idList, overviewHeaders) {
     return overview;
 }
 
-setNavigationBehaviour();
+setNavigationBehaviour(buttonHandler);
 befolkning.load();

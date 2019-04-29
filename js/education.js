@@ -1,6 +1,6 @@
 /**
  * @constructor
- * @param {String} url wildboy dataset
+ * @param {string} url wildboy dataset url
  */
 function Education(url) {
     Population.call(this, url); // Inherit population constructor

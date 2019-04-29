@@ -12,6 +12,7 @@
   <script src="js/navigation.js"></script>
   <script src="js/details.js"></script>
   <script src="js/createDetails.js"></script>
+  <script src="js/canvasGraphDisplayGenders.js"></script>
   <script src="js/createComparison.js"></script>
   <script defer src="js/app.js"></script>
 </head>
@@ -49,7 +50,9 @@
         <input id="detailsButton" type="button" value="">
       </form>
       <div class="detailsOutput"></div>
+      <div id="graph"></div>
     </div>
+    
     <div class="hovud samanlikning">
       <form id="comparisonForm" action="#">
         <input id="comparisonInput1" type="text" placeholder="Samanlikn kommunenummer" required>
@@ -57,7 +60,6 @@
         <input id="comparisonInput2" type="text" placeholder="Samanlikn kommunenummer" required>
       </form>
     </div>
-    <div class="detailsOutput"></div>
   </main>
 
   <footer class="botntekst">
