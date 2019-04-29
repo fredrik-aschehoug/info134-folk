@@ -224,15 +224,20 @@ tr:nth-child(even) {
   content: "%";
 }
 
-.detailsOutput table {
+.detailsOutput table, 
+.comparisonOutput table{
   border-collapse: collapse;
   width:900px;
   padding:auto;
   margin: auto;
+  z-index: 0;
+  padding-top: 10px;
 }
 
 .detailsOutput th,
-.detailsOutput td {
+.detailsOutput td,
+.ComparisonOutput th,
+.ComparisonOutput td {
   text-align: left;
   padding-top: 2px;
   padding-bottom: 2px;
@@ -240,15 +245,13 @@ tr:nth-child(even) {
   padding-right: auto;
   height: 40px;
 }
-.detailsOutput th{
+.detailsOutput th,
+.ComparisonOutput th{
   width:80px;
 }
 
-.detailsOutput table{
-  z-index: 0;
-  padding-top: 10px;
-}
-.detailsOutput thead{
+.detailsOutput thead,
+.ComparisonOutput thead{
   background-color: #374C70;
   color: white;
   position: sticky;
@@ -257,17 +260,18 @@ tr:nth-child(even) {
   z-index: 2;
 }
 
-.detailsOutput tbody {
- /* Ingeleiv pls fix*/
+.detailsOutput tbody,
+.ComparisonOutput tbody {
   overflow-y: auto;    /* Trigger vertical scroll    */
   overflow-x: hidden;  /* Hide the horizontal scroll */
 }
 
-.detailsOutput tr:nth-child(even) {
+.detailsOutput tr:nth-child(even), 
+.ComparisonOutput tr:nth-child(even){
   background-color: #DADEE5;
 }
 
-.detailsOutput{
+.detailsOutput, .ComparisonOutput{
   margin-top:1em;
 }
 
@@ -276,9 +280,6 @@ tr:nth-child(even) {
   display: none;
 }
 
-.detailsOutput{
-
-}
 
 /*--------------------active--------------------*/
 .activeTable{
