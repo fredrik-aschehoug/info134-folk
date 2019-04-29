@@ -26,22 +26,24 @@
   </nav>
 
   <main id="hovudinnhald" class="hovudinnhald">
-    <div class="hovud introduksjon active">
+    <div class="hovud introduksjon center active">
       <h1>Folk</h1>
-      <p>
-        På denne siden kan du se data om Norges befolkning. Bruk navigasjonsbaren til å navigere i de ulike sidene.
-        Vi tar forbehold om eventuelle feil i data. All data er henta fra Statistisk Sentralbyrå.
-        <i>Kilde: <a href="https://www.ssb.no/">www.ssb.no</a></i>
-        <i></i>
-        <h5>Oversikt:</h5>
-        <p>Viser en oversikt over kommunene i Norge med kommunenummer og befolkning.</p>
-        <h5>Detaljar:</h5>
-        <p>Viser detaljerte data om en kommune. Her benyttes kommunenr. til søking.</p>
-        <h5>Samanlikning:</h5>
-        <p>Sammenligner data mellom to kommuner.</p>
-      </p>
+      <article>
+        <p>
+          På denne siden kan du se data om Norges befolkning. Bruk navigasjonsbaren til å navigere i de ulike sidene.
+          Vi tar forbehold om eventuelle feil i data. All data er henta fra Statistisk Sentralbyrå.
+          <i>Kilde: <a href="https://www.ssb.no/">www.ssb.no</a></i>
+          <i></i>
+          <h5>Oversikt:</h5>
+          <p>Viser en oversikt over kommunene i Norge med kommunenummer og befolkning.</p>
+          <h5>Detaljar:</h5>
+          <p>Viser detaljerte data om en kommune. Her benyttes kommunenr. til søking.</p>
+          <h5>Samanlikning:</h5>
+          <p>Sammenligner data mellom to kommuner.</p>
+        </p>
+      </article>
     </div>
-    <div class="hovud oversikt"></div>
+    <div class="hovud oversikt center"></div>
     <div class="hovud detaljar">
       <!--Sidenavigasjon-->
       <div>
@@ -56,15 +58,17 @@
           <li><a href="#utdanning04a">Universitets- og høgskolenivå lang<a></li>
         </ul>
       </div>
-      <form id="detailsForm" action="#">
-        <input id="detailsInput" type="text" placeholder="Søk kommunenummer" required>
-        <input id="detailsButton" type="button" value="">
-      </form>
-      <div class="detailsOutput"></div>
+      <div class="center">
+        <form id="detailsForm" action="#">
+          <input id="detailsInput" type="text" placeholder="Søk kommunenummer" required>
+          <input id="detailsButton" type="button" value="">
+        </form>
+        <div class="detailsOutput"></div>
+      </div>
       <div id="graph"></div>
     </div>
 
-    <div class="hovud samanlikning">
+    <div class="hovud samanlikning center">
       <form id="comparisonForm" action="#">
         <input id="comparisonInput1" type="text" placeholder="Samanlikn kommunenummer" required>
         <input id="comparisonButton" type="button" value="">
