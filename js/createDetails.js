@@ -270,7 +270,7 @@ function createDetails(id) {
                                 } else {
                                     data = historicalDetails[type][format].Kvinner[year];
                                 }
-                                tr.id = "popKvinner";
+                                //tr.id = "popKvinner";
                                 break;
                             case "Menn":
                                 if (eduType) {
@@ -278,7 +278,7 @@ function createDetails(id) {
                                 } else {
                                     data = historicalDetails[type][format].Menn[year];
                                 }
-                                tr.id = "popMenn";
+                                //tr.id = "popMenn";
                                 break;
                             case "Begge kjønn":
                                 if (eduType) {
@@ -286,7 +286,7 @@ function createDetails(id) {
                                 } else {
                                     data = historicalDetails[type][format].total[year];
                                 }
-                                tr.id = "popTotal";
+                                //tr.id = "popTotal";
                                 break;
                         }
                     }
