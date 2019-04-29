@@ -58,6 +58,7 @@ function utdanningCallback() {
         }
     });
 }
+<<<<<<< HEAD
 /**
  * Get value from input and create details view.
  * @callback detailsFormSubmit
@@ -148,5 +149,7 @@ function createOverview(idList, overviewHeaders) {
     return overview;
 }
 
+=======
+>>>>>>> 8a87a9c2efe157894c03cd9f9b944f5b1cd196d7
 setNavigationBehaviour(buttonHandler);
 befolkning.load();

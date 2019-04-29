@@ -265,6 +265,7 @@ function createDetails(id) {
     // Append item to placeholder
     placeholder[0].appendChild(currentDetailsObject);
     placeholder[0].appendChild(historicalDetailsObject);
+<<<<<<< HEAD
 }
 /**
  * Creates a HTML <header> element with text.
@@ -482,4 +483,6 @@ function toggleCallback(className, inputType, radioClass) {
             radio.classList.toggle("toggle-active");
         }
     }
+=======
+>>>>>>> 8a87a9c2efe157894c03cd9f9b944f5b1cd196d7
 }

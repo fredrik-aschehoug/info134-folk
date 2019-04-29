@@ -71,12 +71,6 @@
   background-color: #68553E;
 }
 
-
-/*@media screen and (max-width: 700px){}*/
-/*Vi stiller eitt krav til korleis historiske data blir vist til brukaren. Når brukaren bruker ein liten skjerm, skal
-historiske data (tal for ei rekke år) presenterast vertikalt. Når brukaren bruker ein stor skjerm, skal dei historiske
-dataa presenterast horisontalt*/
-
 /*--------------------hovudinnhald--------------------*/
 .hovudinnhald{
   display: block;
@@ -98,6 +92,8 @@ dataa presenterast horisontalt*/
   display: block;
   margin: auto;
   padding: 10px;
+  max-width: 60%;
+  min-width: 60%
 }
 
 .hovud{
@@ -117,7 +113,7 @@ dataa presenterast horisontalt*/
   padding-left: 0;
   padding-right: 0;
   margin: auto;
-  width: 900px;
+  width: 100%;
 
 }
 .introduksjon h1{
@@ -148,7 +144,7 @@ tr:nth-child(even) {
 /*--------------------OVERSIKT--------------------*/
 .oversikt table {
   border-collapse: collapse;
-  width:900px;
+  width: 100%;
 }
 
 .oversikt th,
@@ -173,6 +169,7 @@ tr:nth-child(even) {
 
 .oversikt tr:nth-child(even) {
   background-color: #D1DFE0;
+
 }
 
 
@@ -221,7 +218,8 @@ tr:nth-child(even) {
   list-style-type: none;
   margin: 0;
   padding: 0;
-  width: 300px;
+  width: 200px;
+  max-width:20%;
   background-color: #DADEE5;
 }
 
@@ -260,6 +258,10 @@ tr:nth-child(even) {
   padding-left: 1.5em;
 }
 
+.highlightedCell {
+  font-weight: bold;
+ /* Ingeleiv pls fix*/
+}
 
 .percentCell::after {
   content: "%";
@@ -268,7 +270,7 @@ tr:nth-child(even) {
 .detailsOutput table,
 .comparisonOutput table{
   border-collapse: collapse;
-  width:900px;
+  width: 100%;
   padding:auto;
   margin: auto;
   z-index: 0;
@@ -298,8 +300,7 @@ tr:nth-child(even) {
   padding-top: 10px;
 }
 
-.detailsOutput thead,
-.comparisonOutput thead {
+.detailsOutput thead{
   background-color: #374C70;
   color: white;
 }
@@ -307,7 +308,6 @@ tr:nth-child(even) {
 .detailsOutput > div:nth-child(1) > table:nth-child(3) > thead:nth-child(1){
   position: sticky;
   position: -webkit-sticky;
-
   top: 0;
   z-index: 2;
 }
@@ -318,8 +318,7 @@ tr:nth-child(even) {
   overflow-x: hidden;  /* Hide the horizontal scroll */
 }
 
-.detailsOutput tr:nth-child(even),
-.comparisonOutput tr:nth-child(even){
+.detailsOutput tr:nth-child(even){
   background-color: #DADEE5;
 }
 
@@ -407,19 +406,45 @@ input[type="radio"].toggle:checked + label:after {
 
 
 /*--------------------SAMANLIKNING--------------------*/
+.comparisonOutput thead {
+  background-color: #68553E;
+  color: white;
+
+}
+
+.comparisonOutput tr:nth-child(even){
+  background-color: #E3E0DB;
+  text-align: center;
+}
+
+/* BYTT UT MED UTHEVA*/
+.comparisonOutput > div:nth-child(1) > table:nth-child(1) > tbody:nth-child(2) > tr:nth-child(1) > td:nth-child(5),
+.comparisonOutput > div:nth-child(1) > table:nth-child(1) > tbody:nth-child(2) > tr:nth-child(3) > td:nth-child(8){
+  /*text-align: center;*/
+  /*border: dashed 2px #D8D8F6;*/
+  background-color: #9E9284;
+  color: white;
+}
+
+.comparisonOutput{
+  text-align: center;
+}
+
 /*--------------------SEARCH--------------------*/
 
 #comparisonForm{
+  display: block;
   border: 1px solid grey;
   background-color: #E3E0DB;
-  width: 100%;
+  width: 500px;
   height: auto;
+  margin: auto;
   margin-top: 10px;
 }
 
 #comparisonInput1,
 #comparisonInput2{
-  width: 250px;
+  width: 220px;
   height: 33px;
   font-size: 1em;
   padding:0.1em;
