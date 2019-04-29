@@ -23,7 +23,7 @@
             let str = trTags[i].id;
             if (elementIDmap.hasOwnProperty(str)) {
                 trTags[str].onmouseover = function () {graphObjects(id, elementIDmap[str]), showDarkBackground(str), graphAnimation(can);}
-                trTags[str].onmouseout = function () {mouseOut(str, can)}
+                trTags[str].onmouseout = function () {mouseOut(str, can, id)}
             }
         }
     };
@@ -44,7 +44,7 @@
             document.getElementById(rowID).style.color = "#F4F4F4"
         };
 
-        function mouseOut(rowID, className) {
+        function mouseOut(rowID, className, id) {
             rowID = rowID
             canvas = className
 

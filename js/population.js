@@ -5,7 +5,6 @@
 function Population(url) {
     this.url = url;
     this.onload = null;
-    this.dataset = null; // Kan strykes dersom det ikke blir brukt!
     this.elements = null;
     /**
      * @returns {string[]} All municipal names
@@ -50,7 +49,9 @@ function Population(url) {
         xhr.onreadystatechange = (function () {
             if (xhr.readyState === 4 && xhr.status === 200) {
                 const response = JSON.parse(xhr.responseText);
-                this.dataset = response.datasett;
+                if (response.elementer.Rindal) {
+                    delete response.elementer.Rindal;
+                }
                 this.elements = response.elementer;
                 if (this.onload) { // If the onload property has been set
                     this.onload();
