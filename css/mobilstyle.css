@@ -1,0 +1,33 @@
+/*@media screen and (max-width: 700px){}*/
+/*Vi stiller eitt krav til korleis historiske data blir vist til brukaren. Når brukaren bruker ein liten skjerm, skal
+historiske data (tal for ei rekke år) presenterast vertikalt. Når brukaren bruker ein stor skjerm, skal dei historiske
+dataa presenterast horisontalt*/
+
+@media screen and (max-width: 700px){
+
+  .detailsOutput th, .comparisonOutput th {
+      width: 80px;
+      display: block;
+  }
+
+  .comparisonOutput tr {
+    display: block;
+    float: left;
+    width: auto;
+  }
+
+  .comparisonOutput thead,
+  .comparisonOutput td{
+    display: block;
+
+  }
+  .comparisonOutput thead{
+    background-color: #68553E;
+    color: white;
+  }
+  .comparisonOutput > div:nth-child(1) > table:nth-child(1) > thead:nth-child(1) > tr:nth-child(1){
+    background-color: #68553E;
+    color: white;
+    text-align: center;
+  }
+}
