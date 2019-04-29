@@ -159,6 +159,7 @@ tr:nth-child(even) {
   background-color: #074F57;
   color: white;
   position: sticky;
+  position: -webkit-sticky;
   top: 0;
 }
 .oversikt tbody {
@@ -262,7 +263,7 @@ tr:nth-child(even) {
   content: "%";
 }
 
-.detailsOutput table, 
+.detailsOutput table,
 .comparisonOutput table{
   border-collapse: collapse;
   width:900px;
@@ -303,6 +304,8 @@ tr:nth-child(even) {
 
 .detailsOutput > div:nth-child(1) > table:nth-child(3) > thead:nth-child(1){
   position: sticky;
+  position: -webkit-sticky;
+
   top: 0;
   z-index: 2;
 }
@@ -313,17 +316,17 @@ tr:nth-child(even) {
   overflow-x: hidden;  /* Hide the horizontal scroll */
 }
 
-.detailsOutput tr:nth-child(even), 
+.detailsOutput tr:nth-child(even),
 .comparisonOutput tr:nth-child(even){
   background-color: #DADEE5;
 }
 
-.populationTable, 
-.employmentTable, 
-.educationTable, 
-.education11Table, 
-.education12Table, 
-.education03aTable, 
+.populationTable,
+.employmentTable,
+.educationTable,
+.education11Table,
+.education12Table,
+.education03aTable,
 .education04aTable {
   visibility: hidden;
   display: none;
