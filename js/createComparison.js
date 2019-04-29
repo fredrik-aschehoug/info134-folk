@@ -1,19 +1,21 @@
-var test;
 /**
  * Create the entire content for the comparison view and append it to the "samanlikning" DIV
  * @param {string} id1 Municipal ID to get details from
  * @param {string} id2 Municipal ID to get details from
  */
 function createComparison(id1, id2) {
-    
+    /**
+     * Create two tables inside a <div>. One for number and one for percentage.
+     * @param {object} historicalDetails From details.getHistorical(id)
+     * @param {string} className The classname to assign to the tables
+     * @returns {HTMLDivElement} <div> containing the tables, number and percentage.
+     */
     function createComparisonTable(historicalDetails, className) {
         const tables = document.createElement("div");
         const desciptions = ["Kvinner", "Menn", "Begge kjønn"];
-        
-        // Create tables
+        // Create table elements
         numberTable = createTableElement();
         percentTable = createTableElement();
-
         // Create table headers
         const tableHeaders = createTableHeaders("employment", historicalDetails);
         numberTable.tHead.appendChild(createTableHeader(tableHeaders));
@@ -24,11 +26,16 @@ function createComparison(id1, id2) {
         // Assign classes
         numberTable.classList.add(className, "activeTable");
         percentTable.classList.add(className);
-        
+        // Append elements to return element
         appendElements(tables, numberTable, percentTable);
         return tables;
-        
     }
+    /**
+     * Takes two tables as parameters, compares them and assigns a class to the table cells 
+     * with the highest growth in percentage points.
+     * @param {HTMLDivElement} table1 From createComparisonTable
+     * @param {HTMLDivElement} table2 From createComparisonTable
+     */
     function highlightTables(table1, table2) {
         let rows = ["popKvinner", "popMenn", "popTotal"];
         for (let row of rows) {
@@ -54,6 +61,7 @@ function createComparison(id1, id2) {
             }
         }
     }
+    // Will be assigned to the tables
     const className = "employmentTable";
     // Placeholder to put content in
     const placeholder = document.getElementsByClassName("comparisonOutput");
@@ -65,13 +73,12 @@ function createComparison(id1, id2) {
     const header2Text = `Sysselsetting i ${historicalDetails2.navn}:`;
     const header1 = createHeader(header1Text, "subHeader");
     const header2 = createHeader(header2Text, "subHeader");
-    
+    // Create tables
     const table1 = createComparisonTable(historicalDetails1, className);
     const table2 = createComparisonTable(historicalDetails2, className);
     highlightTables(table1, table2);
     // Create one tableToggle for both tables
     const tableToggle = createTableToggle(toggleCallback, className, "employment");
-
     // Clear placeholder
     removeChildNodes(placeholder[0]);
     // Append item to placeholder
