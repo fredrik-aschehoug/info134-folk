@@ -29,16 +29,16 @@ function createComparison(id1, id2) {
 
     }
     // Placeholder to put content in
-    const placeholder = document.getElementsByClassName("ComparisonOutput");
+    const placeholder = document.getElementsByClassName("comparisonOutput");
     // Data to use
     const historicalDetails1 = details.getHistorical(id1);
     const historicalDetails2 = details.getHistorical(id2);
 
     const table1 = createComparisonTable(historicalDetails1);
+    const table2 = createComparisonTable(historicalDetails2);
 
     // Clear placeholder
     removeChildNodes(placeholder[0]);
     // Append item to placeholder
-    placeholder[0].appendChild(table1);
-
+    appendElements(placeholder[0], table1, table2);
 }
