@@ -21,7 +21,6 @@
   top: 0;
   right: 0;
   width: 100%;
-  height: 50px;
   position: fixed;
 
   text-transform: uppercase;
@@ -29,7 +28,6 @@
 
   display:inline-block;
   z-index: 1;
-
 }
 
 .navigasjon li{
@@ -80,31 +78,27 @@ dataa presenterast horisontalt*/
 /*--------------------hovudinnhald--------------------*/
 .hovudinnhald{
   display: block;
-  margin: auto;
-  padding: auto;
-  /*border: dashed thin black;*/
-  /*background-color: #EDEDE9;*/
-
-}
-
-.center{
-  top: 40px;
+  top: 50px;
   bottom:50px;
   left: 50%;
   transform: translate(-50%);
+
   position: absolute;
-  width: auto;
-  overflow: scroll;
-  display: block;
   margin: auto;
   padding: 10px;
+  /*border: dashed thin black;*/
+
+  width: auto;
+  overflow: scroll;
+  /*background-color: #EDEDE9;*/
+
 }
 
 .hovud{
   visibility: hidden;
   display: none;
-}
 
+}
 /*--------------------active--------------------*/
 .active{
   visibility: visible;
@@ -114,27 +108,20 @@ dataa presenterast horisontalt*/
 /*--------------------INTRODUKSJON--------------------*/
 .introduksjon {
   padding: auto;
-  padding-left: 0;
-  padding-right: 0;
   margin: auto;
-  width: 900px;
-
+  background-color: #DFD7DD;
+  height: 100%;
 }
 .introduksjon h1{
   background-color: #542344;
   color: white;
   padding: 10px;
   margin: 0;
-
 }
 .introduksjon p{
   padding-bottom: 1em;
   padding: 10px;
   margin: 0;
-}
-
-.introduksjon article{
-  background-color: #DFD7DD;
 }
 /*Introduksjon
 tr:nth-child(1) {
@@ -148,7 +135,7 @@ tr:nth-child(even) {
 /*--------------------OVERSIKT--------------------*/
 .oversikt table {
   border-collapse: collapse;
-  width:900px;
+  width:100%;
 }
 
 .oversikt th,
@@ -161,7 +148,6 @@ tr:nth-child(even) {
   background-color: #074F57;
   color: white;
   position: sticky;
-  position: -webkit-sticky;
   top: 0;
 }
 .oversikt tbody {
@@ -189,7 +175,6 @@ tr:nth-child(even) {
   width: 248px;
   height: auto;
   margin: auto;
-  margin-top: 10px;
 }
 
 #detailsInput{
@@ -208,33 +193,35 @@ tr:nth-child(even) {
   width:40px;
   height:40px;
 }
-
 /*--------------------DETALJAR NAV--------------------*/
 .sidenav{
   display: block;
   position: fixed;
   position: -webkit-fixed;
-  top: 50px;
-  left:25px;
+  top: 0;
+  left:0;
   z-index: 2;
 
   list-style-type: none;
-  margin: 0;
-  padding: 0;
+  padding-left: 0;
+  margin-left: 0;
+
+  border: dashed black 0.3px;
   width: 300px;
-  background-color: #DADEE5;
+  height: 160px;
 }
 
-.sidenav > li:nth-child(1){}
+
 .sidenav li a{
   text-decoration: none;
   color: black;
 }
 .sidenav li{
-  padding: 0.5em;
+  padding: 0em;
 }
-.sidenav li:hover{
-  background-color: #374C70;
+.sidenav li a:hover{
+  font-size: 1.2em;
+  background-color: #DADEE5
 }
 
 
@@ -259,26 +246,23 @@ tr:nth-child(even) {
 .dataCell {
   padding-left: 1.5em;
 }
+.numberCell {
 
+}
 
 .percentCell::after {
   content: "%";
 }
 
-.detailsOutput table,
-.comparisonOutput table{
+.detailsOutput table {
   border-collapse: collapse;
   width:900px;
   padding:auto;
   margin: auto;
-  z-index: 0;
-  padding-top: 10px;
 }
 
 .detailsOutput th,
-.detailsOutput td,
-.comparisonOutput th,
-.comparisonOutput td {
+.detailsOutput td {
   text-align: left;
   padding-top: 2px;
   padding-bottom: 2px;
@@ -286,50 +270,38 @@ tr:nth-child(even) {
   padding-right: auto;
   height: 40px;
 }
-
-.detailsOutput th,
-.comparisonOutput th{
+.detailsOutput th{
   width:80px;
 }
 
-.detailsOutput table,
-.comparisonOutput table{
+.detailsOutput table{
   z-index: 0;
   padding-top: 10px;
 }
-
-.detailsOutput thead,
-.comparisonOutput thead {
+.detailsOutput thead{
   background-color: #374C70;
   color: white;
-}
-
-.detailsOutput > div:nth-child(1) > table:nth-child(3) > thead:nth-child(1){
   position: sticky;
   position: -webkit-sticky;
-
   top: 0;
   z-index: 2;
 }
 
-.detailsOutput tbody,
-.comparisonOutput tbody {
+.detailsOutput tbody {
+ /* Ingeleiv pls fix*/
   overflow-y: auto;    /* Trigger vertical scroll    */
   overflow-x: hidden;  /* Hide the horizontal scroll */
 }
 
-.detailsOutput tr:nth-child(even),
-.comparisonOutput tr:nth-child(even){
+.detailsOutput tr:nth-child(even) {
   background-color: #DADEE5;
 }
 
-.populationTable,
-.employmentTable,
-.educationTable,
-.education11Table,
-.education12Table,
-.education03aTable,
-.education04aTable {
+.detailsOutput{
+  margin-top:1em;
+}
+
+.populationTable, .employmentTable, .educationTable, .education11Table, .education12Table, .education03aTable, .education04aTable{
   visibility: hidden;
   display: none;
 }
@@ -352,7 +324,7 @@ tr:nth-child(even) {
 .activeTable{
   visibility: visible;
   display:block;
-}
+  }
 
 
 /*--------TableToggle----------*/
@@ -413,7 +385,6 @@ input[type="radio"].toggle:checked + label:after {
   background-color: #E3E0DB;
   width: 100%;
   height: auto;
-  margin-top: 10px;
 }
 
 #comparisonInput1,
