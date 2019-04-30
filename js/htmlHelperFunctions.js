@@ -43,14 +43,18 @@ function appendElements(node, ...children) {
 }
 /**
  * Create a row with headers.
- * @param {Array} headers - The header text values to use in header row
+ * @param {string[]} headers - The header text values to use in header row
+ * @param {string} className Class to assign to each cell in the header
  * @returns {HTMLTableRowElement}
  */
-function createTableHeader(headers) {
+function createTableHeader(headers, className) {
     const headerRow = document.createElement("tr");
     for (let header of headers) {
         let th = document.createElement("th");
         th.innerHTML = header;
+        if (className) {
+            th.classList.add(className);
+        }
         headerRow.appendChild(th);
     }
     return headerRow;
@@ -224,5 +228,16 @@ function toggleCallback(className, inputType, radioClass) {
         for (let radio of radios) {
             radio.classList.toggle("toggle-active");
         }
+    }
+}
+/**
+ * Assigns a class to an element if the class is not already present.
+ * The destination class can only have one element assigned.
+ * @param {string} className The classname to activate
+ */
+function addClass(destinationClassName, className) {
+    const element = document.getElementsByClassName(destinationClassName)[0];
+    if (!element.classList.contains(className)) {
+        element.classList.add(className);
     }
 }

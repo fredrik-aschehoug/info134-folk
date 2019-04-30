@@ -11,11 +11,14 @@ function detailsFormSubmit(ids) {
     if (ids.includes(id)) {
         createDetails(id);
         mouseOverFunc(id);
+        // Activate sidenav
+        addClass("sidenav", "activeSidenav");
     } else if (id === "5061") {
         alert(`Rindal (${id}) har ikkje noko statistikk, du vil bli omdirigert til Rindal (-2018) (1567)`);
         createDetails("1567");
         mouseOverFunc("1567");
-
+        // Activate sidenav
+        activateElement("sidenav", "activeSidenav");
     } else {
         alert(`${id} er ikkje eit gyldig kommunenummer`);
     }
