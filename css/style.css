@@ -96,7 +96,7 @@
   min-width: 60%
 }
 
-.hovud{
+.hovud, .sidenav{
   visibility: hidden;
   display: none;
 }

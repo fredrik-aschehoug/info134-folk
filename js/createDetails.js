@@ -266,4 +266,6 @@ function createDetails(id) {
     // Append item to placeholder
     placeholder[0].appendChild(currentDetailsObject);
     placeholder[0].appendChild(historicalDetailsObject);
+    // Activate sidenav
+    document.getElementsByClassName("sidenav")[0].classList.add("active");
 }
