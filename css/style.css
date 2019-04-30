@@ -326,7 +326,7 @@ tr:nth-child(even) {
 }
 /*--------------------Graph--------------------*/
 .canvasGraph {
-  margin-top: 30em;
+  margin-top: 25em;
   visibility: hidden;
   background-color: #DADEE5;
   padding-bottom: 1em;

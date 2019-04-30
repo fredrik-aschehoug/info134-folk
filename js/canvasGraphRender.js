@@ -1,163 +1,252 @@
 
 
 
-function mouseOverFunc(id) {
-    let canvas = document.createElement("canvas");
-    canvas.id = "graphTotal"
-    canvas.width = 500;
-    canvas.height = 300;
-    document.getElementById("graph").appendChild(canvas)
+function graphRender(id) {
+    const historicalDetails = details.getHistorical(id)
+    
+    const graphData = {
+        "elementIDmapNum": {
+            "popKvinner": [0, "Befolkning: ", "antall kvinner"],
+            "popMenn": [1, "Befolkning: ", "antall menn"],
+            "popTotal": [2, "Befolkning: ", "antall totalt"],
+            "empKvinner": [3, "Sysselsetting: ", "antall kvinner"],
+            "empMenn": [4, "Sysselsetting: ", "antall menn"],
+            "empTotal": [5, "Sysselsetting: ", "antall totalt"],
+            "highEduKvinner": [6, "Høyere utdannelse: ", "antall kvinner"],
+            "highEduMenn": [7, "Høyere utdannelse: ", "antall menn"],
+            "highEduTotal": [8, "Høyere utdannelse: ", "antall totalt"],
+            "fagskoleKvinner" : [9, "Fagskole: ", "antall kvinner"],
+            "fagskoleMenn" : [10, "Fagskole: ", "antall menn"],
+            "fagskoleTotal" : [11, "Fagskole: ", "antall totalt"],
+            "highEduShortK" : [12, "Høyere utdannelse kort: ", "antall kvinner"],
+            "highEduShortM" : [13, "Høyere utdannelse kort: ", "antall menn"],
+            "highEduShortTot" : [14, "Høyere utdannelse kort: ", "antall totalt"],
+            "highEduLongK" : [15, "Høyere utdannelse lang: ", "antall kvinner"],
+            "highEduLongM" : [16, "Høyere utdannelse lang: ", "antall menn"],
+            "highEduLongTot" : [17, "Høyere utdannelse lang: ", "antall totalt"],
+        }, 
+        "elementIDmapPercent": {
+            "popKvinnerPercent" : 18,
+            "popMennPercent": 19,
+            "empKvinnerPercent": 20,
+            "empMennPercent": 21,
+            "empTotalPercent": 22,
+            "highEduKvinnerPercent": 23,
+            "highEduMennPercent": 24,
+            "highEduTotalPercent": 25,
+            "fagskoleKvinnerPercent" : 26,
+            "fagskoleMennPercent" : 27,
+            "fagskoleTotalPercent" : 28,
+            "highEduShortKPercent" : 29,
+            "highEduShortMPercent" : 30,
+            "highEduShortTotPercent" : 31,
+            "highEduLongKPercent" : 32,
+            "highEduLongMPercent" : 33,
+            "highEduLongTotPercent" : 34
+        },
+        "elementIdArrays": [
+            ["popKvinner",
+                "popMenn",
+                "popTotal",
+                "popKvinnerPercent",
+                "popMennPercent",
+                "empKvinner",
+                "empMenn",
+                "empTotal",
+                "empKvinnerPercent",
+                "empMennPercent",
+                "empTotalPercent",
+                "highEduKvinner",
+                "highEduMenn",
+                "highEduTotal",
+                "highEduKvinnerPercent",
+                "highEduMennPercent",
+                "HighEduTotalPercent",
+                "fagskoleKvinner",
+                "fagskoleMenn",
+                "fagskoleTotal",
+                "fagskoleKvinnerPercent",
+                "fagskoleMennPercent",
+                "fagskoleTotalPercent",
+                "highEduShortK",
+                "highEduShortM",
+                "highEduShortTot",
+                "highEduShortKPercent",
+                "highEduShortMPercent",
+                "highEduShortTotPercent",
+                "highEduLongK",
+                "highEduLongM",
+                "highEduLongTot",
+                "highEduLongKPercent",
+                "highEduLongMPercent",
+                "highEduLongTotPercent",],
+            ["population",
+                "employment",
+                "highEdu",
+                "fagskole",
+                "highEduShort",
+                "highEduLong"]],
+        "graphObjects": [historicalDetails.population.number.Kvinner,
+            historicalDetails.population.number.Menn,
+            historicalDetails.population.number.total,
 
-    let can = document.getElementById('graphTotal')
-    can.classList.add('canvasGraph')
+            historicalDetails.employment.number.Kvinner,
+            historicalDetails.employment.number.Menn,
+            historicalDetails.employment.number.total,
+            
+            historicalDetails.education.number["12"].Kvinner,
+            historicalDetails.education.number["12"].Menn,
+            historicalDetails.education.number["12"].total,
 
-    let trTags = document.getElementsByTagName("tr");
+            historicalDetails.education.number["11"].Kvinner,
+            historicalDetails.education.number["11"].Menn,
+            historicalDetails.education.number["11"].total,
 
-    let elementIDmap = {
-        "popKvinner": 0,
-        "popMenn": 1,
-        "popTotal": 2,
-        "popKvinnerPercent": 3,
-        "popMennPercent": 4,
-        "empKvinner": 5,
-        "empMenn": 6,
-        "empTotal": 7,
-        "empKvinnerPercent": 8,
-        "empMennPercent": 9,
-        "empTotalPercent": 10,
-        "highEduTotal": 11,
-        "highEduMenn": 12,
-        "highEduKvinner": 13,
+            historicalDetails.education.number["03a"].Kvinner,
+            historicalDetails.education.number["03a"].Menn,
+            historicalDetails.education.number["03a"].total,
+
+            historicalDetails.education.number["04a"].Kvinner,
+            historicalDetails.education.number["04a"].Menn,
+            historicalDetails.education.number["04a"].total,
+
+            historicalDetails.population.percent.Kvinner,
+            historicalDetails.population.percent.Menn,
+
+            historicalDetails.employment.percent.Kvinner,
+            historicalDetails.employment.percent.Menn,
+            historicalDetails.employment.percent.total,
+            
+            historicalDetails.education.percent["12"].Kvinner,
+            historicalDetails.education.percent["12"].Menn,
+            historicalDetails.education.percent["12"].total,
+
+            historicalDetails.education.percent["11"].Kvinner,
+            historicalDetails.education.percent["11"].Menn,
+            historicalDetails.education.percent["11"].total,
+
+            historicalDetails.education.percent["03a"].Kvinner,
+            historicalDetails.education.percent["03a"].Menn,
+            historicalDetails.education.percent["03a"].total,
+
+            historicalDetails.education.number["04a"].Kvinner,
+            historicalDetails.education.number["04a"].Menn,
+            historicalDetails.education.number["04a"].total]
+            
     }
 
-    for (let i = 0; i < trTags.length; i++) {
-        let str = trTags[i].id;
-        if (elementIDmap.hasOwnProperty(str)) {
-            trTags[str].onmouseover = function () { graphObjects(id, elementIDmap[str]), showDarkBackground(str), graphAnimation(can); }
-            trTags[str].onmouseout = function () { mouseOut(str, can, id) }
-        }
-    }
-};
 
+    function mouseOverFunc(id) {
+        //canvas tag properties
+        let canvas = document.createElement("canvas");
+        canvas.id = "graphTotal";
+        canvas.width = 500;
+        canvas.height = 300;
+        document.getElementById("graph").appendChild(canvas);
+        let can = document.getElementById('graphTotal');
+        can.classList.add('canvasGraph');
 
-function getAll(className, className2) {
-
-    let trElements = document.querySelectorAll(className);
-    let tableElements = document.querySelectorAll(className2);
-    elementIdArray = [["popKvinner", "popMenn", "popTotal", "popKvinnerPercent",
-        "popMennPercent", "empKvinner", "empMenn", "empTotal",
-        "empKvinnerPercent", "empMennPercent", "empTotalPercent",
-        "highEduKvinner", "highEduMenn", "highEduTotal",
-        "highEduKvinnerPercent", "highEduMennPercent", "HighEduTotalPercent"],
-    ["population", "employment", "highEdu", "fagskole", "highEduShort", "highEduLong"]]
-
-    for (let i = 0; i < trElements.length; i++) {
-        trElements[i].id = elementIdArray[0][i]
-    }
-    for (let j = 0; j < tableElements.length; j++) {
-        tableElements[j].id = elementIdArray[1][j];
-    }
-};
-
-
-
-function graphAnimation(className) {
-    canvas = className
-    canvas.classList.add('transition')
-    let compStyle = window.getComputedStyle(canvas),
-        marginLeft = compStyle.getPropertyValue('margin-right');
-    canvas.style.marginLeft = marginLeft;
-}
-
-function showDarkBackground(rowID) {
-    let x = document.getElementById("graphTotal")
-    x.style.visibility = "visible";
-    document.getElementById(rowID).style.backgroundColor = "#374C70"
-    document.getElementById(rowID).style.color = "#F4F4F4"
-};
-
-function mouseOut(rowID, className, id) {
-    rowID = rowID
-    canvas = className
-
-    canvas.classList.remove('transition')
-    document.getElementById(rowID).style.color = "#24201D";
-    let node = document.getElementById("graphTotal");
-    let table = document.getElementById(rowID)
-    let targetID = table.querySelectorAll('tr > td:first-child');
-
-    for (let i = 0; i < targetID.length; i++) {
-        let td = targetID[i]
-        if (td.innerHTML.trim() === "Menn") {
-            document.getElementById(rowID).style.backgroundColor = "#DADEE5";
-
-        } else {
-            document.getElementById(rowID).style.backgroundColor = "#F4F4F4";
-        }
-    }
-    if (node.parentNode) {
-        node.parentNode.removeChild(node)
-        mouseOverFunc(id);
-    }
-};
-
-
-function graphObjects(id, arrayIndex) {
-    let municipalData = details.getHistorical(id);
-    arrayIndex = arrayIndex
-
-    let totalEduCat11 = municipalData.education.number["11"].total
-    let totalEduCat03a = municipalData.education.number["03a"].total
-    let totalEduCat04a = municipalData.education.number["04a"].total
-
-    let maleEduCat11 = municipalData.education.number["11"].total
-    let maleEduCat03a = municipalData.education.number["03a"].total
-    let maleEduCat04a = municipalData.education.number["04a"].total
-
-    let femaleEduCat11 = municipalData.education.number["11"].total
-    let femaleEduCat03a = municipalData.education.number["03a"].total
-    let femaleEduCat04a = municipalData.education.number["04a"].total
-
-
-
-    function highEduSum(...obj) {
-        return obj.reduce((x, y) => {
-            for (let i in y) {
-                if (y.hasOwnProperty(i))
-                    x[i] = (x[i] || 0) + y[i];
+        //loop through <tr> tags and apply mouseOver/Out functions
+        let trTags = document.getElementsByTagName("tr");
+        
+        for (let i = 0; i < trTags.length; i++) {
+            let str = trTags[i].id;
+            if (graphData.elementIDmapNum.hasOwnProperty(str)) {
+                trTags[str].onmouseover = function () {console.log(graphData.elementIDmapNum[str]), graphMainNum(graphData.elementIDmapNum[str], graphData), showDarkBackground(str), graphAnimation(can); }
+                trTags[str].onmouseout = function () { mouseOut(str, can, id) }
             }
-            return x
-        }, {});
+        }
+
+        function percentMouseOver(id) {
+            let tables = document.getElementsByTagName("tables")
+            for (let j = 0; j < tables.length; j++) {
+                let str = tables[j].id;
+                if (graphData.elementIDmapPercent.hasOwnProperty(str)) {
+                    tables[str].onmouseover = function () {graphMainPercent(graphData.elementIDmapPercent[str], graphData), showDarkBackground(str), graphAnimation(can); }
+                    tables[str].onmouseout = function () { mouseOut(str, can, id) }
+                }
+            }
+        }
+        document.getElementById("populationToggle-prosent").addEventListener("click", function(id) {
+            percentMouseOver(id)
+        });
+    };
+
+
+
+    function getHtmlName() {
+        let x = document.getElementsByTagName("a")
+        //console.log(x["name"])
+        for(let i = 0; i <x.length; i++) {
+            console.log(x[i].name)
+        //}
+        } 
+    }  
+    getHtmlName();
+
+    function setHtmlIds(className, objectRef, ArrIndex) {
+
+        let elements = document.querySelectorAll(className);
+        for (let i = 0; i < elements.length; i++) {
+            elements[i].id = objectRef[ArrIndex][i]
+        }
+        
+    }; setHtmlIds('.mouseOver', graphData.elementIdArrays, 0);
+
+
+    function graphAnimation(className) {
+        canvas = className
+        canvas.classList.add('transition')
+        let compStyle = window.getComputedStyle(canvas),
+            marginLeft = compStyle.getPropertyValue('margin-right');
+        canvas.style.marginLeft = marginLeft;
     }
 
-    let array = [municipalData.population.number.Kvinner,
-    municipalData.population.number.Menn,
-    municipalData.population.number.total,
-    municipalData.population.percent.Kvinner,
-    municipalData.population.percent.Menn,
-    municipalData.employment.number.Kvinner,
-    municipalData.employment.number.Menn,
-    municipalData.employment.number.total,
-    municipalData.employment.percent.Kvinner,
-    municipalData.employment.percent.Menn,
-    municipalData.employment.percent.total]
+    function showDarkBackground(rowID) {
+        let x = document.getElementById("graphTotal")
+        x.style.visibility = "visible";
+        document.getElementById(rowID).style.backgroundColor = "#374C70"
+        document.getElementById(rowID).style.color = "#F4F4F4"
+    };
 
-    let educationObjTot = highEduSum(totalEduCat11, totalEduCat03a, totalEduCat04a)
-    let educationObjMale = highEduSum(maleEduCat11, maleEduCat03a, maleEduCat04a)
-    let educationObjFemale = highEduSum(femaleEduCat11, femaleEduCat03a, femaleEduCat04a)
-    array.push(educationObjTot, educationObjMale, educationObjFemale)
+    function mouseOut(rowID, className, id) {
+        canvas = className
 
-    mapDataGraphTotal(Object.keys(array[arrayIndex]), Object.values(array[arrayIndex]));
+        canvas.classList.remove('transition')
+        document.getElementById(rowID).style.color = "#24201D";
+        let node = document.getElementById("graphTotal");
+        let table = document.getElementById(rowID)
+        let targetID = table.querySelectorAll('tr > td:first-child');
+
+        for (let i = 0; i < targetID.length; i++) {
+            let td = targetID[i]
+            if (td.innerHTML.trim() === "Menn") {
+                document.getElementById(rowID).style.backgroundColor = "#DADEE5";
+
+            } else {
+                document.getElementById(rowID).style.backgroundColor = "#F4F4F4";
+            }
+        }
+        if (node.parentNode) {
+            node.parentNode.removeChild(node)
+            mouseOverFunc(id);
+        }
+    }
+    window.onscroll = mouseOverFunc(id)
+    document.getElementById("populationToggle-prosent").addEventListener("click", function() {
+        setHtmlIds('.activeTable', graphData.elementIdArrays, 1);
+    })
+};
 
 
-    function mapDataGraphTotal(xAxisKeys, totalArray) {
 
-        xAxisKeys = xAxisKeys
-        totalArray = totalArray;
-        const detailsForm1 = document.getElementById("detailsForm");
-        id = detailsForm1.detailsInput.value
+
+function graphMainNum(array, graphData) {
+    console.log(array)
+
+    function mapDataGraphTotal(xAxisKeys, yAxisArray, array) {
+        array = array;
         let xAxisValues;
-
 
         function xAxisArray(xAxisKeys) {
             xAxisValues = xAxisKeys
@@ -173,35 +262,35 @@ function graphObjects(id, arrayIndex) {
 
         xAxisArray(xAxisKeys);
 
-        function yReduceValues(totalArray) {
-            let reducedBy = ""
+        function yReduceValues(yAxisArray) {
             newArr = []
-            for (let i = 0; i <totalArray.length; i++) {
-                if (totalArray[11] > 99999) {
-                    newArr.push((totalArray[i]/1000).toFixed(3))
-                    reducedBy = "*1000"
+            
+            for (let i = 0; i < yAxisArray.length; i++) {
+                if (yAxisArray[10] > 99999) {
+                    newArr.push((yAxisArray[i] / 1000))
+                    reducedBy = 1000
                 }
-                else if ( totalArray[11] > 9999) {
-                    newArr.push((totalArray[i]/100).toFixed(2))   
-                    reducedBy = "*100"
-                } 
-                else if ( totalArray[11] > 999) {
-                    newArr.push((totalArray[i]/10).toFixed(1))
-                    reducedBy = "*10"
+                else if (yAxisArray[10] > 9999) {
+                    newArr.push((yAxisArray[i] / 100))
+                    reducedBy = 100
+                }
+                else if (yAxisArray[10] > 999) {
+                    newArr.push((yAxisArray[i] / 10))
+                    reducedBy = 10
                 }
             };
             let reducedData = {
-                "originalArr": totalArray,
-                "redData" : newArr,
-                "graphText": reducedBy
+                "originalArr": yAxisArray,
+                "redData": newArr,
+                "scaleUp": reducedBy
             }
             return reducedData
-        }     
+        }
+           
 
+        function minMaxArray(yAxisArray) {
+            let data = yReduceValues(yAxisArray)
 
-        function minMaxArray(totalArray) {
-            let data = yReduceValues(totalArray)
-            
             let arrayMax = Math.max.apply(Math, data["redData"])
             let arrayMin = Math.min.apply(Math, data["redData"]);
             arrayMaxInt = Math.ceil(arrayMax / 10) * 10;
@@ -216,6 +305,7 @@ function graphObjects(id, arrayIndex) {
 
             let incrementVal = (maxVal - minVal) / 10;
             let minMaxObj = {
+                "scaleUp" : data["scaleUp"],
                 "yAxisArray": data["redData"],
                 "minValue": minVal,
                 "maxValue": maxVal,
@@ -224,18 +314,18 @@ function graphObjects(id, arrayIndex) {
             return minMaxObj;
         }
 
-        let arrObject = minMaxArray(totalArray)
-        drawGraphTotal(xAxisValues, arrObject);
+        let arrObject = minMaxArray(yAxisArray)
+        drawGraphTotal(xAxisValues, arrObject, array);
     };
 
 
-    function drawGraphTotal(xAxisVal, arrayObj) {
+    function drawGraphTotal(xAxisVal, arrayObj, array) {
         let graphTotal = document.getElementById("graphTotal");
         let ctx = graphTotal.getContext("2d");
         let plotTotal = arrayObj['yAxisArray']
 
         //Dynamic values based on Array content for dataset
-        let columnSize = 28;
+        let columnSize = 68;
         let rowSize = 38;
         let margin = 8;
         let xAxis = xAxisVal
@@ -244,18 +334,18 @@ function graphObjects(id, arrayIndex) {
 
         minValue = arrayObj["minValue"];
         maxValue = arrayObj["maxValue"];
-        increment = arrayObj["increment"];
+        increment = arrayObj["increment"]
         let rectangles = xAxisVal.length - 1;
 
         //Gridscaling based on graph input length
         let scaleForX = (graphTotal.width - rowSize + margin) / rectangles;
-        let scaleForY = (graphTotal.height - columnSize - margin) / (maxValue-minValue);
-        console.log(scaleForX)
+        let scaleForY = (graphTotal.height - columnSize - margin) / (maxValue - minValue);
+        
 
 
         //plots each of the points(elements) in the Array to a line
         function plotData(toPlot) {
-            
+
             ctx.beginPath();
             ctx.lineWidth = -2;
             ctx.moveTo(0, toPlot[0]);
@@ -265,10 +355,13 @@ function graphObjects(id, arrayIndex) {
             ctx.stroke();
         }
 
+        ctx.font = "20px Arial";
+        ctx.fillText (array[1] + array[2], 3, 35)
         //graphStyling
-        ctx.font = "10px Arial";
-        ctx.fillStyle = "#374C70";      //Font colour
-        ctx.strokeStyle = "grey";    //Grid line color
+        ctx.font = "10px Arial";    //Font size, type
+        ctx.fillStyle = "#374C70";  //Font color
+        ctx.strokeStyle = "grey";   //Grid line color
+        
 
         //Fills ArrayKeys on the X axis 
         ctx.beginPath();
@@ -282,7 +375,7 @@ function graphObjects(id, arrayIndex) {
         //Fills ArrayKeyValues from the numbers array on the Y axis
         //Horizontal grid lines
         let yCount = 0;
-        for (graphScale = maxValue; graphScale >= minValue; graphScale = graphScale - increment) {
+        for (graphScale = (maxValue*arrayObj["scaleUp"]); graphScale >= (minValue*arrayObj["scaleUp"]); graphScale = graphScale - (increment*arrayObj["scaleUp"])) {
             let y = columnSize + (scaleForY * yCount * increment);
             ctx.fillText(graphScale, margin - 8, y + margin);
             ctx.moveTo(rowSize, y);
@@ -299,6 +392,7 @@ function graphObjects(id, arrayIndex) {
         plotData(plotTotal);
 
     };
+   mapDataGraphTotal(Object.keys(graphData.graphObjects[array[0]]), Object.values(graphData.graphObjects[array[0]]), array);
 };
 
 
@@ -307,3 +401,13 @@ function graphObjects(id, arrayIndex) {
 
 
 
+/*yAxisArray.forEach(function(item) {
+                newArr.push((item / 1000));
+            });*/
+
+            /*let reducedData = {
+                "originalArr": yAxisArray,
+                "redData": newArr,
+            }
+            return reducedData
+        }*/
