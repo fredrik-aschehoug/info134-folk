@@ -102,7 +102,7 @@
 }
 
 /*--------------------active--------------------*/
-.active{
+.active, .activeSidenav{
   visibility: visible;
   display:block;
   margin: auto;

@@ -230,3 +230,14 @@ function toggleCallback(className, inputType, radioClass) {
         }
     }
 }
+/**
+ * Assigns a class to an element if the class is not already present.
+ * The destination class can only have one element assigned.
+ * @param {string} className The classname to activate
+ */
+function addClass(destinationClassName, className) {
+    const element = document.getElementsByClassName(destinationClassName)[0];
+    if (!element.classList.contains(className)) {
+        element.classList.add(className);
+    }
+}
