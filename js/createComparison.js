@@ -13,13 +13,14 @@ function createComparison(id1, id2) {
     function createComparisonTable(historicalDetails, className) {
         const tables = document.createElement("div");
         const desciptions = ["Kvinner", "Menn", "Begge kjønn"];
+        const tableHeaderClass = "tableHeader";
         // Create table elements
         numberTable = createTableElement();
         percentTable = createTableElement();
         // Create table headers
         const tableHeaders = createTableHeaders("employment", historicalDetails);
-        numberTable.tHead.appendChild(createTableHeader(tableHeaders));
-        percentTable.tHead.appendChild(createTableHeader(tableHeaders));
+        numberTable.tHead.appendChild(createTableHeader(tableHeaders, tableHeaderClass));
+        percentTable.tHead.appendChild(createTableHeader(tableHeaders, tableHeaderClass));
         // Create rows
         createTableBody(desciptions, tableHeaders, historicalDetails, numberTable.tBodies[0], "number", "employment");
         createTableBody(desciptions, tableHeaders, historicalDetails, percentTable.tBodies[0], "percent", "employment");

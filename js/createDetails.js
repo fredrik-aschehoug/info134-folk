@@ -200,6 +200,7 @@ function createDetails(id) {
         function createHistoricalTable(type, eduType) {
             eduType = eduType || "";
             const className = `${type}${eduType}Table`;
+            const tableHeaderClass = "tableHeader";
             const tables = document.createElement("div");
             const numberDesciptions = ["Kvinner", "Menn", "Begge kjønn"];
             let percentDesciptions;
@@ -213,8 +214,8 @@ function createDetails(id) {
             percentTable = createTableElement();
             // Create table headers
             const tableHeaders = createTableHeaders(type, historicalDetails);
-            numberTable.tHead.appendChild(createTableHeader(tableHeaders));
-            percentTable.tHead.appendChild(createTableHeader(tableHeaders));
+            numberTable.tHead.appendChild(createTableHeader(tableHeaders, tableHeaderClass));
+            percentTable.tHead.appendChild(createTableHeader(tableHeaders,tableHeaderClass));
             // Create rows
             createTableBody(numberDesciptions, tableHeaders, historicalDetails, numberTable.tBodies[0], "number", type, eduType);
             createTableBody(percentDesciptions, tableHeaders, historicalDetails, percentTable.tBodies[0], "percent", type, eduType);
