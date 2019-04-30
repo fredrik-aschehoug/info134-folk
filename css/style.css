@@ -14,44 +14,44 @@
     margin: 0;
     grid-template-columns: auto;
     grid-template-rows: auto;*/
+
   }
 /*--------------------NAVIGASJON--------------------*/
 .navigasjon{
-  background-color: #1F2421;
   top: 0;
   right: 0;
+  z-index: 2;
+  position: fixed;
+  display:inline-block;
   width: 100%;
   height: 50px;
-  position: fixed;
-
+  background-color: #1F2421;
   text-transform: uppercase;
   font-size: 1em;
-
-  display:inline-block;
-  z-index: 1;
-
 }
 
 .navigasjon li{
-  float:left;
   display: block;
+  float:left;
 }
 
 .navigasjon ul{
-  list-style-type: none;
   padding: 0;
   margin: 0;
+  list-style-type: none;
 }
 
 .navigasjon button{
-  text-decoration: none;
-  font-size: 1em;
+  display: inline-block;
   color: #F4F4F4;
+  padding: 15px 32px;
   border: none;
   background-color: #1F2421;
-  display: inline-block;
-  padding: 15px 32px;
+  text-decoration: none;
+  font-size: 1em;
 }
+
+/* Farge til navigasjon */
 
 #btn1:hover:not(.activemenu),
 .activemenu #btn1{
@@ -62,10 +62,12 @@
 .activemenu #btn2{
   background-color: #074F57;
 }
+
 #btn3:hover:not(.activemenu),
 .activemenu #btn3{
   background-color: #374C70;
 }
+
 #btn4:hover:not(.activemenu),
 .activemenu #btn4{
   background-color: #68553E;
@@ -74,34 +76,33 @@
 /*--------------------hovudinnhald--------------------*/
 .hovudinnhald{
   display: block;
-  margin: auto;
   padding: auto;
+  margin: auto;
   /*border: dashed thin black;*/
   /*background-color: #EDEDE9;*/
-
 }
 
 .center{
   top: 40px;
   bottom:50px;
   left: 50%;
-  transform: translate(-50%);
   position: absolute;
-  width: auto;
-  overflow: scroll;
+  transform: translate(-50%);
   display: block;
-  margin: auto;
-  padding: 10px;
   max-width: 60%;
-  min-width: 60%
+  min-width: 60%;
+  overflow: scroll;
+  padding: 10px;
+  margin: auto;
 }
-
+/* Gjør klassen usynlig */
 .hovud{
   visibility: hidden;
   display: none;
 }
 
 /*--------------------active--------------------*/
+/* Gjør den aktive klassen synlig */
 .active{
   visibility: visible;
   display:block;
@@ -109,84 +110,75 @@
   }
 /*--------------------INTRODUKSJON--------------------*/
 .introduksjon {
+  width: 100%;
   padding: auto;
   padding-left: 0;
   padding-right: 0;
   margin: auto;
-  width: 100%;
-
 }
+
 .introduksjon h1{
-  background-color: #542344;
-  color: white;
   padding: 10px;
   margin: 0;
-
+  background-color: #542344;
+  color: white;
 }
+
 .introduksjon p{
-  padding-bottom: 1em;
   padding: 10px;
+  padding-bottom: 1em;
   margin: 0;
 }
 
 .introduksjon article{
   background-color: #DFD7DD;
 }
-/*Introduksjon
-tr:nth-child(1) {
-  background-color: #542344;
-  color: white;
-}
-tr:nth-child(even) {
-  background-color: #DFD7DD;
-}*/
 
 /*--------------------OVERSIKT--------------------*/
 .oversikt table {
-  border-collapse: collapse;
   width: 100%;
+  border-collapse: collapse;
 }
 
 .oversikt th,
 .oversikt td {
-  text-align: left;
   padding: 8px;
+  text-align: left;
 }
 
 .oversikt thead {
-  background-color: #074F57;
-  color: white;
+  top: 0;
   position: sticky;
   position: -webkit-sticky;
-  top: 0;
+  background-color: #074F57;
+  color: white;
 }
+
 .oversikt tbody {
- /* Ingeleiv pls fix*/
-  overflow-y: auto;    /* Trigger vertical scroll    */
-  overflow-x: hidden;  /* Hide the horizontal scroll */
   width:100%;
+  overflow-y: auto;    /* Trigger vertical scroll    */
+  overflow-x: hidden;  /* Hide horizontal scroll */
 }
 
-.oversikt tr:nth-child(even) {
+.oversikt tr:nth-child(even) { /* Forandrer fargen til partalls linjer */
   background-color: #D1DFE0;
-
 }
 
 
 /*--------------------DETALJAR SEARCH--------------------*/
 
-
 #detailsInput input[type=text] {
   width: 200px;
 }
+
 #detailsForm{
   display: block;
-  border: 1px solid grey;
-  background-color: #DADEE5;
   width: 248px;
   height: auto;
+  border: 1px solid grey;
   margin: auto;
   margin-top: 10px;
+  background-color: #DADEE5;
 }
 
 #detailsInput{
@@ -199,44 +191,48 @@ tr:nth-child(even) {
 }
 
 #detailsButton{
-  background:url(../images/search2.png) no-repeat;
-  background-size: contain;
-  border:none;
   width:40px;
   height:40px;
+  border:none;
+  background:url(../images/search2.png) no-repeat;
+  background-size: contain;
 }
 
 /*--------------------DETALJAR NAV--------------------*/
 .sidenav{
-  display: block;
-  position: fixed;
-  position: -webkit-fixed;
   top: 50px;
   left:25px;
   z-index: 2;
-
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
+  position: fixed;
+  position: -webkit-fixed;
+  display: block;
   width: 200px;
   max-width:20%;
+  margin: 0;
+  padding: 0;
   background-color: #DADEE5;
+  list-style-type: none;
 }
 
 .sidenav li a{
-  text-decoration: none;
   color: black;
+  text-decoration: none;
 }
+
 .sidenav li{
   padding: 0.5em;
 }
+
 .sidenav li:hover{
   background-color: #374C70;
 }
 
 
 /*--------------------DETALJAR--------------------*/
-.detailsOutput p, .mainHeader, .subHeader, .subHeader2 {
+.detailsOutput p,
+.mainHeader,
+.subHeader,
+.subHeader2 {
   font-weight: bold;
 }
 .detailsOutput .mainHeader {
@@ -249,7 +245,7 @@ tr:nth-child(even) {
   font-size: 1em;
 }
 
-/*--Details Table--*/
+/*--------------------Detaljar Table--------------------*/
 .headerCell {
   font-weight: bold;
 }
@@ -263,24 +259,20 @@ tr:nth-child(even) {
 
 .detailsOutput table,
 .comparisonOutput table{
-  border-collapse: collapse;
+  z-index: 0;
   width: 100%;
   padding:auto;
-  margin: auto;
-  z-index: 0;
   padding-top: 10px;
+  margin: auto;
+  border-collapse: collapse;
 }
 
 .detailsOutput th,
 .detailsOutput td,
 .comparisonOutput th,
 .comparisonOutput td {
-  text-align: left;
-  padding-top: 2px;
-  padding-bottom: 2px;
-  padding-left: auto;
-  padding-right: auto;
   height: 40px;
+  text-align: left;
 }
 
 .detailsOutput th,
@@ -300,16 +292,16 @@ tr:nth-child(even) {
 }
 
 .detailsOutput > div:nth-child(1) > table:nth-child(3) > thead:nth-child(1){
+  top: 0;
+    z-index: 2;
   position: sticky;
   position: -webkit-sticky;
-  top: 0;
-  z-index: 2;
 }
 
 .detailsOutput tbody,
 .comparisonOutput tbody {
   overflow-y: auto;    /* Trigger vertical scroll    */
-  overflow-x: hidden;  /* Hide the horizontal scroll */
+  overflow-x: hidden;  /* Hide horizontal scroll */
 }
 
 .detailsOutput tr:nth-child(even){
@@ -328,13 +320,13 @@ tr:nth-child(even) {
 }
 /*--------------------Graph--------------------*/
 .canvasGraph {
-  margin-top: 30em;
   visibility: hidden;
-  background-color: #DADEE5;
-  padding-bottom: 1em;
   display: inline-block;
   padding-left: 0.5em;
+  padding-bottom: 1em;
   margin-left: -5% !important;
+  margin-top: 30em;
+  background-color: #DADEE5;
 }
 
 .canvasGraph.transition{
@@ -343,18 +335,21 @@ tr:nth-child(even) {
 }
 
 /*--------------------active--------------------*/
+/* Viser aktiv klasse */
 .activeTable{
   visibility: visible;
   display:block;
 }
 
 
-/*--------TableToggle----------*/
+/*--------------------TableToggle--------------------*/
 .tableToggle {
-  border: 1px solid #1a1a1a;
+  position: relative;
   display: inline-block;
   padding: 0.3em;
-  position: relative;
+  border: 1px solid #1a1a1a;
+  margin-top: 1em;
+  margin-bottom: 1em;
   text-align: center;
   transition: background 600ms ease, color 600ms ease;
   font-size: 0.8em;
@@ -364,8 +359,8 @@ input[type="radio"].toggle {
   display: none;
 }
 input[type="radio"].toggle + label {
-  cursor: pointer;
   min-width: 60px;
+  cursor: pointer;
 }
 input[type="radio"].toggle + label:hover {
   background: none;
@@ -373,14 +368,15 @@ input[type="radio"].toggle + label:hover {
 }
 
 input[type="radio"].toggle + label:after {
-  background: #374C70;
-  content: "";
-  height: 100%;
-  position: absolute;
   top: 0;
-  transition: left 200ms cubic-bezier(1, .11, .93, 1);
-  width: 100%;
   z-index: -1;
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  transition: left 200ms cubic-bezier(1, .11, .93, 1);
+  background: #1F2421;
+
 }
 
 input[type="radio"].toggle.toggle-left + label:after {
@@ -390,9 +386,9 @@ input[type="radio"].toggle.toggle-right + label:after {
   left: -100%;
 }
 input[type="radio"].toggle:checked + label {
-  cursor: default;
   color: #fff;
   transition: color 200ms;
+  cursor: default;
 }
 input[type="radio"].toggle:checked + label:after {
   left: 0;
@@ -403,7 +399,6 @@ input[type="radio"].toggle:checked + label:after {
 .comparisonOutput thead {
   background-color: #68553E;
   color: white;
-
 }
 
 .comparisonOutput tbody td,
@@ -413,40 +408,42 @@ input[type="radio"].toggle:checked + label:after {
 
 /*Bold eller farga?*/
 .highlightedCell {
-  font-weight: bold;
-  background-color: #9E9284;
+  z-index: 0;
   color: white;
   box-shadow: inset 0px 0px 0px 2px #E3E0DB;
-  box-sizing: border-box;
-  z-index: 0;
   padding-left:auto;
   padding-right: auto;
+  background-color: #9E9284;
+  font-weight: bold;
 }
 
 .highlightedCell th{
   text-align: center;
+}
+.employmentTable tr:nth-child(even) {
+  background-color: #E3E0DB;
 }
 
 /*--------------------SEARCH--------------------*/
 
 #comparisonForm{
   display: block;
-  border: 1px solid grey;
-  background-color: #E3E0DB;
   width: 500px;
   height: auto;
+  border: 1px solid grey;
   margin: auto;
   margin-top: 10px;
+  background-color: #E3E0DB;
 }
 
 #comparisonInput1,
 #comparisonInput2{
   width: 220px;
   height: 33px;
-  font-size: 1em;
-  padding:0.1em;
   border: none;
+  padding:0.1em;
   background-color: #E3E0DB;
+  font-size: 1em;
 }
 
 #comparisonButton{
@@ -459,18 +456,16 @@ input[type="radio"].toggle:checked + label:after {
 
 /*--------------------botntekst--------------------*/
 .botntekst{
-  background-color: #1F2421;
-  text-decoration: none;
-  font-size: 1em;
-  color: #F4F4F4;
   bottom: 0;
   right: 0;
+  z-index: 1;
+  display:inline-block;
   width: 100%;
   position: fixed;
-
+  background-color: #1F2421;
+  color: #F4F4F4;
+  text-decoration: none;
   text-transform: uppercase;
   text-align: center;
-
-  display:inline-block;
-  z-index: 1;
+  font-size: 1em;
 }

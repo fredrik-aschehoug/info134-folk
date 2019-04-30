@@ -5,6 +5,49 @@ dataa presenterast horisontalt*/
 
 @media screen and (max-width: 700px){
 
+  /*--------------------NAVIGASJON--------------------*/
+  .navigasjon{
+    top: 0;
+    right: 0;
+    z-index: 2;
+    position: fixed;
+    display:inline-block;
+    width: 100%;
+    height: 41px;
+    background-color: #1F2421;
+    text-transform: uppercase;
+    font-size: 0.75em;
+  }
+
+  .navigasjon li{
+    display: block;
+    float:left;
+  }
+
+  .navigasjon ul{
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+  }
+
+  .navigasjon button{
+    display: inline-block;
+    color: #F4F4F4;
+    padding: 15px 16px;
+    border: none;
+    background-color: #1F2421;
+    text-decoration: none;
+    font-size: 0.75em;
+  }
+
+  /*--------------------hovudinnhald--------------------*/
+  .center{
+    max-width: 90%;
+    min-width: 90%;
+    align-content: center;
+  }
+
+
   .detailsOutput th, .comparisonOutput th {
       width: 80px;
       display: block;
@@ -13,17 +56,22 @@ dataa presenterast horisontalt*/
   .comparisonOutput tr {
     display: block;
     float: left;
-    width: auto;
+    width: 100px;
+  }
+  .comparisonOutput td {
+
+    height: 40px;
   }
 
   .comparisonOutput thead,
   .comparisonOutput td{
     display: block;
+    font-weight: normal;
 
   }
   .comparisonOutput thead{
-    background-color: #68553E;
-    color: white;
+    /*background-color: #68553E;*/
+    color: black;
   }
   .comparisonOutput > div:nth-child(1) > table:nth-child(1) > thead:nth-child(1) > tr:nth-child(1){
     background-color: #68553E;
