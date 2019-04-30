@@ -350,7 +350,8 @@ tr:nth-child(even) {
 
 
 /*--------TableToggle----------*/
-.tableToggle {
+.detailsOutput .tableToggle,
+.comparisonOutput .tableToggle {
   border: 1px solid #1a1a1a;
   display: inline-block;
   padding: 0.3em;
@@ -369,11 +370,9 @@ input[type="radio"].toggle + label {
 }
 input[type="radio"].toggle + label:hover {
   background: none;
-  color: #374C70;
 }
 
 input[type="radio"].toggle + label:after {
-  background: #374C70;
   content: "";
   height: 100%;
   position: absolute;
@@ -391,14 +390,29 @@ input[type="radio"].toggle.toggle-right + label:after {
 }
 input[type="radio"].toggle:checked + label {
   cursor: default;
-  color: #fff;
   transition: color 200ms;
 }
 input[type="radio"].toggle:checked + label:after {
   left: 0;
 }
 
-
+/*colors themes*/
+.detailsOutput input[type="radio"].toggle + label:hover {
+  color: #374C70;
+}
+.comparisonOutput input[type="radio"].toggle + label:hover {
+  color: #68553E;
+}
+.detailsOutput input[type="radio"].toggle + label:after {
+  background: #374C70;
+}
+.comparisonOutput input[type="radio"].toggle + label:after {
+  background: #68553E;
+}
+.detailsOutput input[type="radio"].toggle:checked + label,
+.comparisonOutput input[type="radio"].toggle:checked + label {
+  color: #fff;
+}
 /*--------------------SAMANLIKNING--------------------*/
 .comparisonOutput thead {
   background-color: #68553E;
