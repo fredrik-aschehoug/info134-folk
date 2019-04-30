@@ -44,7 +44,6 @@ function getAll(className, className2) {
 
     let trElements = document.querySelectorAll(className);
     let tableElements = document.querySelectorAll(className2);
-    console.log(tableElements)
     elementIdArray = [["popKvinner", "popMenn", "popTotal", "popKvinnerPercent",
         "popMennPercent", "empKvinner", "empMenn", "empTotal",
         "empKvinnerPercent", "empMennPercent", "empTotalPercent",
@@ -57,18 +56,7 @@ function getAll(className, className2) {
     }
     for (let j = 0; j < tableElements.length; j++) {
         tableElements[j].id = elementIdArray[1][j];
-        //
     }
-    /*for (let k = 0; k < elementIdArray; k++) {
-        let applyCanvas = elementIdArra[k]
-        applyCanvas.onmouseover = function() {
-            let canvas = document.createElement("canvas");
-            document.getElementById(applyCanvas).appendChild(canvas);
-    
-        }*/
-    /*if (tableElements.id in elementIdArray[1]) {
-        document.getElementById(tableElements.id).appendChild(canvas);
-    }*/
 };
 
 
@@ -185,22 +173,42 @@ function graphObjects(id, arrayIndex) {
 
         xAxisArray(xAxisKeys);
 
+        function yReduceValues(totalArray) {
+            let reducedBy = ""
+            newArr = []
+            for (let i = 0; i <totalArray.length; i++) {
+                if (totalArray[11] > 99999) {
+                    newArr.push((totalArray[i]/1000).toFixed(3))
+                    reducedBy = "*1000"
+                }
+                else if ( totalArray[11] > 9999) {
+                    newArr.push((totalArray[i]/100).toFixed(2))   
+                    reducedBy = "*100"
+                } 
+                else if ( totalArray[11] > 999) {
+                    newArr.push((totalArray[i]/10).toFixed(1))
+                    reducedBy = "*10"
+                }
+            };
+            let reducedData = {
+                "originalArr": totalArray,
+                "redData" : newArr,
+                "graphText": reducedBy
+            }
+            return reducedData
+        }     
 
 
         function minMaxArray(totalArray) {
-            let i = 0;
-            while (i < totalArray.length) {
-                totalArray[i] = totalArray[i] / 1000;
-                i++
-            }
-
-            let arrayMax = Math.max.apply(Math, totalArray)
-            let arrayMin = Math.min.apply(Math, totalArray);
+            let data = yReduceValues(totalArray)
+            
+            let arrayMax = Math.max.apply(Math, data["redData"])
+            let arrayMin = Math.min.apply(Math, data["redData"]);
             arrayMaxInt = Math.ceil(arrayMax / 10) * 10;
-            maxVal = arrayMaxInt + (Math.ceil((arrayMaxInt * 0.05) / 10) * 10);
+            maxVal = arrayMaxInt + (Math.ceil((arrayMaxInt * 0.15) / 10) * 10);
 
             arrayMinInt = Math.round(arrayMin / 10) * 10;
-            minVal = arrayMinInt - (Math.round((arrayMaxInt) * 0.05 / 10) * 10);
+            minVal = arrayMinInt - (Math.round((arrayMaxInt) * 0.15 / 10) * 10);
             minVal = Math.round(minVal / 10) * 10;
             if (maxVal === minVal) {
                 minVal = maxVal - 20;
@@ -208,7 +216,7 @@ function graphObjects(id, arrayIndex) {
 
             let incrementVal = (maxVal - minVal) / 10;
             let minMaxObj = {
-                "yAxisArray": totalArray,
+                "yAxisArray": data["redData"],
                 "minValue": minVal,
                 "maxValue": maxVal,
                 "increment": incrementVal
@@ -216,8 +224,8 @@ function graphObjects(id, arrayIndex) {
             return minMaxObj;
         }
 
-        let arrObjekt = minMaxArray(totalArray)
-        drawGraphTotal(xAxisValues, arrObjekt);
+        let arrObject = minMaxArray(totalArray)
+        drawGraphTotal(xAxisValues, arrObject);
     };
 
 
@@ -240,13 +248,16 @@ function graphObjects(id, arrayIndex) {
         let rectangles = xAxisVal.length - 1;
 
         //Gridscaling based on graph input length
-        let = scaleForX = (graphTotal.width - rowSize + margin) / rectangles;
-        let = scaleForY = (graphTotal.height - columnSize - margin) / (maxValue - minValue);
+        let scaleForX = (graphTotal.width - rowSize + margin) / rectangles;
+        let scaleForY = (graphTotal.height - columnSize - margin) / (maxValue-minValue);
+        console.log(scaleForX)
 
 
         //plots each of the points(elements) in the Array to a line
         function plotData(toPlot) {
+            
             ctx.beginPath();
+            ctx.lineWidth = -2;
             ctx.moveTo(0, toPlot[0]);
             for (i = 1; i < rectangles; i++) {
                 ctx.lineTo(i * scaleForX, toPlot[i])
@@ -289,3 +300,10 @@ function graphObjects(id, arrayIndex) {
 
     };
 };
+
+
+
+
+
+
+
