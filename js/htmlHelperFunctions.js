@@ -43,14 +43,18 @@ function appendElements(node, ...children) {
 }
 /**
  * Create a row with headers.
- * @param {Array} headers - The header text values to use in header row
+ * @param {string[]} headers - The header text values to use in header row
+ * @param {string} className Class to assign to each cell in the header
  * @returns {HTMLTableRowElement}
  */
-function createTableHeader(headers) {
+function createTableHeader(headers, className) {
     const headerRow = document.createElement("tr");
     for (let header of headers) {
         let th = document.createElement("th");
         th.innerHTML = header;
+        if (className) {
+            th.classList.add(className);
+        }
         headerRow.appendChild(th);
     }
     return headerRow;
