@@ -223,7 +223,6 @@ tr:nth-child(even) {
   background-color: #DADEE5;
 }
 
-.sidenav > li:nth-child(1){}
 .sidenav li a{
   text-decoration: none;
   color: black;
@@ -256,11 +255,6 @@ tr:nth-child(even) {
 }
 .dataCell {
   padding-left: 1.5em;
-}
-
-.highlightedCell {
-  font-weight: bold;
- /* Ingeleiv pls fix*/
 }
 
 .percentCell::after {
@@ -412,21 +406,24 @@ input[type="radio"].toggle:checked + label:after {
 
 }
 
-.comparisonOutput tr:nth-child(even){
-  background-color: #E3E0DB;
-  text-align: center;
+.comparisonOutput tbody td,
+.comparisonOutput thead td{
+  text-align: center !important;
 }
 
-/* BYTT UT MED UTHEVA*/
-.comparisonOutput > div:nth-child(1) > table:nth-child(1) > tbody:nth-child(2) > tr:nth-child(1) > td:nth-child(5),
-.comparisonOutput > div:nth-child(1) > table:nth-child(1) > tbody:nth-child(2) > tr:nth-child(3) > td:nth-child(8){
-  /*text-align: center;*/
-  /*border: dashed 2px #D8D8F6;*/
+/*Bold eller farga?*/
+.highlightedCell {
+  font-weight: bold;
   background-color: #9E9284;
   color: white;
+  box-shadow: inset 0px 0px 0px 2px #E3E0DB;
+  box-sizing: border-box;
+  z-index: 0;
+  padding-left:auto;
+  padding-right: auto;
 }
 
-.comparisonOutput{
+.highlightedCell th{
   text-align: center;
 }
 
