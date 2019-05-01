@@ -54,3 +54,25 @@ function comparisonFormSubmit(ids) {
         alert("Du kan ikkje samanlikne to like kommuner");
     }
 }
+/**
+ * Sets classname on tr elements according to search query.
+ */
+function overviewTableFilter() {
+    const input = document.getElementById("overviewInput");
+    const filter = input.value.toUpperCase();
+    const table = document.getElementById("overviewTable").tBodies[0];
+    const rows = table.getElementsByTagName("tr");
+    let tdText;
+    for (let row of rows) {
+        // Select first column
+        let td = row.getElementsByTagName("td")[0];
+        if (td) {
+            tdText = td.innerText;
+            if (tdText.toUpperCase().indexOf(filter) > -1) {
+                row.className = "visibleRow";
+            } else {
+                row.className = "hiddenRow";
+            }
+        }
+    }
+}

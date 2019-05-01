@@ -167,7 +167,10 @@ tr:nth-child(even) {
 
 .oversikt tr:nth-child(even) {
   background-color: #D1DFE0;
+}
 
+.hiddenRow {
+  display: none;
 }
 
 
