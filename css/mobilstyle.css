@@ -31,7 +31,7 @@ dataa presenterast horisontalt*/
   }
 
   .navigasjon button{
-    display: inline-block;
+    display: block;
     color: #F4F4F4;
     padding: 15px 16px;
     border: none;
@@ -44,10 +44,34 @@ dataa presenterast horisontalt*/
   .center{
     max-width: 90%;
     min-width: 90%;
-    align-content: center;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    overflow-x: hidden;
+    overflow-y: scroll;
+  }
+/*--------------------samanlikning search--------------------*/
+  #comparisonForm {
+    /*display: inline-block;*/
+    width: 397.7px;
+    height: 40px;
+    margin: auto;
+    margin-top: 10px;
+    background-color: #E3E0DB;
+  }
+
+  #comparisonInput1,
+  #comparisonInput2{
+    width: 170px;
+    margin:0;
+    font-size: 0.75em;
+  }
+  #comparisonButton{
+    margin:0;
   }
 
 
+/*--------------------samanlikning--------------------*/
   .detailsOutput th, .comparisonOutput th {
       width: 80px;
       display: block;
@@ -77,5 +101,11 @@ dataa presenterast horisontalt*/
     background-color: #68553E;
     color: white;
     text-align: center;
+  }
+
+  .tableHeader{
+    background-color: #68553E;
+    color: white;
+    text-align: center !important;
   }
 }
