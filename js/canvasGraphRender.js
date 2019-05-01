@@ -1,5 +1,5 @@
 
-//test
+
 
 function graphRender(id) {
     const historicalDetails = details.getHistorical(id)
