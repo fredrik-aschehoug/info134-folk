@@ -138,7 +138,7 @@ function graphRender(id) {
 
     function mouseOverFunc(id) {
         //canvas tag properties
-        let canvas = document.createElement("canvas");
+        const canvas = document.createElement("canvas");
         canvas.id = "graphTotal";
         canvas.width = 500;
         canvas.height = 300;
@@ -152,7 +152,7 @@ function graphRender(id) {
         for (let i = 0; i < trTags.length; i++) {
             let str = trTags[i].id;
             if (graphData.elementIDmapNum.hasOwnProperty(str)) {
-                trTags[str].onmouseover = function () {console.log(graphData.elementIDmapNum[str]), graphMainNum(graphData.elementIDmapNum[str], graphData), showDarkBackground(str), graphAnimation(can); }
+                trTags[str].onmouseover = function () {graphMainNum(graphData.elementIDmapNum[str], graphData), showDarkBackground(str), graphAnimation(can); }
                 trTags[str].onmouseout = function () { mouseOut(str, can, id) }
             }
         }
@@ -178,7 +178,6 @@ function graphRender(id) {
         let x = document.getElementsByTagName("a")
         //console.log(x["name"])
         for(let i = 0; i <x.length; i++) {
-            console.log(x[i].name)
         //}
         } 
     }  
@@ -242,7 +241,6 @@ function graphRender(id) {
 
 
 function graphMainNum(array, graphData) {
-    console.log(array)
 
     function mapDataGraphTotal(xAxisKeys, yAxisArray, array) {
         array = array;
@@ -294,10 +292,10 @@ function graphMainNum(array, graphData) {
             let arrayMax = Math.max.apply(Math, data["redData"])
             let arrayMin = Math.min.apply(Math, data["redData"]);
             arrayMaxInt = Math.ceil(arrayMax / 10) * 10;
-            maxVal = arrayMaxInt + (Math.ceil((arrayMaxInt * 0.15) / 10) * 10);
+            maxVal = arrayMaxInt + (Math.ceil((arrayMaxInt * 0.10) / 10) * 10);
 
             arrayMinInt = Math.round(arrayMin / 10) * 10;
-            minVal = arrayMinInt - (Math.round((arrayMaxInt) * 0.15 / 10) * 10);
+            minVal = arrayMinInt - (Math.round((arrayMaxInt) * 0.10 / 10) * 10);
             minVal = Math.round(minVal / 10) * 10;
             if (maxVal === minVal) {
                 minVal = maxVal - 20;
@@ -345,9 +343,8 @@ function graphMainNum(array, graphData) {
 
         //plots each of the points(elements) in the Array to a line
         function plotData(toPlot) {
-
+            ctx.lineWidth = 1.5;
             ctx.beginPath();
-            ctx.lineWidth = -2;
             ctx.moveTo(0, toPlot[0]);
             for (i = 1; i < rectangles; i++) {
                 ctx.lineTo(i * scaleForX, toPlot[i])
