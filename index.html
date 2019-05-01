@@ -16,6 +16,7 @@
   <script src="js/createDetails.js"></script>
   <script src="js/createComparison.js"></script>
   <script src="js/canvasGraphRender.js"></script>
+  <script src="js/canvasGraphDisplayTotal.js"></script>
   <script src="js/htmlHelperFunctions.js"></script>
   <script src="js/formFunctions.js"></script>
   <script defer src="js/app.js"></script>
@@ -52,9 +53,9 @@
     <div class="hovud oversikt center"></div>
     <div class="hovud detaljar">
       <!--Sidenavigasjon-->
-      <div>
+      <nav>
         <ul class="sidenav">
-          <li><a href="#toppen">Til toppen</a></li>
+          <li><a href="#detailsForm">Til toppen</a></li>
           <li><a href="#befolkning">Befolkning</a></li>
           <li><a href="#sysselsetting">Sysselsetting</a></li>
           <li><a href="#utdanning">Høyere Utdanning</a></li>
@@ -63,7 +64,7 @@
           <li><a href="#utdanning03a">Universitets- og høgskolenivå kort</a></li>
           <li><a href="#utdanning04a">Universitets- og høgskolenivå lang</a></li>
         </ul>
-      </div>
+      </nav>
       <div class="center">
         <form id="detailsForm" action="#">
           <input id="detailsInput" type="text" placeholder="Søk kommunenummer" required>

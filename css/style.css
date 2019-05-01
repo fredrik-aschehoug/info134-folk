@@ -83,7 +83,7 @@
 }
 
 .center{
-  top: 40px;
+  top: 49px; /*Same height as nav*/
   bottom:50px;
   left: 50%;
   position: absolute;
@@ -200,12 +200,15 @@
 
 /*--------------------DETALJAR NAV--------------------*/
 .sidenav{
-  top: 50px;
+  top: 49px; /*Same height as nav*/
   left:25px;
   z-index: 2;
   position: fixed;
   position: -webkit-fixed;
   display: block;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
   width: 200px;
   max-width:20%;
   margin: 0;
@@ -216,7 +219,7 @@
 
 .sidenav li a{
   color: black;
-  text-decoration: none;
+  text-decoration: none;@
 }
 
 .sidenav li{
@@ -292,10 +295,11 @@
 }
 
 .detailsOutput > div:nth-child(1) > table:nth-child(3) > thead:nth-child(1){
-  top: 0;
-    z-index: 2;
+  top: -10px;
+  z-index: 2;
   position: sticky;
   position: -webkit-sticky;
+
 }
 
 .detailsOutput tbody,
@@ -320,6 +324,7 @@
 }
 /*--------------------Graph--------------------*/
 .canvasGraph {
+  margin-top: 25em;
   visibility: hidden;
   display: inline-block;
   padding-left: 0.5em;
@@ -334,7 +339,7 @@
   margin-left: 0% !important;
 }
 
-/*--------------------active--------------------*/
+/*--------------------Active--------------------*/
 /* Viser aktiv klasse */
 .activeTable{
   visibility: visible;
@@ -358,15 +363,18 @@
   transition: background 600ms ease, color 600ms ease;
   font-size: 0.8em;
 }
-
-input[type="radio"].toggle {
+.detailsOutput input[type="radio"].toggle,
+.comparisonOutput input[type="radio"].toggle {
   display: none;
 }
-input[type="radio"].toggle + label {
-  min-width: 60px;
+/*input[type="radio"].toggle + label {*/
+.detailsOutput input[type="radio"].toggle + label,
+.comparisonOutput input[type="radio"].toggle + label {
   cursor: pointer;
+  min-width: 60px;
 }
-input[type="radio"].toggle + label:hover {
+.detailsOutput input[type="radio"].toggle + label:hover,
+.comparisonOutput input[type="radio"].toggle + label:hover {
   background: none;
 }
 
@@ -381,11 +389,12 @@ input[type="radio"].toggle + label:after {
   background: #1F2421;
 
 }
-
-input[type="radio"].toggle.toggle-left + label:after {
+.detailsOutput input[type="radio"].toggle.toggle-left + label:after,
+.comparisonOutput input[type="radio"].toggle.toggle-left + label:after {
   left: 100%;
 }
-input[type="radio"].toggle.toggle-right + label:after {
+.detailsOutput input[type="radio"].toggle.toggle-right + label:after,
+.comparisonOutput input[type="radio"].toggle.toggle-right + label:after {
   left: -100%;
 }
 input[type="radio"].toggle:checked + label {
@@ -393,11 +402,12 @@ input[type="radio"].toggle:checked + label {
   transition: color 200ms;
   cursor: default;
 }
-input[type="radio"].toggle:checked + label:after {
+.detailsOutput input[type="radio"].toggle:checked + label:after,
+.comparisonOutput input[type="radio"].toggle:checked + label:after {
   left: 0;
 }
 
-/*colors themes*/
+/*Color themes*/
 .detailsOutput input[type="radio"].toggle + label:hover {
   color: #374C70;
 }

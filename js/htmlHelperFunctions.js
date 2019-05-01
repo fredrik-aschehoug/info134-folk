@@ -1,24 +1,19 @@
 /**
  * Creates a HTML <header> element with text.
  * @param {string} headerText The text to use in the header element
- * @param {string} className Class to assign to the element
- * @param {string} headerName The name to assign to the element
+ * @param {string} headerClass Class to assign to the element
+ * @param {string} headerID ID to assign to the element
  * @returns {HTMLElement} Header element with specified text and class.
  */
-function createHeader(headerText, className, headerName) {
+function createHeader(headerText, headerClass, headerID) {
     const headerNode = document.createElement("header");
     const hNode = document.createElement("h3");
-    headerNode.classList.add(className);
+    headerNode.classList.add(headerClass);
     const textNode = document.createTextNode(headerText);
-    if (headerName) {
-        const a = document.createElement("a");
-        a.name = headerName;
-        a.appendChild(textNode);
-        hNode.appendChild(a);
+    if (headerID) {
+        hNode.id = headerID;
     }
-    else {
-        hNode.appendChild(textNode);
-    }
+    hNode.appendChild(textNode);
     headerNode.append(hNode);
     return headerNode;
 }
