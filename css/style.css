@@ -212,7 +212,6 @@ tr:nth-child(even) {
   top: 49px; /*Same height as nav*/
   left:25px;
   z-index: 2;
-
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -224,10 +223,10 @@ tr:nth-child(even) {
 .sidenav li a{
   text-decoration: none;
   color: black;
+  display: block;
+  padding: .5em;
 }
-.sidenav li{
-  padding: 0.5em;
-}
+
 .sidenav li:hover{
   background-color: #374C70;
 }
