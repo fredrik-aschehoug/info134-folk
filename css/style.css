@@ -177,7 +177,8 @@ tr:nth-child(even) {
 #detailsInput input[type=text] {
   width: 200px;
 }
-#detailsForm{
+#detailsForm,
+#overviewForm{
   display: block;
   border: 1px solid grey;
   background-color: #DADEE5;
@@ -187,7 +188,8 @@ tr:nth-child(even) {
   margin-top: 10px;
 }
 
-#detailsInput{
+#detailsInput,
+#overviewInput{
   width: 200px;
   height: 33px;
   font-size: 1em;
@@ -195,7 +197,11 @@ tr:nth-child(even) {
   border: none;
   background-color: #DADEE5;
 }
-
+#overviewInput {
+  background:url(../images/search2.png) no-repeat;
+  background-size: 40px;
+  padding-left: 45px;
+}
 #detailsButton{
   background:url(../images/search2.png) no-repeat;
   background-size: contain;
