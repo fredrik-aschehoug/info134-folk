@@ -328,7 +328,7 @@ tr:nth-child(even) {
 .canvasGraph {
   margin-top: 1em;
   visibility: hidden;
-  background-color: #DADEE5;
+  background-color: #F4F4F4;
   padding-bottom: 1em;
   display: inline-block;
   padding-left: 0.5em;
