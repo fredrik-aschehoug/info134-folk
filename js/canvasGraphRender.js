@@ -200,7 +200,7 @@ function graphRender(id) {
                 let str = tables[j].id;
                 
                 if (graphData.elementIDmapPercent.hasOwnProperty(str)) {
-                    tables[str].onmouseover = function () {console.log("dick"), graphMainPercent(graphData.elementIDmapPercent[str], graphData.elementIDmapPercent[str] + 1, graphData), showDarkBackground(str), graphAnimation(can); }
+                    tables[str].onmouseover = function () {graphMainPercent(graphData.elementIDmapPercent[str], graphData.elementIDmapPercent[str] + 1, graphData), showDarkBackground(str), graphAnimation(can); }
                     tables[str].onmouseout = function () { mouseOut(str, can, id) }
                 }
             }
@@ -240,8 +240,6 @@ function graphRender(id) {
 
     function mouseOut(rowID, className, id) {
         canvas = className
-        console.log("all good")
-
         //canvas.classList.remove('transition')
         document.getElementById(rowID).style.color = "#24201D";
         let node = document.getElementById("graphTotal");
@@ -315,18 +313,17 @@ function graphMainNum(array, graphData) {
                     newArr.push((yAxisArray[i] / 100));
                     reducedBy = 100;
                     lineWidth = 2.5;
-                    console.log(newArr)
 
                 } else if (yAxisArray[10] > 4999) {
                     newArr.push((yAxisArray[i] / 10));
                     reducedBy = 10;
                     lineWidth = 2.5;
-                    console.log(newArr)
-                }
-                else if (yAxisArray[10] < 5000 && yAxisArray[10] > 200) {
+
+                }else if (yAxisArray[10] < 5000 && yAxisArray[10] > 200) {
                     newArr.push((yAxisArray[i]));
                     reducedBy = 1;
                     lineWidth = 2.5;
+
                 } else if (yAxisArray[10] < 201) {
                     newArr.push((yAxisArray[i]));
                     reducedBy = 1;
