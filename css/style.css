@@ -328,11 +328,8 @@
   visibility: hidden;
   background-color: #F4F4F4;
   padding-bottom: 1em;
-  display: inline-block;
   padding-left: 0.5em;
   margin-left: -5% !important;
-  margin-top: 30em;
-  background-color: #DADEE5;
 }
 
 .canvasGraph.transition{

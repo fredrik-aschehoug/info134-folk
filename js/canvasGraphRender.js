@@ -186,7 +186,6 @@ function graphRender(id) {
         
 
         function percentMouseOver(id) {
-            console.log(graphData)
             //canvas tag properties
             const canvas = document.createElement("canvas");
             canvas.id = "graphTotal";
@@ -195,11 +194,9 @@ function graphRender(id) {
             document.getElementById("graph").appendChild(canvas);
             let can = document.getElementById('graphTotal');
             can.classList.add('canvasGraph');
-            console.log("hello")
 
             let tables = document.getElementsByTagName("table")
             for (let j = 0; j < tables.length; j++) {
-                console.log(tables[j].id)
                 let str = tables[j].id;
                 
                 if (graphData.elementIDmapPercent.hasOwnProperty(str)) {
@@ -224,11 +221,6 @@ function graphRender(id) {
         }
 
     };
-
-
-
-
-    
 
 
     function graphAnimation(className) {
@@ -275,10 +267,6 @@ function graphRender(id) {
         
     //})
 //};
-
-
-
-
 
 
 
@@ -378,9 +366,7 @@ function graphMainNum(array, graphData) {
                 "maxValue": maxVal,
                 "increment": incrementVal
             };
-            console.log(minMaxObj)
             return minMaxObj;
-
         }
 
         let arrObject = minMaxArray(yAxisArray)
@@ -397,7 +383,7 @@ function graphMainNum(array, graphData) {
         let columnSize = 68;
         let rowSize = 38;
         let margin = 8;
-        let xAxis = xAxisVal
+        let xAxis = xAxisVal;
 
 
 
@@ -424,7 +410,8 @@ function graphMainNum(array, graphData) {
         }
 
         //graphStyling
-        ctx.font = "20px Arial";
+        ctx.font = "18px Arial";
+        ctx.fillStyle = "#374C70";
         ctx.fillText(array[1] + array[2], 3, 35); //mouseOver text on graph
         ctx.font = "10px Arial";    //Font size, type
         ctx.fillStyle = "#374C70";  //Font color
