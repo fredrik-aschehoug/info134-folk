@@ -151,23 +151,11 @@ function graphRender(id) {
         
         let graphData = graphRender(id);
         setHtmlIds('.graphPointer', graphData.elementIdArrays, 2)
-        //canvas tag properties
-        /*const canvas = document.createElement("canvas");
-        canvas.id = "graphTotal";
-        canvas.width = 500;
-        canvas.height = 300;
-        //document.getElementById("graph").appendChild(canvas);
-        let can = document.getElementById('graphTotal');
-        can.classList.add('canvasGraph');*/
-        
-    
-
-        //loop through <tr> tags and apply mouseOver/Out functions
+        //loop through <tr> tags of detailsOutput <div>
         let trTags = document.getElementsByTagName("tr");
-
         for (let i = 0; i < trTags.length; i++) {
             let str = trTags[i].id;
-            
+            //run these functions on <tr> tags mouseOver if they exist in graphObj
             if (graphData.elementIDmapNum.hasOwnProperty(str)) {
                 trTags[str].onmouseover = function () {
                     const canvas = document.createElement("canvas");
