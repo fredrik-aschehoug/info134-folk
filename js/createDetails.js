@@ -202,6 +202,7 @@ function createDetails(id) {
             const className = `${type}${eduType}Table`;
             const tableHeaderClass = "tableHeader";
             const tables = document.createElement("div");
+            tables.classList.add("graphPointer")
             const numberDesciptions = ["Kvinner", "Menn", "Begge kjønn"];
             let percentDesciptions;
             if (type === "population") {
