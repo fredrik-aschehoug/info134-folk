@@ -64,11 +64,14 @@ dataa presenterast horisontalt*/
     margin-left: 60px;
     max-width: 90%;
   }
+
+
+  
   .detailsOutput th:not(.detailsOutput tr td:nth-child(1)){
     min-width:60px;
   }
 
-  .detailsOutput > thead:nth-child(1) > tr:nth-child(1) > th:nth-child(1),
+  .detailsOutput table > thead:nth-child(1) > tr:nth-child(1) > th:nth-child(1),
   .detailsOutput tr td:nth-child(1){
     position: absolute;
     width: 60px;
@@ -76,8 +79,10 @@ dataa presenterast horisontalt*/
     background-color: #6D7C97;
     color:white;
     text-align: center;
-
+    empty-cells: show;
   }
+
+
 
 
 /*--------------------samanlikning search--------------------*/
