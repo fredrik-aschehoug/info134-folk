@@ -50,6 +50,17 @@ dataa presenterast horisontalt*/
     overflow-x: hidden;
     overflow-y: scroll;
   }
+/*--------------------DETALJAR NAV--------------------*/
+  .sidenav{
+    display: hidden;
+    visibility: hidden;
+  }
+/*--------------------detaljar--------------------*/
+  .detailsOutput thead{
+    width: 100%;
+  }
+
+
 /*--------------------samanlikning search--------------------*/
   #comparisonForm {
     /*display: inline-block;*/
@@ -72,7 +83,7 @@ dataa presenterast horisontalt*/
 
 
 /*--------------------samanlikning--------------------*/
-  .detailsOutput th, .comparisonOutput th {
+  .comparisonOutput th {
       width: 80px;
       display: block;
   }
