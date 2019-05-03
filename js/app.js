@@ -47,6 +47,7 @@ function utdanningCallback() {
     /* All data is loaded at this point */
     const detailsForm = document.getElementById("detailsForm");
     const comparisonForm = document.getElementById("comparisonForm");
+    const overviewForm = document.getElementById("overviewForm");
     // Callback when clicking button
     detailsForm.detailsButton.onclick = () => detailsFormSubmit(ids);
     comparisonForm.comparisonButton.onclick = () => comparisonFormSubmit(ids);
@@ -57,6 +58,8 @@ function utdanningCallback() {
             comparisonFormSubmit(ids);
         }
     });
+    // Callback when pressing any key while focused on form
+    overviewForm.onkeyup = overviewTableFilter;
 }
 
 setNavigationBehaviour(buttonHandler);

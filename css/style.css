@@ -164,6 +164,10 @@
   background-color: #D1DFE0;
 }
 
+.hiddenRow {
+  display: none;
+}
+
 
 /*--------------------DETALJAR SEARCH--------------------*/
 
@@ -171,7 +175,8 @@
   width: 200px;
 }
 
-#detailsForm{
+#detailsForm,
+#overviewForm{
   display: block;
   width: 248px;
   height: auto;
@@ -181,7 +186,8 @@
   background-color: #DADEE5;
 }
 
-#detailsInput{
+#detailsInput,
+#overviewInput{
   width: 200px;
   height: 33px;
   font-size: 1em;
@@ -189,7 +195,11 @@
   border: none;
   background-color: #DADEE5;
 }
-
+#overviewInput {
+  background:url(../images/search2.png) no-repeat;
+  background-size: 40px;
+  padding-left: 45px;
+}
 #detailsButton{
   width:40px;
   height:40px;

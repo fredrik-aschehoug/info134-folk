@@ -6,6 +6,7 @@
  */
 function createOverview(idList, overviewHeaders) {
     const overview = document.createElement("table");
+    overview.id = "overviewTable";
     const tableHeader = document.createElement("thead");
     const tableBody = document.createElement("tbody");
     overview.appendChild(tableHeader);
