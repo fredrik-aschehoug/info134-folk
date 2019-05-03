@@ -5,7 +5,109 @@ dataa presenterast horisontalt*/
 
 @media screen and (max-width: 700px){
 
-  .detailsOutput th, .comparisonOutput th {
+  /*--------------------NAVIGASJON--------------------*/
+  .navigasjon{
+    top: 0;
+    right: 0;
+    z-index: 2;
+    position: fixed;
+    display:inline-block;
+    width: 100%;
+    height: 41px;
+    background-color: #1F2421;
+    text-transform: uppercase;
+    font-size: 0.75em;
+  }
+
+  .navigasjon li{
+    display: block;
+    float:left;
+  }
+
+  .navigasjon ul{
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+  }
+
+  .navigasjon button{
+    display: block;
+    color: #F4F4F4;
+    padding: 15px 16px;
+    border: none;
+    background-color: #1F2421;
+    text-decoration: none;
+    font-size: 0.75em;
+  }
+
+  /*--------------------hovudinnhald--------------------*/
+  .center{
+    max-width: 90%;
+    min-width: 90%;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    overflow-x: hidden;
+    overflow-y: scroll;
+  }
+/*--------------------DETALJAR NAV--------------------*/
+  .sidenav{
+    display: hidden;
+    visibility: hidden;
+  }
+/*--------------------detaljar--------------------*/
+  .detailsOutput thead{
+    width: 100%;
+  }
+  .detailsOutput table:not(:first-child){
+    overflow-x: scroll;
+    margin-left: 60px;
+    max-width: 90%;
+  }
+
+
+  
+  .detailsOutput th:not(.detailsOutput tr td:nth-child(1)){
+    min-width:60px;
+  }
+
+  .detailsOutput table > thead:nth-child(1) > tr:nth-child(1) > th:nth-child(1),
+  .detailsOutput tr td:nth-child(1){
+    position: absolute;
+    width: 60px;
+    margin-left: -62px;
+    background-color: #6D7C97;
+    color:white;
+    text-align: center;
+    empty-cells: show;
+  }
+
+
+
+
+/*--------------------samanlikning search--------------------*/
+  #comparisonForm {
+    /*display: inline-block;*/
+    width: 397.7px;
+    height: 40px;
+    margin: auto;
+    margin-top: 10px;
+    background-color: #E3E0DB;
+  }
+
+  #comparisonInput1,
+  #comparisonInput2{
+    width: 170px;
+    margin:0;
+    font-size: 0.75em;
+  }
+  #comparisonButton{
+    margin:0;
+  }
+
+
+/*--------------------samanlikning--------------------*/
+  .comparisonOutput th {
       width: 80px;
       display: block;
   }
@@ -13,21 +115,42 @@ dataa presenterast horisontalt*/
   .comparisonOutput tr {
     display: block;
     float: left;
-    width: auto;
+    width: 82px;
+  }
+  .comparisonOutput td {
+
+    height: 40px;
   }
 
   .comparisonOutput thead,
   .comparisonOutput td{
     display: block;
+    font-weight: normal;
 
   }
   .comparisonOutput thead{
-    background-color: #68553E;
-    color: white;
+    /*background-color: #68553E;*/
+    color: black;
   }
-  .comparisonOutput > div:nth-child(1) > table:nth-child(1) > thead:nth-child(1) > tr:nth-child(1){
+
+  /*.comparisonOutput > div:nth-child(1) > table:nth-child(1) > thead:nth-child(1) > tr:nth-child(1){
     background-color: #68553E;
     color: white;
     text-align: center;
+  }*/
+
+  .comparisonOutput .tableHeader{
+    background-color: #68553E;
+    color: white;
+    text-align: center !important;
   }
+  .comparisonOutput .employmentTable tr:nth-child(even) {
+    background-color: transparent;
+  }
+
+  .comparisonOutput tbody td:nth-child(even),
+  .comparisonOutput thead td:nth-child(even){
+    background-color: #E3E0DB;
+  }
+
 }
