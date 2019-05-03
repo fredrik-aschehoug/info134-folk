@@ -59,27 +59,32 @@ dataa presenterast horisontalt*/
   .detailsOutput thead{
     width: 100%;
   }
-  .detailsOutput table:not(:first-child){
+  .detailsOutput table:not(#latestStats > table:nth-child(3)){
     overflow-x: scroll;
     margin-left: 60px;
     max-width: 90%;
   }
 
+  .detailsOutput th,
+  .detailsOutput td,{
+    height: 40px;
+    text-align: left;
+    min-width: 60px !important;
+    border: 0.2px solid grey;
+  }
 
-  
   .detailsOutput th:not(.detailsOutput tr td:nth-child(1)){
     min-width:60px;
   }
 
-  .detailsOutput table > thead:nth-child(1) > tr:nth-child(1) > th:nth-child(1),
-  .detailsOutput tr td:nth-child(1){
+  .detailsOutput table > thead:nth-child(1) > tr:nth-child(1) > th:nth-child(1):not(#latestStats > table:nth-child(3)),
+  .detailsOutput tr td:nth-child(1):not(#latestStats > table:nth-child(3)){
     position: absolute;
     width: 60px;
     margin-left: -62px;
     background-color: #6D7C97;
     color:white;
     text-align: center;
-    empty-cells: show;
   }
 
 

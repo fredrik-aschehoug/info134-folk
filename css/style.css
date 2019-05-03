@@ -133,9 +133,30 @@
 .introduksjon article{
   background-color: #DFD7DD;
 }
+/*--------------------OVERSIKT search --------------------*/
+#overviewForm {
+  width:40px;
+  height:40px;
+  border:none;
+  background-color: #D1DFE0;
+
+}
+
+#overviewForm Input{
+  background-color: #D1DFE0;
+}
+
+/*
+#overviewButton{
+  background:url(../images/search.png) no-repeat;
+  background-size: contain;
+  background-color: #074F57;
+}*/
+
 
 /*--------------------OVERSIKT--------------------*/
 .oversikt table {
+  margin-top: 20px;
   width: 100%;
   border-collapse: collapse;
 }
@@ -170,11 +191,12 @@
 
 
 /*--------------------DETALJAR SEARCH--------------------*/
-
+#overviewForm input[type=text],
 #detailsInput input[type=text] {
   width: 200px;
 }
 
+#overviewForm,
 #detailsForm,
 #overviewForm{
   display: block;
@@ -183,29 +205,29 @@
   border: 1px solid grey;
   margin: auto;
   margin-top: 10px;
-  background-color: #DADEE5;
 }
 
-#detailsInput,
-#overviewInput{
+#overviewInput,
+#detailsInput{
   width: 200px;
   height: 33px;
   font-size: 1em;
   padding:0.1em;
   border: none;
+
+}
+#detailsForm,
+#detailsInput{
   background-color: #DADEE5;
 }
-#overviewInput {
-  background:url(../images/search2.png) no-repeat;
-  background-size: 40px;
-  padding-left: 45px;
-}
+
 #detailsButton{
   width:40px;
   height:40px;
-  border:none;
-  background:url(../images/search2.png) no-repeat;
+  background:url(../images/search.png) no-repeat;
+  background-color: #374C70;
   background-size: contain;
+  border:none;
 }
 
 /*--------------------DETALJAR NAV--------------------*/
@@ -484,11 +506,12 @@ input[type="radio"].toggle:checked + label {
 }
 
 #comparisonButton{
-  background:url(../images/search3.png) no-repeat;
-  background-size: contain;
-  border:none;
   width:40px;
   height:40px;
+  background:url(../images/search.png) no-repeat;
+  background-color: #68553E;
+  background-size: contain;
+  border:none;
 }
 
 /*--------------------botntekst--------------------*/
