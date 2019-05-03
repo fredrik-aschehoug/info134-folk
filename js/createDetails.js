@@ -177,6 +177,7 @@ function createDetails(id) {
         const paragraph = createParagraph(currentDetails, id);
         const headerText = `Siste oppdaterte statistikk for ${currentDetails.navn}:`;
         const header = createHeader(headerText, "mainHeader");
+        htmlObject.id = "latestStats"
         appendElements(htmlObject, header, paragraph, table);
         return htmlObject;
     }
