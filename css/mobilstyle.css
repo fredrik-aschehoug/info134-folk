@@ -59,6 +59,29 @@ dataa presenterast horisontalt*/
   .detailsOutput thead{
     width: 100%;
   }
+  .detailsOutput table:not(:first-child){
+    overflow-x: scroll;
+    margin-left: 60px;
+  }
+  .detailsOutput th{
+    min-width:60px;
+  }
+
+  /*.detailsOutput #employment > thead:nth-child(1) > tr:nth-child(1) > th:nth-child(1),
+  .detailsOutput #empKvinner > td:nth-child(1),
+  .detailsOutput #empMenn > td:nth-child(1),
+  .detailsOutput #empTotal > td:nth-child(1),
+  .detailsOutput #popKvinner > td:nth-child(1),
+  .detailsOutput #popMenn > td:nth-child(1),
+  .detailsOutput #popTotal > td:nth-child(1)*/
+
+  .detailsOutput > thead:nth-child(1) > tr:nth-child(1) > th:nth-child(1),
+  .detailsOutput tr td:nth-child(1){
+    position: absolute;
+    width: 60px;
+    margin-left: -60px;
+    font-size: bold;
+  }
 
 
 /*--------------------samanlikning search--------------------*/
@@ -91,7 +114,7 @@ dataa presenterast horisontalt*/
   .comparisonOutput tr {
     display: block;
     float: left;
-    width: 100px;
+    width: 82px;
   }
   .comparisonOutput td {
 
@@ -108,15 +131,25 @@ dataa presenterast horisontalt*/
     /*background-color: #68553E;*/
     color: black;
   }
-  .comparisonOutput > div:nth-child(1) > table:nth-child(1) > thead:nth-child(1) > tr:nth-child(1){
+
+  /*.comparisonOutput > div:nth-child(1) > table:nth-child(1) > thead:nth-child(1) > tr:nth-child(1){
     background-color: #68553E;
     color: white;
     text-align: center;
-  }
+  }*/
 
-  .tableHeader{
+  .comparisonOutput .tableHeader{
     background-color: #68553E;
     color: white;
     text-align: center !important;
   }
+  .comparisonOutput .employmentTable tr:nth-child(even) {
+    background-color: transparent;
+  }
+
+  .comparisonOutput tbody td:nth-child(even),
+  .comparisonOutput thead td:nth-child(even){
+    background-color: #E3E0DB;
+  }
+
 }

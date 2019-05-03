@@ -441,13 +441,13 @@ input[type="radio"].toggle:checked + label {
   padding-left:auto;
   padding-right: auto;
   background-color: #9E9284;
-  font-weight: bold;
+  font-weight: bold !important;
 }
 
 .highlightedCell th{
   text-align: center;
 }
-.employmentTable tr:nth-child(even) {
+.comparisonOutput .employmentTable tr:nth-child(even) {
   background-color: #E3E0DB;
 }
 
