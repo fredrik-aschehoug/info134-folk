@@ -5,7 +5,7 @@
   }
 
 /*--------------------NAVIGASJON--------------------*/
-.navigasjon{
+.navigation{
   top: 0;
   right: 0;
   z-index: 2;
@@ -18,18 +18,18 @@
   font-size: 1em;
 }
 
-.navigasjon li{
+.navigation li{
   display: block;
   float:left;
 }
 
-.navigasjon ul{
+.navigation ul{
   padding: 0;
   margin: 0;
   list-style-type: none;
 }
 
-.navigasjon button{
+.navigation button{
   display: inline-block;
   color: #F4F4F4;
   padding: 15px 32px;
@@ -41,23 +41,23 @@
 
 /*--- Farge til navigasjon ---*/
 
-#btn1:hover:not(.activemenu),
-.activemenu #btn1{
+#navButton1:hover:not(.activemenu),
+.activemenu #navButton1{
   background-color: #542344;
 }
 
-#btn2:hover:not(.activemenu),
-.activemenu #btn2{
+#navButton2:hover:not(.activemenu),
+.activemenu #navButton2{
   background-color: #074F57;
 }
 
-#btn3:hover:not(.activemenu),
-.activemenu #btn3{
+#navButton3:hover:not(.activemenu),
+.activemenu #navButton3{
   background-color: #374C70;
 }
 
-#btn4:hover:not(.activemenu),
-.activemenu #btn4{
+#navButton4:hover:not(.activemenu),
+.activemenu #navButton4{
   background-color: #68553E;
 }
 
