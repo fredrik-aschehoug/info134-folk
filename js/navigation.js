@@ -8,7 +8,8 @@ function setNavigationBehaviour(callback) {
   const navbar = document.getElementsByClassName("navigation")[0];
   const navbarElements = navbar.getElementsByTagName("li");
   for (let navbarElement of navbarElements) {
-    navbarElement.onclick = () => callback(navbarElement);
+    // Set onclick callback for each button in the navbar
+    navbarElement.onclick = callback.bind(navbarElement);
   }
 }
 /**
@@ -17,12 +18,13 @@ function setNavigationBehaviour(callback) {
  * @type {buttonHandler}
  * @param {HTMLButtonElement} button Button to configure
  */
-function buttonHandler(button) {
+function buttonHandler() {
+  const li = this; // "this" is passed via bind()
   const activeMenu = document.getElementsByClassName("activemenu");
   const activeContent = document.getElementsByClassName("active");
   let newActiveContent;
   // Map button id to DOM element
-  switch (button.lastChild.id) {
+  switch (li.lastChild.id) {
     case "navButton1":
       newActiveContent = document.getElementsByClassName("introduction");
       break;
@@ -40,6 +42,6 @@ function buttonHandler(button) {
   activeMenu[0].classList.toggle("activemenu");
   activeContent[0].classList.toggle("active");
   // Toggle on new active elements
-  button.classList.toggle("activemenu");
+  li.classList.toggle("activemenu");
   newActiveContent[0].classList.toggle("active");
 }
