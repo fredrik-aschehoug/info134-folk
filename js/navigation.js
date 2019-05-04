@@ -2,7 +2,7 @@
  * Sets navigation behaviour.
  * Navigation buttons toggles classes on navigation elements and
  * main content elements.
- * @param {buttonHandler} callback
+ * @param {buttonHandlerCB} callback Callback to set button behaviour
  */
 function setNavigationBehaviour(callback) {
   const navbar = document.getElementsByClassName("navigation")[0];
@@ -12,11 +12,16 @@ function setNavigationBehaviour(callback) {
     navbarElement.onclick = callback.bind(navbarElement);
   }
 }
+
+/**
+ * Callback function to set button behaviour on a single button.
+ * @callback buttonHandlerCB
+ */
+
 /**
  * Sets onclick behaviour on button.
- * @callback buttonHandler
- * @type {buttonHandler}
- * @param {HTMLButtonElement} button Button to configure
+ * The button to configure must be given via context bind.
+ * {@see buttonHandlerCB}
  */
 function buttonHandler() {
   const li = this; // "this" is passed via bind()
