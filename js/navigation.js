@@ -24,16 +24,16 @@ function buttonHandler(button) {
   // Map button id to DOM element
   switch (button.lastChild.id) {
     case "navButton1":
-      newActiveContent = document.getElementsByClassName("introduksjon");
+      newActiveContent = document.getElementsByClassName("introduction");
       break;
     case "navButton2":
-      newActiveContent = document.getElementsByClassName("oversikt");
+      newActiveContent = document.getElementsByClassName("overview");
       break;
     case "navButton3":
-      newActiveContent = document.getElementsByClassName("detaljar");
+      newActiveContent = document.getElementsByClassName("details");
       break;
     case "navButton4":
-      newActiveContent = document.getElementsByClassName("samanlikning");
+      newActiveContent = document.getElementsByClassName("comparison");
       break;
   }
   // Toggle off previous active elements

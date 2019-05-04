@@ -1,5 +1,5 @@
 // Global variables
-const oversikt = document.getElementsByClassName("oversikt")[0];
+const oversikt = document.getElementsByClassName("overview")[0];
 const overviewHeaders = ["Navn", "Kommunenummer", "Total befolkning"];
 let ids; // Will be assigned array of all municipal ID's
 /**

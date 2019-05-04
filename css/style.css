@@ -84,7 +84,7 @@ main{
   margin: auto;
 }
 /* Gjør klassen usynlig */
-.hovud, .sidenav{
+.main, .sidenav{
   visibility: hidden;
   display: none;
 }
@@ -181,7 +181,7 @@ main{
 
 /*--------------------INTRODUKSJON--------------------*/
 
-.introduksjon {
+.introduction {
   width: 100%;
   padding: auto;
   padding-left: 0;
@@ -189,43 +189,43 @@ main{
   margin: auto;
 }
 
-.introduksjon h1{
+.introduction h1{
   padding: 10px;
   margin: 0;
   background-color: #542344;
   color: white;
 }
 
-.introduksjon p{
+.introduction p{
   padding: 10px;
   padding-bottom: 1em;
   margin: 0;
 }
 
-.introduksjon article{
+.introduction article{
   background-color: #DFD7DD;
 }
 
-.introduksjon .subHeader {
+.introduction .subHeader {
   font-size: .8em;
 }
 
 /*--------------------OVERSIKT--------------------*/
 
-.oversikt table {
+.overview table {
   margin-top: 20px;
   width: 100%;
   border-collapse: collapse;
 }
 
-.oversikt th,
-.oversikt td {
+.overview th,
+.overview td {
   padding: 8px;
   text-align: left;
   width: 33%;
 }
 
-.oversikt thead {
+.overview thead {
   top: 0;
   position: sticky;
   position: -webkit-sticky;
@@ -233,13 +233,13 @@ main{
   color: white;
 }
 
-.oversikt tbody {
+.overview tbody {
   width:100%;
   overflow-y: auto;    /* Trigger vertical scroll    */
   overflow-x: hidden;  /* Hide horizontal scroll */
 }
 
-.oversikt tr:nth-child(even) { /* Forandrer fargen til partalls linjer */
+.overview tr:nth-child(even) { /* Forandrer fargen til partalls linjer */
   background-color: #D1DFE0;
 }
 
@@ -512,7 +512,7 @@ input[type="radio"].toggle:checked + label {
 
 
 /*--------------------botntekst--------------------*/
-.botntekst{
+footer{
   bottom: 0;
   right: 0;
   z-index: 1;
