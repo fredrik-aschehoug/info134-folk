@@ -5,11 +5,10 @@
  * @param {buttonHandler} callback
  */
 function setNavigationBehaviour(callback) {
-  const header = document.getElementById("navigasjon");
-  const btns = header.getElementsByClassName("btn");
-  for (var i = 0; i < btns.length; i++) {
-    const currentBtn = btns[i];
-    currentBtn.onclick = () => callback(currentBtn);
+  const navbar = document.getElementsByClassName("navigation")[0];
+  const navbarElements = navbar.getElementsByTagName("li");
+  for (let navbarElement of navbarElements) {
+    navbarElement.onclick = () => callback(navbarElement);
   }
 }
 /**
@@ -24,17 +23,17 @@ function buttonHandler(button) {
   let newActiveContent;
   // Map button id to DOM element
   switch (button.lastChild.id) {
-    case "btn1":
-      newActiveContent = document.getElementsByClassName("introduksjon");
+    case "navButton1":
+      newActiveContent = document.getElementsByClassName("introduction");
       break;
-    case "btn2":
-      newActiveContent = document.getElementsByClassName("oversikt");
+    case "navButton2":
+      newActiveContent = document.getElementsByClassName("overview");
       break;
-    case "btn3":
-      newActiveContent = document.getElementsByClassName("detaljar");
+    case "navButton3":
+      newActiveContent = document.getElementsByClassName("details");
       break;
-    case "btn4":
-      newActiveContent = document.getElementsByClassName("samanlikning");
+    case "navButton4":
+      newActiveContent = document.getElementsByClassName("comparison");
       break;
   }
   // Toggle off previous active elements

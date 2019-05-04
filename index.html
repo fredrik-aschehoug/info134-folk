@@ -4,7 +4,6 @@
 <head>
   <meta charset="utf-8">
   <title>Folk</title>
-
   <link rel="shortcut icon" type="image/icon" href="images/favicon.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" media="(min-width: 700px)" href="css/style.css">
@@ -23,39 +22,46 @@
 </head>
 
 <body>
-  <nav id="navigasjon" class="navigasjon">
+  <nav class="navigation">
     <ul>
-      <li class="btn activemenu"><button id="btn1">Introduksjon</button></li>
-      <li class="btn"><button id="btn2">Oversikt</button></li>
-      <li class="btn"><button id="btn3">Detaljar</button></li>
-      <li class="btn"><button id="btn4">Samanlikning</button></li>
+      <li class="activemenu"><button id="navButton1">Introduksjon</button></li>
+      <li><button id="navButton2">Oversikt</button></li>
+      <li><button id="navButton3">Detaljar</button></li>
+      <li><button id="navButton4">Samanlikning</button></li>
     </ul>
   </nav>
-
-  <main id="hovudinnhald" class="hovudinnhald">
-    <div class="hovud introduksjon center active">
-      <h1>Folk</h1>
+  <main>
+    <div class="main introduction center active">
       <article>
+        <header>
+          <h1>Folk</h1>
+        </header>
         <p>
           På denne siden kan du se data om Norges befolkning. Bruk navigasjonsbaren til å navigere i de ulike sidene.
           Vi tar forbehold om eventuelle feil i data. All data er henta fra Statistisk Sentralbyrå.
           <i>Kilde: <a href="https://www.ssb.no/">www.ssb.no</a></i>
           <i></i>
-          <h5>Oversikt:</h5>
+          <header class="subHeader">
+            <h3>Oversikt:</h3>
+          </header>
           <p>Viser en oversikt over kommunene i Norge med kommunenummer og befolkning.</p>
-          <h5>Detaljar:</h5>
+          <header class="subHeader">
+            <h3>Detaljar:</h3>
+          </header>
           <p>Viser detaljerte data om en kommune. Her benyttes kommunenr. til søking.</p>
-          <h5>Samanlikning:</h5>
+          <header class="subHeader">
+            <h3>Samanlikning:</h3>
+          </header>
           <p>Sammenligner data mellom to kommuner.</p>
         </p>
       </article>
     </div>
-    <div class="hovud oversikt center">
+    <div class="main overview center">
       <form id="overviewForm" action="#">
         <input id="overviewInput" type="text" placeholder="Søk kommune">
       </form>
     </div>
-    <div class="hovud detaljar">
+    <div class="main details">
       <!--Sidenavigasjon-->
       <nav>
         <ul class="sidenav">
@@ -79,7 +85,7 @@
       <div id="graph"></div>
     </div>
 
-    <div class="hovud samanlikning center">
+    <div class="main comparison center">
       <form id="comparisonForm" action="#">
         <input id="comparisonInput1" type="text" placeholder="Samanlikn kommunenummer" required>
         <input id="comparisonButton" type="button" value="">
@@ -88,11 +94,9 @@
       <div class="comparisonOutput"></div>
     </div>
   </main>
-
-  <footer class="botntekst">
-    <p>oppgavebesvarelse INFO134.</p>
+  <footer>
+    <p>Oppgavebesvarelse INFO134.</p>
   </footer>
-
 </body>
 
 </html>

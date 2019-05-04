@@ -5,7 +5,7 @@
   }
 
 /*--------------------NAVIGASJON--------------------*/
-.navigasjon{
+.navigation{
   top: 0;
   right: 0;
   z-index: 2;
@@ -18,18 +18,18 @@
   font-size: 1em;
 }
 
-.navigasjon li{
+.navigation li{
   display: block;
   float:left;
 }
 
-.navigasjon ul{
+.navigation ul{
   padding: 0;
   margin: 0;
   list-style-type: none;
 }
 
-.navigasjon button{
+.navigation button{
   display: inline-block;
   color: #F4F4F4;
   padding: 15px 32px;
@@ -41,28 +41,28 @@
 
 /*--- Farge til navigasjon ---*/
 
-#btn1:hover:not(.activemenu),
-.activemenu #btn1{
+#navButton1:hover:not(.activemenu),
+.activemenu #navButton1{
   background-color: #542344;
 }
 
-#btn2:hover:not(.activemenu),
-.activemenu #btn2{
+#navButton2:hover:not(.activemenu),
+.activemenu #navButton2{
   background-color: #074F57;
 }
 
-#btn3:hover:not(.activemenu),
-.activemenu #btn3{
+#navButton3:hover:not(.activemenu),
+.activemenu #navButton3{
   background-color: #374C70;
 }
 
-#btn4:hover:not(.activemenu),
-.activemenu #btn4{
+#navButton4:hover:not(.activemenu),
+.activemenu #navButton4{
   background-color: #68553E;
 }
 
 /*--------------------hovudinnhald--------------------*/
-.hovudinnhald{
+main{
   display: block;
   padding: auto;
   margin: auto;
@@ -84,7 +84,7 @@
   margin: auto;
 }
 /* Gjør klassen usynlig */
-.hovud, .sidenav{
+.main, .sidenav{
   visibility: hidden;
   display: none;
 }
@@ -181,7 +181,7 @@
 
 /*--------------------INTRODUKSJON--------------------*/
 
-.introduksjon {
+.introduction {
   width: 100%;
   padding: auto;
   padding-left: 0;
@@ -189,39 +189,43 @@
   margin: auto;
 }
 
-.introduksjon h1{
+.introduction h1{
   padding: 10px;
   margin: 0;
   background-color: #542344;
   color: white;
 }
 
-.introduksjon p{
+.introduction p{
   padding: 10px;
   padding-bottom: 1em;
   margin: 0;
 }
 
-.introduksjon article{
+.introduction article{
   background-color: #DFD7DD;
+}
+
+.introduction .subHeader {
+  font-size: .8em;
 }
 
 /*--------------------OVERSIKT--------------------*/
 
-.oversikt table {
+.overview table {
   margin-top: 20px;
   width: 100%;
   border-collapse: collapse;
 }
 
-.oversikt th,
-.oversikt td {
+.overview th,
+.overview td {
   padding: 8px;
   text-align: left;
   width: 33%;
 }
 
-.oversikt thead {
+.overview thead {
   top: 0;
   position: sticky;
   position: -webkit-sticky;
@@ -229,13 +233,13 @@
   color: white;
 }
 
-.oversikt tbody {
+.overview tbody {
   width:100%;
   overflow-y: auto;    /* Trigger vertical scroll    */
   overflow-x: hidden;  /* Hide horizontal scroll */
 }
 
-.oversikt tr:nth-child(even) { /* Forandrer fargen til partalls linjer */
+.overview tr:nth-child(even) { /* Forandrer fargen til partalls linjer */
   background-color: #D1DFE0;
 }
 
@@ -285,7 +289,7 @@
 }
 
 
-/*--------------------DETALJAR--------------------*/
+/*--------------------Detaljar----------------------------*/
 .detailsOutput p,
 .mainHeader,
 .subHeader,
@@ -508,7 +512,7 @@ input[type="radio"].toggle:checked + label {
 
 
 /*--------------------botntekst--------------------*/
-.botntekst{
+footer{
   bottom: 0;
   right: 0;
   z-index: 1;
