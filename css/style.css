@@ -206,6 +206,10 @@
   background-color: #DFD7DD;
 }
 
+.introduksjon .subHeader {
+  font-size: .8em;
+}
+
 /*--------------------OVERSIKT--------------------*/
 
 .oversikt table {
@@ -285,7 +289,7 @@
 }
 
 
-/*--------------------DETALJAR--------------------*/
+/*--------------------Detaljar----------------------------*/
 .detailsOutput p,
 .mainHeader,
 .subHeader,

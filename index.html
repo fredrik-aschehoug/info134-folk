@@ -4,7 +4,6 @@
 <head>
   <meta charset="utf-8">
   <title>Folk</title>
-
   <link rel="shortcut icon" type="image/icon" href="images/favicon.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" media="(min-width: 700px)" href="css/style.css">
@@ -31,21 +30,28 @@
       <li class="btn"><button id="btn4">Samanlikning</button></li>
     </ul>
   </nav>
-
   <main id="hovudinnhald" class="hovudinnhald">
     <div class="hovud introduksjon center active">
-      <h1>Folk</h1>
       <article>
+        <header>
+          <h1>Folk</h1>
+        </header>
         <p>
           På denne siden kan du se data om Norges befolkning. Bruk navigasjonsbaren til å navigere i de ulike sidene.
           Vi tar forbehold om eventuelle feil i data. All data er henta fra Statistisk Sentralbyrå.
           <i>Kilde: <a href="https://www.ssb.no/">www.ssb.no</a></i>
           <i></i>
-          <h5>Oversikt:</h5>
+          <header class="subHeader">
+            <h3>Oversikt:</h3>
+          </header>
           <p>Viser en oversikt over kommunene i Norge med kommunenummer og befolkning.</p>
-          <h5>Detaljar:</h5>
+          <header class="subHeader">
+            <h3>Detaljar:</h3>
+          </header>
           <p>Viser detaljerte data om en kommune. Her benyttes kommunenr. til søking.</p>
-          <h5>Samanlikning:</h5>
+          <header class="subHeader">
+            <h3>Samanlikning:</h3>
+          </header>
           <p>Sammenligner data mellom to kommuner.</p>
         </p>
       </article>
@@ -88,11 +94,9 @@
       <div class="comparisonOutput"></div>
     </div>
   </main>
-
   <footer class="botntekst">
     <p>oppgavebesvarelse INFO134.</p>
   </footer>
-
 </body>
 
 </html>
