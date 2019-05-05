@@ -177,7 +177,7 @@ function createDetails(id) {
         const paragraph = createParagraph(currentDetails, id);
         const headerText = `Siste oppdaterte statistikk for ${currentDetails.navn}:`;
         const header = createHeader(headerText, "mainHeader");
-        htmlObject.id = "latestStats"
+        htmlObject.id = "latestStats";
         appendElements(htmlObject, header, paragraph, table);
         return htmlObject;
     }
@@ -203,7 +203,7 @@ function createDetails(id) {
             const className = `${type}${eduType}Table`;
             const tableHeaderClass = "tableHeader";
             const tables = document.createElement("div");
-            tables.classList.add("graphPointer")
+            tables.classList.add("graphPointer");
             const numberDesciptions = ["Kvinner", "Menn", "Begge kjønn"];
             let percentDesciptions;
             if (type === "population") {

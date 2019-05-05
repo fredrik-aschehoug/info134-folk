@@ -10,8 +10,8 @@ function detailsFormSubmit(ids) {
     // Check if valid ID
     if (ids.includes(id)) {
         createDetails(id);
-        mouseOverFunc(id)
-        //graphRender(id);
+        createCanvas();
+        createGraph(id);
         // Activate sidenav
         addClass("sidenav", "activeSidenav");
     } else if (id === "5061") {

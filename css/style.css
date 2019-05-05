@@ -325,7 +325,6 @@
 /*--------------------Graph--------------------*/
 .canvasGraph {
   margin-top: 1em;
-  visibility: hidden;
   background-color: #F4F4F4;
   padding-bottom: 1em;
   padding-left: 0.5em;
@@ -335,6 +334,10 @@
 .canvasGraph.transition{
   transition: 1s;
   margin-left: 0% !important;
+}
+
+tr.bold {
+  font-weight: bold;
 }
 
 /*--------------------Active--------------------*/
