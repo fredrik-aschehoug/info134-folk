@@ -79,7 +79,7 @@ function createComparison(id1, id2) {
     const table2 = createComparisonTable(historicalDetails2, className);
     highlightTables(table1, table2);
     // Create one tableToggle for both tables
-    const tableToggle = createTableToggle(toggleCallback, className, "employment");
+    const tableToggle = createTableToggle(toggleCallback, className, "employment", "Comparison");
     // Clear placeholder
     removeChildNodes(placeholder[0]);
     // Append item to placeholder

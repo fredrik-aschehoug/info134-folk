@@ -154,7 +154,7 @@ function createTableBody(desciptions, tableHeaders, historicalDetails, tbody, fo
  * @param {toggleCallback} callback Function to call when toggle is clicked
  * @param {string} cbParam Classname, param to the callback function
  * @param {string} type "population"/"emplyment"/"education"
- * @param {string} eduType The level of education
+ * @param {string} eduType The level of education, can also be used to gi a more inuque classname to the element.
  * @returns {HTMLFormElement} <form> element containing the toggle button
  */
 function createTableToggle(callback, cbParam, type, eduType) {
