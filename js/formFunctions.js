@@ -1,7 +1,6 @@
 /**
  * Get value from input and create details view.
- * @callback detailsFormSubmit
- * @type {detailsFormSubmit}
+ * This function is set as a onclick event when a user submits the details form.
  * @param {string[]} ids Array of all municipal ids.
  */
 function detailsFormSubmit(ids) {
@@ -10,8 +9,7 @@ function detailsFormSubmit(ids) {
     // Check if valid ID
     if (ids.includes(id)) {
         createDetails(id);
-        mouseOverFunc(id)
-        //graphRender(id);
+        mouseOverFunc(id);
         // Activate sidenav
         addClass("sidenav", "activeSidenav");
     } else if (id === "5061") {
@@ -26,8 +24,7 @@ function detailsFormSubmit(ids) {
 }
 /**
  * Get value from input and create comparison view.
- * @callback detailsFormSubmit
- * @type {detailsFormSubmit}
+ * This function is set as a onclick event when a user submits the comparison form.
  * @param {string[]} ids Array of all municipal ids.
  */
 function comparisonFormSubmit(ids) {
@@ -57,19 +54,18 @@ function comparisonFormSubmit(ids) {
 }
 /**
  * Sets classname on tr elements according to search query.
+ * This function is set as an onkeypress event on the overview form.
  */
 function overviewTableFilter() {
     const input = document.getElementById("overviewInput");
-    const filter = input.value.toUpperCase();
+    const query = input.value.toUpperCase();
     const table = document.getElementById("overviewTable").tBodies[0];
     const rows = table.getElementsByTagName("tr");
-    let tdText;
     for (let row of rows) {
         // Select first column
         let td = row.getElementsByTagName("td")[0];
         if (td) {
-            tdText = td.innerText;
-            if (tdText.toUpperCase().indexOf(filter) > -1) {
+            if (td.innerText.toUpperCase().indexOf(query) > -1) {
                 row.className = "visibleRow";
             } else {
                 row.className = "hiddenRow";
