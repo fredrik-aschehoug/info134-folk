@@ -3,61 +3,54 @@
  * Municipal name, municipal number, population, employment and
  * education. Both in count and percentage.
  * @constructor
- * @param {number} currentYear The current year. Used in .getCurrent().
+ * @param {string} currentYear The current year. Used in .getCurrent().
  */
 function Details(currentYear) {
     this.elements = {};
     this.currentYear = currentYear;
     /**
+     * Get an object with stats only for the current year.
      * @param {string} id Municipal ID
      * @returns {object} Current stats for municipal
      */
     this.getCurrent = function (id) {
-        // Define the object to return
-        let current = {
-            population: {
-                number: {},
-                percent: {}
-            },
-            employment: {
-                number: {},
-                percent: {}
-            },
-            education: {
-                number: {},
-                percent: {}
-            }
-        };
-        current.navn = this.elements[id].navn;
-        current.year = this.currentYear;
-        // Add population data
-        let population = this.elements[id].population;
-        for (let type in population) {
-            for (let gender in population[type]) {
-                current.population[type][gender] = population[type][gender][current.year];
-            }
+        /**
+         * Reduces an object. Only the value in the current year is returned.
+         * @param {object} historicalObj The object to get the value from
+         * @param {string} year The year to get the value from
+         * @returns {number} The value for the current year
+         */
+        function reduceYears(historicalObj, year) {
+            let filtered = Object.keys(historicalObj)
+                .filter((item) =>  item === year)
+                .map((item) => historicalObj[item]);
+            console.log(typeof filtered[0]);
+            return filtered[0];
         }
-        // Add employment data
-        let employment = this.elements[id].employment;
-        for (let type in employment) {
-            for (let gender in employment[type]) {
-                current.employment[type][gender] = employment[type][gender][current.year];
-            }
+        /**
+         * Filter out all years except current year.
+         * @param {object} obj 
+         * @param {*} year 
+         */
+        function filterHistorical(obj, year) {
+            Object.keys(obj).forEach((key) => {
+                let value = reduceYears(obj[key], year);
+                obj[key] = value;
+            });
         }
-        // Add education data
-        let education = this.elements[id].education;
-        for (let type in education) {
-            for (let eduLevel in education[type]) {
-                current.education[type][eduLevel] = {};
-                for (let gender in education[type][eduLevel]) {
-                    let currentGender = education[type][eduLevel][gender][current.year];
-                    current.education[type][eduLevel][gender] = currentGender;
-                }
-            }
+        // Define object to return, clone from this so that this is not affected by changes.
+        let current = JSON.parse(JSON.stringify(this.elements[id]));
+        // Filter out all other years than currentYear
+        Object.keys(current.population).forEach((key) => filterHistorical(current.population[key], currentYear));
+        Object.keys(current.employment).forEach((key) => filterHistorical(current.employment[key], currentYear));
+        // Education has one more level of objects
+        for (let format of Object.keys(current.education)) {
+            Object.keys(current.education[format]).forEach((key) => filterHistorical(current.education[format][key], currentYear));
         }
         return current;
     };
     /**
+     * Get all historical data for a municipal.
      * @param {string} id Municipal ID
      * @returns {object} Historical stats for municipal
      */
@@ -75,11 +68,9 @@ function Details(currentYear) {
         // Define the object to return
         let element = {};
         element.navn = population.navn;
-        // Add population to object
+        // Add population, employment and education to object
         element.population = this.addPopulation(population);
-        // Add employment to object
         element.employment = this.addEmployment(employment, population);
-        // Add employment to object
         element.education = this.addEducation(education, population);
         // Add municipal to elements, using municipal ID as key
         this.elements[id] = element;

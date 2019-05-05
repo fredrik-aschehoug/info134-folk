@@ -87,7 +87,7 @@ function createTableHeaders(type, historicalDetails) {
     return tableHeaders;
 }
 /**
- *
+ * Builds table rows with data and appends the to a tbody element.
  * @param {string[]} desciptions The values of the first column
  * @param {string[]} tableHeaders List of years in the table header
  * @param {object} historicalDetails From details.getHistorical(id)
@@ -151,13 +151,14 @@ function createTableBody(desciptions, tableHeaders, historicalDetails, tbody, fo
 /**
  * Creates a custom toggle button inside a form element.
  * The toggle calls the callback function when clicked.
- * @param {toggleCallback} callback Function to call when toggle is clicked
+ * @param {tableToggleOnclick} callback Function to call when toggle is clicked
  * @param {string} cbParam Classname, param to the callback function
  * @param {string} type "population"/"emplyment"/"education"
- * @param {string} eduType The level of education, can also be used to gi a more inuque classname to the element.
+ * @param {string} eduType The level of education, can also be used to give a more unique classname to the element.
  * @returns {HTMLFormElement} <form> element containing the toggle button
  */
 function createTableToggle(callback, cbParam, type, eduType) {
+    // Assign empty string if param is undefined.
     eduType = eduType || "";
     // Create DOM elements
     const tableToggle = document.createElement("form");
@@ -168,34 +169,36 @@ function createTableToggle(callback, cbParam, type, eduType) {
     let radioclass = `${type}${eduType}Toggle`;
     // Set attributes
     input1.id = `${type}${eduType}Toggle-antall`;
+    input2.id = `${type}${eduType}Toggle-prosent`;
     input1.classList.add(radioclass, "toggle", "toggle-left", "toggle-active");
-    input1.name = "toggle";
+    input2.classList.add(radioclass, "toggle", "toggle-right");
+    input1.name = input2.name = "toggle";
     input1.value = "false";
+    input2.value = "true";
     input1.type = input2.type = "radio";
     input1.checked = true;
     input1.onclick = () => callback(cbParam, "antall", radioclass);
-    label1.htmlFor = `${type}${eduType}Toggle-antall`;
-    label1.classList.add("tableToggle");
-    label1.innerText = "Antall";
-    input2.id = `${type}${eduType}Toggle-prosent`;
-    input2.classList.add(radioclass, "toggle", "toggle-right");
-    input2.name = "toggle";
-    input2.value = "true";
     input2.onclick = () => callback(cbParam, "prosent", radioclass);
+    label1.htmlFor = `${type}${eduType}Toggle-antall`;
     label2.htmlFor = `${type}${eduType}Toggle-prosent`;
+    label1.classList.add("tableToggle");
     label2.classList.add("tableToggle");
+    label1.innerText = "Antall";
     label2.innerText = "Prosent";
     // Append DOM elements to return object
-    tableToggle.appendChild(input1);
-    tableToggle.appendChild(label1);
-    tableToggle.appendChild(input2);
-    tableToggle.appendChild(label2);
+    appendElements(tableToggle, input1, label1, input2, label2);
     return tableToggle;
 }
+
+/**
+ * @callback tableToggleOnclick
+ * @param {string} className The classname to toggele classes on
+ * @param {string} inputType "antall"/"prosent". The type of radio that is clicked
+ * @param {string} radioClass The common class of the radios to check
+ */
+
 /**
  * Toggles classname "activeTable" on all elements with the class of the param.
- * @callback toggleCallback
- * @type {toggleCallback}
  * @param {string} className The classname to toggele classes on
  * @param {string} inputType "antall"/"prosent". The type of radio that is clicked
  * @param {string} radioClass The common class of the radios to check
