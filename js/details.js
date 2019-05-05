@@ -3,58 +3,49 @@
  * Municipal name, municipal number, population, employment and
  * education. Both in count and percentage.
  * @constructor
- * @param {number} currentYear The current year. Used in .getCurrent().
+ * @param {string} currentYear The current year. Used in .getCurrent().
  */
 function Details(currentYear) {
     this.elements = {};
     this.currentYear = currentYear;
     /**
+     * Get an object with stats only for the current year.
      * @param {string} id Municipal ID
      * @returns {object} Current stats for municipal
      */
     this.getCurrent = function (id) {
         /**
-         * Adds an object to the destination object.
-         * @param {object} item 
-         * @param {object} destinationObject 
+         * Reduces an object. Only the value in the current year is returned.
+         * @param {object} historicalObj The object to get the value from
+         * @param {string} year The year to get the value from
+         * @returns {number} The value for the current year
          */
-        function addItemtoObject(item, destinationObject, year){
-            destinationObject[item[0]] = item[1][year];
+        function reduceYears(historicalObj, year) {
+            let filtered = Object.keys(historicalObj)
+                .filter((item) =>  item === year)
+                .map((item) => historicalObj[item]);
+            console.log(typeof filtered[0]);
+            return filtered[0];
         }
-        // Define the object to return
-        let current = {
-            population: {
-                number: {},
-                percent: {}
-            },
-            employment: {
-                number: {},
-                percent: {}
-            },
-            education: {
-                number: {},
-                percent: {}
-            }
-        };
-        current.navn = this.elements[id].navn;
-        current.year = this.currentYear;
-        /* Add population, employment and education data */
-        // Filter out kommunenavn property
-        const datasets = Object.entries(this.elements[id]).filter((item) => item[0] !== "navn");
-        for (let [datasetType, dataset] of datasets) {
-            for (let [formatType, format] of Object.entries(dataset)) {
-                if (datasetType === "education") {
-                    for (let eduLevel in format) {
-                        current.education[formatType][eduLevel] = {};
-                        let obj = current.education[formatType][eduLevel];
-                        Object.entries(format[eduLevel]).forEach((item) => addItemtoObject(item, obj, current.year));
-                    }
-                } else {
-                    let obj = current[datasetType][formatType];
-                    Object.entries(format).forEach((item) => addItemtoObject(item, obj, current.year));
-                    
-                }
-            }
+        /**
+         * Filter out all years except current year.
+         * @param {object} obj 
+         * @param {*} year 
+         */
+        function filterHistorical(obj, year) {
+            Object.keys(obj).forEach((key) => {
+                let value = reduceYears(obj[key], year);
+                obj[key] = value;
+            });
+        }
+        // Define object to return
+        let current = this.elements[id];
+        // Filter out all other years than currentYear
+        Object.keys(current.population).forEach((key) => filterHistorical(current.population[key], currentYear));
+        Object.keys(current.employment).forEach((key) => filterHistorical(current.employment[key], currentYear));
+        // Education has one more level of objects
+        for (let format of Object.keys(current.education)) {
+            Object.keys(current.education[format]).forEach((key) => filterHistorical(current.education[format][key], currentYear));
         }
         return current;
     };

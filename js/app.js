@@ -10,7 +10,7 @@ getURL = (id) => `http://wildboy.uib.no/~tpe056/folk/${id}.json`;
 const befolkning = new Dataset(getURL("104857"));
 const sysselsatte = new Dataset(getURL("100145"));
 const utdanning = new Dataset(getURL("85432"));
-const details = new Details(2017);
+const details = new Details("2017");
 // Assign callback functions
 befolkning.onload = befolkningCallback;
 sysselsatte.onload = sysselsatteCallback;
