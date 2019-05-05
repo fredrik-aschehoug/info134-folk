@@ -165,6 +165,7 @@ function createDetails(id) {
         const tbody = document.createElement("tbody");
         table.appendChild(thead);
         table.appendChild(tbody);
+        table.id = "overviewTable";
         // Create table headers
         thead.appendChild(createTableHeader(detailsTableHeaders));
         // Append all rows to table object
