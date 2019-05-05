@@ -38,8 +38,8 @@ function Details(currentYear) {
                 obj[key] = value;
             });
         }
-        // Define object to return
-        let current = this.elements[id];
+        // Define object to return, clone from this so that this is not affected by changes.
+        let current = JSON.parse(JSON.stringify(this.elements[id]));
         // Filter out all other years than currentYear
         Object.keys(current.population).forEach((key) => filterHistorical(current.population[key], currentYear));
         Object.keys(current.employment).forEach((key) => filterHistorical(current.employment[key], currentYear));
@@ -68,11 +68,9 @@ function Details(currentYear) {
         // Define the object to return
         let element = {};
         element.navn = population.navn;
-        // Add population to object
+        // Add population, employment and education to object
         element.population = this.addPopulation(population);
-        // Add employment to object
         element.employment = this.addEmployment(employment, population);
-        // Add employment to object
         element.education = this.addEducation(education, population);
         // Add municipal to elements, using municipal ID as key
         this.elements[id] = element;
