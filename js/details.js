@@ -13,6 +13,14 @@ function Details(currentYear) {
      * @returns {object} Current stats for municipal
      */
     this.getCurrent = function (id) {
+        /**
+         * Adds an object to the destination object.
+         * @param {object} item 
+         * @param {object} destinationObject 
+         */
+        function addItemtoObject(item, destinationObject, year){
+            destinationObject[item[0]] = item[1][year];
+        }
         // Define the object to return
         let current = {
             population: {
@@ -30,34 +38,28 @@ function Details(currentYear) {
         };
         current.navn = this.elements[id].navn;
         current.year = this.currentYear;
-        // Add population data
-        let population = this.elements[id].population;
-        for (let type in population) {
-            for (let gender in population[type]) {
-                current.population[type][gender] = population[type][gender][current.year];
-            }
-        }
-        // Add employment data
-        let employment = this.elements[id].employment;
-        for (let type in employment) {
-            for (let gender in employment[type]) {
-                current.employment[type][gender] = employment[type][gender][current.year];
-            }
-        }
-        // Add education data
-        let education = this.elements[id].education;
-        for (let type in education) {
-            for (let eduLevel in education[type]) {
-                current.education[type][eduLevel] = {};
-                for (let gender in education[type][eduLevel]) {
-                    let currentGender = education[type][eduLevel][gender][current.year];
-                    current.education[type][eduLevel][gender] = currentGender;
+        /* Add population, employment and education data */
+        // Filter out kommunenavn property
+        const datasets = Object.entries(this.elements[id]).filter((item) => item[0] !== "navn");
+        for (let [datasetType, dataset] of datasets) {
+            for (let [formatType, format] of Object.entries(dataset)) {
+                if (datasetType === "education") {
+                    for (let eduLevel in format) {
+                        current.education[formatType][eduLevel] = {};
+                        let obj = current.education[formatType][eduLevel];
+                        Object.entries(format[eduLevel]).forEach((item) => addItemtoObject(item, obj, current.year));
+                    }
+                } else {
+                    let obj = current[datasetType][formatType];
+                    Object.entries(format).forEach((item) => addItemtoObject(item, obj, current.year));
+                    
                 }
             }
         }
         return current;
     };
     /**
+     * Get all historical data for a municipal.
      * @param {string} id Municipal ID
      * @returns {object} Historical stats for municipal
      */
