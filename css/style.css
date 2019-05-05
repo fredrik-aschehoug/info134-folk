@@ -336,8 +336,9 @@
   margin-left: 0% !important;
 }
 
-tr.bold {
-  font-weight: bold;
+tr.mouseOver:active {
+  background-color: #374C70;
+  color: #F4F4F4;
 }
 
 /*--------------------Active--------------------*/

@@ -150,7 +150,7 @@ function createGraph(id) {
                 trTags[str].onclick = function () {
                     let clickId = this.id;
                     let clickClass = this.classList;
-                    document.getElementById(clickId).classList.replace("mouseOver", "bold")
+                    document.getElementById(clickClass[2]).appendChild(canvas);
                     //canvas properties
                     canvas.id = "graphTotal";
                     canvas.width = 500;
@@ -254,11 +254,6 @@ function graphAnimation(className) {
         marginLeft = compStyle.getPropertyValue('margin-right');
     canvas.style.marginLeft = marginLeft;
 }
-
-
-
-
-
 
 
 
