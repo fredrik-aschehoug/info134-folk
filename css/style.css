@@ -383,7 +383,6 @@ main{
 /*--------------------Graph--------------------*/
 .canvasGraph {
   margin-top: 1em;
-  visibility: hidden;
   background-color: #F4F4F4;
   padding-bottom: 1em;
   padding-left: 0.5em;
@@ -393,6 +392,11 @@ main{
 .canvasGraph.transition{
   transition: 1s;
   margin-left: 0% !important;
+}
+
+tr.mouseOver:active {
+  background-color: #374C70;
+  color: #F4F4F4;
 }
 
 /*--------------------Active--------------------*/
