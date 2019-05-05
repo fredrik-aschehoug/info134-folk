@@ -2,7 +2,7 @@ function graphMainPercent(array, graphData) {
     const xValues = Object.keys(graphData.graphObjects[array[0]]);
     const yValues1 = Object.values(graphData.graphObjects[array[0]]);
     const yValues2 = Object.values(graphData.graphObjects[array[0]+1]);
-    console.log(yValues2)
+
 
     function mapDataGraphTotal(xAxisKeys, yAxisArray, yAxisArray2, array) {
         array = array;
@@ -44,13 +44,11 @@ function graphMainPercent(array, graphData) {
                     newArr.push((yAxisArray[i] / 100));
                     reducedBy = 100;
                     lineWidth = 2.5;
-                    console.log(newArr)
 
                 }else if (yAxisArray[10] > 4999) {
                     newArr.push((yAxisArray[i] / 10));
                     reducedBy = 10;
                     lineWidth = 2.5;
-                    console.log(newArr)
                 }
                 else if (yAxisArray[10] < 5000 && yAxisArray[10] > 200) {
                     newArr.push((yAxisArray[i]));

@@ -358,16 +358,6 @@ dataa presenterast horisontalt*/
   .detailsOutput thead{
     width: 100%;
   }
-  .detailsOutput .populationTable,
-  .detailsOutput .employmentTable,
-  .detailsOutput .education12Table,
-  .detailsOutput .education11Table,
-  .detailsOutput .education03aTable,
-  .detailsOutput .education04aTable {  /*:not(#latestStats > table:nth-child(3)){*/
-    overflow-x: scroll;
-    padding-left: 90px;
-    margin: 0;
-  }
 
   .detailsOutput th,
   .detailsOutput td{
@@ -379,6 +369,17 @@ dataa presenterast horisontalt*/
 
   .detailsOutput th:not(.detailsOutput tr td:nth-child(1)){
     min-width:60px;
+  }
+
+  .detailsOutput .populationTable,
+  .detailsOutput .employmentTable,
+  .detailsOutput .education12Table,
+  .detailsOutput .education11Table,
+  .detailsOutput .education03aTable,
+  .detailsOutput .education04aTable {  /*:not(#latestStats > table:nth-child(3)){*/
+    overflow-x: scroll;
+    padding-left: 90px;
+    margin: 0;
   }
 
   .detailsOutput table.populationTable:nth-child(2) > thead:nth-child(1) > tr:nth-child(1) > th:nth-child(1),
@@ -415,8 +416,7 @@ dataa presenterast horisontalt*/
     content: "%";
   }
 
-  .detailsOutput table,
-  .comparisonOutput table{
+  .detailsOutput table{
     z-index: 0;
     width: 100%;
     padding: auto;
@@ -425,14 +425,11 @@ dataa presenterast horisontalt*/
     border-collapse: collapse;
   }
 
-
-  .detailsOutput th,
-  .comparisonOutput th{
+  .detailsOutput th{
     width:80px;
   }
 
-  .detailsOutput table,
-  .comparisonOutput table{
+  .detailsOutput table{
     z-index: 0;
     padding-top: 10px;
   }
@@ -447,14 +444,7 @@ dataa presenterast horisontalt*/
     z-index: 2;
     position: sticky;
     position: -webkit-sticky;
-
   }
-/*
-  .detailsOutput tbody,
-  .comparisonOutput tbody {
-    overflow-y: auto;    /* Trigger vertical scroll    */
-/*    overflow-x: hidden;  /* Hide horizontal scroll */
-/*  } */
 
   .detailsOutput tr:nth-child(even){
     background-color: #DADEE5;
@@ -496,8 +486,16 @@ dataa presenterast horisontalt*/
   }
 
 /*--------------------SAMANLIKNING--------------------*/
+  .comparisonOutput table{
+    z-index: 0;
+    width: 100%;
+    padding: auto;
+    padding-top: 10px;
+    margin: auto;
+    border-collapse: collapse;
+  }
+
   .comparisonOutput th {
-    width: 80px;
     height: 40px;
     display: block;
     text-align: center;
@@ -506,13 +504,18 @@ dataa presenterast horisontalt*/
   .comparisonOutput tr {
     display: block;
     float: left;
-    width: 80px;
+    width: 150px;
+    max-width: 32%;
   }
+
+  .comparisonOutput thead tr {
+    display: block;
+    float: left;
+    width: 100px;
+  }
+
   .comparisonOutput td {
     height: 40px;
-  }
-  .comparisonOutput .employmentTable{
-    width: 100%;
   }
 
   .comparisonOutput thead,
@@ -543,7 +546,6 @@ dataa presenterast horisontalt*/
 
 /*---  style.css  ---*/
 
-
   .comparisonOutput tbody td,
   .comparisonOutput thead td{
     text-align: center !important;
@@ -560,8 +562,6 @@ dataa presenterast horisontalt*/
     font-weight: bold !important;
   }
 
-
-
 /*--------------------botntekst--------------------*/
   footer{
     bottom: 0;
@@ -577,6 +577,5 @@ dataa presenterast horisontalt*/
     text-align: center;
     font-size: 1em;
   }
-
 
 }
