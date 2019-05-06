@@ -1,333 +1,25 @@
-/*@media screen and (max-width: 700px){}*/
-/*Vi stiller eitt krav til korleis historiske data blir vist til brukaren. Når brukaren bruker ein liten skjerm, skal
-historiske data (tal for ei rekke år) presenterast vertikalt. Når brukaren bruker ein stor skjerm, skal dei historiske
-dataa presenterast horisontalt*/
+/* Til skjerm under 700 px */
 
 @media screen and (max-width: 700px){
-
-  body {
-    background-color: #F4F4F4;
-    color: #24201D;
-    font-family: Arial, sans-serif;
-  }
 
 /*--------------------NAVIGASJON--------------------*/
 
   .navigation{
-    top: 0;
-    right: 0;
-    z-index: 2;
-    position: fixed;
-    display:inline-block;
-    width: 100%;
     height: 41px;
-    background-color: #1F2421;
-    text-transform: uppercase;
     font-size: 0.75em;
-  }
-
-  .navigation li{
-    display: block;
-    float:left;
-  }
-
-  .navigation ul{
-    padding: 0;
-    margin: 0;
-    list-style-type: none;
   }
 
   .navigation button{
-    display: block;
-    color: #F4F4F4;
     padding: 15px 16px;
-    border: none;
-    background-color: #1F2421;
-    text-decoration: none;
     font-size: 0.75em;
   }
 
-  /*--- Farge til navigasjon ---*/
-
-  #navButton1:hover:not(.activemenu),
-  .activemenu #navButton1{
-    background-color: #542344;
-  }
-
-  #navButton2:hover:not(.activemenu),
-  .activemenu #navButton2{
-    background-color: #074F57;
-  }
-
-  #navButton3:hover:not(.activemenu),
-  .activemenu #navButton3{
-    background-color: #374C70;
-  }
-
-  #navButton4:hover:not(.activemenu),
-  .activemenu #navButton4{
-    background-color: #68553E;
-  }
 
 /*--------------------hovudinnhald--------------------*/
-  main{
-    display: block;
-    padding: auto;
-    margin: auto;
-  }
 
   .center{
-    top: 49px; /*Same height as nav*/
-    bottom:50px;
-    left: 50%;
-    position: absolute;
-    transform: translate(-50%);
-    display: block;
     max-width: 90%; /* Bruker større del av skjermen */
     min-width: 90%; /* Bruker større del av skjermen */
-    overflow-y: scroll;
-    overflow-x: hidden;
-    padding: 10px;
-    margin: auto;
-  }
-
-  /* Gjør klassen usynlig */
-  .main,
-  .sidenav{
-    visibility: hidden;
-    display: none;
-  }
-
-  /*--------------------active--------------------*/
-  /* Gjør den aktive klassen synlig */
-  .active, .activeSidenav{
-    visibility: visible;
-    display:block;
-    margin: auto;
-    }
-
-/*--------------------SEARCH--------------------*/
-
-  #comparisonForm,
-  #detailsForm,
-  #overviewForm{
-    display: block;
-    height: 40px;
-    border: 1px solid grey;
-    margin: auto;
-    margin-top: 10px;
-  }
-
-  #detailsForm,
-  #overviewForm{
-    width: 247.4px;
-  }
-
-  #overviewInput,
-  #detailsInput,
-  #comparisonInput1,
-  #comparisonInput2{
-    width: 200px;
-    height: 28px;
-    font-size: 0.75em;
-    padding:0.1em;
-    border: none;
-    margin: 0;
-  }
-
-  #detailsForm,
-  #detailsInput{
-    background-color: #DADEE5;
-  }
-
-  #detailsButton,
-  #comparisonButton{
-    width:40px;
-    height:40px;
-    border:none;
-  }
-
-  /*--- Overview ---*/
-  #overviewForm,
-  #overviewForm Input {
-    background-color: #D1DFE0;
-  }
-
-  #overviewForm Input{
-    padding-top: 0.35em;
-  }
-
-  #comparisonForm,
-  #detailsForm{
-    contain: content;
-  }
-
-
-  /*--- Details ---*/
-
-  #detailsButton{
-    background:url(../images/search.png) no-repeat;
-    background-size: contain;
-    background-color: #374C70;
-  }
-
-  /*--- Comparison ---*/
-  #comparisonForm{
-    width: 455.3px;
-  }
-
-  #comparisonForm,
-  #comparisonInput1,
-  #comparisonInput2{
-    background-color: #E3E0DB;
-  }
-
-  #comparisonButton{
-    background:url(../images/search.png) no-repeat;
-    background-size: contain;
-    background-color: #68553E;
-  }
-/*--------------------TableToggle--------------------*/
-  /*--- tall til prosent --*/
-  .tableToggle {
-    position: relative;
-  }
-  
-  .detailsOutput .tableToggle,
-  .comparisonOutput .tableToggle {
-    border: 1px solid #1a1a1a;
-    display: inline-block;
-    padding: 0.3em;
-    border: 1px solid #1a1a1a;
-    margin-top: 1em;
-    margin-bottom: 1em;
-    text-align: center;
-    transition: background 600ms ease, color 600ms ease;
-    font-size: 0.8em;
-  }
-  .detailsOutput input[type="radio"].toggle,
-  .comparisonOutput input[type="radio"].toggle {
-    display: none;
-  }
-  /*input[type="radio"].toggle + label {*/
-  .detailsOutput input[type="radio"].toggle + label,
-  .comparisonOutput input[type="radio"].toggle + label {
-    cursor: pointer;
-    min-width: 60px;
-  }
-  .detailsOutput input[type="radio"].toggle + label:hover,
-  .comparisonOutput input[type="radio"].toggle + label:hover {
-    background: none;
-  }
-
-  input[type="radio"].toggle + label:after {
-    top: 0;
-    z-index: -1;
-    position: absolute;
-    content: "";
-    width: 100%;
-    height: 100%;
-    transition: left 200ms cubic-bezier(1, .11, .93, 1);
-    background: #1F2421;
-
-  }
-  .detailsOutput input[type="radio"].toggle.toggle-left + label:after,
-  .comparisonOutput input[type="radio"].toggle.toggle-left + label:after {
-    left: 100%;
-  }
-  .detailsOutput input[type="radio"].toggle.toggle-right + label:after,
-  .comparisonOutput input[type="radio"].toggle.toggle-right + label:after {
-    left: -100%;
-  }
-  input[type="radio"].toggle:checked + label {
-    color: #fff;
-    transition: color 200ms;
-    cursor: default;
-  }
-  .detailsOutput input[type="radio"].toggle:checked + label:after,
-  .comparisonOutput input[type="radio"].toggle:checked + label:after {
-    left: 0;
-  }
-
-  /*Color themes*/
-  .detailsOutput input[type="radio"].toggle + label:hover {
-    color: #374C70;
-  }
-  .comparisonOutput input[type="radio"].toggle + label:hover {
-    color: #68553E;
-  }
-  .detailsOutput input[type="radio"].toggle + label:after {
-    background: #374C70;
-  }
-  .comparisonOutput input[type="radio"].toggle + label:after {
-    background: #68553E;
-  }
-  .detailsOutput input[type="radio"].toggle:checked + label,
-  .comparisonOutput input[type="radio"].toggle:checked + label {
-    color: #fff;
-  }
-/*--------------------INTRODUKSJON--------------------*/
-
-  .introduction {
-    width: 100%;
-    padding: auto;
-    padding-left: 0;
-    padding-right: 0;
-    margin: auto;
-  }
-
-  .introduction h1{
-    padding: 10px;
-    margin: 0;
-    background-color: #542344;
-    color: white;
-  }
-
-  .introduction p{
-    padding: 10px;
-    padding-bottom: 1em;
-    margin: 0;
-  }
-
-  .introduction article{
-    background-color: #DFD7DD;
-  }
-
-/*--------------------OVERSIKT--------------------*/
-
-  .overview table {
-    margin-top: 20px;
-    width: 100%;
-    border-collapse: collapse;
-  }
-
-  .overview th,
-  .overview td {
-    padding: 8px;
-    text-align: left;
-    width: 33%;
-  }
-
-  .overview thead {
-    top: 0;
-    position: sticky;
-    position: -webkit-sticky;
-    background-color: #074F57;
-    color: white;
-  }
-
-  .overview tbody {
-    width:100%;
-    overflow-y: auto;    /* Trigger vertical scroll    */
-    overflow-x: hidden;  /* Hide horizontal scroll */
-  }
-
-  .overview tr:nth-child(even) { /* Forandrer fargen til partalls linjer */
-    background-color: #D1DFE0;
-  }
-
-  .hiddenRow {
-    display: none;
   }
 
 /*--------------------DETALJAR NAV--------------------*/
@@ -337,24 +29,6 @@ dataa presenterast horisontalt*/
     visibility: hidden;
   }
 
-/*--------------------DETALJAR--------------------*/
-  .detailsOutput p,
-  .mainHeader,
-  .subHeader,
-  .subHeader2 {
-    font-weight: bold;
-  }
-  .detailsOutput .mainHeader {
-    font-size: 2em;
-  }
-  .detailsOutput .subHeader {
-    font-size: 1.5em;
-  }
-  .detailsOutput .subHeader2 {
-    font-size: 1em;
-  }
-
-
 /*--------------------DETALJAR Table--------------------*/
 
   .detailsOutput thead{
@@ -363,131 +37,21 @@ dataa presenterast horisontalt*/
 
   .detailsOutput th,
   .detailsOutput td{
-    height: 40px;
-    text-align: left;
     min-width: 60px !important;
-    /*border: 0.2px solid grey;*/
   }
 
   .detailsOutput th:not(.detailsOutput tr td:nth-child(1)){
     min-width:60px;
   }
 
-  .detailsOutput .populationTable,
-  .detailsOutput .employmentTable,
-  .detailsOutput .education12Table,
-  .detailsOutput .education11Table,
-  .detailsOutput .education03aTable,
-  .detailsOutput .education04aTable {  /*:not(#latestStats > table:nth-child(3)){*/
-    overflow-x: scroll;
-    padding-left: 90px;
-    margin: 0;
+  .historicalOverview th,
+  .historicalOverview td{
+    display: block;
   }
 
-  .detailsOutput table.populationTable:nth-child(2) > thead:nth-child(1) > tr:nth-child(1) > th:nth-child(1),
-  .detailsOutput table.employmentTable:nth-child(2) > thead:nth-child(1) > tr:nth-child(1) > th:nth-child(1),
-  .detailsOutput table.education12Table:nth-child(2) > thead:nth-child(1) > tr:nth-child(1) > th:nth-child(1),
-  .detailsOutput table.education11Table:nth-child(2) > thead:nth-child(1) > tr:nth-child(1) > th:nth-child(1),
-  .detailsOutput table.education03aTable:nth-child(2) > thead:nth-child(1) > tr:nth-child(1) > th:nth-child(1),
-  .detailsOutput table.education04aTable:nth-child(2) > thead:nth-child(1) > tr:nth-child(1) > th:nth-child(1),
-  .detailsOutput .populationTable tr td:nth-child(1):not(#latestStats),
-  .detailsOutput .employmentTable tr td:nth-child(1):not(#latestStats),
-  .detailsOutput .education12Table tr td:nth-child(1):not(#latestStats),
-  .detailsOutput .education11Table tr td:nth-child(1):not(#latestStats),
-  .detailsOutput .education03aTable tr td:nth-child(1):not(#latestStats),
-  .detailsOutput .education04aTable tr td:nth-child(1):not(#latestStats){
-    position: absolute;
-    width: 90px;
-    margin-left: -90px;
-    background-color: #6D7C97;
-    color:white;
-    text-align: left;
-  }
+/*--------------------SAMANLIKNING og detaljar--------------------*/
 
-
-/*--- Same as in style.css ---*/
-
-  .headerCell {
-    font-weight: bold;
-  }
-  .dataCell {
-    padding-left: 1.5em;
-  }
-
-  .percentCell::after {
-    content: "%";
-  }
-
-  .detailsOutput table{
-    z-index: 0;
-    width: 100%;
-    padding: auto;
-    padding-top: 10px;
-    margin: auto;
-    border-collapse: collapse;
-  }
-
-  .detailsOutput th{
-    width:80px;
-  }
-
-  .detailsOutput table{
-    z-index: 0;
-    padding-top: 10px;
-  }
-
-  .detailsOutput thead{
-    background-color: #374C70;
-    color: white;
-  }
-
-  .detailsOutput > div:nth-child(1) > table:nth-child(3) > thead:nth-child(1){
-    top: -10px;
-    z-index: 2;
-    position: sticky;
-    position: -webkit-sticky;
-  }
-
-  .detailsOutput tr:nth-child(even){
-    background-color: #DADEE5;
-  }
-
-  .populationTable,
-  .employmentTable,
-  .educationTable,
-  .education11Table,
-  .education12Table,
-  .education03aTable,
-  .education04aTable {
-    visibility: hidden;
-    display: none;
-  }
-
-/*--------------------Graph--------------------*/
-/*--- Same as in style.css ---*/
-  .canvasGraph {
-    margin-top: 1em;
-    visibility: hidden;
-    background-color: #F4F4F4;
-    padding-bottom: 1em;
-    padding-left: 0.5em;
-    margin-left: -5% !important;
-  }
-
-  .canvasGraph.transition{
-    transition: 1s;
-    margin-left: 0% !important;
-  }
-
-/*--------------------Active--------------------*/
-/*--- Same as in style.css ---*/
-  /* Viser aktiv klasse */
-  .activeTable{
-    visibility: visible;
-    display:block;
-  }
-
-/*--------------------SAMANLIKNING--------------------*/
+  .historicalOverview table,
   .comparisonOutput table{
     z-index: 0;
     width: 100%;
@@ -496,47 +60,70 @@ dataa presenterast horisontalt*/
     margin: auto;
     border-collapse: collapse;
   }
-
-  .comparisonOutput th {
+  .historicalOverviewt th,
+  .comparisonOutput th{
     height: 40px;
     display: block;
     text-align: center;
   }
 
+  .historicalOverview tr,
   .comparisonOutput tr {
     display: block;
     float: left;
     width: 150px;
     max-width: 32%;
   }
-
+  .historicalOverview thead tr,
   .comparisonOutput thead tr {
     display: block;
     float: left;
     width: 100px;
   }
 
+  .historicalOverview td,
   .comparisonOutput td {
     height: 40px;
   }
 
+  .historicalOverview thead,
+  .historicalOverview td,
   .comparisonOutput thead,
   .comparisonOutput td{
     display: block;
     font-weight: normal;
   }
-  .comparisonOutput thead{
-    /*background-color: #68553E;*/
-    background-color: #68553E;
+/*------------------- detaljar --------------------*/
+  /* Bytt fargar */
+  .historicalOverview thead,
+  .historicalOverview .tableHeader{
+    background-color: #374C70;
     color: white;
     font-weight: bold !important;
+    text-align: center !important;
   }
+
+  .historicalOverview .employmentTable tr {
+    background-color: transparent;
+  }
+
+  .historicalOverview tr:nth-child(even) {
+    background-color: transparent;
+  }
+
+  .historicalOverview tbody td:nth-child(even),
+  .historicalOverview thead td:nth-child(even){
+    background-color: #DADEE5;
+  }
+
+/*--------------------SAMANLIKNING--------------------*/
 
   .comparisonOutput .tableHeader{
     background-color: #68553E;
     color: white;
     text-align: center !important;
   }
+
   .comparisonOutput .employmentTable tr:nth-child(even) {
     background-color: transparent;
   }
@@ -546,38 +133,11 @@ dataa presenterast horisontalt*/
     background-color: #E3E0DB;
   }
 
-/*---  style.css  ---*/
-
-  .comparisonOutput tbody td,
-  .comparisonOutput thead td{
-    text-align: center !important;
-  }
-
-  /*Bold eller farga?*/
-  .highlightedCell {
-    z-index: 0;
-    color: white;
-    box-shadow: inset 0px 0px 0px 2px #E3E0DB;
-    padding-left:auto;
-    padding-right: auto;
-    background-color: #9E9284;
-    font-weight: bold !important;
-  }
 
 /*--------------------botntekst--------------------*/
   footer{
-    bottom: 0;
-    right: 0;
-    z-index: 1;
-    display:inline-block;
-    width: 100%;
-    position: fixed;
-    background-color: #1F2421;
-    color: #F4F4F4;
-    text-decoration: none;
-    text-transform: uppercase;
-    text-align: center;
-    font-size: 1em;
+    height: 41px;
+    font-size: 0.75em;
   }
 
 }
