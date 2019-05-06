@@ -384,17 +384,22 @@ main{
 }
 
 /*Bold eller farga?*/
-.highlightedCell {
+.highlightedCell, .highlightedCell2 {
   z-index: 0;
   color: white;
   box-shadow: inset 0px 0px 0px 2px #E3E0DB;
   padding-left:auto;
   padding-right: auto;
-  background-color: #9E9284;
   font-weight: bold !important;
 }
+.highlightedCell {
+  background-color: #9E9284;
+}
+.highlightedCell2 {
+  background-color:aquamarine;
+}
 
-.highlightedCell th{
+.highlightedCell th, .highlightedCell2 th{
   text-align: center;
 }
 .comparisonOutput .employmentTable tr:nth-child(even) {

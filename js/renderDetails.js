@@ -176,7 +176,7 @@ function renderDetails(id) {
         }
         const htmlObject = document.createElement("div");
         const paragraph = renderParagraph(currentDetails, id);
-        const headerText = `Siste oppdaterte statistikk for ${currentDetails.navn}:`;
+        const headerText = `Siste oppdaterte statistikk for ${currentDetails.navn} (2017):`;
         const header = renderHeader(headerText, "mainHeader");
         htmlObject.id = "latestStats";
         appendElements(htmlObject, header, paragraph, table);
