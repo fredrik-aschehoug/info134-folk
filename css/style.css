@@ -1,7 +1,7 @@
 body {
   background-color: #F4F4F4;
-  color: #24201D;
   font-family: Arial, sans-serif;
+  font-size: 1em;
   }
 
 /*--------------------NAVIGASJON--------------------*/
@@ -88,7 +88,7 @@ main{
   visibility: visible;
   display:block;
   margin: auto;
-  }
+ }
 
 /*--------------------SEARCH--------------------*/
 
@@ -205,14 +205,14 @@ main{
 
 #wrong{
   color: #542344;
-  background-color: white;    /*#CEFF1A;*/
+  background-color: #F4F4F4;
   font-weight: bold;
   text-transform: uppercase;
-  font-size: 2em;
-  font-style: italic;
-  border: 10px solid #542344;
-  transform-style: preserve-3d;
-  transition: all 2.0s linear;
+  padding:10px;
+  border: 1px solid #542344;
+  width: 406px;
+  text-align: center;
+  margin: auto;
 }
 
 #sources > li:nth-child(1){
@@ -222,20 +222,20 @@ main{
 #sources{
   list-style-type: none;
   padding-left: 0;
-  transform-style: preserve-3d;
-  transition: all 2.0s linear;
+  font-style: italic;
 }
 
 #sources a{
   padding-left: 10px;
   text-decoration: none;
+  color: #542344;
 }
-#sources:hover{
-  transform: rotateY(180deg);
+#sources li a:hover{
+  background-color: #542344;
+  color: #fff;
+  padding-right: 10px;
 }
-#wrong:hover{
-  transform: rotateY(180deg);
-}
+
 
 
 /*--------------------OVERSIKT--------------------*/
@@ -267,14 +267,18 @@ main{
   overflow-x: hidden;  /* Hide horizontal scroll */
 }
 
-.overview tr:nth-child(even) { /* Forandrer fargen til partalls linjer */
-  background-color: #D1DFE0;
-}
-
 .hiddenRow {
   display: none;
 }
 
+.overview tr:nth-child(even){ /* Forandrer fargen til partalls linjer */
+  background-color: #D1DFE0;
+}
+
+.visibleRow{
+  background-color: #D1DFE0 !important;
+  border: solid thin #F4F4F4;
+}
 
 /*--------------------Detaljar----------------------------*/
 .detailsOutput p,
@@ -284,7 +288,7 @@ main{
   font-weight: bold;
 }
 .detailsOutput .mainHeader {
-  font-size: 2em;
+  font-size: 1.5em;
 }
 .detailsOutput .subHeader {
   font-size: 1.5em;
@@ -311,30 +315,26 @@ main{
   width: 100%;
   padding: auto;
   padding-top: 10px;
-  margin: auto;
+  margin-bottom: 20px;
   border-collapse: collapse;
 }
 
+.tableHeader,
 .detailsOutput th,
-.detailsOutput td{
-  height: 40px;
-  width: 120px;
+.detailsOutput td,
+.comparisonOutput th,
+.comparisonOutput td {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  min-height: 30px;
+  max-height: 50px;
 }
 
 .comparisonOutput th,
-.comparisonOutput td {
-  height: 40px;
-}
-
+.comparisonOutput td,
 .comparisonOutput th:not(.tableHeader th),
 .comparisonOutput td:not(.tableHeader td){
   text-align: right;
-}
-
-.detailsOutput table,
-.comparisonOutput table{
-  z-index: 0;
-  padding-top: 10px;
 }
 
 .detailsOutput thead{
@@ -347,7 +347,6 @@ main{
   z-index: 2;
   position: sticky;
   position: -webkit-sticky;
-
 }
 
 .detailsOutput tbody,
@@ -378,13 +377,9 @@ main{
   font-weight: bold !important;
 }
 
-.comparisonOutput tbody td,
-.comparisonOutput thead td{
-  text-align: center !important;
-}
 
-/*Bold eller farga?*/
-.highlightedCell, .highlightedCell2 {
+.comparisonOutput .highlightedCell,
+.comparisonOutput .highlightedCell2 {
   z-index: 0;
   color: white;
   box-shadow: inset 0px 0px 0px 2px #E3E0DB;
@@ -392,19 +387,23 @@ main{
   padding-right: auto;
   font-weight: bold !important;
 }
-.highlightedCell {
+.comparisonOutput .highlightedCell {
   background-color: #9E9284;
 }
-.highlightedCell2 {
-  background-color:aquamarine;
+.comparisonOutput .highlightedCell2 {
+  background-color: #F4F1AB;
+  color: #9E9284;
 }
 
-.highlightedCell th, .highlightedCell2 th{
+.comparisonOutput .highlightedCell th,
+.comparisonOutput .highlightedCell2 th{
   text-align: center;
 }
+
 .comparisonOutput .employmentTable tr:nth-child(even) {
   background-color: #E3E0DB;
 }
+
 
 /*--------------------Graph--------------------*/
 .canvasGraph {
@@ -461,10 +460,7 @@ tr.mouseOver:active {
   cursor: pointer;
   min-width: 60px;
 }
-.detailsOutput input[type="radio"].toggle + label:hover,
-.comparisonOutput input[type="radio"].toggle + label:hover {
-  background: none;
-}
+
 
 input[type="radio"].toggle + label:after {
   top: 0;
@@ -496,9 +492,7 @@ input[type="radio"].toggle:checked + label {
 }
 
 /*Color themes*/
-.detailsOutput input[type="radio"].toggle + label:hover {
-  color: #374C70;
-}
+
 .comparisonOutput input[type="radio"].toggle + label:hover {
   color: #68553E;
 }
