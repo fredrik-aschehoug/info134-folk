@@ -281,10 +281,19 @@ main{
 }
 
 .detailsOutput th,
-.detailsOutput td,
+.detailsOutput td{
+  height: 40px;
+  width: 120px;
+}
+
 .comparisonOutput th,
 .comparisonOutput td {
   height: 40px;
+}
+
+.comparisonOutput th:not(.tableHeader th),
+.comparisonOutput td:not(.tableHeader td){
+  text-align: right;
 }
 
 .detailsOutput table,
@@ -326,6 +335,7 @@ main{
   visibility: hidden;
   display: none;
 }
+
 /*--------------------SAMANLIKNING--------------------*/
 .comparisonOutput thead {
   background-color: #68553E;
@@ -383,10 +393,12 @@ tr.mouseOver:active {
 }
 
 
+
 /*--------------------TableToggle--------------------*/
 .tableToggle {
   position: relative;
 }
+
 .detailsOutput .tableToggle,
 .comparisonOutput .tableToggle {
   border: 1px solid #1a1a1a;
