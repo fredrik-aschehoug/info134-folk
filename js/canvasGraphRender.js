@@ -1,13 +1,13 @@
 
 
 function createGraph(id) {
+
     function clickTrFunc(id, historicalDetails) {
         let graphData = graphRender(id);
         graphData = graphData;
 
         const canvas = document.createElement("canvas");
         canvas.style.display = "none";
-        //document.getElementsByID("canvasDiv").appendChild(canvas);
 
         let nodeList = document.querySelectorAll(".mouseOver");
         let nodeArray = Array.from(nodeList);
@@ -45,18 +45,17 @@ function createGraph(id) {
     removeChildNodes(placeholderCanvas[0]);
 }
 
-function graphMain(array) {
-    const xValues = Object.keys(array);
-    const yValues = Object.values(array);
-    console.log(yValues)
+function graphMain(finalObj) {
+    const xValues = Object.keys(finalObj.graphObj);
+    const yValues = Object.values(finalObj.graphObj);
     if (yValues.length > 12) {
-        yValues.reverse()
+        yValues.reverse();
         yValues.length = 12;
         yValues.reverse();
     }
 
-    function mapDataGraph(xAxisKeys, yAxisArray, array) {
-        array = array;
+    function mapDataGraph(xAxisKeys, yAxisArray, finalObj) {
+        array = finalObj;
 
         function xAxisArray(xAxisKeys) {
             xAxisValues = xAxisKeys;
@@ -68,7 +67,7 @@ function graphMain(array) {
                 xAxisValues.push("2018");
             }
             return xAxisValues.unshift("");
-        } 
+        }
 
 
         function yReduceValues(yAxisArray) {
@@ -142,16 +141,14 @@ function graphMain(array) {
             arrayMinInt = Math.round(arrayMin / 10) * 10;
             minVal = arrayMinInt - (Math.round((arrayMaxInt) * 0.1 / 10) * 10);
             minVal = Math.round(minVal / 10) * 10;
-            console.log(minVal)
-            console.log(maxVal)
             if (maxVal === minVal) {
                 minVal = maxVal - 15;
             }
 
             let incrementVal = (maxVal - minVal) / 10;
             let minMaxObj = {
-                "scaleUp": data["scaleUp"],
-                "yAxisArray": data["redData"],
+                "scaleUp": data.scaleUp,
+                "yAxisArray": data.redData,
                 "minValue": minVal,
                 "maxValue": maxVal,
                 "increment": incrementVal
@@ -160,11 +157,12 @@ function graphMain(array) {
         }
         xAxisArray(xAxisKeys);
         let arrObject = minMaxArray(yAxisArray);
-        drawGraphNumbers(xAxisValues, arrObject, array);
+        drawGraphNumbers(xAxisValues, arrObject, finalObj.graphInfo);
     }
 
 
     function drawGraphNumbers(xAxisVal, arrayObj, array) {
+
         let graphTotal = document.getElementById("graphTotal");
         let ctx = graphTotal.getContext("2d");
         let plotTotal = arrayObj.yAxisArray;
@@ -196,9 +194,10 @@ function graphMain(array) {
         }
 
         //graphStyling
-        ctx.font = "18px Arial";
+        const graphTexting = graphText(array)
+        ctx.font = "16px Arial";
         ctx.fillStyle = "#374C70";
-        ctx.fillText(array[0] + array[1], 3, 35); //mouseOver text on graph
+        ctx.fillText(graphTexting[2] + " " + graphTexting[1] + " " + graphTexting[0], 3, 28); //mouseOver text on graph
         ctx.font = "10px Arial";    //Font size, type
         ctx.fillStyle = "#374C70";  //Font color
         ctx.strokeStyle = "grey";   //Grid line color
@@ -215,7 +214,7 @@ function graphMain(array) {
         //Fills ArrayKeyValues from the numbers array on the Y axis
         //Horizontal grid lines
         let yCount = 0;
-        for (graphScale = (maxValue * arrayObj["scaleUp"]); graphScale >= (minValue * arrayObj["scaleUp"]); graphScale = graphScale - (increment * arrayObj["scaleUp"])) {
+        for (graphScale = (maxValue * arrayObj.scaleUp); graphScale >= (minValue * arrayObj.scaleUp); graphScale = graphScale - (increment * arrayObj.scaleUp)) {
             let y = columnSize + (scaleForY * yCount * increment);
             ctx.fillText(Math.trunc(graphScale), margin - 9, y + margin);
             ctx.moveTo(rowSize, y);
@@ -231,5 +230,5 @@ function graphMain(array) {
         plotData(plotTotal);
 
     }
-    mapDataGraph(xValues, yValues, array);
+    mapDataGraph(xValues, yValues, finalObj);
 }

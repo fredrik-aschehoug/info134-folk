@@ -7,7 +7,6 @@ function createGraphPercent(id) {
 
         const canvas = document.createElement("canvas");
         canvas.style.display = "none";
-        //document.getElementsByID("canvasDiv").appendChild(canvas);
 
         let nodeList = document.querySelectorAll(".mouseOver");
         let nodeArray = Array.from(nodeList);
@@ -40,7 +39,6 @@ function createGraphPercent(id) {
     const historicalDetails = details.getHistorical(id);
     // Create items to append
     clickTrFunc(id, historicalDetails);
-
     // Clear placeholder
     removeChildNodes(placeholderCanvas[0]);
 }
@@ -52,7 +50,6 @@ function graphMainPercent(array) {
     function mapDataGraph(xAxisKeys, yAxisArray, array) {
         array = array;
 
-
         function xAxisArray(xAxisKeys) {
             xAxisValues = xAxisKeys;
             if (xAxisValues.length > 12) {
@@ -63,13 +60,11 @@ function graphMainPercent(array) {
                 xAxisValues.push("2018");
             }
             return xAxisValues.unshift("");
-        } xAxisArray(xAxisKeys);
-
+        } 
 
         function yReduceValues(yAxisArray) {
             newArr = [];
-            console.log(yAxisArray)
-
+            
             for (let i = 0; i < yAxisArray.length; i++) {
                 if (yAxisArray[10] > 99999) {
                     newArr.push((yAxisArray[i] / 500));
@@ -142,7 +137,7 @@ function graphMainPercent(array) {
             };
             return minMaxObj;
         }
-
+        xAxisArray(xAxisKeys);
         let arrObject = minMaxArray(yAxisArray);
         drawGraphNumbers(xAxisValues, arrObject, array);
     }
