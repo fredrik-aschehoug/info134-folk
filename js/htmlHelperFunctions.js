@@ -19,7 +19,7 @@ function renderHeader(headerText, headerClass, headerID) {
 }
 /**
  * Removes all childnodes of the given DOM node.
- * @param {HTMLElement} node - The node to remove childenodes from
+ * @param {HTMLElement} node The node to remove childenodes from
  */
 function removeChildNodes(node) {
     while (node.firstChild) {

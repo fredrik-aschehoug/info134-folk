@@ -29,8 +29,8 @@ function Details(currentYear) {
         }
         /**
          * Filter out all years except current year.
-         * @param {object} obj 
-         * @param {*} year 
+         * @param {object} obj The object to filter
+         * @param {string} year The current year, all others will be filtered out.
          */
         function filterHistorical(obj, year) {
             Object.keys(obj).forEach((key) => {
@@ -75,7 +75,7 @@ function Details(currentYear) {
         // Add municipal to elements, using municipal ID as key
         this.elements[id] = element;
     };
-    /**
+    /** Compile and return population stats for a municipal
      * @param {object} population
      * @returns {object} Population stats. Amount in number and percentage.
      */
@@ -109,6 +109,7 @@ function Details(currentYear) {
         return populationElement;
     };
     /**
+    /* Compile and return employment stats for a municipal 
      * @param {object} employment
      * @param {object} population
      * @returns {object} Employment level stats. Amount in number and percentage.
@@ -146,6 +147,7 @@ function Details(currentYear) {
         return employmentElement;
     };
     /**
+     * Compile and return education stats for a municipal 
      * @param {object} education
      * @param {object} population
      * @returns {object} Education level stats. Amount in number and percentage.

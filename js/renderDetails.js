@@ -98,7 +98,7 @@ function renderDetails(id) {
          * Logic for different types of rows.
          * @param {object} currentDetails From getCurrent() method
          * @param {string} title The text in the leftmost row
-         * @param {string} type population/employment/education
+         * @param {string} type "population"/"employment"/"education"
          * @param {string} eduType The level of education
          * @returns {Array} To be used in createTableRow() function
          */
@@ -199,7 +199,13 @@ function renderDetails(id) {
         const educationHeader11 = renderHeader("Fagskolenivå:", "subHeader2", "utdanning11");
         const educationHeader03a = renderHeader("Universitets- og høgskolenivå kort", "subHeader2", "utdanning03a");
         const educationHeader04a = renderHeader("Universitets- og høgskolenivå lang", "subHeader2", "utdanning04a");
-        ////////////////// todo
+        /**
+         * Generate a table with historical data. Both in percent and count. 
+         * It is possible to toggle between count and percentage.
+         * @param {string} type "population"/"employment"/"education"
+         * @param {string} eduType The level of education
+         * @returns {HTMLDivElement} <div> containing the table and other elements
+         */
         function renderHistoricalTable(type, eduType) {
             eduType = eduType || "";
             const className = `${type}${eduType}Table`;
@@ -231,6 +237,7 @@ function renderDetails(id) {
             appendElements(tables, tableToggle, numberTable, percentTable);
             return tables;
         }
+        // Render tables for all the historical stats 
         const populationTables = renderHistoricalTable("population");
         const employmentTables = renderHistoricalTable("employment");
         const educationTables12 = renderHistoricalTable("education", "12");

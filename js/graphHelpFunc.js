@@ -76,7 +76,7 @@ function graphAnimation(graphObj) {
     canvas = graphObj;
     canvas.classList.add('transition');
     let compStyle = window.getComputedStyle(canvas),
-        marginLeft = compStyle.getPropertyValue('margin-right');
+    marginLeft = compStyle.getPropertyValue('margin-right');
     canvas.style.marginLeft = marginLeft;
 }
 
