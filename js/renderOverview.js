@@ -1,27 +1,17 @@
 /**
  * Create a table containing all municipals.
  * @param {string[]} idList Municipality numbers to include
- * @param {string[]} overviewHeaders Table headers
  * @returns {HTMLTableElement} Overview table
  */
-function renderOverview(idList, overviewHeaders) {
-    const overview = document.createElement("table");
+function renderOverview(idList, befolkning) {
+    const overviewHeaders = ["Navn", "Kommunenummer", "Total befolkning (2018)"];
+    const overview = renderTableElement();
     overview.id = "overviewTable";
-    const tableHeader = document.createElement("thead");
-    const tableBody = document.createElement("tbody");
-    overview.appendChild(tableHeader);
-    overview.appendChild(tableBody);
-    const headerRow = tableHeader.insertRow(-1);
-    // Create table headers
-    for (let i in overviewHeaders) {
-        let th = document.createElement("th");
-        th.innerHTML = overviewHeaders[i];
-        headerRow.appendChild(th);
-    }
+    overview.tHead.appendChild(renderTableHeader(overviewHeaders));
     // Create table rows
     for (let i in idList) {
         let info = befolkning.getInfo(idList[i]);
-        let row = tableBody.insertRow(-1);
+        let row = overview.tBodies[0].insertRow(-1);
         let name = row.insertCell(-1);
         name.innerHTML = info.navn;
         let id = row.insertCell(-1);

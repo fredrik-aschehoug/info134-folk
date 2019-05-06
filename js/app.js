@@ -1,6 +1,5 @@
 // Global variables
 const oversikt = document.getElementsByClassName("overview")[0];
-const overviewHeaders = ["Navn", "Kommunenummer", "Total befolkning"];
 let ids; // Will be assigned array of all municipal ID's
 /**
  * @param {string} id The dataset ID
@@ -36,7 +35,7 @@ function sysselsatteCallback() {
 function utdanningCallback() {
     let ids = befolkning.getIDs();
     // Add overview to DOM
-    oversikt.appendChild(renderOverview(ids, overviewHeaders));
+    oversikt.appendChild(renderOverview(ids, befolkning));
     for (let id of ids) {
         details.addMunicipal(
             id,

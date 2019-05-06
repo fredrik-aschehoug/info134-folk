@@ -38,7 +38,7 @@ function appendElements(node, ...children) {
 }
 /**
  * Create a row with headers.
- * @param {string[]} headers - The header text values to use in header row
+ * @param {string[]} headers The header text values to use in header row
  * @param {string} className Class to assign to each cell in the header
  * @returns {HTMLTableRowElement}
  */

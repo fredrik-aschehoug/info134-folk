@@ -24,7 +24,6 @@ function Details(currentYear) {
             let filtered = Object.keys(historicalObj)
                 .filter((item) =>  item === year)
                 .map((item) => historicalObj[item]);
-            console.log(typeof filtered[0]);
             return filtered[0];
         }
         /**
