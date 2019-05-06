@@ -22,9 +22,6 @@
     min-width: 90%; /* Bruker større del av skjermen */
   }
 
-
-
-
 /*--------------------DETALJAR NAV--------------------*/
   /* Skjuler sidenav i liten skjerm */
   .sidenav{
@@ -47,8 +44,14 @@
     min-width:60px;
   }
 
+  .historicalOverview th,
+  .historicalOverview td{
+    display: block;
+  }
+
 /*--------------------SAMANLIKNING og detaljar--------------------*/
-  .detailsOutput table,
+
+  .historicalOverview table,
   .comparisonOutput table{
     z-index: 0;
     width: 100%;
@@ -57,34 +60,34 @@
     margin: auto;
     border-collapse: collapse;
   }
-  .detailsOutput th,
-  .comparisonOutput th {
+  .historicalOverviewt th,
+  .comparisonOutput th{
     height: 40px;
     display: block;
     text-align: center;
   }
 
-  .detailsOutput tr:not(#latestStats > table:nth-child(3) > thead:nth-child(1)),
-  .detailsOutput tr:not(#latestStats > table:nth-child(3) > tbody:nth-child(2)),
+  .historicalOverview tr,
   .comparisonOutput tr {
     display: block;
     float: left;
     width: 150px;
     max-width: 32%;
   }
-  .detailsOutput thead tr:not(#latestStats > table:nth-child(3) > thead:nth-child(1)),
+  .historicalOverview thead tr,
   .comparisonOutput thead tr {
     display: block;
     float: left;
     width: 100px;
   }
-  .detailsOutput td:not(#latestStats thead tr td),
-  .detailsOutput td:not(#latestStats tbody tr td),
+
+  .historicalOverview td,
   .comparisonOutput td {
     height: 40px;
   }
-  .detailsOutput thead:not(#latestStats thead),
-  .detailsOutput td:not(#latestStats td),
+
+  .historicalOverview thead,
+  .historicalOverview td,
   .comparisonOutput thead,
   .comparisonOutput td{
     display: block;
@@ -92,27 +95,26 @@
   }
 /*------------------- detaljar --------------------*/
   /* Bytt fargar */
-  .detailsOutputt thead:not(#latestStats thead){
-    /*background-color: #68553E;*/
-    background-color: #68553E;
+  .historicalOverview thead,
+  .historicalOverview .tableHeader{
+    background-color: #374C70;
     color: white;
     font-weight: bold !important;
-  }
-
-  .detailsOutput .tableHeader{
-    background-color: #68553E;
-    color: white;
     text-align: center !important;
   }
-  .detailsOutput .employmentTable tr:nth-child(even):not(#latestStats > table:nth-child(3)) {
+
+  .historicalOverview .employmentTable tr {
     background-color: transparent;
   }
 
-  .detailsOutput tbody td:nth-child(even):not(#latestStats > table:nth-child(3)),
-  .detailsOutput thead td:nth-child(even):not(#latestStats > table:nth-child(3)){
-    background-color: #E3E0DB;
+  .historicalOverview tr:nth-child(even) {
+    background-color: transparent;
   }
 
+  .historicalOverview tbody td:nth-child(even),
+  .historicalOverview thead td:nth-child(even){
+    background-color: #DADEE5;
+  }
 
 /*--------------------SAMANLIKNING--------------------*/
 
@@ -134,18 +136,8 @@
 
 /*--------------------botntekst--------------------*/
   footer{
-    bottom: 0;
-    right: 0;
-    z-index: 1;
-    display:inline-block;
-    width: 100%;
-    position: fixed;
-    background-color: #1F2421;
-    color: #F4F4F4;
-    text-decoration: none;
-    text-transform: uppercase;
-    text-align: center;
-    font-size: 1em;
+    height: 41px;
+    font-size: 0.75em;
   }
 
 }

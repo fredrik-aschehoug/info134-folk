@@ -285,12 +285,6 @@ main{
 .comparisonOutput th,
 .comparisonOutput td {
   height: 40px;
-  text-align: left;
-}
-
-.detailsOutput th,
-.comparisonOutput th{
-  width:80px;
 }
 
 .detailsOutput table,
@@ -332,6 +326,36 @@ main{
   visibility: hidden;
   display: none;
 }
+/*--------------------SAMANLIKNING--------------------*/
+.comparisonOutput thead {
+  background-color: #68553E;
+  color: white;
+  font-weight: bold !important;
+}
+
+.comparisonOutput tbody td,
+.comparisonOutput thead td{
+  text-align: center !important;
+}
+
+/*Bold eller farga?*/
+.highlightedCell {
+  z-index: 0;
+  color: white;
+  box-shadow: inset 0px 0px 0px 2px #E3E0DB;
+  padding-left:auto;
+  padding-right: auto;
+  background-color: #9E9284;
+  font-weight: bold !important;
+}
+
+.highlightedCell th{
+  text-align: center;
+}
+.comparisonOutput .employmentTable tr:nth-child(even) {
+  background-color: #E3E0DB;
+}
+
 /*--------------------Graph--------------------*/
 .canvasGraph {
   margin-top: 1em;
@@ -436,36 +460,6 @@ input[type="radio"].toggle:checked + label {
 .comparisonOutput input[type="radio"].toggle:checked + label {
   color: #fff;
 }
-/*--------------------SAMANLIKNING--------------------*/
-.comparisonOutput thead {
-  background-color: #68553E;
-  color: white;
-  font-weight: bold !important;
-}
-
-.comparisonOutput tbody td,
-.comparisonOutput thead td{
-  text-align: center !important;
-}
-
-/*Bold eller farga?*/
-.highlightedCell {
-  z-index: 0;
-  color: white;
-  box-shadow: inset 0px 0px 0px 2px #E3E0DB;
-  padding-left:auto;
-  padding-right: auto;
-  background-color: #9E9284;
-  font-weight: bold !important;
-}
-
-.highlightedCell th{
-  text-align: center;
-}
-.comparisonOutput .employmentTable tr:nth-child(even) {
-  background-color: #E3E0DB;
-}
-
 
 
 /*--------------------botntekst--------------------*/
@@ -481,5 +475,5 @@ footer{
   text-decoration: none;
   text-transform: uppercase;
   text-align: center;
-  font-size: 1em;
+
 }
