@@ -189,6 +189,7 @@ function renderDetails(id) {
      */
     function renderHistoricalDetails(historicalDetails) {
         const htmlObject = document.createElement("div");
+        htmlObject.classList.add("historicalOverview");
         const headerText = `Historisk statistikk for ${currentDetails.navn}:`;
         const header = renderHeader(headerText, "mainHeader");
         const populationHeader = renderHeader("Befolkning:", "subHeader", "befolkning");
