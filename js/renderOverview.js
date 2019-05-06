@@ -4,7 +4,7 @@
  * @param {string[]} overviewHeaders Table headers
  * @returns {HTMLTableElement} Overview table
  */
-function createOverview(idList, overviewHeaders) {
+function renderOverview(idList, overviewHeaders) {
     const overview = document.createElement("table");
     overview.id = "overviewTable";
     const tableHeader = document.createElement("thead");

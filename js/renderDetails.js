@@ -2,13 +2,13 @@
  * Create the entire content for the details view and append it to the "detaljar" DIV
  * @param {string} id Municipal ID to get details from
  */
-function createDetails(id) {
+function renderDetails(id) {
     /**
      * Compile a <div> element containing current details
      * @param {object} currentDetails From details.getCurrent(id)
      * @returns {HTMLDivElement} Div element containing all current details
      */
-    function createCurrentDetails(currentDetails) {
+    function renderCurrentDetails(currentDetails) {
         // Array with parameters for the compileRowData function
         const rowData = [
             ["Befolkning"],
@@ -52,7 +52,7 @@ function createDetails(id) {
          * @param {string} id Municipal ID
          * @returns {HTMLParagraphElement}
          */
-        function createParagraph(currentDetails, id) {
+        function renderParagraph(currentDetails, id) {
             // Append text elements:
             const paragraph = document.createElement("p");
             const kommunenavn = document.createTextNode(`Kommunenavn: ${currentDetails.navn}`);
@@ -69,7 +69,7 @@ function createDetails(id) {
          * @param {HTMLTableElement} table The table to append data to
          * @param {Array} rowData The data to append
          */
-        function createTableRow(table, rowData, headerCells) {
+        function renderTableRow(table, rowData, headerCells) {
             const row = table.insertRow(-1);
             let i = 0;
             while (i < rowData.length) {
@@ -167,17 +167,17 @@ function createDetails(id) {
         table.appendChild(tbody);
         table.id = "overviewTable";
         // Create table headers
-        thead.appendChild(createTableHeader(detailsTableHeaders));
+        thead.appendChild(renderTableHeader(detailsTableHeaders));
         // Append all rows to table object
         for (let data of rowData) {
             // Destructure array
             let [title, type, eduType] = data;
-            createTableRow(tbody, compileRowData(currentDetails, title, type, eduType), headerCells);
+            renderTableRow(tbody, compileRowData(currentDetails, title, type, eduType), headerCells);
         }
         const htmlObject = document.createElement("div");
-        const paragraph = createParagraph(currentDetails, id);
+        const paragraph = renderParagraph(currentDetails, id);
         const headerText = `Siste oppdaterte statistikk for ${currentDetails.navn}:`;
-        const header = createHeader(headerText, "mainHeader");
+        const header = renderHeader(headerText, "mainHeader");
         htmlObject.id = "latestStats";
         appendElements(htmlObject, header, paragraph, table);
         return htmlObject;
@@ -187,19 +187,20 @@ function createDetails(id) {
      * @param {object} historicalDetails From details.getHistorical(id)
      * @returns {HTMLDivElement} Div element containing all historical details
      */
-    function createHistoricalDetails(historicalDetails) {
+    function renderHistoricalDetails(historicalDetails) {
         const htmlObject = document.createElement("div");
+        htmlObject.classList.add("historicalOverview");
         const headerText = `Historisk statistikk for ${currentDetails.navn}:`;
-        const header = createHeader(headerText, "mainHeader");
-        const populationHeader = createHeader("Befolkning:", "subHeader", "befolkning");
-        const employmentHeader = createHeader("Sysselsetting:", "subHeader", "sysselsetting");
-        const mainEducationHeader = createHeader("Høyere Utdanning:", "subHeader", "utdanning");
-        const educationHeader12 = createHeader("All høyere Utdanning:", "subHeader2", "utdanning12");
-        const educationHeader11 = createHeader("Fagskolenivå:", "subHeader2", "utdanning11");
-        const educationHeader03a = createHeader("Universitets- og høgskolenivå kort", "subHeader2", "utdanning03a");
-        const educationHeader04a = createHeader("Universitets- og høgskolenivå lang", "subHeader2", "utdanning04a");
+        const header = renderHeader(headerText, "mainHeader");
+        const populationHeader = renderHeader("Befolkning:", "subHeader", "befolkning");
+        const employmentHeader = renderHeader("Sysselsetting:", "subHeader", "sysselsetting");
+        const mainEducationHeader = renderHeader("Høyere Utdanning:", "subHeader", "utdanning");
+        const educationHeader12 = renderHeader("All høyere Utdanning:", "subHeader2", "utdanning12");
+        const educationHeader11 = renderHeader("Fagskolenivå:", "subHeader2", "utdanning11");
+        const educationHeader03a = renderHeader("Universitets- og høgskolenivå kort", "subHeader2", "utdanning03a");
+        const educationHeader04a = renderHeader("Universitets- og høgskolenivå lang", "subHeader2", "utdanning04a");
         ////////////////// todo
-        function createHistoricalTable(type, eduType) {
+        function renderHistoricalTable(type, eduType) {
             eduType = eduType || "";
             const className = `${type}${eduType}Table`;
             const tableHeaderClass = "tableHeader";
@@ -213,29 +214,29 @@ function createDetails(id) {
                 percentDesciptions = ["Kvinner", "Menn", "Begge kjønn"];
             }
             // Create tables
-            numberTable = createTableElement();
-            percentTable = createTableElement();
+            numberTable = renderTableElement();
+            percentTable = renderTableElement();
             // Create table headers
             const tableHeaders = createTableHeaders(type, historicalDetails);
-            numberTable.tHead.appendChild(createTableHeader(tableHeaders, tableHeaderClass));
-            percentTable.tHead.appendChild(createTableHeader(tableHeaders,tableHeaderClass));
+            numberTable.tHead.appendChild(renderTableHeader(tableHeaders, tableHeaderClass));
+            percentTable.tHead.appendChild(renderTableHeader(tableHeaders,tableHeaderClass));
             // Create rows
-            createTableBody(numberDesciptions, tableHeaders, historicalDetails, numberTable.tBodies[0], "number", type, eduType);
-            createTableBody(percentDesciptions, tableHeaders, historicalDetails, percentTable.tBodies[0], "percent", type, eduType);
+            renderTableBody(numberDesciptions, tableHeaders, historicalDetails, numberTable.tBodies[0], "number", type, eduType);
+            renderTableBody(percentDesciptions, tableHeaders, historicalDetails, percentTable.tBodies[0], "percent", type, eduType);
             // Assign classes
             numberTable.classList.add(className, "activeTable");
             percentTable.classList.add(className);
             // Create tableToggle
-            const tableToggle = createTableToggle(toggleCallback, className, type, eduType);
+            const tableToggle = renderTableToggle(toggleCallback, className, type, eduType);
             appendElements(tables, tableToggle, numberTable, percentTable);
             return tables;
         }
-        const populationTables = createHistoricalTable("population");
-        const employmentTables = createHistoricalTable("employment");
-        const educationTables12 = createHistoricalTable("education", "12");
-        const educationTables11 = createHistoricalTable("education", "11");
-        const educationTables03a = createHistoricalTable("education", "03a");
-        const educationTables04a = createHistoricalTable("education", "04a");
+        const populationTables = renderHistoricalTable("population");
+        const employmentTables = renderHistoricalTable("employment");
+        const educationTables12 = renderHistoricalTable("education", "12");
+        const educationTables11 = renderHistoricalTable("education", "11");
+        const educationTables03a = renderHistoricalTable("education", "03a");
+        const educationTables04a = renderHistoricalTable("education", "04a");
         // Append items to return object
         appendElements(
             htmlObject,
@@ -262,8 +263,8 @@ function createDetails(id) {
     const currentDetails = details.getCurrent(id);
     const historicalDetails = details.getHistorical(id);
     // Create items to append
-    const currentDetailsObject = createCurrentDetails(currentDetails);
-    const historicalDetailsObject = createHistoricalDetails(historicalDetails);
+    const currentDetailsObject = renderCurrentDetails(currentDetails);
+    const historicalDetailsObject = renderHistoricalDetails(historicalDetails);
     // Clear placeholder
     removeChildNodes(placeholder[0]);
     // Append item to placeholder
