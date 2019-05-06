@@ -383,9 +383,9 @@ main{
 /*--------------------Graph--------------------*/
 .canvasGraph {
   margin-top: 1em;
-  background-color: #F4F4F4;
+  background-color: #DADEE5;
   padding-bottom: 1em;
-  padding-left: 0.5em;
+  padding-left: 0.75em;
   margin-left: -5% !important;
 }
 

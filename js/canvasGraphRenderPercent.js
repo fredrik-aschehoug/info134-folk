@@ -1,28 +1,74 @@
-function graphMainPercent(array, graphData) {
-    const xValues = Object.keys(graphData.graphObjects[array[0]]);
-    const yValues1 = Object.values(graphData.graphObjects[array[0]]);
-    const yValues2 = Object.values(graphData.graphObjects[array[0]+1]);
 
 
-    function mapDataGraphTotal(xAxisKeys, yAxisArray, yAxisArray2, array) {
+function createGraphPercent(id) {
+    function clickTrFunc(id, historicalDetails) {
+        let graphData = graphRender(id);
+        graphData = graphData;
+
+        const canvas = document.createElement("canvas");
+        canvas.style.display = "none";
+        //document.getElementsByID("canvasDiv").appendChild(canvas);
+
+        let nodeList = document.querySelectorAll(".mouseOver");
+        let nodeArray = Array.from(nodeList);
+        nodeArray.forEach((trTag) => {
+            trTag.addEventListener('click', () => {
+                let clickId = trTag.id;
+                let clickClass = trTag.classList;
+                document.getElementById(clickClass[2]).appendChild(canvas);
+                //canvas properties
+                canvas.id = "graphTotal";
+                canvas.width = 475;
+                canvas.height = 275;
+                canvas.style.display = "block";
+                const can = document.getElementById('graphTotal');
+                can.classList.add('canvasGraph');
+                const finalObject = init(clickId, clickClass, historicalDetails);
+                //Draw graph and run show animation
+                graphMainPercent(finalObject);
+                graphAnimation(can);
+                can.addEventListener('click', () =>{
+                    can.remove(can);
+                });   
+            });
+        });
+        return canvas;
+    }
+    // Placeholder to put content in
+    const placeholderCanvas = document.getElementsByClassName("canvasDiv");
+    // Data to use
+    const historicalDetails = details.getHistorical(id);
+    // Create items to append
+    clickTrFunc(id, historicalDetails);
+
+    // Clear placeholder
+    removeChildNodes(placeholderCanvas[0]);
+}
+
+function graphMainPercent(array) {
+    const xValues = Object.keys(array);
+    const yValues = Object.values(array);
+
+    function mapDataGraph(xAxisKeys, yAxisArray, array) {
         array = array;
-        let xAxisValues;
+
 
         function xAxisArray(xAxisKeys) {
-            xAxisValues = xAxisKeys
+            xAxisValues = xAxisKeys;
             if (xAxisValues.length > 12) {
                 xAxisValues.reverse();
                 xAxisValues.length = 12;
                 xAxisValues.reverse();
             } else if (xAxisValues.length === 11) {
-                xAxisValues.push("2018")
+                xAxisValues.push("2018");
             }
-            return xAxisValues.unshift("")
-        }; xAxisArray(xAxisKeys);
+            return xAxisValues.unshift("");
+        } xAxisArray(xAxisKeys);
 
 
         function yReduceValues(yAxisArray) {
-            newArr = []
+            newArr = [];
+            console.log(yAxisArray)
 
             for (let i = 0; i < yAxisArray.length; i++) {
                 if (yAxisArray[10] > 99999) {
@@ -45,34 +91,46 @@ function graphMainPercent(array, graphData) {
                     reducedBy = 100;
                     lineWidth = 2.5;
 
-                }else if (yAxisArray[10] > 4999) {
+                } else if (yAxisArray[10] > 4999) {
                     newArr.push((yAxisArray[i] / 10));
                     reducedBy = 10;
                     lineWidth = 2.5;
-                }
-                else if (yAxisArray[10] < 5000 && yAxisArray[10] > 200) {
+
+                } else if (yAxisArray[10] < 5000 && yAxisArray[10] > 200) {
                     newArr.push((yAxisArray[i]));
                     reducedBy = 1;
                     lineWidth = 2.5;
+
                 } else if (yAxisArray[10] < 201) {
-                    newArr.push((yAxisArray[i]));
+                    newArr.push((yAxisArray[i] * 100));
                     reducedBy = 1;
                     lineWidth = 1;
                 }
-            };
+            }
             let reducedData = {
                 "originalArr": yAxisArray,
                 "redData": newArr,
                 "scaleUp": reducedBy,
                 "lineWidth": lineWidth
-            }
-            return reducedData
+            };
+            return reducedData;
         }
 
 
-        function minMaxArrayPercent() {
-            maxVal = 100;
-            minVal = 0;
+        function minMaxArray(yAxisArray) {
+            let data = yReduceValues(yAxisArray);
+            let arrayMax = Math.max.apply(Math, data.redData);
+            let arrayMin = Math.min.apply(Math, data.redData);
+
+            arrayMaxInt = Math.round(arrayMax / 10) * 10;
+            maxVal = arrayMaxInt + (Math.ceil((arrayMaxInt * 0.05) / 10) * 10);
+
+            arrayMinInt = Math.round(arrayMin / 10) * 10;
+            minVal = arrayMinInt - (Math.round((arrayMaxInt) * 0.1 / 10) * 10);
+            minVal = Math.round(minVal / 10) * 10;
+            if (maxVal === minVal) {
+                minVal = maxVal - 15;
+            }
 
             let incrementVal = (maxVal - minVal) / 10;
             let minMaxObj = {
@@ -83,32 +141,29 @@ function graphMainPercent(array, graphData) {
                 "increment": incrementVal
             };
             return minMaxObj;
-
         }
 
-        //let data = yReduceValues(yAxisArray)
-        const arrObject = minMaxArrayPercent(data);
-        const arrObject2 = minMaxArrayPercent(yAxisArray2);
-        drawGraphPercent(xAxisValues, arrObject, array);
-    };
+        let arrObject = minMaxArray(yAxisArray);
+        drawGraphNumbers(xAxisValues, arrObject, array);
+    }
 
 
-    function drawGraphPercent(xAxisVal, arrayObj, array) {
+    function drawGraphNumbers(xAxisVal, arrayObj, array) {
         let graphTotal = document.getElementById("graphTotal");
         let ctx = graphTotal.getContext("2d");
-        let plotTotal = arrayObj['yAxisArray']
+        let plotTotal = arrayObj.yAxisArray;
 
         //Dynamic values based on Array content for dataset
-        let columnSize = 68;
-        let rowSize = 38;
+        let columnSize = 58;
+        let rowSize = 36;
         let margin = 8;
-        let xAxis = xAxisVal
+        let xAxis = xAxisVal;
 
 
 
-        minValue = arrayObj["minValue"];
-        maxValue = arrayObj["maxValue"];
-        increment = arrayObj["increment"];
+        minValue = arrayObj.minValue;
+        maxValue = arrayObj.maxValue;
+        increment = arrayObj.increment;
         let rectangles = xAxisVal.length - 1;
 
         //Gridscaling based on graph input length
@@ -119,18 +174,19 @@ function graphMainPercent(array, graphData) {
 
         //plots each of the points(elements) in the Array to a line
         function plotData(toPlot) {
-            ctx.lineWidth = arrayObj["lineWidth"];
+            ctx.lineWidth = arrayObj.lineWidth;
             ctx.beginPath();
             ctx.moveTo(0, toPlot[0]);
             for (i = 1; i < rectangles; i++) {
-                ctx.lineTo(i * scaleForX, toPlot[i])
+                ctx.lineTo(i * scaleForX, toPlot[i]);
             }
             ctx.stroke();
         }
 
         //graphStyling
-        ctx.font = "20px Arial";
-        ctx.fillText(array[1] + array[2], 3, 35); //mouseOver text on graph
+        ctx.font = "18px Arial";
+        ctx.fillStyle = "#374C70";
+        ctx.fillText(array[0] + array[1], 3, 35); //mouseOver text on graph
         ctx.font = "10px Arial";    //Font size, type
         ctx.fillStyle = "#374C70";  //Font color
         ctx.strokeStyle = "grey";   //Grid line color
@@ -150,7 +206,7 @@ function graphMainPercent(array, graphData) {
         let yCount = 0;
         for (graphScale = (maxValue * arrayObj["scaleUp"]); graphScale >= (minValue * arrayObj["scaleUp"]); graphScale = graphScale - (increment * arrayObj["scaleUp"])) {
             let y = columnSize + (scaleForY * yCount * increment);
-            ctx.fillText(graphScale, margin - 8, y + margin);
+            ctx.fillText(graphScale, margin - 9, y + margin);
             ctx.moveTo(rowSize, y);
             ctx.lineTo(graphTotal.width - 20, y);
             yCount++;
@@ -164,6 +220,6 @@ function graphMainPercent(array, graphData) {
         ctx.strokeStyle = "red";
         plotData(plotTotal);
 
-    };
-    
-};
+    }
+    mapDataGraph(xValues, yValues, array);
+}

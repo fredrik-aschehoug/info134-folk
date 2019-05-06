@@ -17,7 +17,7 @@ function detailsFormSubmit(ids) {
     } else if (id === "5061") {
         alert(`Rindal (${id}) har ikkje noko statistikk, du vil bli omdirigert til Rindal (-2018) (1567)`);
         createDetails("1567");
-        mouseOverFunc("1567");
+        createGraph("1567");
         // Activate sidenav
         activateElement("sidenav", "activeSidenav");
     } else {
