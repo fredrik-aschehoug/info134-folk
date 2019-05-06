@@ -1,0 +1,143 @@
+/* Til skjerm under 700 px */
+
+@media screen and (max-width: 700px){
+
+/*--------------------NAVIGASJON--------------------*/
+
+  .navigation{
+    height: 41px;
+    font-size: 0.75em;
+  }
+
+  .navigation button{
+    padding: 15px 16px;
+    font-size: 0.75em;
+  }
+
+
+/*--------------------hovudinnhald--------------------*/
+
+  .center{
+    max-width: 90%; /* Bruker større del av skjermen */
+    min-width: 90%; /* Bruker større del av skjermen */
+  }
+
+/*--------------------DETALJAR NAV--------------------*/
+  /* Skjuler sidenav i liten skjerm */
+  .sidenav{
+    display: hidden;
+    visibility: hidden;
+  }
+
+/*--------------------DETALJAR Table--------------------*/
+
+  .detailsOutput thead{
+    width: 100%;
+  }
+
+  .detailsOutput th,
+  .detailsOutput td{
+    min-width: 60px !important;
+  }
+
+  .detailsOutput th:not(.detailsOutput tr td:nth-child(1)){
+    min-width:60px;
+  }
+
+  .historicalOverview th,
+  .historicalOverview td{
+    display: block;
+  }
+
+/*--------------------SAMANLIKNING og detaljar--------------------*/
+
+  .historicalOverview table,
+  .comparisonOutput table{
+    z-index: 0;
+    width: 100%;
+    padding: auto;
+    padding-top: 10px;
+    margin: auto;
+    border-collapse: collapse;
+  }
+  .historicalOverviewt th,
+  .comparisonOutput th{
+    height: 40px;
+    display: block;
+    text-align: center;
+  }
+
+  .historicalOverview tr,
+  .comparisonOutput tr {
+    display: block;
+    float: left;
+    width: 150px;
+    max-width: 32%;
+  }
+  .historicalOverview thead tr,
+  .comparisonOutput thead tr {
+    display: block;
+    float: left;
+    width: 100px;
+  }
+
+  .historicalOverview td,
+  .comparisonOutput td {
+    height: 40px;
+  }
+
+  .historicalOverview thead,
+  .historicalOverview td,
+  .comparisonOutput thead,
+  .comparisonOutput td{
+    display: block;
+    font-weight: normal;
+  }
+/*------------------- detaljar --------------------*/
+  /* Bytt fargar */
+  .historicalOverview thead,
+  .historicalOverview .tableHeader{
+    background-color: #374C70;
+    color: white;
+    font-weight: bold !important;
+    text-align: center !important;
+  }
+
+  .historicalOverview .employmentTable tr {
+    background-color: transparent;
+  }
+
+  .historicalOverview tr:nth-child(even) {
+    background-color: transparent;
+  }
+
+  .historicalOverview tbody td:nth-child(even),
+  .historicalOverview thead td:nth-child(even){
+    background-color: #DADEE5;
+  }
+
+/*--------------------SAMANLIKNING--------------------*/
+
+  .comparisonOutput .tableHeader{
+    background-color: #68553E;
+    color: white;
+    text-align: center !important;
+  }
+
+  .comparisonOutput .employmentTable tr:nth-child(even) {
+    background-color: transparent;
+  }
+
+  .comparisonOutput tbody td:nth-child(even),
+  .comparisonOutput thead td:nth-child(even){
+    background-color: #E3E0DB;
+  }
+
+
+/*--------------------botntekst--------------------*/
+  footer{
+    height: 41px;
+    font-size: 0.75em;
+  }
+
+}

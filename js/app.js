@@ -1,9 +1,9 @@
 // Global variables
 const oversikt = document.getElementsByClassName("overview")[0];
-const overviewHeaders = ["Navn", "Kommunenummer", "Total befolkning"];
 let ids; // Will be assigned array of all municipal ID's
 /**
  * @param {string} id The dataset ID
+ * @returns {string} The url for the dataset id
  */
 getURL = (id) => `http://wildboy.uib.no/~tpe056/folk/${id}.json`;
 // Instanciate objects
@@ -35,7 +35,7 @@ function sysselsatteCallback() {
 function utdanningCallback() {
     let ids = befolkning.getIDs();
     // Add overview to DOM
-    oversikt.appendChild(createOverview(ids, overviewHeaders));
+    oversikt.appendChild(renderOverview(ids, befolkning));
     for (let id of ids) {
         details.addMunicipal(
             id,
@@ -45,6 +45,7 @@ function utdanningCallback() {
         );
     }
     /* All data is loaded at this point */
+    setNavigationBehaviour(buttonHandler);
     const detailsForm = document.getElementById("detailsForm");
     const comparisonForm = document.getElementById("comparisonForm");
     const overviewForm = document.getElementById("overviewForm");
@@ -61,6 +62,4 @@ function utdanningCallback() {
     // Callback when pressing any key while focused on form
     overviewForm.onkeyup = overviewTableFilter;
 }
-
-setNavigationBehaviour(buttonHandler);
 befolkning.load();

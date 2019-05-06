@@ -1,7 +1,7 @@
-  body {
-    background-color: #F4F4F4;
-    color: #24201D;
-    font-family: Arial, sans-serif;
+body {
+  background-color: #F4F4F4;
+  color: #24201D;
+  font-family: Arial, sans-serif;
   }
 
 /*--------------------NAVIGASJON--------------------*/
@@ -12,10 +12,8 @@
   position: fixed;
   display:inline-block;
   width: 100%;
-  height: 50px;
   background-color: #1F2421;
   text-transform: uppercase;
-  font-size: 1em;
 }
 
 .navigation li{
@@ -30,13 +28,11 @@
 }
 
 .navigation button{
-  display: inline-block;
+  display: block;
   color: #F4F4F4;
-  padding: 15px 32px;
   border: none;
   background-color: #1F2421;
   text-decoration: none;
-  font-size: 1em;
 }
 
 /*--- Farge til navigasjon ---*/
@@ -66,8 +62,6 @@ main{
   display: block;
   padding: auto;
   margin: auto;
-  /*border: dashed thin black;*/
-  /*background-color: #EDEDE9;*/
 }
 
 .center{
@@ -77,9 +71,8 @@ main{
   position: absolute;
   transform: translate(-50%);
   display: block;
-  max-width: 60%;
-  min-width: 60%;
   overflow: scroll;
+  overflow-x: hidden;
   padding: 10px;
   margin: auto;
 }
@@ -247,47 +240,6 @@ main{
   display: none;
 }
 
-/*--------------------DETALJAR NAV--------------------*/
-
-.sidenav{
-  top: 75px; /*Same height as nav*/
-  left: 25px;
-  z-index: 2;
-  position: fixed;
-  position: -webkit-fixed;
-  display: block;
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
-  width: 200px;
-  max-width: 20%;
-  margin: 0;
-  padding: 0;
-  background-color: #DADEE5;
-  list-style-type: none;
-}
-
-.sidenav li a{
-  color: black;
-  text-decoration: none;
-}
-
-.sidenav li{
-  padding: 0.5em;
-}
-
-.sidenav li:hover{
-  background-color: #374C70;
-}
-@media screen and (max-width: 1200px){
-  .sidenav{
-    top: 55px;
-    left: 5px;
-    max-width: 18%;
-    font-size: 0.75em;
-  }
-}
-
 
 /*--------------------Detaljar----------------------------*/
 .detailsOutput p,
@@ -333,12 +285,6 @@ main{
 .comparisonOutput th,
 .comparisonOutput td {
   height: 40px;
-  text-align: left;
-}
-
-.detailsOutput th,
-.comparisonOutput th{
-  width:80px;
 }
 
 .detailsOutput table,
@@ -380,6 +326,36 @@ main{
   visibility: hidden;
   display: none;
 }
+/*--------------------SAMANLIKNING--------------------*/
+.comparisonOutput thead {
+  background-color: #68553E;
+  color: white;
+  font-weight: bold !important;
+}
+
+.comparisonOutput tbody td,
+.comparisonOutput thead td{
+  text-align: center !important;
+}
+
+/*Bold eller farga?*/
+.highlightedCell {
+  z-index: 0;
+  color: white;
+  box-shadow: inset 0px 0px 0px 2px #E3E0DB;
+  padding-left:auto;
+  padding-right: auto;
+  background-color: #9E9284;
+  font-weight: bold !important;
+}
+
+.highlightedCell th{
+  text-align: center;
+}
+.comparisonOutput .employmentTable tr:nth-child(even) {
+  background-color: #E3E0DB;
+}
+
 /*--------------------Graph--------------------*/
 .canvasGraph {
   margin-top: 1em;
@@ -484,35 +460,6 @@ input[type="radio"].toggle:checked + label {
 .comparisonOutput input[type="radio"].toggle:checked + label {
   color: #fff;
 }
-/*--------------------SAMANLIKNING--------------------*/
-.comparisonOutput thead {
-  background-color: #68553E;
-  color: white;
-}
-
-.comparisonOutput tbody td,
-.comparisonOutput thead td{
-  text-align: center !important;
-}
-
-/*Bold eller farga?*/
-.highlightedCell {
-  z-index: 0;
-  color: white;
-  box-shadow: inset 0px 0px 0px 2px #E3E0DB;
-  padding-left:auto;
-  padding-right: auto;
-  background-color: #9E9284;
-  font-weight: bold !important;
-}
-
-.highlightedCell th{
-  text-align: center;
-}
-.comparisonOutput .employmentTable tr:nth-child(even) {
-  background-color: #E3E0DB;
-}
-
 
 
 /*--------------------botntekst--------------------*/
@@ -528,5 +475,5 @@ footer{
   text-decoration: none;
   text-transform: uppercase;
   text-align: center;
-  font-size: 1em;
+
 }

@@ -5,7 +5,7 @@
  * @param {string} headerID ID to assign to the element
  * @returns {HTMLElement} Header element with specified text and class.
  */
-function createHeader(headerText, headerClass, headerID) {
+function renderHeader(headerText, headerClass, headerID) {
     const headerNode = document.createElement("header");
     const hNode = document.createElement("h3");
     headerNode.classList.add(headerClass);
@@ -19,7 +19,7 @@ function createHeader(headerText, headerClass, headerID) {
 }
 /**
  * Removes all childnodes of the given DOM node.
- * @param {HTMLElement} node - The node to remove childenodes from
+ * @param {HTMLElement} node The node to remove childenodes from
  */
 function removeChildNodes(node) {
     while (node.firstChild) {
@@ -38,11 +38,11 @@ function appendElements(node, ...children) {
 }
 /**
  * Create a row with headers.
- * @param {string[]} headers - The header text values to use in header row
+ * @param {string[]} headers The header text values to use in header row
  * @param {string} className Class to assign to each cell in the header
  * @returns {HTMLTableRowElement}
  */
-function createTableHeader(headers, className) {
+function renderTableHeader(headers, className) {
     const headerRow = document.createElement("tr");
     for (let header of headers) {
         let th = document.createElement("th");
@@ -58,7 +58,7 @@ function createTableHeader(headers, className) {
 * Create a HTML table element with thead and tbody childnodes.
 * @returns {HTMLTableElement}
 */
-function createTableElement() {
+function renderTableElement() {
     const table = document.createElement("table");
     const thead = document.createElement("thead");
     const tbody = document.createElement("tbody");
@@ -95,7 +95,7 @@ function createTableHeaders(type, historicalDetails) {
  * @param {string} format "number"/"percent"
  * @param {string} type "population"/"emplyment"/"education"
  */
-function createTableBody(desciptions, tableHeaders, historicalDetails, tbody, format, type, eduType) {
+function renderTableBody(desciptions, tableHeaders, historicalDetails, tbody, format, type, eduType) {
     for (let desc of desciptions) {
         let tr = tbody.insertRow(-1);
         tr.classList.add("mouseOver");
@@ -157,7 +157,7 @@ function createTableBody(desciptions, tableHeaders, historicalDetails, tbody, fo
  * @param {string} eduType The level of education, can also be used to give a more unique classname to the element.
  * @returns {HTMLFormElement} <form> element containing the toggle button
  */
-function createTableToggle(callback, cbParam, type, eduType) {
+function renderTableToggle(callback, cbParam, type, eduType) {
     // Assign empty string if param is undefined.
     eduType = eduType || "";
     // Create DOM elements
