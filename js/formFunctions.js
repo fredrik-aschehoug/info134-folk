@@ -64,9 +64,11 @@ function overviewTableFilter() {
     const rows = table.getElementsByTagName("tr");
     for (let row of rows) {
         // Select first column
-        let td = row.getElementsByTagName("td")[0];
-        if (td) {
-            if (td.innerText.toUpperCase().indexOf(query) > -1) {
+        let td = row.getElementsByTagName("td");
+        if (td[0]) {
+            // Check if cell 1 or 2 matches the query
+            let match = td[0].innerText.toUpperCase().indexOf(query) > -1 || td[1].innerText.toUpperCase().indexOf(query) > -1;
+            if (match) {
                 row.className = "visibleRow";
             } else {
                 row.className = "hiddenRow";
