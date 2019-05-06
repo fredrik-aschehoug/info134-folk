@@ -35,7 +35,7 @@ function sysselsatteCallback() {
 function utdanningCallback() {
     let ids = befolkning.getIDs();
     // Add overview to DOM
-    oversikt.appendChild(createOverview(ids, overviewHeaders));
+    oversikt.appendChild(renderOverview(ids, overviewHeaders));
     for (let id of ids) {
         details.addMunicipal(
             id,
