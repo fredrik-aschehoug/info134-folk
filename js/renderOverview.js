@@ -4,7 +4,7 @@
  * @returns {HTMLTableElement} Overview table
  */
 function renderOverview(idList, befolkning) {
-    const overviewHeaders = ["Navn", "Kommunenummer", "Total befolkning (2018)"];
+    const overviewHeaders = ["Navn", "Kommune nr.", "Total befolkning (2018)"];
     const overview = renderTableElement();
     overview.id = "overviewTable";
     overview.tHead.appendChild(renderTableHeader(overviewHeaders));
