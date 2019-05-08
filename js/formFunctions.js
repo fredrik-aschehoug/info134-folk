@@ -3,9 +3,9 @@
  * This function is set as a onclick event when a user submits the details form.
  * @param {string[]} ids Array of all municipal ids.
  */
-function detailsFormSubmit(ids,promptID) {
+function detailsFormSubmit(ids) {
     const detailsForm = document.getElementById("detailsForm");
-    let id = promptID || detailsForm.detailsInput.value;
+    let id = detailsForm.detailsInput.value;
     // Check if valid ID
     if (ids.includes(id)) {
         renderDetails(id);
@@ -20,8 +20,7 @@ function detailsFormSubmit(ids,promptID) {
         // Activate sidenav
         activateElement("sidenav", "activeSidenav");
     } else {
-        id = prompt(`${id} er ikkje eit gyldig kommunenummer. Vennligst fyll inn nytt kommunenr.`);
-        detailsFormSubmit(ids, id);
+        alert(`${id} er ikkje eit gyldig kommunenummer`);
     }
 }
 /**
