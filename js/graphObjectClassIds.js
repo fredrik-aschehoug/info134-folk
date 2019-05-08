@@ -1,11 +1,10 @@
 
 
 /**
- * Object used for iterating out classNames/ids
+ * Function used for iterating out classNames/ids
  * @param {string} id municipalID
  */
 function graphRender(id) {
-    id = id;
     const graphDataObject = {
         "elementIdArrays": [
             ["popKvinner", "popMenn", "popTotal", "popKvinnerPercent", "popMennPercent", "empKvinner", "empMenn",
@@ -68,15 +67,8 @@ function graphRender(id) {
             " education1", " education1", " education1", " education1", " education1", " education1",
             " education2", " education2", " education2", " education2", " education2", " education2",
             " education3", " education3", " education3", " education3", " education3", " education3",
-            " education4", " education4", " education4", " education4", " education4", " education4",],
-        "elementIdObj4": [
-            " kvinner", " menn", " totalt", " kvinner", " menn",
-            " kvinner", " menn", " totalt", " kvinner", " menn", " totalt",
-            " kvinner", " menn", " totalt", " kvinner", " menn", " totalt",
-            " kvinner", " menn", " totalt", " kvinner", " menn", " totalt",
-            " kvinner", " menn", " totalt", " kvinner", " menn", " totalt",
-            " kvinner", " menn", " totalt", " kvinner", " menn", " totalt",], 
-            "elementClass5":  [
+            " education4", " education4", " education4", " education4", " education4", " education4",], 
+        "elementClass5":  [
                 " population number Kvinner Menn total",
                 " population percent Kvinner Menn total", 
                 " employment number Kvinner Menn total", 
@@ -101,6 +93,4 @@ function graphRender(id) {
     setHtmlClass(".mouseOver", graphDataObject.elementIdObj3);
     setHtmlClass(".mouseOver", graphDataObject.elementIdObj2);
     setHtmlClass(".graphViz", graphDataObject.elementClass5);
-    //setHtmlClass(".mouseOver", graphDataObject.elementIdObj4);
-    return graphDataObject;
 }

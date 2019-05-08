@@ -169,9 +169,9 @@ function shortArr(arr) {
  * @param {string} max 
  */
 function normalize2(min, max) {
-    var delta = max - min;
+    let value = max - min;
     return function (val) {
-        return (val - min) / delta;
+        return (val - min) / value;
     };
 }
 

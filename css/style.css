@@ -393,8 +393,7 @@ main {
 }
 
 /*--------------------Graph--------------------*/
-
-.canvasGraph {
+.detailsOutput .canvasGraph {
   margin-top: 1em;
   background-color: #DADEE5;
   padding-bottom: 1em;
@@ -402,27 +401,45 @@ main {
   margin-left: -5% !important;
 }
 
-.canvasGraph.transition {
+.detailsOutput .canvasGraph.transition{
   transition: 0.5s;
   margin-left: 0% !important;
 }
 
-.canvasImg.transition {
+.comparisonOutput .canvasImg.transition{
   transition: 0.5s;
   margin-left: 0% !important;
 }
 
-.canvasGraph.afterTrans {
-  margin-left: 0% !important;
-  font-weight: bold;
+.comparisonOutput #numbersBtn, #percentBtn {
+  color: #F4F4F4;
+  border: none;
+  background-color: #68553E;
+  border: none;
+  color: white;
+  padding: 8px 24px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  margin: 4px 2px;
+  cursor: pointer;
 }
 
-tr.mouseOver:active {
+.comparisonOutput #numbersBtn:active, #percentBtn:active {
+  background-color: #E3E0DB;
+}
+
+.detailsOutput .canvasGraph.afterTrans {
+  margin-left: 0% !important;
+}
+
+.detailsOutput tr.mouseOver:active {
   background-color: #374C70;
   color: #F4F4F4;
 }
 
-.canvasImg {
+.comparisonOutput .canvasImg {
   background-color: #E3E0DB;
   margin-top: 0.5em;
   margin-left: -5% !important;
@@ -430,7 +447,7 @@ tr.mouseOver:active {
   padding-left: 0.5em;
 }
 
-.canvasImg.afterTrans {
+.comparisonOutput .canvasImg.afterTrans {
   margin-left: 0% !important;
 }
 
