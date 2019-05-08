@@ -1,3 +1,9 @@
+
+
+/**
+ * Object used for iterating out classNames/ids
+ * @param {string} id municipalID
+ */
 function graphRender(id) {
     id = id;
     const graphDataObject = {

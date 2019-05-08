@@ -1,4 +1,9 @@
-
+/** 
+*initiates and runs onclick functionality
+* for comparing 2 municipals.
+* @param {string} first municipal
+* @param {string} second municpal
+*/
 function createGraphCompare(id1, id2) {
     //Select div to place graph
     const canvasClass = document.querySelectorAll('.canvasBtn')[1];
@@ -21,7 +26,16 @@ function createGraphCompare(id1, id2) {
     graphBtnPer.id = "percentBtn";
     graphBtnNum.innerHTML = "Numbers";
     graphBtnPer.innerHTML = "Percent";
-
+    /**
+     * Set canvas properties, retrieve objects and initiate 
+     * drawing.
+     * @param {object} historicalDetails1 from gethistorical
+     * @param {object} historicalDetails2 from gethistorical
+     * @param {string} sex includes "total"
+     * @param {string} type percentage og numbers
+     * @param {HTMLCanvasElement} canvas canvas element
+     * @param {string} graphId string element from array
+     */
     function compNum(historicalDetails1, historicalDetails2, sex, type, canvas, graphId) {
         appendElements(graphRender, canvas);
         canvas.style.display = "block";
@@ -48,7 +62,7 @@ function createGraphCompare(id1, id2) {
             });
         });
     }
-
+    //Objects to retrieve data from
     const historicalDetails1 = details.getHistorical(id1);
     const historicalDetails2 = details.getHistorical(id2);
     // Create items to append
@@ -68,26 +82,35 @@ function createGraphCompare(id1, id2) {
     });
 }
 
+/**
+ * Destructure objects into Arrays
+ * @param {object} graphObjOne 
+ * @param {object} graphObjTwo 
+ * @param {string} canvasId 
+ * @param {string} sex 
+ * @param {string} type 
+ * @param {string} municipal1 
+ * @param {string} municipal2 
+ */
 function graphMainComp(graphObjOne, graphObjTwo, canvasId, sex, type, municipal1, municipal2) {
-    
+    //destructuring
     const xValues = Object.keys(graphObjOne);
     const yValuesOne = Object.values(graphObjOne);
     const yValuesTwo = Object.values(graphObjTwo);
-
+    /**
+     * Map out the data for drawing
+     * @param {Array} xAxisKeys 
+     * @param {Array} yValuesOne 
+     * @param {Array} yValuesTwo 
+     */
     function mapDataGraph(xAxisKeys, yValuesOne, yValuesTwo) {
-
-        function xAxisArray(xAxisKeys) {
-            xAxisValues = xAxisKeys;
-            if (xAxisValues.length > 12) {
-                xAxisValues.reverse();
-                xAxisValues.length = 12;
-                xAxisValues.reverse();
-            } else if (xAxisValues.length === 11) {
-                xAxisValues.push("2018");
-            }
-            return xAxisValues.unshift("");
-        }
-
+        
+        /**
+         * Finds max and min value in array.
+         * normalises between 0-1
+         * @param {Array} yAxisArray to be analysed
+         * @returns {object} contains original and new data
+         */
         function minMaxArray(yAxisArray) {
             maxVal = Math.max.apply(Math, yAxisArray);
             minVal = Math.min.apply(Math, yAxisArray);
@@ -112,14 +135,19 @@ function graphMainComp(graphObjOne, graphObjTwo, canvasId, sex, type, municipal1
         const arrObjectTwo = minMaxArray(yValuesTwo);
         drawGraphComp(xAxisValues, arrObjectOne, arrObjectTwo);
     }
-
+    /**
+     * Draws the 2D canvas object based on the data retrieved
+     * @param {Array} xAxisVal contains years for X axis
+     * @param {Array} arrObjectOne first set of yValues
+     * @param {Array} arrObjectTwo second set of yValues
+     */
     function drawGraphComp(xAxisVal, arrObjectOne, arrObjectTwo) {
         const graphTotal = document.getElementById(canvasId);
         const ctx = graphTotal.getContext("2d");
         const plotOne = arrObjectOne.normArr;
         const plotTwo = arrObjectTwo.normArr;
 
-        //Dynamic values based on Array content for dataset
+        //Static values based on scale and size
         let columnSize = 58;
         let rowSize = 36;
         let margin = 0;
@@ -130,7 +158,8 @@ function graphMainComp(graphObjOne, graphObjTwo, canvasId, sex, type, municipal1
         increment = 10;
         let rectangles = xAxisVal.length - 1;
 
-        //Gridscaling based on graph input length
+        //Gridscaling based on graph input length. 
+        //Allows resisizing of window.
         let scaleForX = (graphTotal.width - rowSize + margin) / rectangles;
         let scaleForY = (graphTotal.height - columnSize - margin) / (maxValue - minValue);
 
