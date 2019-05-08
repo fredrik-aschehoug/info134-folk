@@ -1,35 +1,31 @@
 /* Til skjerm over 700 px */
 
-@media screen and (min-width: 700px){
-
-/*--------------------NAVIGASJON--------------------*/
-  .navigation{
+@media screen and (min-width: 700px) {
+  /*--------------------NAVIGASJON--------------------*/
+  .navigation {
     height: 50px;
     font-size: 1em;
   }
-
-  .navigation button{
+  .navigation button {
     padding: 15px 32px;
     font-size: 1em;
   }
-/*--------------------hovudinnhald--------------------*/
-  .center{
+  /*--------------------hovudinnhald--------------------*/
+  .center {
     max-width: 60%;
     min-width: 60%;
   }
-  
-  .activeSidenav{
+  .activeSidenav {
     /*! visibility: visible; */
-    display:block;
+    display: block;
     margin: auto;
-   }
-  
-  .sidenav{
-    top: 75px; /*Same height as nav*/
+  }
+  .sidenav {
+    top: 75px;
+    /*Same height as nav*/
     left: 25px;
     z-index: 2;
     position: fixed;
-    position: -webkit-fixed;
     display: block;
     margin: 0;
     padding: 0;
@@ -38,68 +34,55 @@
     background-color: #DADEE5;
     list-style-type: none;
   }
-
-  .sidenav a{
+  .sidenav a {
     color: black;
     text-decoration: none;
   }
-
-  .sidenav li{
+  .sidenav li {
     padding: 0.5em;
   }
-
-  .sidenav li:hover{
+  .sidenav li:hover {
     background-color: #374C70;
   }
-  
-  
-/*--------------------tabellar--------------------*/
-
-  .detailsOutput th,
-  .comparisonOutput th{
+  /*--------------------tabellar--------------------*/
+  .detailsOutput th, .comparisonOutput th {
     width: 80px;
   }
-
-  .education04aTable{
+  .education04aTable {
     margin-bottom: 20px;
   }
-  
-  .detailsOutput tr:nth-child(even){
+  .detailsOutput tr:nth-child(even) {
     background-color: #DADEE5;
   }
-  
-  .comparisonOutput .employmentTable tr:nth-child(even){
+  .comparisonOutput .employmentTable tr:nth-child(even) {
     background-color: #E3E0DB;
   }
-
   /*--------------------botntekst--------------------*/
-  footer{
+  footer {
     height: 50px;
     font-size: 1em;
   }
-
-
 }
 
-@media screen and (max-width: 1200px){
-  .activeSidenav{
+@media screen and (max-width: 1200px) {
+  .activeSidenav {
     visibility: hidden !important;
   }
-  
-/*--------------------Table detaljar og samanlikning--------------------*/
-  .historicalOverview{
+  /*--------------------Table detaljar og samanlikning--------------------*/
+  .historicalOverview {
     overflow-x: visible;
   }
-
-
-  .center{
-    max-width: 90%; /* Bruker større del av skjermen */
-    min-width: 90%; /* Bruker større del av skjermen */
+  .center {
+    max-width: 90%;
+    /* Bruker større del av skjermen */
+    min-width: 90%;
+    /* Bruker større del av skjermen */
     top: 41px;
   }
 }
-@media screen and (max-width: 800px){
-  .comparisonOutput .activeTable{
+
+@media screen and (max-width: 800px) {
+  .comparisonOutput .activeTable {
     overflow-x: scroll;
   }
 }

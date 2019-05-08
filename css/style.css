@@ -2,32 +2,33 @@ body {
   background-color: #F4F4F4;
   font-family: Arial, sans-serif;
   font-size: 1em;
-  }
+}
 
 /*--------------------NAVIGASJON--------------------*/
-.navigation{
+
+.navigation {
   top: 0;
   right: 0;
   z-index: 2;
   position: fixed;
-  display:inline-block;
+  display: inline-block;
   width: 100%;
   background-color: #1F2421;
   text-transform: uppercase;
 }
 
-.navigation li{
+.navigation li {
   display: block;
-  float:left;
+  float: left;
 }
 
-.navigation ul{
+.navigation ul {
   padding: 0;
   margin: 0;
   list-style-type: none;
 }
 
-.navigation button{
+.navigation button {
   display: block;
   color: #F4F4F4;
   border: none;
@@ -37,36 +38,34 @@ body {
 
 /*--- Farge til navigasjon ---*/
 
-#navButton1:hover:not(.activemenu),
-.activemenu #navButton1{
+#navButton1:hover:not(.activemenu), .activemenu #navButton1 {
   background-color: #542344;
 }
 
-#navButton2:hover:not(.activemenu),
-.activemenu #navButton2{
+#navButton2:hover:not(.activemenu), .activemenu #navButton2 {
   background-color: #074F57;
 }
 
-#navButton3:hover:not(.activemenu),
-.activemenu #navButton3{
+#navButton3:hover:not(.activemenu), .activemenu #navButton3 {
   background-color: #374C70;
 }
 
-#navButton4:hover:not(.activemenu),
-.activemenu #navButton4{
+#navButton4:hover:not(.activemenu), .activemenu #navButton4 {
   background-color: #68553E;
 }
 
 /*--------------------hovudinnhald--------------------*/
-main{
+
+main {
   display: block;
   padding: auto;
   margin: auto;
 }
 
-.center{
-  top: 49px; /*Same height as nav*/
-  bottom:50px;
+.center {
+  top: 49px;
+  /*Same height as nav*/
+  bottom: 50px;
   left: 50%;
   position: absolute;
   transform: translate(-50%);
@@ -76,25 +75,27 @@ main{
   padding: 10px;
   margin: auto;
 }
+
 /* Gjør klassen usynlig */
-.main, .sidenav{
+
+.main, .sidenav {
   visibility: hidden;
   display: none;
 }
 
 /*--------------------active--------------------*/
+
 /* Gjør den aktive klassen synlig */
-.active, .activeSidenav{
+
+.active, .activeSidenav {
   visibility: visible;
-  display:block;
+  display: block;
   margin: auto;
- }
+}
 
 /*--------------------SEARCH--------------------*/
 
-#comparisonForm,
-#detailsForm,
-#overviewForm{
+#comparisonForm, #detailsForm, #overviewForm {
   display: block;
   height: 40px;
   border: 1px solid grey;
@@ -102,82 +103,72 @@ main{
   margin-top: 10px;
 }
 
-#detailsForm,
-#overviewForm{
+#detailsForm, #overviewForm {
   width: 247.4px;
 }
 
-#overviewInput,
-#detailsInput,
-#comparisonInput1,
-#comparisonInput2{
+#overviewInput, #detailsInput, #comparisonInput1, #comparisonInput2 {
   width: 200px;
   height: 28px;
   font-size: 0.9em;
-  padding:0.1em;
+  padding: 0.1em;
   border: none;
   margin: 0;
 }
 
-#detailsForm,
-#detailsInput{
+#detailsForm, #detailsInput {
   background-color: #DADEE5;
 }
 
-#detailsButton,
-#comparisonButton{
-  width:40px;
-  height:40px;
-  border:none;
+#detailsButton, #comparisonButton {
+  width: 40px;
+  height: 40px;
+  border: none;
 }
 
 /*--- Overview ---*/
-#overviewForm,
-#overviewForm Input {
+
+#overviewForm, #overviewForm Input {
   background-color: #D1DFE0;
 }
 
-#overviewForm Input{
+#overviewForm Input {
   padding-top: 0.35em;
 }
 
-#comparisonForm,
-#detailsForm{
+#comparisonForm, #detailsForm {
   contain: content;
 }
 
-
 /*--- Details ---*/
 
-#detailsButton{
-  background:url(../images/search.png) no-repeat;
+#detailsButton {
+  background: url(../images/search.png) no-repeat;
   background-size: contain;
   background-color: #374C70;
 }
 
 /*--- Comparison ---*/
-#comparisonForm{
+
+#comparisonForm {
   width: 455.3px;
 }
 
-#comparisonForm,
-#comparisonInput1,
-#comparisonInput2{
+#comparisonForm, #comparisonInput1, #comparisonInput2 {
   background-color: #E3E0DB;
 }
 
-#comparisonButton{
-  background:url(../images/search.png) no-repeat;
+#comparisonButton {
+  background: url(../images/search.png) no-repeat;
   background-size: contain;
   background-color: #68553E;
 }
 
 /*--------------------INTRODUKSJON--------------------*/
 
-.introduction article header{
+.introduction article header {
   top: -10px;
   position: sticky;
-  position: -webkit-sticky;
 }
 
 .introduction {
@@ -188,20 +179,20 @@ main{
   margin: auto;
 }
 
-.introduction h1{
+.introduction h1 {
   padding: 10px;
   margin: 0;
   background-color: #542344;
   color: white;
 }
 
-.introduction p{
+.introduction p {
   padding: 10px;
   padding-bottom: 1em;
   margin: 0;
 }
 
-.introduction article{
+.introduction article {
   background-color: #DFD7DD;
 }
 
@@ -209,41 +200,40 @@ main{
   font-size: .8em;
 }
 
-#forbehold{
+#forbehold {
   color: #542344;
   background-color: #F4F4F4;
   font-weight: bold;
   text-transform: uppercase;
-  padding:10px;
+  padding: 10px;
   border: 1px solid #542344;
   width: 406px;
   text-align: center;
   margin: auto;
 }
 
-#sources > li:nth-child(1){
+#sources>li:nth-child(1) {
   padding: 0;
   font-weight: bold;
 }
 
-#sources{
+#sources {
   list-style-type: none;
   padding-left: 0;
   font-style: italic;
 }
 
-#sources a{
+#sources a {
   padding-left: 10px;
   text-decoration: none;
   color: #542344;
 }
-#sources li a:hover{
+
+#sources li a:hover {
   background-color: #542344;
   color: #fff;
   padding-right: 10px;
 }
-
-
 
 /*--------------------OVERSIKT--------------------*/
 
@@ -253,8 +243,7 @@ main{
   border-collapse: collapse;
 }
 
-.overview th,
-.overview td {
+.overview th, .overview td {
   padding: 8px;
   text-align: left;
   width: 33%;
@@ -263,51 +252,56 @@ main{
 .overview thead {
   top: -10px;
   position: sticky;
-  position: -webkit-sticky;
   background-color: #074F57;
   color: white;
 }
 
 .overview tbody {
-  width:100%;
-  overflow-y: auto;    /* Trigger vertical scroll    */
-  overflow-x: hidden;  /* Hide horizontal scroll */
+  width: 100%;
+  overflow-y: auto;
+  /* Trigger vertical scroll    */
+  overflow-x: hidden;
+  /* Hide horizontal scroll */
 }
 
 .hiddenRow {
   display: none;
 }
 
-.overview tr:nth-child(even){ /* Forandrer fargen til partalls linjer */
+.overview tr:nth-child(even) {
+  /* Forandrer fargen til partalls linjer */
   background-color: #D1DFE0;
 }
 
-.visibleRow{
+.visibleRow {
   background-color: #D1DFE0 !important;
   border: solid thin #F4F4F4;
 }
 
 /*--------------------Detaljar----------------------------*/
-.detailsOutput p,
-.mainHeader,
-.subHeader,
-.subHeader2 {
+
+.detailsOutput p, .mainHeader, .subHeader, .subHeader2 {
   font-weight: bold;
 }
+
 .detailsOutput .mainHeader {
   font-size: 1.5em;
 }
+
 .detailsOutput .subHeader {
   font-size: 1.5em;
 }
+
 .detailsOutput .subHeader2 {
   font-size: 1em;
 }
 
 /*--------------------Detaljar Table--------------------*/
+
 .headerCell {
   font-weight: bold;
 }
+
 .dataCell {
   padding-left: 1.5em;
 }
@@ -316,8 +310,7 @@ main{
   content: "%";
 }
 
-.detailsOutput table,
-.comparisonOutput table{
+.detailsOutput table, .comparisonOutput table {
   z-index: 0;
   width: 100%;
   padding: auto;
@@ -326,63 +319,53 @@ main{
   border-collapse: collapse;
 }
 
-.tableHeader,
-.detailsOutput th,
-.detailsOutput td,
-.comparisonOutput th,
-.comparisonOutput td {
+.tableHeader, .detailsOutput th, .detailsOutput td, .comparisonOutput th, .comparisonOutput td {
   padding-top: 10px;
   padding-bottom: 10px;
   min-height: 30px;
   max-height: 50px;
 }
 
-.detailsOutput thead{
+.detailsOutput thead {
   background-color: #374C70;
   color: white;
 }
 
-.detailsOutput #overviewTable thead{
+.detailsOutput #overviewTable thead {
   top: -10px;
   z-index: 2;
   position: sticky;
-  position: -webkit-sticky;
 }
 
-.detailsOutput tbody,
-.comparisonOutput tbody {
-  overflow-y: auto;    /* Trigger vertical scroll    */
-  overflow-x: hidden;  /* Hide horizontal scroll */
+.detailsOutput tbody, .comparisonOutput tbody {
+  overflow-y: auto;
+  /* Trigger vertical scroll    */
+  overflow-x: hidden;
+  /* Hide horizontal scroll */
   text-align: center;
 }
 
-.detailsOutput tr:nth-child(even){
+.detailsOutput tr:nth-child(even) {
   background-color: #DADEE5;
 }
 
-.populationTable,
-.employmentTable,
-.educationTable,
-.education11Table,
-.education12Table,
-.education03aTable,
-.education04aTable {
+.populationTable, .employmentTable, .educationTable, .education11Table, .education12Table, .education03aTable, .education04aTable {
   visibility: hidden;
   display: none;
 }
 
 /*--------------------SAMANLIKNING--------------------*/
+
 .comparisonOutput thead {
   background-color: #68553E;
   color: white;
   font-weight: bold;
 }
 
-.comparisonOutput .highlightedCell,
-.comparisonOutput .highlightedCell2 {
+.comparisonOutput .highlightedCell, .comparisonOutput .highlightedCell2 {
   z-index: 0;
   color: white;
-  padding-left:auto;
+  padding-left: auto;
   padding-right: auto;
   font-weight: bold;
 }
@@ -398,19 +381,18 @@ main{
   box-shadow: inset 0px 0px 0px 2px #E3E0DB;
 }
 
-.comparisonOutput .highlightedCell th:not(tbody td:nth-child(1)),
-.comparisonOutput .highlightedCell2 th:not(tbody td:nth-child(1)){
+.comparisonOutput .highlightedCell th:not(tbody td:nth-child(1)), .comparisonOutput .highlightedCell2 th:not(tbody td:nth-child(1)) {
   text-align: center;
 }
 
-.comparisonOutput tbody td:nth-child(1),
-.details tbody td:nth-child(1){
+.comparisonOutput tbody td:nth-child(1), .details tbody td:nth-child(1) {
   text-align: left;
   font-weight: bold;
   height: 50px;
 }
 
 /*--------------------Graph--------------------*/
+
 .canvasGraph {
   margin-top: 1em;
   background-color: #DADEE5;
@@ -419,12 +401,12 @@ main{
   margin-left: -5% !important;
 }
 
-.canvasGraph.transition{
+.canvasGraph.transition {
   transition: 0.5s;
   margin-left: 0% !important;
 }
 
-.canvasImg.transition{
+.canvasImg.transition {
   transition: 0.5s;
   margin-left: 0% !important;
 }
@@ -459,26 +441,22 @@ tr.mouseOver:active {
   display: block;
 }
 
-span {
-  /*! padding: 5px; */
-}
-
 /*--------------------Active--------------------*/
+
 /* Viser aktiv klasse */
-.activeTable{
+
+.activeTable {
   visibility: visible;
-  display:block;
+  display: block;
 }
-
-
 
 /*--------------------TableToggle--------------------*/
+
 .tableToggle {
   position: relative;
 }
 
-.detailsOutput .tableToggle,
-.comparisonOutput .tableToggle {
+.detailsOutput .tableToggle, .comparisonOutput .tableToggle {
   border: 1px solid #1a1a1a;
   display: inline-block;
   padding: 0.3em;
@@ -489,19 +467,19 @@ span {
   transition: background 600ms ease, color 600ms ease;
   font-size: 0.8em;
 }
-.detailsOutput input[type="radio"].toggle,
-.comparisonOutput input[type="radio"].toggle {
+
+.detailsOutput input[type="radio"].toggle, .comparisonOutput input[type="radio"].toggle {
   display: none;
 }
+
 /*input[type="radio"].toggle + label {*/
-.detailsOutput input[type="radio"].toggle + label,
-.comparisonOutput input[type="radio"].toggle + label {
+
+.detailsOutput input[type="radio"].toggle+label, .comparisonOutput input[type="radio"].toggle+label {
   cursor: pointer;
   min-width: 60px;
 }
 
-
-input[type="radio"].toggle + label:after {
+input[type="radio"].toggle+label:after {
   top: 0;
   z-index: -1;
   position: absolute;
@@ -510,52 +488,51 @@ input[type="radio"].toggle + label:after {
   height: 100%;
   transition: left 200ms cubic-bezier(1, .11, .93, 1);
   background: #1F2421;
-
 }
-.detailsOutput input[type="radio"].toggle.toggle-left + label:after,
-.comparisonOutput input[type="radio"].toggle.toggle-left + label:after {
+
+.detailsOutput input[type="radio"].toggle.toggle-left+label:after, .comparisonOutput input[type="radio"].toggle.toggle-left+label:after {
   left: 100%;
 }
 
-.detailsOutput input[type="radio"].toggle.toggle-right + label:after,
-.comparisonOutput input[type="radio"].toggle.toggle-right + label:after {
+.detailsOutput input[type="radio"].toggle.toggle-right+label:after, .comparisonOutput input[type="radio"].toggle.toggle-right+label:after {
   left: -100%;
 }
 
-input[type="radio"].toggle:checked + label {
+input[type="radio"].toggle:checked+label {
   color: #fff;
   transition: color 200ms;
   cursor: default;
 }
 
-.detailsOutput input[type="radio"].toggle:checked + label:after,
-.comparisonOutput input[type="radio"].toggle:checked + label:after {
+.detailsOutput input[type="radio"].toggle:checked+label:after, .comparisonOutput input[type="radio"].toggle:checked+label:after {
   left: 0;
 }
 
 /*Color themes*/
 
-.comparisonOutput input[type="radio"].toggle + label:hover {
+.comparisonOutput input[type="radio"].toggle+label:hover {
   color: #68553E;
 }
-.detailsOutput input[type="radio"].toggle + label:after {
+
+.detailsOutput input[type="radio"].toggle+label:after {
   background: #374C70;
 }
-.comparisonOutput input[type="radio"].toggle + label:after {
+
+.comparisonOutput input[type="radio"].toggle+label:after {
   background: #68553E;
 }
-.detailsOutput input[type="radio"].toggle:checked + label,
-.comparisonOutput input[type="radio"].toggle:checked + label {
+
+.detailsOutput input[type="radio"].toggle:checked+label, .comparisonOutput input[type="radio"].toggle:checked+label {
   color: #fff;
 }
 
-
 /*--------------------botntekst--------------------*/
-footer{
+
+footer {
   bottom: 0;
   right: 0;
   z-index: 1;
-  display:inline-block;
+  display: inline-block;
   width: 100%;
   position: fixed;
   background-color: #1F2421;
@@ -563,5 +540,4 @@ footer{
   text-decoration: none;
   text-transform: uppercase;
   text-align: center;
-
 }
