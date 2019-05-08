@@ -57,7 +57,7 @@
 
   .detailsOutput th,
   .comparisonOutput th{
-    width:80px;
+    width: 80px;
   }
 
   .education04aTable{
@@ -68,7 +68,7 @@
     background-color: #DADEE5;
   }
   
-  .comparisonOutput .employmentTable tr:nth-child(even) {
+  .comparisonOutput .employmentTable tr:nth-child(even){
     background-color: #E3E0DB;
   }
 
