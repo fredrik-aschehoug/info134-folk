@@ -1,59 +1,43 @@
 /* Til skjerm under 700 px */
-
-@media screen and (max-width: 700px){
-
-/*--------------------NAVIGASJON--------------------*/
-  .navigation{
+@media screen and (max-width: 700px) {
+  /*--------------------NAVIGASJON--------------------*/
+  .navigation {
     height: 41px;
     font-size: 0.75em;
   }
-
-  .navigation button{
+  .navigation button {
     padding: 15px 16px;
     font-size: 0.75em;
   }
-
-
-/*--------------------hovudinnhald--------------------*/
-
-  .center{
-    max-width: 90%; /* Bruker større del av skjermen */
-    min-width: 90%; /* Bruker større del av skjermen */
+  /*--------------------hovudinnhald--------------------*/
+  .center {
+    max-width: 90%;
+    /* Bruker større del av skjermen */
+    min-width: 90%;
+    /* Bruker større del av skjermen */
     top: 41px;
   }
-
-
-/*--------------------DETALJAR NAV--------------------*/
+  /*--------------------DETALJAR NAV--------------------*/
   /* Skjuler sidenav i liten skjerm */
-  .sidenav{
+  .sidenav {
     display: hidden;
     visibility: hidden;
   }
-
-/*--------------------DETALJAR Table--------------------*/
-
-  .detailsOutput thead{
+  /*--------------------DETALJAR Table--------------------*/
+  .detailsOutput thead {
     width: 100%;
   }
-
-  .detailsOutput th,
-  .detailsOutput td{
+  .detailsOutput th, .detailsOutput td {
     min-width: 60px !important;
   }
-
-  .detailsOutput th:not(.detailsOutput tr td:nth-child(1)){
-    min-width:60px;
+  .detailsOutput th:not(.detailsOutput tr td:nth-child(1)) {
+    min-width: 60px;
   }
-
-  .historicalOverview th,
-  .historicalOverview td{
+  .historicalOverview th, .historicalOverview td {
     display: block;
   }
-
-/*--------------------SAMANLIKNING og detaljar--------------------*/
-
-  .historicalOverview table,
-  .comparisonOutput table{
+  /*--------------------SAMANLIKNING og detaljar--------------------*/
+  .historicalOverview table, .comparisonOutput table {
     z-index: 0;
     width: 100%;
     padding: auto;
@@ -61,89 +45,90 @@
     margin: auto;
     border-collapse: collapse;
   }
-  .historicalOverviewt th,
-  .comparisonOutput th{
+  .historicalOverviewt th, .comparisonOutput th {
     height: 30px;
     display: block;
   }
-
-  .historicalOverview tr,
-  .comparisonOutput tr {
+  .historicalOverview tr, .comparisonOutput tr {
     display: block;
     float: left;
     width: 150px;
     max-width: 32%;
     text-align: center;
   }
-  .historicalOverview thead tr,
-  .comparisonOutput thead tr {
+  .historicalOverview thead tr, .comparisonOutput thead tr {
     display: block;
     float: left;
-    width: 100px;
+    width: 80px;
   }
-/*
-  .historicalOverview td,
-  .comparisonOutput td {
-    height: 40px;
-  }*/
-
-  .historicalOverview thead,
-  .historicalOverview td,
-  .comparisonOutput thead,
-  .comparisonOutput td{
+  .historicalOverview thead, .historicalOverview td, .comparisonOutput thead, .comparisonOutput td {
     display: block;
     font-weight: normal;
   }
-/*------------------- detaljar --------------------*/
-  .sidenav{
+  /*------------------- detaljar --------------------*/
+  .sidenav {
     visibility: hidden;
   }
-
-  /* Bytt fargar */
-  .historicalOverview thead,
-  .historicalOverview .tableHeader{
+  .historicalOverview thead, .historicalOverview .tableHeader {
     background-color: #374C70;
     color: white;
     font-weight: bold !important;
     text-align: center !important;
   }
-
   .historicalOverview .employmentTable tr {
     background-color: transparent;
   }
-
   .historicalOverview tr:nth-child(even) {
     background-color: transparent;
   }
-
-  .historicalOverview tbody td:nth-child(even),
-  .historicalOverview thead td:nth-child(even){
+  .historicalOverview tbody td:nth-child(even), .historicalOverview thead td:nth-child(even) {
     background-color: #DADEE5;
   }
-
-
-/*--------------------SAMANLIKNING--------------------*/
-
-  .comparisonOutput .tableHeader{
+  /*--------------------SAMANLIKNING--------------------*/
+  .comparisonOutput .tableHeader {
     background-color: #68553E;
     color: white;
     text-align: center;
   }
-
   .employmentTable tr:nth-child(even) {
     background-color: transparent;
   }
-
-  .comparisonOutput tbody td:nth-child(even),
-  .comparisonOutput thead td:nth-child(even){
+  .comparisonOutput tbody td:nth-child(even), .comparisonOutput thead td:nth-child(even) {
     background-color: #E3E0DB;
   }
-
-
-/*--------------------botntekst--------------------*/
-  footer{
+  /*--------------------botntekst--------------------*/
+  footer {
     height: 41px;
     font-size: 0.75em;
   }
+}
 
+@media screen and (max-width: 500px) {
+  #forbehold {
+    overflow: none;
+    height: auto;
+    width: auto;
+  }
+  #comparisonInput1, #comparisonInput2 {
+    width: 200px;
+    text-align: center;
+    border: 1px solid grey;
+    padding: 0;
+  }
+  #comparisonForm {
+    width: 204px;
+    height: 50px;
+    margin-bottom: 20px;
+    border: none;
+    background-color: #F4F4F4;
+  }
+  #comparisonButton {
+    z-index: 2;
+    margin-right: -35px;
+    height: 32px;
+    width: 32px;
+  }
+  .comparisonOutput th:nth-child(1), .comparisonOutput tbody td:nth-child(1), .detailsOutput th:nth-child(1), .detailsOutput tbody td:nth-child(1) {
+    height: 70px;
+  }
 }

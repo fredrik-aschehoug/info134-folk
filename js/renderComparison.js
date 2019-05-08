@@ -63,6 +63,8 @@ function renderComparison(id1, id2) {
                     table2aRow1[i].classList.add("highlightedCell");
                     table2bRow1[i].classList.add("highlightedCell");
                 } else if (t1Diff === t2Diff) {
+                    table1aRow1[i].classList.add("highlightedCell2");
+                    table1bRow1[i].classList.add("highlightedCell2");
                     table2aRow1[i].classList.add("highlightedCell2");
                     table2bRow1[i].classList.add("highlightedCell2");
                 }
@@ -81,6 +83,15 @@ function renderComparison(id1, id2) {
     const header2Text = `Sysselsetting i ${historicalDetails2.navn}:`;
     const header1 = renderHeader(header1Text, "subHeader");
     const header2 = renderHeader(header2Text, "subHeader");
+    // Create paragraph
+    const paragraph = document.createElement("p")
+    paragraph.innerHTML = `
+        Denne sida lar deg samanlikne sysselsetjinga i to ulike kommuner. Tabellane kan visast med enten prosent eller tal.
+        Tabellane markerar også kva for ein av kommunane som har størst vekst i prosentpoeng; per år og per kjønnskategori. </br>
+        Markering for celle med størst vekst: <span class="highlightedCell">Størst vekst</span></br>
+        Markering for celle med lik vekst: <span class="highlightedCell2">Lik vekst</span>
+    `;
+    paragraph.id = "comparisonText"
     // Create tables
     const table1 = renderComparisonTable(historicalDetails1, className);
     const table2 = renderComparisonTable(historicalDetails2, className);
@@ -92,6 +103,7 @@ function renderComparison(id1, id2) {
     // Append item to placeholder
     appendElements(
         placeholder[0], 
+        paragraph,
         tableToggle, 
         header1,
         table1, 
