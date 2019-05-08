@@ -84,7 +84,7 @@ main{
 
 /*--------------------active--------------------*/
 /* Gjør den aktive klassen synlig */
-.active{
+.active, .activeSidenav{
   visibility: visible;
   display:block;
   margin: auto;
