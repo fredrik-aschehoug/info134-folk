@@ -337,13 +337,6 @@ main{
   max-height: 50px;
 }
 
-.comparisonOutput th,
-.comparisonOutput td,
-.comparisonOutput th:not(.tableHeader th),
-.comparisonOutput td:not(.tableHeader td){
-  text-align: right;
-}
-
 .detailsOutput thead{
   background-color: #374C70;
   color: white;
@@ -360,6 +353,7 @@ main{
 .comparisonOutput tbody {
   overflow-y: auto;    /* Trigger vertical scroll    */
   overflow-x: hidden;  /* Hide horizontal scroll */
+  text-align: center;
 }
 
 .detailsOutput tr:nth-child(even){
@@ -384,7 +378,6 @@ main{
   font-weight: bold;
 }
 
-
 .comparisonOutput .highlightedCell,
 .comparisonOutput .highlightedCell2 {
   z-index: 0;
@@ -397,19 +390,25 @@ main{
 .comparisonOutput .highlightedCell {
   background-color: #9E9284 !important;
   box-shadow: inset 0px 0px 0px 2px #E3E0DB;
-  z-index: 
+  z-index:
 }
+
 .comparisonOutput .highlightedCell2 {
   background-color: #F4F1AB !important;
   color: #9E9284;
   box-shadow: inset 0px 0px 0px 2px #E3E0DB;
 }
 
-.comparisonOutput .highlightedCell th,
-.comparisonOutput .highlightedCell2 th{
+.comparisonOutput .highlightedCell th:not(tbody td:nth-child(1)),
+.comparisonOutput .highlightedCell2 th:not(tbody td:nth-child(1)){
   text-align: center;
 }
 
+.comparisonOutput tbody td:nth-child(1),
+.details tbody td:nth-child(1){
+  text-align: left;
+  font-weight: bold;
+}
 
 /*--------------------Graph--------------------*/
 .canvasGraph {
@@ -517,15 +516,18 @@ input[type="radio"].toggle + label:after {
 .comparisonOutput input[type="radio"].toggle.toggle-left + label:after {
   left: 100%;
 }
+
 .detailsOutput input[type="radio"].toggle.toggle-right + label:after,
 .comparisonOutput input[type="radio"].toggle.toggle-right + label:after {
   left: -100%;
 }
+
 input[type="radio"].toggle:checked + label {
   color: #fff;
   transition: color 200ms;
   cursor: default;
 }
+
 .detailsOutput input[type="radio"].toggle:checked + label:after,
 .comparisonOutput input[type="radio"].toggle:checked + label:after {
   left: 0;

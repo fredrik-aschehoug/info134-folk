@@ -98,7 +98,7 @@
   .sidenav{
     visibility: hidden;
   }
-  
+
   /* Bytt fargar */
   .historicalOverview thead,
   .historicalOverview .tableHeader{
@@ -120,7 +120,7 @@
   .historicalOverview thead td:nth-child(even){
     background-color: #DADEE5;
   }
-  
+
 
 /*--------------------SAMANLIKNING--------------------*/
 
@@ -133,7 +133,7 @@
   .employmentTable tr:nth-child(even) {
     background-color: transparent;
   }
-  
+
   .comparisonOutput tbody td:nth-child(even),
   .comparisonOutput thead td:nth-child(even){
     background-color: #E3E0DB;
