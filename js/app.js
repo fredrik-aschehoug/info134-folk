@@ -36,6 +36,7 @@ function utdanningCallback() {
     let ids = befolkning.getIDs();
     // Add overview to DOM
     oversikt.appendChild(renderOverview(ids, befolkning));
+    // Add data to details object.
     for (let id of ids) {
         details.addMunicipal(
             id,

@@ -91,6 +91,7 @@ function renderComparison(id1, id2) {
         Markering for celle med størst vekst: <span class="highlightedCell">Størst vekst</span></br>
         Markering for celle med lik vekst: <span class="highlightedCell2">Lik vekst</span>
     `;
+    paragraph.id = "comparisonText"
     // Create tables
     const table1 = renderComparisonTable(historicalDetails1, className);
     const table2 = renderComparisonTable(historicalDetails2, className);
