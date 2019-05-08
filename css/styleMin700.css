@@ -82,23 +82,19 @@
 }
 
 @media screen and (max-width: 1200px){
-  .sidenav{
-    top: 55px;
-    left: 5px;
-    max-width: 18%;
-    font-size: 0.75em;
+  .activeSidenav{
+    visibility: hidden !important;:
   }
+  
 /*--------------------Table detaljar og samanlikning--------------------*/
   .historicalOverview{
     overflow-x: visible;
   }
 
-}
 
-
-@media screen and (max-width: 1100px){
-  .detailsOutput table,
-  .comparisonOutput table{
-    font-size: 0.6em
+  .center{
+    max-width: 90%; /* Bruker større del av skjermen */
+    min-width: 90%; /* Bruker større del av skjermen */
+    top: 41px;
   }
 }
