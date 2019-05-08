@@ -79,13 +79,9 @@
   .comparisonOutput thead tr {
     display: block;
     float: left;
-    width: 100px;
+    width: 80px;
   }
-/*
-  .historicalOverview td,
-  .comparisonOutput td {
-    height: 40px;
-  }*/
+
 
   .historicalOverview thead,
   .historicalOverview td,
@@ -99,7 +95,6 @@
     visibility: hidden;
   }
 
-  /* Bytt fargar */
   .historicalOverview thead,
   .historicalOverview .tableHeader{
     background-color: #374C70;
@@ -138,7 +133,31 @@
   .comparisonOutput thead td:nth-child(even){
     background-color: #E3E0DB;
   }
+  
+  #comparisonInput1,
+  #comparisonInput2{
+    width: 200px;
+    text-align: center;
+    border: 1px solid grey;
+    padding: 0;
 
+  }
+  
+  #comparisonForm{
+    width: 204px;
+    height: 50px;
+    margin-bottom:20px;
+    border:none;
+    background-color:#F4F4F4;
+  }
+  #comparisonButton{
+    z-index: 2;
+    margin-right:-35px;
+    height: 32px;
+    width: 32px;
+
+  }
+  
 
 /*--------------------botntekst--------------------*/
   footer{
