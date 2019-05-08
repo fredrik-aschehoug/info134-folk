@@ -16,7 +16,7 @@
     min-width: 60%;
   }
   .activeSidenav {
-    /*! visibility: visible; */
+    visibility: visible;
     display: block;
     margin: auto;
   }
@@ -76,7 +76,6 @@
     max-width: 90%;
     /* Bruker større del av skjermen */
     min-width: 90%;
-    /* Bruker større del av skjermen */
     top: 41px;
   }
 }
