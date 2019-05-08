@@ -115,6 +115,9 @@
   .historicalOverview thead td:nth-child(even){
     background-color: #DADEE5;
   }
+  
+  
+
 
 
 /*--------------------SAMANLIKNING--------------------*/
@@ -134,6 +137,17 @@
     background-color: #E3E0DB;
   }
   
+
+/*--------------------botntekst--------------------*/
+  footer{
+    height: 41px;
+    font-size: 0.75em;
+  }
+
+}
+
+@media screen and (max-width: 500px){
+  
   #comparisonInput1,
   #comparisonInput2{
     width: 200px;
@@ -150,19 +164,18 @@
     border:none;
     background-color:#F4F4F4;
   }
+  
   #comparisonButton{
     z-index: 2;
     margin-right:-35px;
     height: 32px;
     width: 32px;
-
   }
   
-
-/*--------------------botntekst--------------------*/
-  footer{
-    height: 41px;
-    font-size: 0.75em;
+  .comparisonOutput thead td:nth-child(1),
+  .comparisonOutput tbody td:nth-child(1),
+  .detailsOutput thead td:nth-child(1),
+  .detailsOutput tbody td:nth-child(1){
+    height: 57px;
   }
-
 }
