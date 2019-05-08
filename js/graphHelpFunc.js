@@ -1,3 +1,6 @@
+/**
+ * created Div tag
+ */
 function createCanvas() {
 
     const canvasDiv = document.getElementsByClassName("graphPointer");
@@ -7,6 +10,11 @@ function createCanvas() {
     }
 }
 
+/**
+ * Based on HTML elements classes for retrieving objects
+ * @param {string} hoverId this.id stored in variable
+ * @param {array} clickClass classli saved after clicking
+ */
 function getDataFromID(hoverId, clickClass) {
     let graphArr = [];
     let elements = Array.from(clickClass);
@@ -22,6 +30,14 @@ function getDataFromID(hoverId, clickClass) {
     return graphArr;
 }
 
+/**
+ * Gathers information from HTML class and retrives object
+ * from getHistorical
+ * @param {string} clickId this.id
+ * @param {array} clickClass this.classList
+ * @param {object} historicalDetails from getHistorical
+ * @returns {object} ready to be processed(element)
+ */
 function init(clickId, clickClass, historicalDetails) {
     let keyWords = getDataFromID(clickId, clickClass);
 
@@ -51,15 +67,24 @@ function init(clickId, clickClass, historicalDetails) {
     }
 }
 
+/**
+ * Lists out all HTML ids and applies new ones. 
+ * @param {string} className 
+ * @param {string} objectRef from list of arrays in 
+ * @param {object} ArrIndex 
+ */
 function setHtmlIds(className, objectRef, ArrIndex) {
-
     let elements = document.querySelectorAll(className);
     for (let i = 0; i < elements.length; i++) {
         elements[i].id = objectRef[ArrIndex][i];
     }
 
 }
-
+/**
+ * Lists out html classes from graphRender
+ * @param {string} className 
+ * @param {Array} objectRef 
+ */
 function setHtmlClass(className, objectRef) {
     let classArray = objectRef;
     let elements = document.querySelectorAll(className);
@@ -68,10 +93,10 @@ function setHtmlClass(className, objectRef) {
     }
 }
 
-function graphReanimate(graphObj) {
-    graphObj.classList.remove('transition');
-}
-
+/**
+ * Function to control the animation 
+ * @param {HTMLElement} graphObj 
+ */
 function graphAnimation(graphObj) {
     canvas = graphObj;
     canvas.classList.add('transition');
@@ -80,10 +105,18 @@ function graphAnimation(graphObj) {
     canvas.style.marginLeft = marginLeft;
 }
 
+/**
+ * Puts first letter of a word into lowerCase
+ * @param {string} string 
+ */
 function lowerCaseFirst(string) {
     return string.charAt(0).toLowerCase() + string.slice(1);
 }
 
+/**
+ * Translates english to norwegian
+ * @param {array} graphArray 
+ */
 function graphT1(graphArray) {
     if (graphArray[1] === "number") {
         graphArray[1] = "antall";
@@ -93,6 +126,10 @@ function graphT1(graphArray) {
       return graphArray[1];
 }
 
+/**
+ * Creating info object for texting the graph
+ * @param {aray} graphArray 
+ */
 function graphText(graphArray) {
     graphTextArray = [];
     let firstString = document.querySelectorAll(".subHeader");
@@ -110,3 +147,48 @@ function graphText(graphArray) {
     graphArray[1] = graphT1(graphArray);
     return graphArray;
 }
+
+
+/**
+ * Shortes arrays to 12 if they are ober
+ * @param {array} arr 
+ */
+function shortArr(arr) {
+
+    if (arr.length > 12) {
+        arr.reverse();
+        arr.length = 12;
+        Array.reverse();
+    }
+    return arr;
+}
+
+/**
+ * Normalizes data between 0-1
+ * @param {string} min 
+ * @param {string} max 
+ */
+function normalize2(min, max) {
+    var delta = max - min;
+    return function (val) {
+        return (val - min) / delta;
+    };
+}
+
+/**If array is longer than 12;
+         * reduces it to 12. If length 11 unshifts 
+         * 2018 as 11 length arrays stops at 2017.
+         * @param {Array} xAxisKeys 
+         * @returns {Array} first index needs to be empty
+         */
+        function xAxisArray(xAxisKeys) {
+            xAxisValues = xAxisKeys;
+            if (xAxisValues.length > 12) {
+                xAxisValues.reverse();
+                xAxisValues.length = 12;
+                xAxisValues.reverse();
+            } else if (xAxisValues.length === 11) {
+                xAxisValues.push("2018");
+            }
+            return xAxisValues.unshift("");
+        }

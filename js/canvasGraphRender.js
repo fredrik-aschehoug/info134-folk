@@ -1,7 +1,19 @@
-
-
+/**
+ * Contains a placeholder for the canvas drawing,
+ * clear when another graph is requested
+ * Historical object set to variable.
+ * @param {string} id municipal ID
+ * @callback [clickTrFunc]
+ */
 function createGraph(id) {
-
+    /**
+     * Clicking on a <tr> in detailsform triggers this function
+     * and initiates the data gathering. Saved a classList
+     * and id on click to request the proper part of the bject,
+     * @param {string} id municipalID
+     * @param {object} historicalDetails from getHistorical method
+     * @returns {HTMLCanvasElement} HTML element with canvas object
+     */
     function clickTrFunc(id, historicalDetails) {
         let graphData = graphRender(id);
         graphData = graphData;
@@ -17,21 +29,28 @@ function createGraph(id) {
                 let clickClass = trTag.classList;
                 document.getElementById(clickClass[2]).appendChild(canvas);
                 //canvas properties
-                canvas.id = "graphTotal";
                 canvas.width = 475;
                 canvas.height = 275;
+                canvas.id = "graphTotal";
                 canvas.style.display = "block";
                 const can = document.getElementById('graphTotal');
                 can.classList.add('canvasGraph');
                 const finalObject = init(clickId, clickClass, historicalDetails);
+                //Pass graphObj to be drawn and run render animation
+                can.classList.remove('afterTrans');
                 //Draw graph and run show animation
                 graphMain(finalObject);
                 graphAnimation(can);
+                setTimeout(function () {
+                    can.classList.remove('transition');
+                    can.classList.add('afterTrans');
+                }, 500);
                 can.addEventListener('click', () => {
+                    can.classList.remove('transition');
                     can.remove(can);
-                });
             });
         });
+    });
         return canvas;
     }
     // Placeholder to put content in
@@ -40,11 +59,14 @@ function createGraph(id) {
     const historicalDetails = details.getHistorical(id);
     // Create items to append
     clickTrFunc(id, historicalDetails);
-
     // Clear placeholder
     removeChildNodes(placeholderCanvas[0]);
 }
-
+/**
+ * destructures object to arrays for drawing
+ * @param {object} finalObj
+ * @callback [mapDataGraph]
+ */
 function graphMain(finalObj) {
     const xValues = Object.keys(finalObj.graphObj);
     const yValues = Object.values(finalObj.graphObj);
@@ -53,23 +75,20 @@ function graphMain(finalObj) {
         yValues.length = 12;
         yValues.reverse();
     }
-
+    /**
+     * Maps out nevessary data to draw our graph
+     * @param {Array} xAxisKeys 
+     * @param {Array} yAxisArray 
+     * @param {Object} finalObj 
+     */
     function mapDataGraph(xAxisKeys, yAxisArray, finalObj) {
         array = finalObj;
-
-        function xAxisArray(xAxisKeys) {
-            xAxisValues = xAxisKeys;
-            if (xAxisValues.length > 12) {
-                xAxisValues.reverse();
-                xAxisValues.length = 12;
-                xAxisValues.reverse();
-            } else if (xAxisValues.length === 11) {
-                xAxisValues.push("2018");
-            }
-            return xAxisValues.unshift("");
-        }
-
-
+        /**
+         * Tries to normalize values to give more equality
+         * on the 2D brush.
+         * @param {Array} yAxisArray 
+         * @returns {object} to draw with at the end
+         */
         function yReduceValues(yAxisArray) {
             newArr = [];
 
@@ -129,7 +148,12 @@ function graphMain(finalObj) {
             return reducedData;
         }
 
-
+        /**
+         * Finds max an d lov and rounds it plus providing
+         * some graph padding. 
+         * @param {Array} yAxisArray 
+         * @returns {}
+         */
         function minMaxArray(yAxisArray) {
             let data = yReduceValues(yAxisArray);
             let arrayMax = Math.max.apply(Math, data.redData);
@@ -160,7 +184,12 @@ function graphMain(finalObj) {
         drawGraphNumbers(xAxisValues, arrObject, finalObj.graphInfo);
     }
 
-
+    /**
+     * Draws the graph based on all the retrieved data
+     * @param {Array} xAxisVal  years 
+     * @param {object} arrayObj Rounded and min maxx declared
+     * @param {Array} array information about the graph
+     */
     function drawGraphNumbers(xAxisVal, arrayObj, array) {
 
         let graphTotal = document.getElementById("graphTotal");
@@ -182,7 +211,11 @@ function graphMain(finalObj) {
         let scaleForX = (graphTotal.width - rowSize + margin) / rectangles;
         let scaleForY = (graphTotal.height - columnSize - margin) / (maxValue - minValue);
 
-        //plots each of the points(elements) in the Array to a line
+        /**
+         * Plots data with a line on the graph
+         * iterating through the values
+         * @param {array} toPlot values to plot
+         */
         function plotData(toPlot) {
             ctx.lineWidth = arrayObj.lineWidth;
             ctx.beginPath();
@@ -194,7 +227,7 @@ function graphMain(finalObj) {
         }
 
         //graphStyling
-        const graphTexting = graphText(array)
+        const graphTexting = graphText(array);
         ctx.font = "16px Arial";
         ctx.fillStyle = "#374C70";
         ctx.fillText(graphTexting[2] + " " + graphTexting[1] + " " + graphTexting[0], 3, 28); //mouseOver text on graph
@@ -232,3 +265,4 @@ function graphMain(finalObj) {
     }
     mapDataGraph(xValues, yValues, finalObj);
 }
+
