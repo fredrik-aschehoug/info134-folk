@@ -355,6 +355,13 @@ main {
 }
 
 /*--------------------SAMANLIKNING--------------------*/
+#comparisonText{
+  background-color: #E3E0DB;
+  padding:10px;
+  border: 1px solid #542344;
+  width: 98.4%;
+  margin-top: 10px;
+}
 
 .comparisonOutput thead {
   background-color: #68553E;
