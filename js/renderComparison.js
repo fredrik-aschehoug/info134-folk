@@ -12,6 +12,8 @@ function renderComparison(id1, id2) {
      */
     function renderComparisonTable(historicalDetails, className) {
         const tables = document.createElement("div");
+        const canvas = document.createElement("div");
+        const canvasRend = document.createElement("div");
         const desciptions = ["Kvinner", "Menn", "Begge kjønn"];
         const tableHeaderClass = "tableHeader";
         // Create table elements
@@ -27,8 +29,10 @@ function renderComparison(id1, id2) {
         // Assign classes
         numberTable.classList.add(className, "activeTable");
         percentTable.classList.add(className);
+        canvas.classList.add("canvasBtn");
+        canvasRend.classList.add("canvasRend");
         // Append elements to return element
-        appendElements(tables, numberTable, percentTable);
+        appendElements(tables, numberTable, percentTable, canvas, canvasRend);
         return tables;
     }
     /**
