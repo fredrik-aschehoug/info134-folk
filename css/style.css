@@ -84,7 +84,7 @@ main{
 
 /*--------------------active--------------------*/
 /* Gjør den aktive klassen synlig */
-.active, .activeSidenav{
+.active{
   visibility: visible;
   display:block;
   margin: auto;
@@ -174,6 +174,12 @@ main{
 
 /*--------------------INTRODUKSJON--------------------*/
 
+.introduction article header{
+  top: -10px;
+  position: sticky;
+  ! position: -webkit-sticky;
+}
+
 .introduction {
   width: 100%;
   padding: auto;
@@ -219,6 +225,7 @@ main{
   padding: 0;
   font-weight: bold;
 }
+
 #sources{
   list-style-type: none;
   padding-left: 0;
@@ -254,7 +261,7 @@ main{
 }
 
 .overview thead {
-  top: 0;
+  top: -10px;
   position: sticky;
   position: -webkit-sticky;
   background-color: #074F57;
@@ -342,7 +349,7 @@ main{
   color: white;
 }
 
-.detailsOutput > div:nth-child(1) > table:nth-child(3) > thead:nth-child(1){
+.detailsOutput #overviewTable thead{
   top: -10px;
   z-index: 2;
   position: sticky;
@@ -374,7 +381,7 @@ main{
 .comparisonOutput thead {
   background-color: #68553E;
   color: white;
-  font-weight: bold !important;
+  font-weight: bold;
 }
 
 
@@ -382,26 +389,25 @@ main{
 .comparisonOutput .highlightedCell2 {
   z-index: 0;
   color: white;
-  box-shadow: inset 0px 0px 0px 2px #E3E0DB;
   padding-left:auto;
   padding-right: auto;
-  font-weight: bold !important;
+  font-weight: bold;
 }
+
 .comparisonOutput .highlightedCell {
-  background-color: #9E9284;
+  background-color: #9E9284 !important;
+  box-shadow: inset 0px 0px 0px 2px #E3E0DB;
+  z-index: 
 }
 .comparisonOutput .highlightedCell2 {
-  background-color: #F4F1AB;
+  background-color: #F4F1AB !important;
   color: #9E9284;
+  box-shadow: inset 0px 0px 0px 2px #E3E0DB;
 }
 
 .comparisonOutput .highlightedCell th,
 .comparisonOutput .highlightedCell2 th{
   text-align: center;
-}
-
-.comparisonOutput .employmentTable tr:nth-child(even) {
-  background-color: #E3E0DB;
 }
 
 
