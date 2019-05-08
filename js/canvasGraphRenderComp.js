@@ -24,8 +24,8 @@ function createGraphCompare(id1, id2) {
     canvasClass.appendChild(graphBtnPer);
     graphBtnNum.id = "numbersBtn";
     graphBtnPer.id = "percentBtn";
-    graphBtnNum.innerHTML = "Numbers";
-    graphBtnPer.innerHTML = "Percent";
+    graphBtnNum.innerHTML = "Tallgraf";
+    graphBtnPer.innerHTML = "Prosentgraf";
     /**
      * Set canvas properties, retrieve objects and initiate 
      * drawing.
@@ -185,15 +185,18 @@ function graphMainComp(graphObjOne, graphObjTwo, canvasId, sex, type, municipal1
         ctx.font = "10px Arial";
         ctx.fillStyle = "#374C70";
         ctx.fillText("*normalisert (0-1)", 3, 14);
+        ctx.font = "10px Arial";
+        ctx.fillStyle = "#374C70";
+        ctx.fillText("Click to remove", 400, 14);
         ctx.font = "12px Arial";
         ctx.fillStyle = "#374C70";
         ctx.fillText(`Trend graf for sysselsatte ${graphSex} i ${graphType} `, 3, 28);
         ctx.font = "12px Arial";
         ctx.fillStyle = "red";
-        ctx.fillText(municipal1, 350, 14);
+        ctx.fillText(municipal1, 250, 28);
         ctx.font = "12px Arial";
         ctx.fillStyle = "blue";
-        ctx.fillText(municipal2, 410, 14);
+        ctx.fillText(municipal2, 310, 28);
         ctx.font = "10px Arial";    //Font size, type
         ctx.fillStyle = "#374C70";  //Font color
         ctx.strokeStyle = "grey";   //Grid line color

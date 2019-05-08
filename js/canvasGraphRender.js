@@ -15,8 +15,7 @@ function createGraph(id) {
      * @returns {HTMLCanvasElement} HTML element with canvas object
      */
     function clickTrFunc(id, historicalDetails) {
-        let graphData = graphRender(id);
-        graphData = graphData;
+        graphRender(id);
 
         const canvas = document.createElement("canvas");
         canvas.style.display = "none";
