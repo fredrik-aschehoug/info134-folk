@@ -177,7 +177,7 @@ main{
 .introduction article header{
   top: -10px;
   position: sticky;
-  ! position: -webkit-sticky;
+  position: -webkit-sticky;
 }
 
 .introduction {
@@ -397,7 +397,6 @@ main{
 .comparisonOutput .highlightedCell {
   background-color: #9E9284 !important;
   box-shadow: inset 0px 0px 0px 2px #E3E0DB;
-  z-index: 
 }
 .comparisonOutput .highlightedCell2 {
   background-color: #F4F1AB !important;
