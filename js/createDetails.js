@@ -224,6 +224,8 @@ function createDetails(id) {
             // Assign classes
             numberTable.classList.add(className, "activeTable");
             percentTable.classList.add(className);
+            percentTable.tBodies[0].classList.add('graphViz');
+            numberTable.tBodies[0].classList.add('graphViz');
             // Create tableToggle
             const tableToggle = createTableToggle(toggleCallback, className, type, eduType);
             appendElements(tables, tableToggle, numberTable, percentTable);

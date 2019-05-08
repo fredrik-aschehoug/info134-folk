@@ -76,7 +76,7 @@ function graphAnimation(graphObj) {
     canvas = graphObj;
     canvas.classList.add('transition');
     let compStyle = window.getComputedStyle(canvas),
-        marginLeft = compStyle.getPropertyValue('margin-right');
+    marginLeft = compStyle.getPropertyValue('margin-right');
     canvas.style.marginLeft = marginLeft;
 }
 
@@ -109,4 +109,23 @@ function graphText(graphArray) {
     graphArray[0] = lowerCaseFirst(graphArray[0]);
     graphArray[1] = graphT1(graphArray);
     return graphArray;
+}
+
+
+
+function shortArr(arr) {
+
+    if (arr.length > 12) {
+        arr.reverse();
+        arr.length = 12;
+        Array.reverse();
+    }
+    return arr;
+}
+
+function normalize2(min, max) {
+    var delta = max - min;
+    return function (val) {
+        return (val - min) / delta;
+    };
 }

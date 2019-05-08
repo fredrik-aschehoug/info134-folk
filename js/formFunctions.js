@@ -37,6 +37,7 @@ function comparisonFormSubmit(ids) {
     // Check if valid IDs
     if (ids.includes(id1) && ids.includes(id2) && id1 !== id2) {
         createComparison(id1, id2);
+        createGraphCompare(id1, id2);
     } else if (id1 === "5061" && id2 === "5061") {
         alert("Du kan ikkje samanlikne to like kommuner");
     } else if (id1 === "5061") {
@@ -45,6 +46,7 @@ function comparisonFormSubmit(ids) {
     } else if (id2 === "5061") {
         alert(`Rindal (${id2}) har ikkje noko statistikk, du vil bli omdirigert til Rindal (-2018) (1567)`);
         createComparison(id1, "1567");
+        createGraphCompare(id1, id2);
     } else if (!ids.includes(id1) && !ids.includes(id2)) {
         alert(`Verken ${id1} eller ${id2} er eit gyldig kommunenummer`);
     } else if (!ids.includes(id1)) {

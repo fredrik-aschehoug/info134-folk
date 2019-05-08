@@ -390,13 +390,47 @@ main{
 }
 
 .canvasGraph.transition{
-  transition: 1s;
+  transition: 0.5s;
   margin-left: 0% !important;
+}
+
+.canvasImg.transition{
+  transition: 0.5s;
+  margin-left: 0% !important;
+}
+
+.canvasGraph.afterTrans {
+  margin-left: 0% !important;
+  font-weight: bold;
 }
 
 tr.mouseOver:active {
   background-color: #374C70;
   color: #F4F4F4;
+}
+
+.canvasImg {
+  background-color: #E3E0DB;
+  margin-top: 0.5em;
+  margin-left: -5% !important;
+  padding-bottom: 1em;
+  padding-left: 0.5em;
+}
+
+.canvasImg.afterTrans {
+  margin-left: 0% !important;
+}
+
+.canvasRend {
+  display: none;
+}
+
+.canvasRend.show {
+  display: block;
+}
+
+span {
+  font-size: 1.5em;
 }
 
 /*--------------------Active--------------------*/

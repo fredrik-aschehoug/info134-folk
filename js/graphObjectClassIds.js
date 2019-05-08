@@ -14,7 +14,9 @@ function graphRender(id) {
                 "education1",
                 "education2",
                 "education3",
-                "education4",]],
+                "education4",], [
+
+                ]],
         "elementIdObj": [" number",
             " number",
             " number",
@@ -67,15 +69,32 @@ function graphRender(id) {
             " kvinner", " menn", " totalt", " kvinner", " menn", " totalt",
             " kvinner", " menn", " totalt", " kvinner", " menn", " totalt",
             " kvinner", " menn", " totalt", " kvinner", " menn", " totalt",
-            " kvinner", " menn", " totalt", " kvinner", " menn", " totalt",
-
-        ]
+            " kvinner", " menn", " totalt", " kvinner", " menn", " totalt",], 
+            "elementClass5":  [
+                " population number Kvinner Menn total",
+                " population percent Kvinner Menn total", 
+                " employment number Kvinner Menn total", 
+                " employment percent Kvinner Menn total", 
+                " education number Kvinner Menn total 12", 
+                " education percent Kvinner Menn total 12",
+                " education number Kvinner Menn total 11", 
+                " education percent Kvinner Menn total 11", 
+                " education number Kvinner Menn total 03a", 
+                " education percent Kvinner Menn total 03a", 
+                " education number Kvinner Menn total 04a", 
+                " education percent Kvinner Menn total 04a",
+            ],
+            "elementClass6":  [
+                " number", " percent", " number", " percent", " number", " percent",
+                " number", " percent", " number", " percent", " number", " percent",
+            ]
     };
     setHtmlIds('.mouseOver', graphDataObject.elementIdArrays, 0);
     setHtmlIds('.canvasDiv', graphDataObject.elementIdArrays, 1);
     setHtmlClass(".mouseOver", graphDataObject.elementIdObj);
     setHtmlClass(".mouseOver", graphDataObject.elementIdObj3);
     setHtmlClass(".mouseOver", graphDataObject.elementIdObj2);
+    setHtmlClass(".graphViz", graphDataObject.elementClass5);
     //setHtmlClass(".mouseOver", graphDataObject.elementIdObj4);
     return graphDataObject;
 }

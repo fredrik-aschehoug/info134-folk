@@ -1,5 +1,3 @@
-
-
 function createGraph(id) {
 
     function clickTrFunc(id, historicalDetails) {
@@ -17,21 +15,28 @@ function createGraph(id) {
                 let clickClass = trTag.classList;
                 document.getElementById(clickClass[2]).appendChild(canvas);
                 //canvas properties
-                canvas.id = "graphTotal";
                 canvas.width = 475;
                 canvas.height = 275;
+                canvas.id = "graphTotal";
                 canvas.style.display = "block";
                 const can = document.getElementById('graphTotal');
                 can.classList.add('canvasGraph');
                 const finalObject = init(clickId, clickClass, historicalDetails);
+                //Pass graphObj to be drawn and run render animation
+                can.classList.remove('afterTrans');
                 //Draw graph and run show animation
                 graphMain(finalObject);
                 graphAnimation(can);
+                setTimeout(function () {
+                    can.classList.remove('transition');
+                    can.classList.add('afterTrans');
+                }, 500);
                 can.addEventListener('click', () => {
+                    can.classList.remove('transition');
                     can.remove(can);
-                });
             });
         });
+    });
         return canvas;
     }
     // Placeholder to put content in
@@ -40,9 +45,9 @@ function createGraph(id) {
     const historicalDetails = details.getHistorical(id);
     // Create items to append
     clickTrFunc(id, historicalDetails);
-
     // Clear placeholder
     removeChildNodes(placeholderCanvas[0]);
+    
 }
 
 function graphMain(finalObj) {
@@ -194,7 +199,7 @@ function graphMain(finalObj) {
         }
 
         //graphStyling
-        const graphTexting = graphText(array)
+        const graphTexting = graphText(array);
         ctx.font = "16px Arial";
         ctx.fillStyle = "#374C70";
         ctx.fillText(graphTexting[2] + " " + graphTexting[1] + " " + graphTexting[0], 3, 28); //mouseOver text on graph
@@ -232,3 +237,4 @@ function graphMain(finalObj) {
     }
     mapDataGraph(xValues, yValues, finalObj);
 }
+
