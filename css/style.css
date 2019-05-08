@@ -58,7 +58,6 @@ body {
 
 main {
   display: block;
-  padding: auto;
   margin: auto;
 }
 
@@ -173,7 +172,6 @@ main {
 
 .introduction {
   width: 100%;
-  padding: auto;
   padding-left: 0;
   padding-right: 0;
   margin: auto;
@@ -313,7 +311,6 @@ main {
 .detailsOutput table, .comparisonOutput table {
   z-index: 0;
   width: 100%;
-  padding: auto;
   padding-top: 10px;
   margin-bottom: 20px;
   border-collapse: collapse;
@@ -372,8 +369,6 @@ main {
 .comparisonOutput .highlightedCell, .comparisonOutput .highlightedCell2 {
   z-index: 0;
   color: white;
-  padding-left: auto;
-  padding-right: auto;
   font-weight: bold;
 }
 

@@ -40,7 +40,6 @@
   .historicalOverview table, .comparisonOutput table {
     z-index: 0;
     width: 100%;
-    padding: auto;
     padding-top: 10px;
     margin: auto;
     border-collapse: collapse;
