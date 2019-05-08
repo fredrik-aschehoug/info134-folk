@@ -86,10 +86,10 @@ function renderComparison(id1, id2) {
     // Create paragraph
     const paragraph = document.createElement("p")
     paragraph.innerHTML = `
-        Denne sida lar deg samanlikne sysselsetjinga i to ulike kommuner. Tabellane kan visast med anten prosent eller tal.
-        Tabellane markerar også kven av kommunane som har størst vekst i prosentpoeng; per år og per kjønnskategori. </br>
-        <span class="highlightedCell">Markering for celle med størst vekst</span></br>
-        <span class="highlightedCell2">Markering for celle med lik vekst</span>
+        Denne sida lar deg samanlikne sysselsetjinga i to ulike kommuner. Tabellane kan visast med enten prosent eller tal.
+        Tabellane markerar også kva for ein av kommunane som har størst vekst i prosentpoeng; per år og per kjønnskategori. </br>
+        Markering for celle med størst vekst: <span class="highlightedCell">Størst vekst</span></br>
+        Markering for celle med lik vekst: <span class="highlightedCell2">Lik vekst</span>
     `;
     // Create tables
     const table1 = renderComparisonTable(historicalDetails1, className);
