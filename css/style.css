@@ -407,6 +407,7 @@ main{
 .details tbody td:nth-child(1){
   text-align: left;
   font-weight: bold;
+  height: 50px;
 }
 
 /*--------------------Graph--------------------*/
@@ -459,7 +460,7 @@ tr.mouseOver:active {
 }
 
 span {
-  font-size: 1.5em;
+  /*! padding: 5px; */
 }
 
 /*--------------------Active--------------------*/

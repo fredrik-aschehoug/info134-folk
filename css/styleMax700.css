@@ -148,6 +148,12 @@
 
 @media screen and (max-width: 500px){
   
+  #forbehold{
+    overflow: none;
+    height: auto;
+    width: auto;
+  }
+  
   #comparisonInput1,
   #comparisonInput2{
     width: 200px;
@@ -172,10 +178,13 @@
     width: 32px;
   }
   
-  .comparisonOutput thead td:nth-child(1),
+  .comparisonOutput th:nth-child(1),
   .comparisonOutput tbody td:nth-child(1),
-  .detailsOutput thead td:nth-child(1),
+  .detailsOutput th:nth-child(1),
   .detailsOutput tbody td:nth-child(1){
-    height: 57px;
+    height: 70px;
+   
   }
+  
+  
 }
