@@ -63,6 +63,8 @@ function renderComparison(id1, id2) {
                     table2aRow1[i].classList.add("highlightedCell");
                     table2bRow1[i].classList.add("highlightedCell");
                 } else if (t1Diff === t2Diff) {
+                    table1aRow1[i].classList.add("highlightedCell2");
+                    table1bRow1[i].classList.add("highlightedCell2");
                     table2aRow1[i].classList.add("highlightedCell2");
                     table2bRow1[i].classList.add("highlightedCell2");
                 }
