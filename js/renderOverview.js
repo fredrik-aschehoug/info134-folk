@@ -25,3 +25,4 @@ function renderOverview(idList, befolkning) {
     }
     return overview;
 }
+

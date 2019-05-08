@@ -1,7 +1,7 @@
-  body {
-    background-color: #F4F4F4;
-    color: #24201D;
-    font-family: Arial, sans-serif;
+body {
+  background-color: #F4F4F4;
+  font-family: Arial, sans-serif;
+  font-size: 1em;
   }
 
 /*--------------------NAVIGASJON--------------------*/
@@ -12,10 +12,8 @@
   position: fixed;
   display:inline-block;
   width: 100%;
-  height: 50px;
   background-color: #1F2421;
   text-transform: uppercase;
-  font-size: 1em;
 }
 
 .navigation li{
@@ -30,13 +28,11 @@
 }
 
 .navigation button{
-  display: inline-block;
+  display: block;
   color: #F4F4F4;
-  padding: 15px 32px;
   border: none;
   background-color: #1F2421;
   text-decoration: none;
-  font-size: 1em;
 }
 
 /*--- Farge til navigasjon ---*/
@@ -66,8 +62,6 @@ main{
   display: block;
   padding: auto;
   margin: auto;
-  /*border: dashed thin black;*/
-  /*background-color: #EDEDE9;*/
 }
 
 .center{
@@ -77,9 +71,8 @@ main{
   position: absolute;
   transform: translate(-50%);
   display: block;
-  max-width: 60%;
-  min-width: 60%;
   overflow: scroll;
+  overflow-x: hidden;
   padding: 10px;
   margin: auto;
 }
@@ -95,7 +88,7 @@ main{
   visibility: visible;
   display:block;
   margin: auto;
-  }
+ }
 
 /*--------------------SEARCH--------------------*/
 
@@ -210,6 +203,41 @@ main{
   font-size: .8em;
 }
 
+#wrong{
+  color: #542344;
+  background-color: #F4F4F4;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding:10px;
+  border: 1px solid #542344;
+  width: 406px;
+  text-align: center;
+  margin: auto;
+}
+
+#sources > li:nth-child(1){
+  padding: 0;
+  font-weight: bold;
+}
+#sources{
+  list-style-type: none;
+  padding-left: 0;
+  font-style: italic;
+}
+
+#sources a{
+  padding-left: 10px;
+  text-decoration: none;
+  color: #542344;
+}
+#sources li a:hover{
+  background-color: #542344;
+  color: #fff;
+  padding-right: 10px;
+}
+
+
+
 /*--------------------OVERSIKT--------------------*/
 
 .overview table {
@@ -239,55 +267,18 @@ main{
   overflow-x: hidden;  /* Hide horizontal scroll */
 }
 
-.overview tr:nth-child(even) { /* Forandrer fargen til partalls linjer */
-  background-color: #D1DFE0;
-}
-
 .hiddenRow {
   display: none;
 }
 
-/*--------------------DETALJAR NAV--------------------*/
-
-.sidenav{
-  top: 75px; /*Same height as nav*/
-  left: 25px;
-  z-index: 2;
-  position: fixed;
-  position: -webkit-fixed;
-  display: block;
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
-  width: 200px;
-  max-width: 20%;
-  margin: 0;
-  padding: 0;
-  background-color: #DADEE5;
-  list-style-type: none;
+.overview tr:nth-child(even){ /* Forandrer fargen til partalls linjer */
+  background-color: #D1DFE0;
 }
 
-.sidenav li a{
-  color: black;
-  text-decoration: none;
+.visibleRow{
+  background-color: #D1DFE0 !important;
+  border: solid thin #F4F4F4;
 }
-
-.sidenav li{
-  padding: 0.5em;
-}
-
-.sidenav li:hover{
-  background-color: #374C70;
-}
-@media screen and (max-width: 1200px){
-  .sidenav{
-    top: 55px;
-    left: 5px;
-    max-width: 18%;
-    font-size: 0.75em;
-  }
-}
-
 
 /*--------------------Detaljar----------------------------*/
 .detailsOutput p,
@@ -297,7 +288,7 @@ main{
   font-weight: bold;
 }
 .detailsOutput .mainHeader {
-  font-size: 2em;
+  font-size: 1.5em;
 }
 .detailsOutput .subHeader {
   font-size: 1.5em;
@@ -324,27 +315,26 @@ main{
   width: 100%;
   padding: auto;
   padding-top: 10px;
-  margin: auto;
+  margin-bottom: 20px;
   border-collapse: collapse;
 }
 
+.tableHeader,
 .detailsOutput th,
 .detailsOutput td,
 .comparisonOutput th,
 .comparisonOutput td {
-  height: 40px;
-  text-align: left;
-}
-
-.detailsOutput th,
-.comparisonOutput th{
-  width:80px;
-}
-
-.detailsOutput table,
-.comparisonOutput table{
-  z-index: 0;
   padding-top: 10px;
+  padding-bottom: 10px;
+  min-height: 30px;
+  max-height: 50px;
+}
+
+.comparisonOutput th,
+.comparisonOutput td,
+.comparisonOutput th:not(.tableHeader th),
+.comparisonOutput td:not(.tableHeader td){
+  text-align: right;
 }
 
 .detailsOutput thead{
@@ -357,7 +347,6 @@ main{
   z-index: 2;
   position: sticky;
   position: -webkit-sticky;
-
 }
 
 .detailsOutput tbody,
@@ -380,6 +369,42 @@ main{
   visibility: hidden;
   display: none;
 }
+
+/*--------------------SAMANLIKNING--------------------*/
+.comparisonOutput thead {
+  background-color: #68553E;
+  color: white;
+  font-weight: bold !important;
+}
+
+
+.comparisonOutput .highlightedCell,
+.comparisonOutput .highlightedCell2 {
+  z-index: 0;
+  color: white;
+  box-shadow: inset 0px 0px 0px 2px #E3E0DB;
+  padding-left:auto;
+  padding-right: auto;
+  font-weight: bold !important;
+}
+.comparisonOutput .highlightedCell {
+  background-color: #9E9284;
+}
+.comparisonOutput .highlightedCell2 {
+  background-color: #F4F1AB;
+  color: #9E9284;
+}
+
+.comparisonOutput .highlightedCell th,
+.comparisonOutput .highlightedCell2 th{
+  text-align: center;
+}
+
+.comparisonOutput .employmentTable tr:nth-child(even) {
+  background-color: #E3E0DB;
+}
+
+
 /*--------------------Graph--------------------*/
 .canvasGraph {
   margin-top: 1em;
@@ -441,10 +466,12 @@ span {
 }
 
 
+
 /*--------------------TableToggle--------------------*/
 .tableToggle {
   position: relative;
 }
+
 .detailsOutput .tableToggle,
 .comparisonOutput .tableToggle {
   border: 1px solid #1a1a1a;
@@ -467,10 +494,7 @@ span {
   cursor: pointer;
   min-width: 60px;
 }
-.detailsOutput input[type="radio"].toggle + label:hover,
-.comparisonOutput input[type="radio"].toggle + label:hover {
-  background: none;
-}
+
 
 input[type="radio"].toggle + label:after {
   top: 0;
@@ -502,9 +526,7 @@ input[type="radio"].toggle:checked + label {
 }
 
 /*Color themes*/
-.detailsOutput input[type="radio"].toggle + label:hover {
-  color: #374C70;
-}
+
 .comparisonOutput input[type="radio"].toggle + label:hover {
   color: #68553E;
 }
@@ -518,35 +540,6 @@ input[type="radio"].toggle:checked + label {
 .comparisonOutput input[type="radio"].toggle:checked + label {
   color: #fff;
 }
-/*--------------------SAMANLIKNING--------------------*/
-.comparisonOutput thead {
-  background-color: #68553E;
-  color: white;
-}
-
-.comparisonOutput tbody td,
-.comparisonOutput thead td{
-  text-align: center !important;
-}
-
-/*Bold eller farga?*/
-.highlightedCell {
-  z-index: 0;
-  color: white;
-  box-shadow: inset 0px 0px 0px 2px #E3E0DB;
-  padding-left:auto;
-  padding-right: auto;
-  background-color: #9E9284;
-  font-weight: bold !important;
-}
-
-.highlightedCell th{
-  text-align: center;
-}
-.comparisonOutput .employmentTable tr:nth-child(even) {
-  background-color: #E3E0DB;
-}
-
 
 
 /*--------------------botntekst--------------------*/
@@ -562,5 +555,5 @@ footer{
   text-decoration: none;
   text-transform: uppercase;
   text-align: center;
-  font-size: 1em;
+
 }

@@ -6,8 +6,9 @@
   <title>Folk</title>
   <link rel="shortcut icon" type="image/icon" href="images/favicon.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" media="(min-width: 700px)" href="css/style.css">
-  <link rel="stylesheet" type="text/css" media="(max-width: 700px)" href="css/mobilstyle.css">
+  <link rel="stylesheet" type="text/css" media="(max-width: 700px)" href="css/styleMax700.css">
+  <link rel="stylesheet" type="text/css" media="(min-width: 700px)" href="css/styleMin700.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
   <script src="js/dataset.js"></script>
   <script src="js/navigation.js"></script>
   <script src="js/details.js"></script>
@@ -40,41 +41,49 @@
         </header>
         <p>
           På denne siden kan du se data om Norges befolkning. Bruk navigasjonsbaren til å navigere i de ulike sidene.
-          Vi tar forbehold om eventuelle feil i data. All data er henta fra Statistisk Sentralbyrå.
-          <i>Kilde: <a href="https://www.ssb.no/">www.ssb.no</a></i>
-          <i></i>
-          <header class="subHeader">
-            <h3>Oversikt:</h3>
-          </header>
-          <p>Viser en oversikt over kommunene i Norge med kommunenummer og befolkning.</p>
-          <header class="subHeader">
-            <h3>Detaljar:</h3>
-          </header>
-          <p>Viser detaljerte data om en kommune. Her benyttes kommunenr. til søking.</p>
-          <header class="subHeader">
-            <h3>Samanlikning:</h3>
-          </header>
-          <p>Sammenligner data mellom to kommuner.</p>
+          All data er henta fra Statistisk Sentralbyrå. <br>
         </p>
+
+        <ul id="sources">
+          <li>Kilder:</li>
+          <li><a href="http://data.ssb.no/api/v0/dataset/104857?lang=no">Data om befolkning</a></li>
+          <li><a href="http://data.ssb.no/api/v0/dataset/100145?lang=no">Data om sysselsatte</a></li>
+          <li><a href="http://data.ssb.no/api/v0/dataset/85432?lang=no">Data om utdanning</a></li>
+        </ul>
+        <p id="wrong">Me tar forbehold om eventuelle feil i data.</p>
+        <header class="subHeader">
+          <h3>Oversikt:</h3>
+        </header>
+        <p>Viser en oversikt over kommunene i Norge med kommunenummer og befolkning.</p>
+        <header class="subHeader">
+          <h3>Detaljar:</h3>
+        </header>
+        <p>Viser detaljerte data om en kommune. Her benyttes kommunenr. til søking.</p>
+        <header class="subHeader">
+          <h3>Samanlikning:</h3>
+        </header>
+        <p>Sammenligner data mellom to kommuner. Fyll inn kommunenr. i søkefeltet.</p>
+
       </article>
     </div>
+
     <div class="main overview center">
       <form id="overviewForm" action="#">
         <input id="overviewInput" type="text" placeholder="Søk kommune">
       </form>
     </div>
+
     <div class="main details">
-      <!--Sidenavigasjon-->
       <nav>
         <ul class="sidenav">
-          <li><a href="#detailsForm">Til toppen</a></li>
-          <li><a href="#befolkning">Befolkning</a></li>
-          <li><a href="#sysselsetting">Sysselsetting</a></li>
-          <li><a href="#utdanning">Høyere Utdanning</a></li>
-          <li><a href="#utdanning12">All høyere Utdanning</a></li>
-          <li><a href="#utdanning11">Fagskolenivå</a></li>
-          <li><a href="#utdanning03a">Universitets- og høgskolenivå kort</a></li>
-          <li><a href="#utdanning04a">Universitets- og høgskolenivå lang</a></li>
+          <a href="#detailsForm"><li>Til toppen</li></a>
+          <a href="#befolkning"><li>Befolkning</li></a>
+          <a href="#sysselsetting"><li>Sysselsetting</li></a>
+          <a href="#utdanning"><li>Høyere Utdanning</li></a>
+          <a href="#utdanning12"><li>All høyere Utdanning</li></a>
+          <a href="#utdanning11"><li>Fagskolenivå</li></a>
+          <a href="#utdanning03a"><li>Universitets- og høgskolenivå kort</li></a>
+          <a href="#utdanning04a"><li>Universitets- og høgskolenivå lang</li></a>
         </ul>
       </nav>
       <div class="center">
@@ -95,6 +104,7 @@
       </form>
       <div class="comparisonOutput"></div>
     </div>
+
   </main>
   <footer>
     <p>Oppgavebesvarelse INFO134.</p>

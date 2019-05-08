@@ -33,6 +33,8 @@ function renderComparison(id1, id2) {
         canvasRend.classList.add("canvasRend");
         // Append elements to return element
         appendElements(tables, numberTable, percentTable, canvas, canvasRend);
+        // Append elements to return element
+        appendElements(tables, numberTable, percentTable);
         return tables;
     }
     /**

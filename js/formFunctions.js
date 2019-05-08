@@ -1,12 +1,11 @@
 /**
  * Get value from input and create details view.
- * @callback detailsFormSubmit
- * @type {detailsFormSubmit}
+ * This function is set as a onclick event when a user submits the details form.
  * @param {string[]} ids Array of all municipal ids.
  */
-function detailsFormSubmit(ids) {
+function detailsFormSubmit(ids,promptID) {
     const detailsForm = document.getElementById("detailsForm");
-    const id = detailsForm.detailsInput.value;
+    let id = promptID || detailsForm.detailsInput.value;
     // Check if valid ID
     if (ids.includes(id)) {
         renderDetails(id);
@@ -21,13 +20,13 @@ function detailsFormSubmit(ids) {
         // Activate sidenav
         activateElement("sidenav", "activeSidenav");
     } else {
-        alert(`${id} er ikkje eit gyldig kommunenummer`);
+        id = prompt(`${id} er ikkje eit gyldig kommunenummer. Vennligst fyll inn nytt kommunenr.`);
+        detailsFormSubmit(ids, id);
     }
 }
 /**
  * Get value from input and create comparison view.
- * @callback detailsFormSubmit
- * @type {detailsFormSubmit}
+ * This function is set as a onclick event when a user submits the comparison form.
  * @param {string[]} ids Array of all municipal ids.
  */
 function comparisonFormSubmit(ids) {
@@ -59,19 +58,20 @@ function comparisonFormSubmit(ids) {
 }
 /**
  * Sets classname on tr elements according to search query.
+ * This function is set as an onkeypress event on the overview form.
  */
 function overviewTableFilter() {
     const input = document.getElementById("overviewInput");
-    const filter = input.value.toUpperCase();
+    const query = input.value.toUpperCase();
     const table = document.getElementById("overviewTable").tBodies[0];
     const rows = table.getElementsByTagName("tr");
-    let tdText;
     for (let row of rows) {
         // Select first column
-        let td = row.getElementsByTagName("td")[0];
-        if (td) {
-            tdText = td.innerText;
-            if (tdText.toUpperCase().indexOf(filter) > -1) {
+        let td = row.getElementsByTagName("td");
+        if (td[0]) {
+            // Check if cell 1 or 2 matches the query
+            let match = td[0].innerText.toUpperCase().indexOf(query) > -1 || td[1].innerText.toUpperCase().indexOf(query) > -1;
+            if (match) {
                 row.className = "visibleRow";
             } else {
                 row.className = "hiddenRow";
