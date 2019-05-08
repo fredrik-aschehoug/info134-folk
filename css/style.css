@@ -390,7 +390,6 @@ main {
 .comparisonOutput tbody td:nth-child(1), .details tbody td:nth-child(1) {
   text-align: left;
   font-weight: bold;
-  height: 50px;
 }
 
 /*--------------------Graph--------------------*/
