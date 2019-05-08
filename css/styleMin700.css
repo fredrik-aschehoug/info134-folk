@@ -17,7 +17,13 @@
     max-width: 60%;
     min-width: 60%;
   }
-
+  
+  .activeSidenav{
+    /*! visibility: visible; */
+    display:block;
+    margin: auto;
+   }
+  
   .sidenav{
     top: 75px; /*Same height as nav*/
     left: 25px;
@@ -45,7 +51,9 @@
   .sidenav li:hover{
     background-color: #374C70;
   }
-/*--------------------DETALJAR NAV--------------------*/
+  
+  
+/*--------------------tabellar--------------------*/
 
   .detailsOutput th,
   .comparisonOutput th{
@@ -54,6 +62,14 @@
 
   .education04aTable{
     margin-bottom: 20px;
+  }
+  
+  .detailsOutput tr:nth-child(even){
+    background-color: #DADEE5;
+  }
+  
+  .comparisonOutput .employmentTable tr:nth-child(even) {
+    background-color: #E3E0DB;
   }
 
   /*--------------------botntekst--------------------*/
@@ -66,23 +82,19 @@
 }
 
 @media screen and (max-width: 1200px){
-  .sidenav{
-    top: 55px;
-    left: 5px;
-    max-width: 18%;
-    font-size: 0.75em;
+  .activeSidenav{
+    visibility: hidden !important;:
   }
+  
 /*--------------------Table detaljar og samanlikning--------------------*/
   .historicalOverview{
     overflow-x: visible;
   }
 
-}
 
-
-@media screen and (max-width: 1100px){
-  .detailsOutput table,
-  .comparisonOutput table{
-    font-size: 0.6em
+  .center{
+    max-width: 90%; /* Bruker større del av skjermen */
+    min-width: 90%; /* Bruker større del av skjermen */
+    top: 41px;
   }
 }

@@ -19,7 +19,9 @@
   .center{
     max-width: 90%; /* Bruker større del av skjermen */
     min-width: 90%; /* Bruker større del av skjermen */
+    top: 41px;
   }
+
 
 /*--------------------DETALJAR NAV--------------------*/
   /* Skjuler sidenav i liten skjerm */
@@ -93,6 +95,10 @@
     font-weight: normal;
   }
 /*------------------- detaljar --------------------*/
+  .sidenav{
+    visibility: hidden;
+  }
+  
   /* Bytt fargar */
   .historicalOverview thead,
   .historicalOverview .tableHeader{
@@ -114,6 +120,7 @@
   .historicalOverview thead td:nth-child(even){
     background-color: #DADEE5;
   }
+  
 
 /*--------------------SAMANLIKNING--------------------*/
 
@@ -125,6 +132,11 @@
 
   .employmentTable tr:nth-child(even) {
     background-color: transparent;
+  }
+  
+  .comparisonOutput tbody td:nth-child(even),
+  .comparisonOutput thead td:nth-child(even){
+    background-color: #E3E0DB;
   }
 
 
