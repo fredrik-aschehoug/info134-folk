@@ -3,37 +3,32 @@
  * @param {string} id1 Municipal ID to get details from
  * @param {string} id2 Municipal ID to get details from
  */
-function createComparison(id1, id2) {
+function renderComparison(id1, id2) {
     /**
      * Create two tables inside a <div>. One for number and one for percentage.
      * @param {object} historicalDetails From details.getHistorical(id)
      * @param {string} className The classname to assign to the tables
      * @returns {HTMLDivElement} <div> containing the tables, number and percentage.
      */
-    function createComparisonTable(historicalDetails, className) {
+    function renderComparisonTable(historicalDetails, className) {
         const tables = document.createElement("div");
-        const canvas = document.createElement("div");
-        const canvasRend = document.createElement("div");
         const desciptions = ["Kvinner", "Menn", "Begge kjønn"];
         const tableHeaderClass = "tableHeader";
         // Create table elements
-        numberTable = createTableElement();
-        percentTable = createTableElement();
+        numberTable = renderTableElement();
+        percentTable = renderTableElement();
         // Create table headers
         const tableHeaders = createTableHeaders("employment", historicalDetails);
-        numberTable.tHead.appendChild(createTableHeader(tableHeaders, tableHeaderClass));
-        percentTable.tHead.appendChild(createTableHeader(tableHeaders, tableHeaderClass));
+        numberTable.tHead.appendChild(renderTableHeader(tableHeaders, tableHeaderClass));
+        percentTable.tHead.appendChild(renderTableHeader(tableHeaders, tableHeaderClass));
         // Create rows
-        createTableBody(desciptions, tableHeaders, historicalDetails, numberTable.tBodies[0], "number", "employment");
-        createTableBody(desciptions, tableHeaders, historicalDetails, percentTable.tBodies[0], "percent", "employment");
-        // Assign classes & ID
+        renderTableBody(desciptions, tableHeaders, historicalDetails, numberTable.tBodies[0], "number", "employment");
+        renderTableBody(desciptions, tableHeaders, historicalDetails, percentTable.tBodies[0], "percent", "employment");
+        // Assign classes
         numberTable.classList.add(className, "activeTable");
         percentTable.classList.add(className);
-        canvas.classList.add('canvasBtn');
-        canvasRend.classList.add('canvasRend');
         // Append elements to return element
-        appendElements(tables, numberTable, percentTable, canvas, canvasRend);
-        
+        appendElements(tables, numberTable, percentTable);
         return tables;
     }
     /**
@@ -63,6 +58,9 @@ function createComparison(id1, id2) {
                 } else if (t1Diff < t2Diff){
                     table2aRow1[i].classList.add("highlightedCell");
                     table2bRow1[i].classList.add("highlightedCell");
+                } else if (t1Diff === t2Diff) {
+                    table2aRow1[i].classList.add("highlightedCell2");
+                    table2bRow1[i].classList.add("highlightedCell2");
                 }
             }
         }
@@ -77,14 +75,14 @@ function createComparison(id1, id2) {
     // Create headers
     const header1Text = `Sysselsetting i ${historicalDetails1.navn}:`;
     const header2Text = `Sysselsetting i ${historicalDetails2.navn}:`;
-    const header1 = createHeader(header1Text, "subHeader");
-    const header2 = createHeader(header2Text, "subHeader");
+    const header1 = renderHeader(header1Text, "subHeader");
+    const header2 = renderHeader(header2Text, "subHeader");
     // Create tables
-    const table1 = createComparisonTable(historicalDetails1, className);
-    const table2 = createComparisonTable(historicalDetails2, className);
+    const table1 = renderComparisonTable(historicalDetails1, className);
+    const table2 = renderComparisonTable(historicalDetails2, className);
     highlightTables(table1, table2);
     // Create one tableToggle for both tables
-    const tableToggle = createTableToggle(toggleCallback, className, "employment", "Comparison");
+    const tableToggle = renderTableToggle(toggleCallback, className, "employment", "Comparison");
     // Clear placeholder
     removeChildNodes(placeholder[0]);
     // Append item to placeholder

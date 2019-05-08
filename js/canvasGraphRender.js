@@ -82,7 +82,7 @@ function graphMain(finalObj) {
      * @param {Object} finalObj 
      */
     function mapDataGraph(xAxisKeys, yAxisArray, finalObj) {
-        array = finalObj
+        array = finalObj;
         /**
          * Tries to normalize values to give more equality
          * on the 2D brush.
